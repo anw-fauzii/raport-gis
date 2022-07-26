@@ -1,26 +1,14 @@
-<div {{ $attributes->merge(['class' => $makeAlertClass()]) }}>
-
-    {{-- Dismiss button --}}
-    @isset($dismissable)
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-            &times;
-        </button>
-    @endisset
-
-    {{-- Alert header --}}
-    @if(! empty($title) || ! empty($icon))
-        <h5>
-            @if(! empty($icon))
-                <i class="icon {{ $icon }}"></i>
-            @endif
-
-            @if(! empty($title))
-                {{ $title }}
-            @endif
-        </h5>
+@if (config('sweetalert.alwaysLoadJS') === true && config('sweetalert.neverLoadJS') === false )
+    <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+@endif
+@if (Session::has('alert.config'))
+    @if(config('sweetalert.animation.enable'))
+        <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
     @endif
-
-    {{-- Alert content --}}
-    {{ $slot }}
-
-</div>
+    @if (config('sweetalert.alwaysLoadJS') === false && config('sweetalert.neverLoadJS') === false)
+        <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+    @endif
+    <script>
+        Swal.fire({!! Session::pull('alert.config') !!});
+    </script>
+@endif

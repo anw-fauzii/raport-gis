@@ -20,10 +20,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-book-reader"></i>
+          <a href="{{route('pengumuman.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-bullhorn"></i>
             <p>
-              Ekstrakulikuler
+              Pengumuman
             </p>
           </a>
         </li>

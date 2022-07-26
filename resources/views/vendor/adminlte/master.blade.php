@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link href="{{asset('vendor/toastr/toastr.css')}}" rel="stylesheet"> 
     {{-- Custom Meta Tags --}}
     @yield('meta_tags')
 
@@ -105,5 +105,13 @@
     @yield('adminlte_js')
 
 </body>
+<script src="{{asset('vendor/toastr/toastr.min.js')}}"></script>
+<script type="text/javascript">
+    @if (Session::has('success'))
+        toastr.success('{{ Session::get('success') }}');
+    @elseif(Session::has('error'))
+        toastr.error('{{ Session::get('error') }}');
+    @endif
+</script>
 
 </html>
