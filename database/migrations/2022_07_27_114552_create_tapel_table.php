@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengumumanTable extends Migration
+class CreateTapelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreatePengumumanTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengumuman', function (Blueprint $table) {
+        Schema::create('tapel', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->string('judul');
-            $table->longText('isi');
+            $table->string('tahun_pelajaran', 9);
+            $table->enum('semester', ['1', '2']);
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +28,6 @@ class CreatePengumumanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengumuman');
+        Schema::dropIfExists('tapel');
     }
 }
