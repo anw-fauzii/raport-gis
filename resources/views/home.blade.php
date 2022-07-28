@@ -180,21 +180,21 @@
             <li class="item">
 
               <div class="product-img">
-                <img src="#" alt="Avatar" class="img-size-50">
+                <img src="{{asset('storage/logo/user.png')}}" alt="Avatar" class="img-size-50">
               </div>
 
               <div class="product-info">
                 <a href="javascript:void(0)" class="product-title">
                 @if(Cache::has('is_online' . $riwayat_login->id))
-                    <span class="text-success">Online</span>
+                    <span class="badge badge-success float-right">Online</span>
                 @else
-                    <span class="text-secondary">Offline</span>
+                    <span class="badge badge-warning float-right">Offline</span>
                 @endif
                 </a>
 
                 <span class="product-description">
                   Administrator
-                  {{ \Carbon\Carbon::parse($riwayat_login->last_seen)->diffForHumans() }}
+                  <span class="time float-right"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($riwayat_login->last_seen)->diffForHumans() }}</span>
                 </span>
               </div>
             </li>
