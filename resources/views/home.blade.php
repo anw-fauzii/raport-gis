@@ -135,7 +135,7 @@
                   <div class="timeline-item">
                     <span class="time"><i class="far fa-clock"></i> {{$pengumuman->created_at}}</span>
 
-                    <h3 class="timeline-header"><a href="#">{{$pengumuman->user_id}}</a> {{$pengumuman->judul}} @if($pengumuman->created_at != $pengumuman->updated_at)<small><i>edited</i></small>@endif</h3>
+                    <h3 class="timeline-header"><a href="#">{{$pengumuman->user->name}}</a> {{$pengumuman->judul}} @if($pengumuman->created_at != $pengumuman->updated_at)<small><i>edited</i></small>@endif</h3>
 
                     <div class="timeline-body">
                       {!! $pengumuman->isi !!}
@@ -193,8 +193,10 @@
                 </a>
 
                 <span class="product-description">
-                  Administrator
+                  {{$riwayat_login->name}}
+                  @if(!Cache::has('is_online' . $riwayat_login->id))
                   <span class="time float-right"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($riwayat_login->last_seen)->diffForHumans() }}</span>
+                  @endif
                 </span>
               </div>
             </li>

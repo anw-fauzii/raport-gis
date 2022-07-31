@@ -43,6 +43,17 @@
                     </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="guru_id" class="col-sm-3 col-form-label">Pendamping</label>
+                    <div class="col-sm-9">
+                    <select class="form-control select2" name="pendamping_id" style="width: 100%;" required>
+                        <option value="">-- Pilih Pendamping --</option>
+                        @foreach($data_guru as $guru)
+                        <option value="{{$guru->id}}">{{$guru->nama_lengkap}}, {{$guru->gelar}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                </div>
                 </div>
                 <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

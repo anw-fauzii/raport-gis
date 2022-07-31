@@ -56,7 +56,7 @@ class KelasController extends Controller
         if ($validator->fails()) {
             return back()->with('error', $validator->messages()->all()[0])->withInput();
         } else {
-            $tapel = Tapel::findorfail(session()->get('tapel_id'));
+            $tapel = Tapel::findorfail(5);
             $kelas = new Kelas([
                 'tapel_id' => $tapel->id,
                 'guru_id' => $request->guru_id,
@@ -65,7 +65,7 @@ class KelasController extends Controller
                 'nama_kelas' => $request->nama_kelas,
             ]);
             $kelas->save();
-            return back()->with('success', 'Kelas berhasil ditambahkan');
+            return back()->with('success', 'Sukes! Kelas berhasil ditambahkan');
         }
     }
 
@@ -98,10 +98,27 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama_kelas' => 'required|min:1|max:30',
+            'guru_id' => 'required',
+            'pendamping_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $kelas = Kelas::findorfail($id);
+            $data_kelas = [
+                'nama_kelas' => $request->nama_kelas,
+                'guru_id' => $request->guru_id,
+                'pendamping_id' => $request->pendamping_id,
+            ];
+            $kelas->update($data_kelas);
+            return back()->with('success', 'Sukses! Kelas berhasil diedit');
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -109,8 +126,14 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($id)
     {
-        //
+        $kelas = Kelas::findorfail($id);
+        try {
+            $kelas->delete();
+            return back()->with('success', 'Kelas berhasil dihapus');
+        } catch (Exception $e) {
+            return back()->with('warning', 'Kosongkan anggota kelas terlebih dahulu');
+        }
     }
 }

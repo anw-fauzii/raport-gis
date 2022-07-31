@@ -16,4 +16,24 @@ class Kelas extends Model
         'tingkatan_kelas',
         'nama_kelas',
     ];
+
+    public function tapel()
+    {
+        return $this->belongsTo(Tapel::class);
+    }
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class);
+    }
+
+    public function pendamping(){
+        return $this->belongsTo(Guru::class,'pendamping_id','id');
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
+    
 }

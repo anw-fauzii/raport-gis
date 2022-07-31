@@ -26,3 +26,6 @@ Route::resource('/guru',App\Http\Controllers\GuruController::class);
 Route::resource('/siswa',App\Http\Controllers\SiswaController::class);
 Route::resource('/kelas',App\Http\Controllers\KelasController::class);
 Route::resource('/tahun-pelajaran',App\Http\Controllers\TapelController::class);
+Route::get('siswa/export', [App\Http\Controllers\SiswaController::class,'export'])->name('siswa.export');
+Route::post('siswa/import', [App\Http\Controllers\SiswaController::class,'import'])->name('siswa.import');
+Route::get('siswa/import', [App\Http\Controllers\SiswaController::class,'format_import'])->name('siswa.format_import');
