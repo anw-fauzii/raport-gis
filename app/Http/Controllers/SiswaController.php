@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Tapel;
+use App\Models\User;
+use App\Models\AnggotaKelas;
+use App\Models\SiswaKeluar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Excel;
 use Illuminate\Support\Facades\Response;
 
@@ -65,27 +69,28 @@ class SiswaController extends Controller
             'status_dalam_keluarga' => 'required',
             'alamat' => 'required|min:3|max:255',
             'nomor_hp' => 'nullable|numeric|digits_between:11,13|unique:siswa',
-
             'nama_ayah' => 'required|min:3|max:100',
             'nama_ibu' => 'required|min:3|max:100',
             'pekerjaan_ayah' => 'required|min:3|max:100',
             'pekerjaan_ibu' => 'required|min:3|max:100',
+            'pendidikan_ayah' => 'required|min:1|max:100',
+            'pendidikan_ibu' => 'required|min:1|max:100',
             'nama_wali' => 'nullable|min:3|max:100',
             'pekerjaan_wali' => 'nullable|min:3|max:100',
+            'pendidikan_wali' => 'nullable|min:1|max:100',
         ]);
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
         } else {
             try {
                 $user = new User([
-                    'username' => strtolower(str_replace(' ', '', $request->nama_lengkap . $request->nis)),
-                    'password' => bcrypt('123456'),
-                    'role' => 3,
-                    'status' => true
+                    'name' => $request->nama_lengkap,
+                    'email' => $request->nis,
+                    'password' => Hash::make('12345678'),
                 ]);
                 $user->save();
-            } catch (\Throwable $th) {
-                return back()->with('toast_error', 'Username telah digunakan');
+            } catch (Exception $e) {
+                return back()->with('error', 'Username telah digunakan');
             }
 
             $siswa = new Siswa([
@@ -107,8 +112,11 @@ class SiswaController extends Controller
                 'nama_ibu' => $request->nama_ibu,
                 'pekerjaan_ayah' => $request->pekerjaan_ayah,
                 'pekerjaan_ibu' => $request->pekerjaan_ibu,
+                'pendidikan_ayah' => $request->pendidikan_ayah,
+                'pendidikan_ibu' => $request->pendidikan_ibu,
                 'nama_wali' => $request->nama_wali,
                 'pekerjaan_wali' => $request->pekerjaan_wali,
+                'pendidikan_wali' => $request->pendidikan_wali,
                 'avatar' => 'default.png',
                 'status' => 1,
             ]);
@@ -121,7 +129,7 @@ class SiswaController extends Controller
             ]);
             $anggota_kelas->save();
 
-            return back()->with('toast_success', 'Siswa berhasil ditambahkan');
+            return back()->with('success', 'Siswa berhasil ditambahkan');
         }
     }
 
@@ -169,7 +177,6 @@ class SiswaController extends Controller
             'status_dalam_keluarga' => 'required',
             'alamat' => 'required|min:3|max:255',
             'nomor_hp' => 'nullable|numeric|digits_between:11,13|unique:siswa,nomor_hp,' . $siswa->id,
-
             'nama_ayah' => 'required|min:3|max:100',
             'nama_ibu' => 'required|min:3|max:100',
             'pekerjaan_ayah' => 'required|min:3|max:100',
@@ -178,7 +185,7 @@ class SiswaController extends Controller
             'pekerjaan_wali' => 'nullable|min:3|max:100',
         ]);
         if ($validator->fails()) {
-            return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
         } else {
             $data_siswa = [
                 'nis' => $request->nis,
@@ -195,12 +202,12 @@ class SiswaController extends Controller
                 'nama_ayah' => $request->nama_ayah,
                 'nama_ibu' => $request->nama_ibu,
                 'pekerjaan_ayah' => $request->pekerjaan_ayah,
-                'pekerjaan_ibu' => $request->pekerjaan_ibu,
+                'pendidikan_ibu' => $request->pendidikan_ibu,
                 'nama_wali' => $request->nama_wali,
                 'pekerjaan_wali' => $request->pekerjaan_wali
             ];
             $siswa->update($data_siswa);
-            return back()->with('toast_success', 'Siswa berhasil diedit');
+            return back()->with('success', 'Siswa berhasil diedit');
         }
     }
 
@@ -219,19 +226,19 @@ class SiswaController extends Controller
         if ($data_anggota_kelas->count() == 0) {
             $data_siswa->delete();
             $data_user->delete();
-            return back()->with('toast_success', 'Siswa berhasil dihapus');
+            return back()->with('success', 'Siswa berhasil dihapus');
         } elseif ($data_anggota_kelas->count() == 1) {
             try {
                 $anggota_kelas = AnggotaKelas::where('siswa_id', $data_siswa->id)->first();
                 $anggota_kelas->delete();
                 $data_siswa->delete();
                 $data_user->delete();
-                return back()->with('toast_success', 'Siswa berhasil dihapus');
-            } catch (\Throwable $th) {
-                return back()->with('toast_error', 'Data siswa tidak dapat dihapus');
+                return back()->with('success', 'Siswa berhasil dihapus');
+            } catch (Exception $e) {
+                return back()->with('error', 'Data siswa tidak dapat dihapus');
             }
         } else {
-            return back()->with('toast_error', 'Data siswa tidak dapat dihapus');
+            return back()->with('error', 'Data siswa tidak dapat dihapus');
         }
     }
 
@@ -245,9 +252,9 @@ class SiswaController extends Controller
     {
         try {
             Excel::import(new SiswaImport, $request->file('file_import'));
-            return back()->with('toast_success', 'Data siswa berhasil diimport');
-        } catch (\Throwable $th) {
-            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+            return back()->with('success', 'Data siswa berhasil diimport');
+        } catch (Exception $e) {
+            return back()->with('error', 'Maaf, format data tidak sesuai');
         }
     }
 
@@ -258,5 +265,45 @@ class SiswaController extends Controller
             'Content-Type: application/xls',
         );
         return Response::download($file, 'format_import_siswa ' . date('Y-m-d H_i_s') . '.xls', $headers);
+    }
+
+    public function registrasi(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'siswa_id' => 'required',
+            'keluar_karena' => 'required|max:30',
+            'tanggal_keluar' => 'required',
+            'alasan_keluar' => 'nullable|max:255',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $siswa_keluar = new SiswaKeluar([
+                'siswa_id' => $request->input('siswa_id'),
+                'keluar_karena' => $request->input('keluar_karena'),
+                'tanggal_keluar' => $request->input('tanggal_keluar'),
+                'alasan_keluar' => $request->input('alasan_keluar'),
+            ]);
+            $siswa_keluar->save();
+
+            $siswa = Siswa::findorfail($request->siswa_id);
+            $anggota_kelas = AnggotaKelas::where('siswa_id', $siswa->id)->where('kelas_id', $siswa->kelas_id)->first();
+            $anggota_kelas->delete();
+
+            if ($request->keluar_karena == 'Lulus') {
+                $update_siswa = [
+                    'kelas_id' => null,
+                    'status' => 3
+                ];
+            } else {
+                $update_siswa = [
+                    'kelas_id' => null,
+                    'status' => 2
+                ];
+            }
+            $siswa->update($update_siswa);
+            User::findorfail($siswa->user_id)->update(['status' => false]);
+            return redirect('admin/siswa')->with('success', 'Registrasi siswa berhasil');
+        }
     }
 }

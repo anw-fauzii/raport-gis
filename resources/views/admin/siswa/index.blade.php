@@ -112,8 +112,8 @@
                   </div>
                   <label for="kelas_id" class="col-sm-2 col-form-label">Kelas</label>
                   <div class="col-sm-4">
-                    <select class="form-control select2" id="kelas_all">
-                      <option value="">-- Pilih Kelas --</option>
+                    <select class="form-control select2" id="kelas_all" name="kelas_id">
+                      <option disable="true" selected="true" disabled>-- Pilih Kelas --</option>
                       @foreach($data_kelas_all as $kelas_all)
                       <option value="{{$kelas_all->id}}">{{$kelas_all->nama_kelas}}</option>
                       @endforeach
@@ -144,7 +144,7 @@
                   <label for="agama" class="col-sm-3 col-form-label">Agama</label>
                   <div class="col-sm-3">
                     <select class="form-control select2" name="agama" required>
-                      <option value="">-- Pilih Agama --</option>
+                      <option disable="true" selected="true" disabled>-- Pilih Agama --</option>
                       <option value="1">Islam</option>
                       <option value="2">Protestan</option>
                       <option value="3">Katolik</option>
@@ -198,6 +198,40 @@
                   <label for="pekerjaan_ibu" class="col-sm-2 col-form-label">Pekerjaan Ibu</label>
                   <div class="col-sm-4">
                     <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" placeholder="Pekerjaan Ibu" value="{{old('pekerjaan_ibu')}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pendidikan_ayah" class="col-sm-3 col-form-label">Pendidikan Ayah</label>
+                    <div class="col-sm-3">
+                      <select class="form-control select2" name="pendidikan_ayah" required>
+                        <option disable="true" selected="true" disabled>-- Pilih Jenjang --</option>
+                        <option value="0">-</option>
+                        <option value="1">SD/MI</option>
+                        <option value="2">SMP/MTs</option>
+                        <option value="3">D1</option>
+                        <option value="4">SMA/SMK/MA</option>
+                        <option value="5">D2</option>
+                        <option value="6">D3</option>
+                        <option value="7">S1</option>
+                        <option value="8">S2</option>
+                        <option value="9">S3</option>
+                      </select>
+                    </div>
+                  <label for="pendidikan_ibu" class="col-sm-2 col-form-label">Pendidikan Ibu</label>
+                  <div class="col-sm-4">
+                    <select class="form-control select2" name="pendidikan_ibu" required>
+                      <option disable="true" selected="true" disabled>-- Pilih Jenjang --</option>
+                      <option value="0">-</option>
+                      <option value="1">SD/MI</option>
+                      <option value="2">SMP/MTs</option>
+                      <option value="3">D1</option>
+                      <option value="4">SMA/SMK/MA</option>
+                      <option value="5">D2</option>
+                      <option value="6">D3</option>
+                      <option value="7">S1</option>
+                      <option value="8">S2</option>
+                      <option value="9">S3</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group row">

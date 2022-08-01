@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\AnggotaKelas;
 use App\Models\Tapel;
 use App\Models\Siswa;
 use App\Models\Guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class KelasController extends Controller
 {
@@ -75,11 +77,26 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas)
+    public function show($id)
     {
-        //
+        $title = 'Anggota Kelas';
+        $kelas = Kelas::findorfail($id);
+        $anggota_kelas = AnggotaKelas::join('siswa', 'anggota_kelas.siswa_id', '=', 'siswa.id')
+            ->orderBy('siswa.nama_lengkap', 'ASC')
+            ->where('anggota_kelas.kelas_id', $id)
+            ->select('siswa.*', 'anggota_kelas.*')
+            ->get();
+        $siswa_belum_masuk_kelas = Siswa::where('status', 1)->where('kelas_id', null)->get();
+        foreach ($siswa_belum_masuk_kelas as $belum_masuk_kelas) {
+            $kelas_sebelumhya = AnggotaKelas::where('siswa_id', $belum_masuk_kelas->id)->orderBy('id', 'DESC')->first();
+            if (is_null($kelas_sebelumhya)) {
+                $belum_masuk_kelas->kelas_sebelumhya = null;
+            } else {
+                $belum_masuk_kelas->kelas_sebelumhya = $kelas_sebelumhya->kelas->nama_kelas;
+            }
+        }
+        return view('admin.kelas.show', compact('title', 'kelas', 'anggota_kelas', 'siswa_belum_masuk_kelas'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -134,6 +151,49 @@ class KelasController extends Controller
             return back()->with('success', 'Kelas berhasil dihapus');
         } catch (Exception $e) {
             return back()->with('warning', 'Kosongkan anggota kelas terlebih dahulu');
+        }
+    }
+
+    public function store_anggota(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'siswa_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('warning', 'Tidak ada siswa yang dipilih');
+        } else {
+            $siswa_id = $request->input('siswa_id');
+            for ($count = 0; $count < count($siswa_id); $count++) {
+                $data = array(
+                    'siswa_id' => $siswa_id[$count],
+                    'kelas_id'  => $request->kelas_id,
+                    'pendaftaran'  => $request->pendaftaran,
+                    'created_at'  => Carbon::now(),
+                    'updated_at'  => Carbon::now(),
+                );
+                $insert_data[] = $data;
+            }
+
+            AnggotaKelas::insert($insert_data);
+            Siswa::whereIn('id', $siswa_id)->update(['kelas_id' => $request->input('kelas_id')]);
+            return back()->with('toast_success', 'Anggota kelas berhasil ditambahkan');
+        }
+    }
+
+    public function delete_anggota($id)
+    {
+        try {
+            $anggota_kelas = AnggotaKelas::findorfail($id);
+            $siswa = Siswa::findorfail($anggota_kelas->siswa_id);
+
+            $update_kelas_id = [
+                'kelas_id' => null,
+            ];
+            $anggota_kelas->delete();
+            $siswa->update($update_kelas_id);
+            return back()->with('success', 'Anggota kelas berhasil dihapus');
+        } catch (Exception $e) {
+            return back()->with('error', 'Anggota kelas tidak dapat dihapus');
         }
     }
 }

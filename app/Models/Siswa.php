@@ -37,4 +37,9 @@ class Siswa extends Model
         'status'
     ];
     protected $dates = ['tanggal_lahir'];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }
