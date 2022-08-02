@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnggotaKelasTable extends Migration
+class CreateSiswaKeluarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateAnggotaKelasTable extends Migration
      */
     public function up()
     {
-        Schema::create('anggota_kelas', function (Blueprint $table) {
+        Schema::create('siswa_keluar', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('siswa_id')->unsigned();
-            $table->unsignedBigInteger('kelas_id')->unsigned();
-            $table->string('tapel')->nullable();
-            $table->enum('pendaftaran', ['1', '2', '3', '4', '5']);
+            $table->unsignedBigInteger('siswa_id')->unique()->unsigned();
+            $table->string('keluar_karena', 30);
+            $table->date('tanggal_keluar');
+            $table->string('alasan_keluar')->nullable();
             $table->timestamps();
 
             $table->foreign('siswa_id')->references('id')->on('siswa');
-            $table->foreign('kelas_id')->references('id')->on('kelas');
         });
+        // Jenis Registrasi
+        // 2 = Keluar
+        // 3 = Lulus
     }
 
     /**
@@ -33,6 +35,6 @@ class CreateAnggotaKelasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anggota_kelas');
+        Schema::dropIfExists('siswa_keluar');
     }
 }

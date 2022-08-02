@@ -21,12 +21,12 @@
 @stop
 
 @section('content')
-<!-- ./row -->
+
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-users"></i> {{$title}}</h3>
+        <h3 class="card-title"><i class="fas fa-book"></i> {{$title}}</h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-tambah">
             <i class="fas fa-plus"></i>
@@ -34,15 +34,12 @@
           <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-import">
             <i class="fas fa-upload"></i>
           </button>
-          <a href="{{ route('siswa.export') }}" class="btn btn-tool btn-sm">
-            <i class="fas fa-download"></i>
-          </a>
         </div>
       </div>
 
-      @include('admin.siswa.import')
+      @include('admin.mapel.import')
 
-      @include('admin.siswa.create')
+      @include('admin.mapel.create')
 
       <div class="card-body">
         <div class="table-responsive">
@@ -50,54 +47,26 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>NIS / NISN</th>
-                <th>Nama Siswa</th>
-                <th>Tanggal Lahir</th>
-                <th>L/P</th>
-                <th>Kelas Saat Ini</th>
-                <th>Pembimbing T2Q</th>
+                <th>Kategori</th>
+                <th>Mata Pelajaran</th>
+                <th>Ringkas (Singkatan)</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               <?php $no = 0; ?>
-              @foreach($data_siswa as $siswa)
+              @foreach($data_mapel as $mapel)
               <?php $no++; ?>
               <tr>
                 <td>{{$no}}</td>
-                <td>{{$siswa->nis}} / {{$siswa->nisn}}</td>
-                <td>{{$siswa->nama_lengkap}}</td>
-                <td>{{$siswa->tanggal_lahir->format('d-M-Y')}}</td>
-                <td>{{$siswa->jenis_kelamin}}</td>
+                <td>{{$mapel->kategori->kategori}}</td>
+                <td>{{$mapel->nama_mapel}}</td>
+                <td>{{$mapel->ringkasan_mapel}}</td>
                 <td>
-                  @if($siswa->kelas_id == null)
-                  <span class="badge light badge-warning">Belum masuk anggota kelas</span>
-                  @else
-                  {{$siswa->kelas->nama_kelas}}
-                  @endif
-                </td>
-                <td>
-                  @if($siswa->guru_id == null)
-                  <span class="badge light badge-warning">Belum masuk anggota T2Q</span>
-                  @else
-                  {{$siswa->guru->nama_lengkap}}, {{$siswa->guru->gelar}}
-                  @endif
-                </td>
-                <td>
-                  <form action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
+                  <form action="{{ route('mapel.destroy', $mapel->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-
-                    @if($siswa->kelas_id != null)
-                    <button type="button" class="btn btn-primary btn-sm mt-1" data-toggle="modal" data-target="#modal-registrasi{{$siswa->id}}" title="Registrasi Siswa">
-                      <i class="fas fa-user-cog"></i>
-                    </button>
-                    @else
-                    <button type="button" class="btn btn-primary btn-sm mt-1" data-toggle="modal" data-target="#modal-registrasi{{$siswa->id}}" title="Registrasi Siswa" disabled>
-                      <i class="fas fa-user-cog"></i>
-                    </button>
-                    @endif
-                    <button type="button" class="btn btn-warning btn-sm mt-1" data-toggle="modal" data-target="#modal-edit{{$siswa->id}}">
+                    <button type="button" class="btn btn-warning btn-sm mt-1" data-toggle="modal" data-target="#modal-edit{{$mapel->id}}">
                       <i class="fas fa-pencil-alt"></i>
                     </button>
                     <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">
@@ -107,9 +76,8 @@
                 </td>
               </tr>
 
-              @include('admin.siswa.registrasi')
-              @include('admin.siswa.edit')
-              
+              @include('admin.mapel.edit')
+
               @endforeach
             </tbody>
           </table>
@@ -120,20 +88,19 @@
   </div>
 
 </div>
-<!-- /.row -->
-@include('admin.guru.create')
+
 @stop
 
 @section('css')
+<link rel="stylesheet" href="{{asset('vendor/datatables/css/dataTables.bootstrap4.css')}}">
 <link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('vendor/datatables/css/dataTables.bootstrap4.css')}}">
 @stop
 
 @section('js')
-<script src="{{asset('vendor/select2/js/select2.full.min.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('vendor/select2/js/select2.full.min.js')}}"></script>
 
 <script>
   $(function () {

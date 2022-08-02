@@ -24,7 +24,7 @@ class CreateSekolahTable extends Migration
             $table->string('email', 35)->nullable();
             $table->string('logo')->nullable();
             $table->string('kepala_sekolah', 100);
-            $table->string('nip_kepala_sekolah', 18)->nullable();
+            $table->string('nip_kepala_sekolah', 30)->nullable();
             $table->timestamps();
         });
     }

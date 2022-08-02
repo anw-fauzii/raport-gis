@@ -18,6 +18,7 @@ class CreateGuruTable extends Migration
             $table->unsignedBigInteger('user_id')->unique()->unsigned();
             $table->string('nama_lengkap', 100);
             $table->string('gelar', 10);
+            $table->string('jabatan');
             $table->string('nip', 18)->unique()->nullable();
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('tempat_lahir', 30);

@@ -13,6 +13,7 @@ class Guru extends Model
         'user_id',
         'nama_lengkap',
         'gelar',
+        'jabatan',
         'nip',
         'jenis_kelamin',
         'tempat_lahir',

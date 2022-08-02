@@ -26,7 +26,6 @@ class SiswaController extends Controller
         $title = 'Data Siswa';
         $tapel = Tapel::findorfail(5);
         $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
-
         if ($jumlah_kelas == 0) {
             return redirect('kelas')->with('toast_warning', 'Mohon isikan data kelas');
         } else {
@@ -122,10 +121,12 @@ class SiswaController extends Controller
             ]);
             $siswa->save();
 
+            $tapel = Tapel::latest()->first();
             $anggota_kelas = new AnggotaKelas([
                 'siswa_id' => $siswa->id,
                 'kelas_id' => $request->kelas_id,
                 'pendaftaran' => $request->jenis_pendaftaran,
+                'tapel' => $tapel->tahun_pelajaran,
             ]);
             $anggota_kelas->save();
 
@@ -303,7 +304,7 @@ class SiswaController extends Controller
             }
             $siswa->update($update_siswa);
             User::findorfail($siswa->user_id)->update(['status' => false]);
-            return redirect('admin/siswa')->with('success', 'Registrasi siswa berhasil');
+            return redirect('siswa')->with('success', 'Registrasi siswa berhasil');
         }
     }
 }

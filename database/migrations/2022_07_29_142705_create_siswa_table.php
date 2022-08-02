@@ -17,6 +17,7 @@ class CreateSiswaTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unique()->unsigned();
             $table->unsignedBigInteger('kelas_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('guru_id')->unsigned()->nullable();
             $table->enum('jenis_pendaftaran', ['1', '2']);
             $table->string('nis', 20)->unique();
             $table->string('nisn', 20)->unique()->nullable();
@@ -47,6 +48,7 @@ class CreateSiswaTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('kelas_id')->references('id')->on('kelas');
+            $table->foreign('guru_id')->references('id')->on('guru');
         });
     }
 

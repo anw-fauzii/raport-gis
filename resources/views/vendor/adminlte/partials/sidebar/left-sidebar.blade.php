@@ -55,7 +55,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('mapel.index')}}" class="nav-link">
                 <i class="fas fa-book nav-icon"></i>
                 <p>Data Mata Pelajaran</p>
               </a>
@@ -67,37 +67,20 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{route('t2q.index')}}" class="nav-link">
+              <i class="fas fa-mosque nav-icon"></i>
+                <p>Kelompok T2Q</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{route('siswa.index')}}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Data Siswa</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-book-open nav-icon"></i>
-                <p>Data Pembelajaran</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-book-reader nav-icon"></i>
-                <p>Data Ekstrakulikuler</p>
-              </a>
-            </li>
 
           </ul>
         </li>
-        <!-- Kurikulum 2013 -->
-
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-table"></i>
-            <p>
-              Nilai Akhir Semester
-            </p>
-          </a>
-        </li>
-        <li class="nav-item bg-danger mt-2">
 
           <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i>
