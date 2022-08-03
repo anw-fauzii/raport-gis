@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Guru;
-use App\Models\user;
+use App\Models\User;
 
 class GuruImport implements ToCollection
 {
@@ -15,25 +16,25 @@ class GuruImport implements ToCollection
     public function collection(Collection $collection)
     {
         foreach ($collection as $key => $row) {
-            if ($key >= 8 && $key <= 30) {
+            if ($key >= 9 && $key <= 59) {
                 $user = User::create([
-                    'username' => strtolower(str_replace(' ', '', $row[1])),
-                    'password' => bcrypt('123456'),
-                    'role' => 2,
-                    'status' => true
+                    'name' => strtoupper($row[1]),
+                    'email' => $row[3],
+                    'password' => Hash::make('12345678'),
                 ]);
 
-                $tanggal_lahir = ($row[6] - 25569) * 86400;
+                $tanggal_lahir = ($row[7] - 25569) * 86400;
                 Guru::create([
                     'user_id' => $user->id,
                     'nama_lengkap' => strtoupper($row[1]),
                     'gelar' => $row[2],
                     'nip' => $row[3],
-                    'jenis_kelamin' => $row[4],
-                    'tempat_lahir' => $row[5],
+                    'jabatan' => $row[4],
+                    'jenis_kelamin' => $row[5],
+                    'tempat_lahir' => $row[6],
                     'tanggal_lahir' => gmdate('Y-m-d', $tanggal_lahir),
-                    'nuptk' => $row[7],
-                    'alamat' => $row[8],
+                    'nuptk' => $row[8],
+                    'alamat' => $row[9],
                     'avatar' => 'default.png'
                 ]);
             }

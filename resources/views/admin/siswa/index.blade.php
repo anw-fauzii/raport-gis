@@ -34,7 +34,7 @@
           <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-import">
             <i class="fas fa-upload"></i>
           </button>
-          <a href="{{ route('siswa.export') }}" class="btn btn-tool btn-sm">
+          <a href="{{ route('siswa.show', 1) }}" class="btn btn-tool btn-sm">
             <i class="fas fa-download"></i>
           </a>
         </div>

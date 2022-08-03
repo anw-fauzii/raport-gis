@@ -33,7 +33,11 @@ class GuruController extends Controller
      */
     public function create()
     {
-        //
+        $file = public_path() . "/format_excel/format_import_guru.xlsx";
+        $headers = array(
+            'Content-Type: application/xlsx',
+        );
+        return Response::download($file, 'format_import_guru ' . date('Y-m-d H_i_s') . '.xlsx', $headers);
     }
 
     /**
@@ -91,9 +95,10 @@ class GuruController extends Controller
      * @param  \App\Models\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function show(Guru $guru)
+    public function show($id)
     {
-        //
+        $filename = 'data_guru ' . date('Y-m-d H_i_s') . '.xls';
+        return Excel::download(new GuruExport, $filename);
     }
 
     /**
@@ -168,7 +173,7 @@ class GuruController extends Controller
             $guru->delete();
             $user->delete();
             return back()->with('success', 'Sukses! Guru Berhasil Dihapus');
-        } catch (\Throwable $th) {
+        } catch (Exception $e) {
             return back()->with('error', 'Gagal! Guru Gagal Dihapus');
         }
     }
@@ -179,22 +184,13 @@ class GuruController extends Controller
         return Excel::download(new GuruExport, $filename);
     }
 
-    public function format_import()
-    {
-        $file = public_path() . "/format_import/format_import_guru.xls";
-        $headers = array(
-            'Content-Type: application/xls',
-        );
-        return Response::download($file, 'format_import_guru ' . date('Y-m-d H_i_s') . '.xls', $headers);
-    }
-
     public function import(Request $request)
     {
         try {
             Excel::import(new GuruImport, $request->file('file_import'));
-            return back()->with('success', 'Sukses! Data Guru Berhasil Diimport');
-        } catch (\Throwable $th) {
-            return back()->with('error', 'Gagal! Data Guru Gagal Diimport');
+            return back()->with('success', 'Data guru berhasil diimport');
+        } catch (Exception $e) {
+            return back()->with('error', 'Maaf, format data tidak sesuai');
         }
     }
 }

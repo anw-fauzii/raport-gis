@@ -8,13 +8,13 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form name="contact-form" action="{{ route('siswa.import') }}" method="POST" enctype="multipart/form-data">
+        <form name="contact-form" action="{{ route('guru.import') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-body">
             <div class="callout callout-info">
                 <h5>Download format import</h5>
                 <p>Silahkan download file format import melalui tombol dibawah ini.</p>
-                <a href="{{ route('siswa.create') }}" class="btn btn-primary text-white" style="text-decoration:none"><i class="fas fa-file-download"></i> Download</a>
+                <a href="{{ route('guru.create') }}" class="btn btn-primary text-white" style="text-decoration:none"><i class="fas fa-file-download"></i> Download</a>
             </div>
             <div class="form-group row pt-2">
                 <label for="file_import" class="col-sm-2 col-form-label">File Import</label>

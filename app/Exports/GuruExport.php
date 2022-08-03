@@ -2,15 +2,22 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\Guru;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class GuruExport implements FromCollection
+class GuruExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
     {
-        //
+        $time_download = date('Y-m-d H:i:s');
+
+        $data_guru = Guru::orderBy('nama_lengkap', 'ASC')->get();
+
+        return view('exports.guru', compact('time_download', 'data_guru'));
     }
 }

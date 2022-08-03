@@ -31,6 +31,12 @@
                 <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-tambah">
                   <i class="fas fa-plus"></i>
                 </button>
+                <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-import">
+                  <i class="fas fa-upload"></i>
+                </button>
+                <a href="{{ route('guru.show', 1) }}" class="btn btn-tool btn-sm">
+                  <i class="fas fa-download"></i>
+                </a>
               </div>
             </div>
 
@@ -94,6 +100,7 @@
 
       </div>
 @include('admin.guru.create')
+@include('admin.guru.import')
 @stop
 
 @section('css')

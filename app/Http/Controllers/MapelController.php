@@ -34,7 +34,11 @@ class MapelController extends Controller
      */
     public function create()
     {
-        //
+        $file = public_path() . "/format_excel/format_import_mapel.xlsx";
+        $headers = array(
+            'Content-Type: application/xlsx',
+        );
+        return Response::download($file, 'format_import_mapel ' . date('Y-m-d H_i_s') . '.xlsx', $headers);
     }
 
     /**
@@ -131,22 +135,13 @@ class MapelController extends Controller
         }
     }
 
-    public function format_import()
-    {
-        $file = public_path() . "/format_import/format_import_mapel.xls";
-        $headers = array(
-            'Content-Type: application/xls',
-        );
-        return Response::download($file, 'format_import_mapel ' . date('Y-m-d H_i_s') . '.xls', $headers);
-    }
-
     public function import(Request $request)
     {
         try {
             Excel::import(new MapelImport, $request->file('file_import'));
-            return back()->with('toast_success', 'Data mata pelajaran berhasil diimport');
+            return back()->with('success', 'Data mata pelajaran berhasil diimport');
         } catch (\Throwable $th) {
-            return back()->with('toast_error', 'Maaf, format data tidak sesuai');
+            return back()->with('error', 'Maaf, format data tidak sesuai');
         }
     }
 }

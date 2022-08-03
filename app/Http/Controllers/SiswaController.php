@@ -8,6 +8,8 @@ use App\Models\Tapel;
 use App\Models\User;
 use App\Models\AnggotaKelas;
 use App\Models\SiswaKeluar;
+use App\Imports\SiswaImport;
+use App\Exports\SiswaExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -43,7 +45,11 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        $file = public_path() . "/format_excel/format_import_siswa.xlsx";
+        $headers = array(
+            'Content-Type: application/xlsx',
+        );
+        return Response::download($file, 'format_import_siswa ' . date('Y-m-d H_i_s') . '.xlsx', $headers);
     }
 
     /**
@@ -140,9 +146,10 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Siswa $siswa)
+    public function show($id)
     {
-        //
+        $filename = 'data_siswa ' . date('Y-m-d H_i_s') . '.xls';
+        return Excel::download(new SiswaExport, $filename);
     }
 
     /**
@@ -153,7 +160,7 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        //
+        
     }
 
     /**
@@ -243,12 +250,6 @@ class SiswaController extends Controller
         }
     }
 
-    public function export()
-    {
-        $filename = 'data_siswa ' . date('Y-m-d H_i_s') . '.xls';
-        return Excel::download(new SiswaExport, $filename);
-    }
-
     public function import(Request $request)
     {
         try {
@@ -257,15 +258,6 @@ class SiswaController extends Controller
         } catch (Exception $e) {
             return back()->with('error', 'Maaf, format data tidak sesuai');
         }
-    }
-
-    public function format_import()
-    {
-        $file = public_path() . "/format_import/format_import_siswa.xls";
-        $headers = array(
-            'Content-Type: application/xls',
-        );
-        return Response::download($file, 'format_import_siswa ' . date('Y-m-d H_i_s') . '.xls', $headers);
     }
 
     public function registrasi(Request $request)
