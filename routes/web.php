@@ -28,6 +28,7 @@ Route::resource('/siswa',App\Http\Controllers\SiswaController::class);
 Route::resource('/kelas',App\Http\Controllers\KelasController::class);
 Route::resource('/mapel',App\Http\Controllers\MapelController::class);
 Route::resource('/t2q',App\Http\Controllers\Anggotat2qController::class);
+Route::resource('/kehadiran',App\Http\Controllers\KehadiranController::class);
 Route::post('kelas/anggota', [App\Http\Controllers\AnggotaKelasController::class,'store_anggota'])->name('kelas.anggota');
 Route::delete('kelas/anggota/{id}', [App\Http\Controllers\AnggotaKelasController::class,'delete_anggota'])->name('kelas.anggota.delete');
 Route::resource('/tahun-pelajaran',App\Http\Controllers\TapelController::class);
