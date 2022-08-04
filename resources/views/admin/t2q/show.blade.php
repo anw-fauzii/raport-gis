@@ -60,7 +60,7 @@
                 <td>{{$no}}</td>
                 <td>{{$anggota->siswa->nis}}</td>
                 <td>{{$anggota->siswa->nisn}}</td>
-                <td>{{$anggota->kelas->nama_kelas}}</td>
+                <td>@if($anggota->kelas_id){{$anggota->kelas->nama_kelas}}@else Belum masuk kelas @endif</td>
                 <td>{{$anggota->siswa->nama_lengkap}}</td>
                 <td>{{$anggota->siswa->tanggal_lahir}}</td>
                 <td>{{$anggota->siswa->jenis_kelamin}}</td>

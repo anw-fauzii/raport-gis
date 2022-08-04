@@ -78,7 +78,12 @@
                 <p>Data Siswa</p>
               </a>
             </li>
-
+            <li class="nav-item">
+              <a href="{{route('pembelajaran.index')}}" class="nav-link">
+                <i class="fas fa-calendar-check nav-icon"></i>
+                <p>Data Pembelajaran</p>
+              </a>
+            </li>
           </ul>
         </li>
 

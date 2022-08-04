@@ -21,7 +21,7 @@ class Anggotat2qController extends Controller
     {
         $tapel = Tapel::findorfail(5);
         $title = 'Data Guru T2Q';
-        $data_guru = Guru::where('jabatan', '1')->get();
+        $data_guru = Guru::where('jabatan', '2')->get();
         foreach ($data_guru as $guru) {
             $jumlah_anggota = Siswa::where('guru_id', $guru->id)->count();
             $guru->jumlah_anggota = $jumlah_anggota;

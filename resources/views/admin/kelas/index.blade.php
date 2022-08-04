@@ -64,7 +64,7 @@
                 <td>{{$kelas->tingkatan_kelas}}</td>
                 <td>{{$kelas->nama_kelas}}</td>
                 <td>{{$kelas->guru->nama_lengkap}}, {{$kelas->guru->gelar}}</td>
-                <td>{{$kelas->pendamping->nama_lengkap}}, {{$kelas->guru->gelar}}</td>
+                <td>{{$kelas->pendamping->nama_lengkap}}, {{$kelas->pendamping->gelar}}</td>
                 <td>
                   <a href="{{ route('kelas.show', $kelas->id) }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-list"></i> {{$kelas->jumlah_anggota}} Siswa
