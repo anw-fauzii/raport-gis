@@ -151,7 +151,7 @@ class PembelajaranController extends Controller
             $query->where('kategori_mapel_id',"3")
                 ->orWhere('kategori_mapel_id',"5");
         })->get();
-        $data_guru = Guru::orderBy('nama_lengkap', 'ASC')->get();
-        return view('admin.pembelajaran.show', compact('title', 'tapel', 'kelas', 'data_kelas', 'data_pembelajaran_kelas', 'data_mapel', 'data_guru'));
+        $data_guru = Guru::where('jabatan', 3)->get();
+        return view('admin.pembelajaran.show', compact('title', 'tapel', 'kelas', 'data_kelas', 'data_pembelajaran_kelas', 'data_mapel','data_guru'));
     }
 }

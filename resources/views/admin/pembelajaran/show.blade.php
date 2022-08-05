@@ -30,7 +30,6 @@
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-cog"></i> {{$title}}</h3>
             </div>
-
             <div class="card-body">
               <div class="form-group row callout callout-info mx-1">
                 <label for="kelas_id" class="col-sm-2 col-form-label">Kelas</label>
@@ -88,12 +87,17 @@
                         </td>
                         <td>
                           <select class="form-control select2" name="update_guru_id[]" style="width: 100%;">
+                          @if($pembelajaran->mapel->ringkasan_mapel)
                             <option value="">-- Pilih Guru -- </option>
                             @foreach($data_guru as $guru)
                             <option value="{{$guru->id}}" @if($pembelajaran->guru->id == $guru->id) selected @endif>
                               {{$guru->nama_lengkap}}, {{$guru->gelar}}
                             </option>
                             @endforeach
+                          @else
+                            <option value="{{$kelas->guru_id}}">{{$kelas->guru->nama_lengkap}}, {{$kelas->guru->gelar}}</option>
+                            <option value="{{$kelas->pendamping_id}}">{{$kelas->pendamping->nama_lengkap}}, {{$kelas->pendamping->gelar}}</option>
+                          @endif
                           </select>
                         </td>
                         <td>
@@ -126,10 +130,15 @@
                         </td>
                         <td>
                           <select class="form-control select2" name="guru_id[]" style="width: 100%;">
-                            <option value="">-- Pilih Guru -- </option>
+                          @if($mapel->ringkasan_mapel)
+                          <option value="">-- Pilih Guru -- </option>
                             @foreach($data_guru as $guru)
                             <option value="{{$guru->id}}">{{$guru->nama_lengkap}}, {{$guru->gelar}}</option>
                             @endforeach
+                          @else
+                            <option value="{{$kelas->guru_id}}">{{$kelas->guru->nama_lengkap}}, {{$kelas->guru->gelar}}</option>
+                            <option value="{{$kelas->pendamping_id}}">{{$kelas->pendamping->nama_lengkap}}, {{$kelas->pendamping->gelar}}</option>
+                          @endif
                           </select>
                         </td>
                         <td>
