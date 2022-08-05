@@ -20,9 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/interval-nilai', [App\Http\Controllers\IntervalController::class, 'index'])->name('interval');
 Route::resource('/pengumuman',App\Http\Controllers\PengumumanController::class);
 Route::resource('/sekolah',App\Http\Controllers\SekolahController::class);
 Route::resource('/guru',App\Http\Controllers\GuruController::class);
+Route::resource('/kkm',App\Http\Controllers\KkmController::class);
+Route::post('kkm/import', [App\Http\Controllers\KkmController::class,'import'])->name('kkm.import');
 Route::post('guru/import', [App\Http\Controllers\GuruController::class,'import'])->name('guru.import');
 Route::resource('/siswa',App\Http\Controllers\SiswaController::class);
 Route::resource('/kelas',App\Http\Controllers\KelasController::class);

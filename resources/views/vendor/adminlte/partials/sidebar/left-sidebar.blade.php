@@ -87,7 +87,23 @@
           </ul>
         </li>
         <li class="nav-item">
-        <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+          <a href="{{route('kkm.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-star"></i>
+            <p>
+              KKM
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('interval')}}" class="nav-link">
+            <i class="nav-icon fas fa-greater-than-equal"></i>
+            <p>
+              Interval Nilai
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
            document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i>
             <p>
               Keluar / Logout
