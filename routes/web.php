@@ -30,6 +30,7 @@ Route::post('guru/import', [App\Http\Controllers\GuruController::class,'import']
 Route::resource('/siswa',App\Http\Controllers\SiswaController::class);
 Route::resource('/kelas',App\Http\Controllers\KelasController::class);
 Route::resource('/mapel',App\Http\Controllers\MapelController::class);
+Route::resource('/tanggal-raport',App\Http\Controllers\TanggalRaportController::class);
 Route::post('mapel/import', [App\Http\Controllers\MapelController::class,'import'])->name('mapel.import');
 Route::resource('/pembelajaran',App\Http\Controllers\PembelajaranController::class);
 Route::resource('/t2q',App\Http\Controllers\Anggotat2qController::class);
@@ -40,3 +41,7 @@ Route::resource('/tahun-pelajaran',App\Http\Controllers\TapelController::class);
 Route::post('siswa/import', [App\Http\Controllers\SiswaController::class,'import'])->name('siswa.import');
 Route::post('siswa/registrasi', [App\Http\Controllers\SiswaController::class,'registrasi'])->name('siswa.registrasi');
 Route::post('pembelajaran/setting', [App\Http\Controllers\PembelajaranController::class,'setting'])->name('pembelajaran.setting');
+Route::resource('/butir-sikap',App\Http\Controllers\ButirSikapController::class);
+Route::post('butir-sikap/import', [App\Http\Controllers\ButirSikapController::class,'import'])->name('butir-sikap.import');
+Route::resource('/kd-mapel',App\Http\Controllers\KdMapelController::class);
+Route::post('kd-mapel/import', [App\Http\Controllers\KdMapelController::class,'import'])->name('kd-mapel.import');

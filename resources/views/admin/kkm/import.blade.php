@@ -14,7 +14,7 @@
                 <div class="callout callout-info">
                 <h5>Download format import</h5>
                 <p>Silahkan download file format import melalui tombol dibawah ini.</p>
-                <a href="{{ route('kkm.show',1) }}" class="btn btn-primary text-white" style="text-decoration:none"><i class="fas fa-file-download"></i> Download</a>
+                <a href="{{ route('kkm.create') }}" class="btn btn-primary text-white" style="text-decoration:none"><i class="fas fa-file-download"></i> Download</a>
                 </div>
                 <div class="form-group row pt-2">
                 <label for="file_import" class="col-sm-2 col-form-label">File Import</label>

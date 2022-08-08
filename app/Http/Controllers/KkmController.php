@@ -6,6 +6,10 @@ use App\Models\Kkm;
 use App\Models\Tapel;
 use App\Models\Mapel;
 use App\Models\Pembelajaran;
+use App\Exports\KkmExport;
+use App\Imports\KkmImport;
+use Illuminate\Support\Facades\Validator;
+use Excel;
 use Illuminate\Http\Request;
 
 class KkmController extends Controller
@@ -38,7 +42,8 @@ class KkmController extends Controller
      */
     public function create()
     {
-        //
+        $filename = 'format_import_kkm_k13 ' . date('Y-m-d H_i_s') . '.xls';
+        return Excel::download(new KkmExport, $filename);
     }
 
     /**
@@ -49,7 +54,27 @@ class KkmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'mapel_id' => 'required',
+            'tingkat' => 'required',
+            'kkm' => 'required|numeric|between:0,100',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $cek_kkm = Kkm::where('mapel_id', $request->mapel_id)->where('tingkat', $request->tingkat)->first();
+            if (is_null($cek_kkm)) {
+                $kkm = new Kkm([
+                    'mapel_id' => $request->mapel_id,
+                    'tingkat' => $request->tingkat,
+                    'kkm' => ltrim($request->kkm),
+                ]);
+                $kkm->save();
+                return back()->with('success', 'KKM berhasil ditambahkan');
+            } else {
+                return back()->with('error', 'Data KKM sudah ada');
+            }
+        }
     }
 
     /**
@@ -81,9 +106,21 @@ class KkmController extends Controller
      * @param  \App\Models\Kkm  $kkm
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kkm $kkm)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'kkm' => 'required|numeric|between:0,100',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
+        } else {
+            $kkm = Kkm::findorfail($id);
+            $data = [
+                'kkm' => ltrim($request->kkm),
+            ];
+            $kkm->update($data);
+            return back()->with('success', 'KKM berhasil diedit');
+        }
     }
 
     /**
@@ -92,8 +129,24 @@ class KkmController extends Controller
      * @param  \App\Models\Kkm  $kkm
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kkm $kkm)
+    public function destroy($id)
     {
-        //
+        $kkm = Kkm::findorfail($id);
+        try {
+            $kkm->delete();
+            return back()->with('success', 'KKM berhasil dihapus');
+        } catch (Exception $e) {
+            return back()->with('warning', 'Data tidak dapat dihapus');
+        }
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            Excel::import(new KkmImport, $request->file('file_import'));
+            return back()->with('success', 'Data KKM berhasil diimport');
+        } catch (Exception $e) {
+            return back()->with('error', 'Maaf, format data tidak sesuai');
+        }
     }
 }

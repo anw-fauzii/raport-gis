@@ -13,21 +13,28 @@
             <div class="modal-body">
                 <div class="form-group row">
                 <label for="mapel_id" class="col-sm-3 col-form-label">Mata Pelajaran</label>
-                <div class="col-sm-9">
-                    <select class="form-control select2" name="mapel_id" style="width: 100%;" required>
-                    <option value="">-- Pilih Mata Pelajaran -- </option>
-                    @foreach($data_mapel as $mapel)
-                    <option value="{{$mapel->id}}"> {{$mapel->nama_mapel}}</option>
-                    @endforeach
-                    </select> </div>
+                    <div class="col-sm-9">
+                        <select class="form-control select2" name="mapel_id" style="width: 100%;" required>
+                        <option value="">-- Pilih Mata Pelajaran -- </option>
+                        @foreach($data_mapel as $mapel)
+                        <option value="{{$mapel->id}}"> {{$mapel->nama_mapel}}</option>
+                        @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group row">
-                <label for="kelas_id" class="col-sm-3 col-form-label">Kelas</label>
-                <div class="col-sm-9">
-                    <select class="form-control select2" name="kelas_id" style="width: 100%;" required>
-                    <!--  -->
-                    </select>
-                </div>
+                <label for="kelas_id" class="col-sm-3 col-form-label">Tingkat Kelas</label>
+                    <div class="col-sm-9">
+                        <select class="form-control select2" name="tingkat" style="width: 100%;" required>
+                            <option value="">-- Pilih Jenjang Kelas --</option>
+                            <option value="1">Tingkat 1</option>
+                            <option value="2">Tingkat 2</option>
+                            <option value="3">Tingkat 3</option>
+                            <option value="4">Tingkat 4</option>
+                            <option value="5">Tingkat 5</option>
+                            <option value="6">Tingkat 6</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group row">
                 <label for="kkm" class="col-sm-3 col-form-label">KKM</label>

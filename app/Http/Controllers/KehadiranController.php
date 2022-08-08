@@ -22,7 +22,7 @@ class KehadiranController extends Controller
     {
         $title = 'Input Kehadiran Siswa';
         $tapel = Tapel::findorfail(5);
-        $guru = Guru::where('user_id', 2)->first();
+        $guru = Guru::where('user_id', 41)->first();
         $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
         $data_anggota_kelas = AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->get();
         foreach ($data_anggota_kelas as $anggota) {

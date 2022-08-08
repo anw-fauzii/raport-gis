@@ -14,7 +14,8 @@ class IntervalController extends Controller
         $title = 'Interval Predikat';
         $tapel = Tapel::findorfail(5);
         $id_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->get('id');
-        $data_kkm = Kkm::whereIn('mapel_id', $id_mapel)->orderBy('tingkat', 'ASC')->get();
+        $data_kkm = Kkm::whereIn('mapel_id', $id_mapel)->orderBy('tingkat', 'ASC')->orderBy('mapel_id', 'ASC')->get();
+
         if (count($id_mapel) == 0) {
             return redirect('mapel')->with('warning', 'Mohon isikan data mata pelajaran');
         } else {

@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kkm extends Model
+class KdMapel extends Model
 {
     use HasFactory;
-    protected $table = 'kkm';
+    protected $table = 'kd_mapel';
     protected $fillable = [
         'mapel_id',
-        'tapel_id',
-        'tingkat',
-        'kkm',
+        'tingkatan_kelas',
+        'jenis_kompetensi',
+        'semester',
+        'kode_kd',
+        'kompetensi_dasar',
     ];
 
     public function mapel()

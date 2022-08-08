@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKkmTable extends Migration
+class CreateKdMapelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateKkmTable extends Migration
      */
     public function up()
     {
-        Schema::create('kkm', function (Blueprint $table) {
+        Schema::create('kd_mapel', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('mapel_id')->unsigned();
-            $table->unsignedBigInteger('tapel_id')->unsigned();
-            $table->integer('tingkat');
-            $table->integer('kkm');
+            $table->string('tingkatan_kelas', 2);
+            $table->enum('jenis_kompetensi', ['1', '2']);
+            $table->enum('semester', ['1', '2']);
+            $table->string('kode_kd', 10);
+            $table->string('kompetensi_dasar');
             $table->timestamps();
 
             $table->foreign('mapel_id')->references('id')->on('mapel');
-            $table->foreign('tapel_id')->references('id')->on('tapel');
         });
     }
 
@@ -33,6 +34,6 @@ class CreateKkmTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kkm');
+        Schema::dropIfExists('kd_mapel');
     }
 }

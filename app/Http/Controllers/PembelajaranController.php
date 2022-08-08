@@ -90,7 +90,7 @@ class PembelajaranController extends Controller
             }
             Pembelajaran::insert($store_data_baru);
         }
-        return redirect('admin/pembelajaran')->with('success', 'Setting pembelajaran berhasil');
+        return redirect('pembelajaran')->with('success', 'Setting pembelajaran berhasil');
     }
 
     /**

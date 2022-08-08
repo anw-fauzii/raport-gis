@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Pengumuman')
+@section('title', 'Data Guru')
 
 @section('content_header')
     
@@ -22,26 +22,20 @@
 
 @section('content')
     
-<div class="container-fluid">
-  <!-- ./row -->
+<!-- ./row -->
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><i class="fas fa-greater-than-equal"></i> {{$title}}</h3>
+          <h3 class="card-title"><i class="fas fa-calendar-week"></i> {{$title}}</h3>
           <div class="card-tools">
             <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-tambah">
               <i class="fas fa-plus"></i>
             </button>
-            <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-import">
-              <i class="fas fa-upload"></i>
-            </button>
           </div>
         </div>
 
-        @include('admin.kkm.import')
-
-        @include('admin.kkm.create')
+        @include('admin.tanggal-raport.create')
 
         <div class="card-body">
           <div class="table-responsive">
@@ -49,26 +43,32 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Mata Pelajaran</th>
                   <th>Semester</th>
-                  <th>KKM</th>
+                  <th>Tempat</th>
+                  <th>Tanggal Pembagian Raport</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <?php $no = 0; ?>
-                @foreach($data_kkm as $kkm)
+                @foreach($data_tgl_raport as $tgl_raport)
                 <?php $no++; ?>
                 <tr>
                   <td>{{$no}}</td>
-                  <td>{{$kkm->mapel->nama_mapel}}</td>
-                  <td>Tingkat {{$kkm->tingkat}}</td>
-                  <td>{{$kkm->kkm}}</td>
+                  <td>{{$tgl_raport->tapel->tahun_pelajaran}}
+                    @if($tgl_raport->tapel->semester == 1)
+                    Ganjil
+                    @else
+                    Genap
+                    @endif
+                  </td>
+                  <td>{{$tgl_raport->tempat_penerbitan}}</td>
+                  <td>{{ date('d-M-Y', strtotime($tgl_raport->tanggal_pembagian))}}</td>
                   <td>
-                    <form action="{{ route('kkm.destroy', $kkm->id) }}" method="POST">
+                    <form action="{{ route('tanggal-raport.destroy', $tgl_raport->id) }}" method="POST">
                       @csrf
                       @method('DELETE')
-                      <button type="button" class="btn btn-warning btn-sm mt-1" data-toggle="modal" data-target="#modal-edit{{$kkm->id}}">
+                      <button type="button" class="btn btn-warning btn-sm mt-1" data-toggle="modal" data-target="#modal-edit{{$tgl_raport->id}}">
                         <i class="fas fa-pencil-alt"></i>
                       </button>
                       <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">
@@ -77,9 +77,9 @@
                     </form>
                   </td>
                 </tr>
-
-                @include('admin.kkm.edit')
-
+                
+                @include('admin.tanggal-raport.edit')
+                
                 @endforeach
               </tbody>
             </table>
@@ -90,28 +90,20 @@
     </div>
 
   </div>
-  <!-- /.row -->
-</div>
-
+<!-- /.row -->
 @stop
 
 @section('css')
 <link rel="stylesheet" href="{{asset('vendor/datatables/css/dataTables.bootstrap4.css')}}">
-<link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
-<link rel="stylesheet" href="{{asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 @stop
 
 @section('js')
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/dataTables.bootstrap4.js')}}"></script>
-<script src="{{asset('vendor/select2/js/select2.full.min.js')}}"></script>
 
 <script>
   $(function () {
     $("#example1").DataTable();
-    $('.select2').select2({
-      theme : 'bootstrap4',
-    });
   });
 </script>
 @stop

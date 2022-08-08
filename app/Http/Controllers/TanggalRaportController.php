@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TanggalRaport;
 use App\Models\Tapel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TanggalRaportController extends Controller
 {
@@ -16,9 +17,9 @@ class TanggalRaportController extends Controller
     public function index()
     {
         $title = 'Tanggal Raport';
-        $tapel = Tapel::findorfail(session()->get('tapel_id'));
+        $tapel = Tapel::findorfail(5);
         $data_tgl_raport = TanggalRaport::where('tapel_id', $tapel->id)->get();
-        return view('admin.k13.tgl_raport.index', compact('title', 'tapel', 'data_tgl_raport'));
+        return view('admin.tanggal-raport.index', compact('title', 'tapel', 'data_tgl_raport'));
     }
 
     /**
@@ -40,7 +41,7 @@ class TanggalRaportController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'tapel_id' => 'required|unique:k13_tgl_raport',
+            'tapel_id' => 'required|unique:tanggal_raport',
             'tempat_penerbitan' => 'required|min:3|max:50',
             'tanggal_pembagian' => 'required',
         ]);
@@ -86,7 +87,7 @@ class TanggalRaportController extends Controller
      * @param  \App\Models\TanggalRaport  $tanggalRaport
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'tempat_penerbitan' => 'required|min:3|max:50',

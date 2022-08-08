@@ -9,9 +9,6 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class GuruExport implements FromView, ShouldAutoSize
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
     public function view(): View
     {
         $time_download = date('Y-m-d H:i:s');
