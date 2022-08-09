@@ -18,13 +18,13 @@ class ButirSikapImport implements ToCollection
                 $cek_sikap = ButirSikap::where('kode', $row[2])->first();
                 if (is_null($cek_sikap)) {
                     ButirSikap::create([
-                        'jenis_kompetensi' => $row[1],
+                        'kategori_butir_id' => $row[1],
                         'kode' => $row[2],
                         'butir_sikap' => $row[3]
                     ]);
                 } else {
                     $cek_sikap->update([
-                        'jenis_kompetensi' => $row[1],
+                        'kategori_butir_id' => $row[1],
                         'kode' => $row[2],
                         'butir_sikap' => $row[3]
                     ]);

@@ -138,11 +138,7 @@
               <tr>
                 <td>{{$no}}</td>
                 <td>
-                  @if($sikap->jenis_kompetensi == 1)
-                  Spiritual
-                  @else
-                  Sosial
-                  @endif
+                  {{$sikap->kategori->kategori_butir_sikap}}
                 </td>
                 <td>{{$sikap->kode}}</td>
                 <td>{{$sikap->butir_sikap}}</td>

@@ -11,6 +11,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-header">MENU UTAMA</li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -159,7 +160,7 @@
 
 
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{route('kehadiran.index')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>
               Rekap Kehadiran Siswa

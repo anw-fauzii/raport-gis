@@ -73,7 +73,7 @@
 
 </head>
 
-<body class="@yield('classes_body')" @yield('body_data')>
+<body class="@yield('classes_body') layout-fixed layout-navbar-fixed" @yield('body_data')>
 
     {{-- Body Content --}}
     @yield('body')

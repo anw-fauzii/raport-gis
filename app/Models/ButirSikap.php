@@ -10,8 +10,13 @@ class ButirSikap extends Model
     use HasFactory;
     protected $table = 'butir_sikap';
     protected $fillable = [
-        'jenis_kompetensi',
+        'kategori_butir_id',
         'kode',
         'butir_sikap',
     ];
+
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriButirSikap::class,'kategori_butir_id','id');
+    } 
 }

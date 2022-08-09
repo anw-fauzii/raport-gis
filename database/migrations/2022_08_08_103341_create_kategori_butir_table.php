@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateButirSikapController extends Migration
+class CreateKategoriButirTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateButirSikapController extends Migration
      */
     public function up()
     {
-        Schema::create('butir_sikap', function (Blueprint $table) {
+        Schema::create('kategori_butir', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kategori_butir_id')->unsigned();
-            $table->string('kode', 10)->unique();
-            $table->string('butir_sikap');
+            $table->string('kategori_butir_sikap',50);
             $table->timestamps();
-
-            $table->foreign('kategori_butir_id')->references('id')->on('kategori_butir');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateButirSikapController extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('butir_sikap_controller');
+        Schema::dropIfExists('kategori_butir');
     }
 }

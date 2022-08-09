@@ -19,7 +19,7 @@ class ButirSikapController extends Controller
     public function index()
     {
         $title = 'Butir-Butir Sikap';
-        $data_sikap = ButirSikap::orderBy('jenis_kompetensi', 'ASC')->get();
+        $data_sikap = ButirSikap::orderBy('kategori_butir_id', 'ASC')->get();
         return view('admin.butir-sikap.index', compact('title', 'data_sikap'));
     }
 
@@ -46,7 +46,7 @@ class ButirSikapController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'jenis_kompetensi' => 'required',
+            'kategori_butir_id' => 'required',
             'kode' => 'required|min:2|max:10|unique:butir_sikap',
             'butir_sikap' => 'required|min:4|max:255',
         ]);
@@ -54,7 +54,7 @@ class ButirSikapController extends Controller
             return back()->with('error', $validator->messages()->all()[0])->withInput();
         } else {
             $sikap = new ButirSikap([
-                'jenis_kompetensi' => $request->jenis_kompetensi,
+                'kategori_butir_id' => $request->jenis_kompetensi,
                 'kode' => $request->kode,
                 'butir_sikap' => $request->butir_sikap,
             ]);
