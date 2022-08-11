@@ -23,6 +23,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/interval-nilai', [App\Http\Controllers\IntervalController::class, 'index'])->name('interval');
 Route::resource('/pengumuman',App\Http\Controllers\PengumumanController::class);
 Route::resource('/sekolah',App\Http\Controllers\SekolahController::class);
+Route::resource('/rencana-k1',App\Http\Controllers\RencanaNilaiK1Controller::class);
+Route::resource('/rencana-k2',App\Http\Controllers\RencanaNilaiK2Controller::class);
+Route::resource('/penilaian-k1',App\Http\Controllers\NilaiK1Controller::class);
+Route::resource('/penilaian-k2',App\Http\Controllers\NilaiK2Controller::class);
 Route::resource('/guru',App\Http\Controllers\GuruController::class);
 Route::resource('/kkm',App\Http\Controllers\KkmController::class);
 Route::post('kkm/import', [App\Http\Controllers\KkmController::class,'import'])->name('kkm.import');
