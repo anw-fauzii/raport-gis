@@ -132,6 +132,29 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
+              Rencana Penilaian
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>KI-1</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>KI-2</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-list-ol"></i>
+            <p>
               Hasil Penilaian
               <i class="fas fa-angle-left right"></i>
             </p>
@@ -140,13 +163,13 @@
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fas fa-check-circle nav-icon"></i>
-                <p>Status Penilaian</p>
+                <p>KI-1</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
-                <p>Hasil Pengelolaan Nilai</p>
+                <p>KI-2</p>
               </a>
             </li>
             <li class="nav-item">
@@ -157,7 +180,7 @@
             </li>
           </ul>
         </li>
-
+        
 
         <li class="nav-item">
           <a href="{{route('kehadiran.index')}}" class="nav-link">
