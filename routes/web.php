@@ -25,6 +25,7 @@ Route::resource('/pengumuman',App\Http\Controllers\PengumumanController::class);
 Route::resource('/sekolah',App\Http\Controllers\SekolahController::class);
 Route::resource('/rencana-k1',App\Http\Controllers\RencanaNilaiK1Controller::class);
 Route::resource('/rencana-k2',App\Http\Controllers\RencanaNilaiK2Controller::class);
+Route::resource('/rencana-k3',App\Http\Controllers\RencanaNilaiK3Controller::class);
 Route::resource('/penilaian-k1',App\Http\Controllers\NilaiK1Controller::class);
 Route::resource('/penilaian-k2',App\Http\Controllers\NilaiK2Controller::class);
 Route::resource('/guru',App\Http\Controllers\GuruController::class);

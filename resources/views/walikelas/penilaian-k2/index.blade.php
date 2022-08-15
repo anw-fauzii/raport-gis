@@ -28,7 +28,7 @@
       <div class="card-header">
         <h3 class="card-title"><i class="fas fa-book"></i> {{$title}}</h3>
         <div class="card-tools">
-          <form action="{{ route('penilaian-k1.create') }}" method="GET">
+          <form action="{{ route('penilaian-k2.create') }}" method="GET">
             @csrf
             <input type="hidden" name="pembelajaran_id" value="#">
             <button type="submit" class="btn btn-tool btn-sm">

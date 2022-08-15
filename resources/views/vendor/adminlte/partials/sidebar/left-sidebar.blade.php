@@ -13,7 +13,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-header">MENU UTAMA</li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{route('home')}}" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -138,15 +138,27 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('rencana-k1.index')}}" class="nav-link">
                 <i class="fas fa-check-circle nav-icon"></i>
                 <p>KI-1</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('rencana-k2.index')}}" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-2</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('rencana-k3.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>KI-3</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>KI-4</p>
               </a>
             </li>
           </ul>
@@ -161,13 +173,13 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('penilaian-k1.index')}}" class="nav-link">
                 <i class="fas fa-check-circle nav-icon"></i>
                 <p>KI-1</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('penilaian-k2.index')}}" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-2</p>
               </a>

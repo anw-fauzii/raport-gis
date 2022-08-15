@@ -31,7 +31,7 @@
 
             <div class="card-body">
 
-              <form action="{{ route('penilaian-k1.store') }}" method="POST">
+              <form action="{{ route('penilaian-k2.store') }}" method="POST">
                 @csrf
 
                 <div class="table-responsive">
@@ -44,7 +44,7 @@
                       </tr>
                       <tr>
                         @foreach($data_rencana_penilaian as $rencana_penilaian)
-                        <input type="hidden" name="rencana_nilai_k1_id[]" value="{{$rencana_penilaian->id}}">
+                        <input type="hidden" name="rencana_nilai_k2_id[]" value="{{$rencana_penilaian->id}}">
                         <td class="text-center" style="width: 200px;"><small></small> <button type="" class="btn btn-sm btn-primary" title="{{$rencana_penilaian->butir_sikap->butir_sikap}}">
                         <b>{{$rencana_penilaian->butir_sikap->kode}}</b>
                           </button></td>

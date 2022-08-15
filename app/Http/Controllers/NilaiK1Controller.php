@@ -26,6 +26,7 @@ class NilaiK1Controller extends Controller
         
         $id_data_rencana_penilaian = RencanaNilaiK1::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get('id');
         $data_kd_nilai = NilaiK1::whereIn('rencana_nilai_k1_id', $id_data_rencana_penilaian)->groupBy('rencana_nilai_k1_id')->get();
+    
         $count_kd_nilai = count($data_kd_nilai);
 
         if ($count_kd_nilai == 0) {
@@ -50,27 +51,7 @@ class NilaiK1Controller extends Controller
      */
     public function create(Request $request)
     {
-        $guru = Guru::where('user_id', 4)->first();
-        $kelas = Kelas::where('guru_id', $guru->id)->first();
-        $data_anggota_kelas = AnggotaKelas::where('kelas_id', $kelas->id)->get();
-        
-        $id_data_rencana_penilaian = RencanaNilaiK1::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get('id');
-        $data_kd_nilai = NilaiK1::whereIn('rencana_nilai_k1_id', $id_data_rencana_penilaian)->groupBy('rencana_nilai_k1_id')->get();
-        $count_kd_nilai = count($data_kd_nilai);
-
-        if ($count_kd_nilai == 0) {
-            $data_rencana_penilaian = RencanaNilaiK1::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get();
-            $count_kd = count($data_rencana_penilaian);
-            $title = 'Input Nilai Sosial';
-            return view('walikelas.penilaian-k1.create', compact('title', 'data_anggota_kelas', 'data_rencana_penilaian', 'count_kd'));
-        } else {
-            foreach ($data_anggota_kelas as $anggota_kelas) {
-                $data_nilai = NilaiK1::whereIn('rencana_nilai_k1_id', $id_data_rencana_penilaian)->where('anggota_kelas_id', $anggota_kelas->id)->get();
-                $anggota_kelas->data_nilai = $data_nilai;
-            }
-            $title = 'Edit Nilai Sosial';
-            return view('walikelas.penilaian-k1.edit', compact('title', 'data_anggota_kelas', 'count_kd_nilai', 'data_kd_nilai',));
-        }
+        //
     }
 
     /**
@@ -98,7 +79,7 @@ class NilaiK1Controller extends Controller
                 $store_data_penilaian = $data_penilaian_siswa;
             }
             NilaiK1::insert($store_data_penilaian);
-            return redirect('')->with('toast_success', 'Data nilai sosial berhasil disimpan.');
+            return redirect()->back()->with('success', 'Data nilai sosial berhasil disimpan.');
         }
     }
 
@@ -143,7 +124,7 @@ class NilaiK1Controller extends Controller
                 $nilai->update($data_nilai);
             }
         }
-        return redirect('')->with('toast_success', 'Data nilai sosial berhasil edit.');
+        return redirect()->back()->with('success', 'Data nilai sosial berhasil edit.');
     }
 
     /**

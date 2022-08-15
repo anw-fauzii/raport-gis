@@ -35,7 +35,7 @@
 
       <div class="card-body">
 
-        <form action="{{ route('penilaian-k1.update', $kelas->id) }}" method="POST">
+        <form action="{{ route('penilaian-k2.update', $kelas->id) }}" method="POST">
           {{ method_field('PATCH') }}
           @csrf
 
@@ -49,9 +49,9 @@
                 </tr>
                 <tr>
                   @foreach($data_kd_nilai as $kd_nilai)
-                  <input type="hidden" name="rencana_nilai_k1_id[]" value="{{$kd_nilai->rencana_nilai_k1_id}}">
-                  <td class="text-center" style="width: 200px;"><small></small> <button type="" class="btn btn-sm btn-primary" title="{{$kd_nilai->rencana_nilai_k1->butir_sikap->butir_sikap}}">
-                        <b>{{$kd_nilai->rencana_nilai_k1->butir_sikap->kode}}</b>
+                  <input type="hidden" name="rencana_nilai_k2_id[]" value="{{$kd_nilai->rencana_nilai_k2_id}}">
+                  <td class="text-center" style="width: 200px;"><small></small> <button type="" class="btn btn-sm btn-primary" title="{{$kd_nilai->rencana_nilai_k2->butir_sikap->butir_sikap}}">
+                        <b>{{$kd_nilai->rencana_nilai_k2->butir_sikap->kode}}</b>
                           </button></td>
                   @endforeach
                 </tr>
@@ -87,7 +87,7 @@
 
       <div class="card-footer clearfix">
         <button type="submit" class="btn btn-primary float-right">Simpan</button>
-        <a href="{{ route('penilaian-k1.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+        <a href="{{ route('penilaian-k2.index') }}" class="btn btn-default float-right mr-2">Batal</a>
       </div>
       </form>
     </div>

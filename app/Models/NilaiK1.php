@@ -16,8 +16,8 @@ class NilaiK1 extends Model
         'deskripsi',
     ];
 
-    public function rencana_nilai_ki1()
+    public function rencana_nilai_k1()
     {
-        return $this->belongsTo(RencanaNilaiK1::class,'rencana_nilai_ki1_id','id');
+        return $this->belongsTo(RencanaNilaiK1::class,'rencana_nilai_k1_id','id');
     }
 }

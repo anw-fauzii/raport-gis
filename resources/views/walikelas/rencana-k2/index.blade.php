@@ -68,7 +68,7 @@
         <!-- /.card -->
     </div>
 </div>
-@include('walikelas.rencana-k1.create')
+@include('walikelas.rencana-k2.create')
 @stop
 
 @section('css')
