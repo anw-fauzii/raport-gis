@@ -33,7 +33,7 @@ class RencanaNilaiK3Controller extends Controller
             $penilaian->jumlah_rencana_penilaian = count($rencana_penilaian);
         }
 
-        return view('guru.rencana-k3.index', compact('title', 'data_rencana_penilaian'));
+        return view('guru.rencana-k3.index', compact('title', 'data_rencana_penilaian','data_kd_mapel'));
     }
 
     /**

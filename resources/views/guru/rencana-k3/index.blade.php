@@ -70,42 +70,8 @@
                 </td>
               </tr>
 
-              <!-- Modal tambah  -->
-              <div class="modal fade" id="modal-tambah{{$penilaian->id}}">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Tambah {{$title}}</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="{{ route('rencana-k3.create') }}" method="GET">
-                        @csrf
-                        <div class="form-group row">
-                          <label for="pembelajaran_id" class="col-sm-3 col-form-label">Mata Pelajaran</label>
-                          <div class="col-sm-9">
-                            <select class="form-control" name="pembelajaran_id" style="width: 100%;" aria-readonly="true">
-                              <option value="{{$penilaian->id}}" selected>{{$penilaian->mapel->nama_mapel}} {{$penilaian->kelas->nama_kelas}}</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="jumlah_penilaian" class="col-sm-3 col-form-label">Jumlah Penilaian</label>
-                          <div class="col-sm-9">
-                            <select class="form-control select2" name="jumlah_penilaian" style="width: 100%;" required onchange="this.form.submit();">
-                              <option value="">-- Pilih Jumlah Penilaian --</option>
-                              @for ($i = 1; $i <= 20; $i++) <option value="{{$i}}">{{$i}}</option> @endfor
-                            </select>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- End Modal tambah -->
+              
+          @include('guru.rencana-k3.create')
 
               <!-- Modal edit  -->
               <div class="modal fade" id="modal-edit{{$penilaian->id}}">
