@@ -79,10 +79,11 @@ class KdMapelController extends Controller
             return back()->with('error', $validator->messages()->all()[0])->withInput();
         } else {
             for ($count = 0; $count < count($request->jenis_kompetensi); $count++) {
+                $tapel = Tapel::latest()->first();
                 $data_kd = array(
                     'mapel_id'  => $request->mapel_id,
                     'tingkatan_kelas'  => $request->tingkatan_kelas,
-                    'semester'  => $request->semester,
+                    'tapel_id'  => $tapel->id,
                     'jenis_kompetensi'  => $request->jenis_kompetensi[$count],
                     'kode_kd'  => $request->kode_kd[$count],
                     'kompetensi_dasar'  => $request->kompetensi_dasar[$count],

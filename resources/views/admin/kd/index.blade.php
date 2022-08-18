@@ -101,12 +101,8 @@
                 <td>{{$kd->mapel->nama_mapel}}</td>
                 <td>
                   @if($kd->jenis_kompetensi == 1)
-                  Spiritual
-                  @elseif($kd->jenis_kompetensi == 2)
-                  Sosial
-                  @elseif($kd->jenis_kompetensi == 3)
                   Pengetahuan
-                  @elseif($kd->jenis_kompetensi == 4)
+                  @elseif($kd->jenis_kompetensi == 2)
                   Keterampilan
                   @endif
                 </td>

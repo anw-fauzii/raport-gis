@@ -11,9 +11,9 @@ class KdMapel extends Model
     protected $table = 'kd_mapel';
     protected $fillable = [
         'mapel_id',
+        'tapel_id',
         'tingkatan_kelas',
         'jenis_kompetensi',
-        'semester',
         'kode_kd',
         'kompetensi_dasar',
     ];
@@ -21,5 +21,10 @@ class KdMapel extends Model
     public function mapel()
     {
         return $this->belongsTo(Mapel::class);
+    }
+    
+    public function tapel()
+    {
+        return $this->belongsTo(Tapel::class);
     }
 }
