@@ -1,5 +1,5 @@
 <!-- Modal tambah  -->
-<div class="modal fade" id="modal-show{{$penilaian->id}}">
+<div class="modal fade" id="modal-tambah{{$penilaian->id}}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{route('rencana-k3.store')}}" method="POST">
+        <form action="{{route('rencana-k4.store')}}" method="POST">
             @csrf
             <div class="modal-body">
                 <input type="hidden" name="pembelajaran_id" value="{{$penilaian->id}}">
@@ -16,20 +16,16 @@
                     <thead class="bg-primary">
                       <tr>
                         <th class="text-center">Butir Sikap Spiritual</th>
-                        <th class="text-center">Aksi</th>
+                        <th class="text-center">Pilih</th>
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($ren_penilaian->where('pembelajaran_id', $penilaian->id) as $kd_mapel)
+                    @foreach($data_kd_mapel->where('mapel_id', $penilaian->mapel_id) as $kd_mapel)
                       <tr>
-                        <td><strong>{{$kd_mapel->kd_mapel->kode_kd}} </strong>{{$kd_mapel->kd_mapel->kompetensi_dasar}}</td>
-                        <td class="text-center"><form action="{{ route('rencana-k3.destroy', $kd_mapel->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </form></td>
+                        <td><strong>{{$kd_mapel->kode_kd}} </strong>{{$kd_mapel->kompetensi_dasar}}</td>
+                        <td class="text-center">
+                          <input type="checkbox" name="butir_sikap_id[]" value="{{$kd_mapel->id}}" class="form-check-input mx-0">
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>

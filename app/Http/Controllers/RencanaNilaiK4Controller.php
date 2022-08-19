@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\KdMapel;
-use App\Models\RencanaNilaiK3;
+use App\Models\RencanaNilaiK4;
 use App\Models\Kelas;
 use App\Models\Pembelajaran;
 use App\Models\Tapel;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class RencanaNilaiK3Controller extends Controller
+class RencanaNilaiK4Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,14 +27,14 @@ class RencanaNilaiK3Controller extends Controller
         $guru = Guru::where('user_id', 4)->first();
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
         $kelas_diampu = Kelas::where('guru_id', $guru->id)->first();
-        $data_kd_mapel = KdMapel::where('tapel_id', $tapel->id)->where('tingkatan_kelas',$kelas_diampu->tingkatan_kelas)->where('jenis_kompetensi', 1)->get();
+        $data_kd_mapel = KdMapel::where('tapel_id', $tapel->id)->where('tingkatan_kelas',$kelas_diampu->tingkatan_kelas)->where('jenis_kompetensi', 2)->get();
         $data_rencana_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
-        $ren_penilaian = RencanaNilaiK3::all();
+        $ren_penilaian = RencanaNilaiK4::all();
         foreach ($data_rencana_penilaian as $penilaian) {
-            $rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $penilaian->id)->get();
+            $rencana_penilaian = RencanaNilaiK4::where('pembelajaran_id', $penilaian->id)->get();
             $penilaian->jumlah_rencana_penilaian = count($rencana_penilaian);
         }
-        return view('guru.rencana-k3.index', compact('title', 'data_rencana_penilaian','data_kd_mapel','ren_penilaian'));
+        return view('guru.rencana-k4.index', compact('title', 'data_rencana_penilaian','data_kd_mapel','ren_penilaian'));
     }
 
     /**
@@ -42,7 +42,7 @@ class RencanaNilaiK3Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         //
     }
@@ -68,20 +68,20 @@ class RencanaNilaiK3Controller extends Controller
                     'created_at'  => Carbon::now(),
                     'updated_at'  => Carbon::now(),
                 );
-                $store_data_k3[] = $data_sikap;
+                $store_data_k4[] = $data_sikap;
             }
-            RencanaNilaiK3::insert($store_data_k3);
-            return redirect('rencana-k3')->with('success', 'Rencana nilai spiritual berhasil dipilih');
+            RencanaNilaiK4::insert($store_data_k4);
+            return redirect('rencana-k4')->with('success', 'Rencana nilai spiritual berhasil dipilih');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RencanaNilaiK3  $rencanaNilaiK3
+     * @param  \App\Models\RencanaNilaiK4  $rencanaNilaiK4
      * @return \Illuminate\Http\Response
      */
-    public function show(RencanaNilaiK3 $rencanaNilaiK3)
+    public function show(RencanaNilaiK4 $rencanaNilaiK4)
     {
         //
     }
@@ -89,10 +89,10 @@ class RencanaNilaiK3Controller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RencanaNilaiK3  $rencanaNilaiK3
+     * @param  \App\Models\RencanaNilaiK4  $rencanaNilaiK4
      * @return \Illuminate\Http\Response
      */
-    public function edit(RencanaNilaiK3 $rencanaNilaiK3)
+    public function edit(RencanaNilaiK4 $rencanaNilaiK4)
     {
         //
     }
@@ -101,10 +101,10 @@ class RencanaNilaiK3Controller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RencanaNilaiK3  $rencanaNilaiK3
+     * @param  \App\Models\RencanaNilaiK4  $rencanaNilaiK4
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RencanaNilaiK3 $rencanaNilaiK3)
+    public function update(Request $request, RencanaNilaiK4 $rencanaNilaiK4)
     {
         //
     }
@@ -112,12 +112,12 @@ class RencanaNilaiK3Controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RencanaNilaiK3  $rencanaNilaiK3
+     * @param  \App\Models\RencanaNilaiK4  $rencanaNilaiK4
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $butir_sikap = RencanaNilaiK3::findorfail($id);
+        $butir_sikap = RencanaNilaiK4::findorfail($id);
         $butir_sikap->delete();
         return back()->with('success', 'Butir Sikap berhasil dihapus');
     }

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Data K4')
 
 @section('content_header')
     
@@ -61,7 +61,7 @@
                   <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-tambah{{$penilaian->id}}">
                     <i class="fas fa-plus"></i>
                   </button>
-                  @include('guru.rencana-k3.create')
+                  @include('guru.rencana-k4.create')
                   @else
                   <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-show{{$penilaian->id}}">
                     <i class="fas fa-eye"></i>
@@ -69,8 +69,8 @@
                   <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-tambah{{$penilaian->id}}">
                     <i class="fas fa-pencil-alt"></i>
                   </button>
-                  @include('guru.rencana-k3.create')
-                  @include('guru.rencana-k3.show')
+                  @include('guru.rencana-k4.create')
+                  @include('guru.rencana-k4.show')
                   @endif
                 </td>
               </tr>            

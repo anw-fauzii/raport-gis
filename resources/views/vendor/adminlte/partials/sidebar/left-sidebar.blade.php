@@ -156,7 +156,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('rencana-k4.index')}}" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-4</p>
               </a>
@@ -182,6 +182,18 @@
               <a href="{{route('penilaian-k2.index')}}" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-2</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('penilaian-k1.index')}}" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>KI-4</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('penilaian-k2.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>KI-3</p>
               </a>
             </li>
             <li class="nav-item">

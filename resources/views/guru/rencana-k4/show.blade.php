@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{route('rencana-k3.store')}}" method="POST">
+        <form action="{{route('rencana-k4.store')}}" method="POST">
             @csrf
             <div class="modal-body">
                 <input type="hidden" name="pembelajaran_id" value="{{$penilaian->id}}">
@@ -23,7 +23,7 @@
                     @foreach($ren_penilaian->where('pembelajaran_id', $penilaian->id) as $kd_mapel)
                       <tr>
                         <td><strong>{{$kd_mapel->kd_mapel->kode_kd}} </strong>{{$kd_mapel->kd_mapel->kompetensi_dasar}}</td>
-                        <td class="text-center"><form action="{{ route('rencana-k3.destroy', $kd_mapel->id) }}" method="POST">
+                        <td class="text-center"><form action="{{ route('rencana-k4.destroy', $kd_mapel->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">
