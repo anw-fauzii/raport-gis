@@ -44,7 +44,7 @@
                         <th class="text-center">PH</th>
                         <th class="text-center">NPTS</th>
                         <th class="text-center">NPAS</th>
-                        @foreach($data_rencana_penilaian as $rencana_penilaian)
+                        @foreach($data_kd_nilai as $rencana_penilaian)
                         <input type="hidden" name="rencana_nilai_k3_id[]" value="{{$rencana_penilaian->id}}">
                         @endforeach
                       </tr>
@@ -54,23 +54,23 @@
                       @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
                       <?php $no++; ?>
                       <tr>
-                        <td rowspan="{{$count_kd + 1}}" class="text-center">{{$no}}</td>
-                        <td rowspan="{{$count_kd + 1}}">{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                        <td rowspan="3" class="text-center">{{$no}}</td>
+                        <td rowspan="3">{{$anggota_kelas->siswa->nama_lengkap}}</td>
                         <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
                       </tr>
                       <?php $i = -1; ?>
-                        @foreach($data_rencana_penilaian as $rencana_penilaian)
+                        @foreach($anggota_kelas->data_nilai as $nilai)
                         <?php $i++; ?>
                         <tr>
-                          <td class="text-center"><strong>{{$rencana_penilaian->kd_mapel->kode_kd}}</strong></td>
+                            <td class="text-center"><strong>{{$nilai->rencana_mapel->kd_mapel->kode_kd}}</strong></td>
                         <td>
-                          <input type="number" class="form-control" name="nilai_ph[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="number" class="form-control" name="nilai_ph[{{$i}}][]" min="0"  max="100" value="{{$nilai->nilai_ph}}" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
                         <td>
-                          <input type="number" class="form-control" name="nilai_npts[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="number" class="form-control" name="nilai_npts[{{$i}}][]" min="0" max="100" value="{{$nilai->nilai_pts}}" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
                         <td>
-                          <input type="number" class="form-control" name="nilai_npas[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="number" class="form-control" name="nilai_npas[{{$i}}][]" min="0" max="100" value="{{$nilai->nilai_pas}}" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
                         </tr>
                         @endforeach

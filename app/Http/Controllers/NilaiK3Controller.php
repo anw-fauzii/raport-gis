@@ -66,13 +66,14 @@ class NilaiK3Controller extends Controller
             return back()->with('toast_error', 'Data siswa tidak ditemukan');
         } else {
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                for ($count_penilaian = 0; $count_penilaian < count($request->k13_rencana_nilai_pengetahuan_id); $count_penilaian++) {
-
-                    if ($request->nilai[$count_penilaian][$cound_siswa] >= 0 && $request->nilai[$count_penilaian][$cound_siswa] <= 100) {
+                for ($count_penilaian = 0; $count_penilaian < count($request->rencana_nilai_k3_id); $count_penilaian++) {
+                    if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
                         $data_nilai = array(
                             'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                            'k13_rencana_nilai_pengetahuan_id' => $request->k13_rencana_nilai_pengetahuan_id[$count_penilaian],
-                            'nilai'  => ltrim($request->nilai[$count_penilaian][$cound_siswa]),
+                            'rencana_nilai_k3_id' => $request->rencana_nilai_k3_id[$count_penilaian],
+                            'nilai_ph'  => ltrim($request->nilai_ph[$count_penilaian][$cound_siswa]),
+                            'nilai_pts'  => ltrim($request->nilai_npts[$count_penilaian][$cound_siswa]),
+                            'nilai_pas'  => ltrim($request->nilai_npas[$count_penilaian][$cound_siswa]),
                             'created_at'  => Carbon::now(),
                             'updated_at'  => Carbon::now(),
                         );
@@ -83,8 +84,8 @@ class NilaiK3Controller extends Controller
                 }
                 $store_data_penilaian = $data_penilaian_siswa;
             }
-            K13NilaiPengetahuan::insert($store_data_penilaian);
-            return redirect('guru/nilaipengetahuan')->with('toast_success', 'Data nilai pengetahuan berhasil disimpan.');
+            NilaiK3::insert($store_data_penilaian);
+            return redirect('penilaian-k3')->with('success', 'Data nilai pengetahuan berhasil disimpan.');
         }
     }
 

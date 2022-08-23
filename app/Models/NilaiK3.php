@@ -16,4 +16,9 @@ class NilaiK3 extends Model
         'nilai_pts',
         'nilai_pas',
     ];
+
+    public function rencana_mapel()
+    {
+        return $this->belongsTo(RencanaNilaiK3::class,'rencana_nilai_k3_id','id');
+    }
 }
