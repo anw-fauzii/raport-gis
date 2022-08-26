@@ -117,10 +117,9 @@ class NilaiK3Controller extends Controller
         $count_kd_nilai = count($data_kd_nilai);
 
         $data_kode_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->get();
-
+        $count_kd = count($data_kode_penilaian);
         if ($count_kd_nilai == 0) {
             $data_rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->get();
-            $count_kd = count($data_rencana_penilaian);
             $title = 'Input Nilai Pengetahuan';
             return view('guru.penilaian-k3.create', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
         } else {
@@ -129,7 +128,7 @@ class NilaiK3Controller extends Controller
                 $anggota_kelas->data_nilai = $data_nilai;
             }
             $title = 'Edit Nilai Pengetahuan';
-            return view('guru.penilaian-k3.edit', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian', 'count_kd_nilai', 'data_kd_nilai',));
+            return view('guru.penilaian-k3.edit', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
         }
     }
 
@@ -140,9 +139,25 @@ class NilaiK3Controller extends Controller
      * @param  \App\Models\NilaiK3  $nilaiK3
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NilaiK3 $nilaiK3)
+    public function update(Request $request, $id)
     {
-        //
+        for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+            for ($count_penilaian = 0; $count_penilaian < count($request->rencana_nilai_k3_id); $count_penilaian++) {
+                if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
+                    $nilai = NilaiK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('rencana_nilai_k3_id', $request->rencana_nilai_k3_id[$count_penilaian])->first();
+                    $data_nilai = [
+                        'nilai_ph'  => ltrim($request->nilai_ph[$count_penilaian][$cound_siswa]),
+                        'nilai_pts'  => ltrim($request->nilai_npts[$count_penilaian][$cound_siswa]),
+                        'nilai_pas'  => ltrim($request->nilai_npas[$count_penilaian][$cound_siswa]),
+                        'updated_at'  => Carbon::now(),
+                    ];
+                    $nilai->update($data_nilai);
+                } else {
+                    return back()->with('error', 'Nilai harus berisi antara 0 s/d 100');
+                }
+            }
+        }
+        return redirect('penilaian-k3')->with('success', 'Data nilai pengetahuan berhasil diedit.');
     }
 
     /**

@@ -31,9 +31,9 @@
             </div>
 
             <div class="card-body">
-              <form action="{{ route('penilaian-k3.store') }}" method="POST">
-                @csrf
-
+              <form action="{{ route('penilaian-k3.update', $pembelajaran->id) }}" method="POST">
+              {{ method_field('PATCH') }}
+              @csrf
                 <div class="table-responsive">
                   <table class="table table-bordered table-hover">
                     <thead class="bg-primary">
@@ -45,7 +45,7 @@
                         <th class="text-center">NPTS</th>
                         <th class="text-center">NPAS</th>
                         @foreach($data_kd_nilai as $rencana_penilaian)
-                        <input type="hidden" name="rencana_nilai_k3_id[]" value="{{$rencana_penilaian->id}}">
+                        <input type="hidden" name="rencana_nilai_k3_id[]" value="{{$rencana_penilaian->rencana_nilai_k3_id}}">
                         @endforeach
                       </tr>
                     </thead>
@@ -54,8 +54,8 @@
                       @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
                       <?php $no++; ?>
                       <tr>
-                        <td rowspan="3" class="text-center">{{$no}}</td>
-                        <td rowspan="3">{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                        <td rowspan="{{$count_kd + 1}}" class="text-center">{{$no}}</td>
+                        <td rowspan="{{$count_kd + 1}}">{{$anggota_kelas->siswa->nama_lengkap}}</td>
                         <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
                       </tr>
                       <?php $i = -1; ?>
