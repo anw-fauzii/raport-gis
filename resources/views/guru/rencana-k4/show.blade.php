@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{route('rencana-k4.store')}}" method="POST">
+        <form action="#" method="POST">
             @csrf
             <div class="modal-body">
                 <input type="hidden" name="pembelajaran_id" value="{{$penilaian->id}}">
@@ -37,7 +37,6 @@
                 </div>
             <div class="modal-footer justify-content-end">
             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
         </div>

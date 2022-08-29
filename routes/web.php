@@ -30,6 +30,7 @@ Route::resource('/rencana-k4',App\Http\Controllers\RencanaNilaiK4Controller::cla
 Route::resource('/penilaian-k1',App\Http\Controllers\NilaiK1Controller::class);
 Route::resource('/penilaian-k2',App\Http\Controllers\NilaiK2Controller::class);
 Route::resource('/penilaian-k3',App\Http\Controllers\NilaiK3Controller::class);
+Route::resource('/penilaian-k4',App\Http\Controllers\NilaiK4Controller::class);
 Route::resource('/guru',App\Http\Controllers\GuruController::class);
 Route::resource('/kkm',App\Http\Controllers\KkmController::class);
 Route::post('kkm/import', [App\Http\Controllers\KkmController::class,'import'])->name('kkm.import');
@@ -52,3 +53,4 @@ Route::resource('/butir-sikap',App\Http\Controllers\ButirSikapController::class)
 Route::post('butir-sikap/import', [App\Http\Controllers\ButirSikapController::class,'import'])->name('butir-sikap.import');
 Route::resource('/kd-mapel',App\Http\Controllers\KdMapelController::class);
 Route::post('kd-mapel/import', [App\Http\Controllers\KdMapelController::class,'import'])->name('kd-mapel.import');
+Route::resource('/catatan-umum',App\Http\Controllers\CatatanUmumController::class);

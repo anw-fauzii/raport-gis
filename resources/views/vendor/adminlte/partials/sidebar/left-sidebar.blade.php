@@ -191,15 +191,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('penilaian-k3.index')}}" class="nav-link">
+              <a href="{{route('penilaian-k4.index')}}" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-4</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-clipboard-check nav-icon"></i>
-                <p>Nilai Raport Semester</p>
               </a>
             </li>
           </ul>
@@ -211,6 +205,15 @@
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>
               Rekap Kehadiran Siswa
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{route('catatan-umum.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Catatan Untuk Siswa
             </p>
           </a>
         </li>
@@ -233,12 +236,6 @@
             </p>
           </a>
           <ul class="nav nav-treeview bg-secondary">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-print nav-icon"></i>
-                <p>Raport Tengah Semester</p>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
