@@ -127,12 +127,12 @@
             </p>
           </a>
         </li>
-        <li class="nav-header">HASIL RAPORT</li>
+        <li class="nav-header">Rencana Penilaian</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
-              Rencana Penilaian
+              Kompetensi Dasar
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -167,7 +167,49 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
-              Hasil Penilaian
+              Nilai PRIMA
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="{{route('rencana-proactive.index')}}" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>Proactive</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('rencana-responsible.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Responsible</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('rencana-innovative.index')}}" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>Innovative</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('rencana-modest.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Modest</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('rencana-achievement.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Achievement</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">Penilaian</li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-list-ol"></i>
+            <p>
+              Kompetensi Dasar
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -198,8 +240,47 @@
             </li>
           </ul>
         </li>
-        
-
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-list-ol"></i>
+            <p>
+              Penilaian PRIMA
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="{{route('penilaian-proactive.index')}}" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>Proactive</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('penilaian-responsible.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Responsible</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('penilaian-innovative.index')}}" class="nav-link">
+                <i class="fas fa-check-circle nav-icon"></i>
+                <p>Innovative</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('penilaian-modest.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Modest</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('penilaian-achievement.index')}}" class="nav-link">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Achievement</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a href="{{route('kehadiran.index')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>

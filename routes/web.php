@@ -54,3 +54,17 @@ Route::post('butir-sikap/import', [App\Http\Controllers\ButirSikapController::cl
 Route::resource('/kd-mapel',App\Http\Controllers\KdMapelController::class);
 Route::post('kd-mapel/import', [App\Http\Controllers\KdMapelController::class,'import'])->name('kd-mapel.import');
 Route::resource('/catatan-umum',App\Http\Controllers\CatatanUmumController::class);
+
+//Rencana Prima
+Route::resource('/rencana-responsible',App\Http\Controllers\RencanaPrima\RencanaResponsibleController::class);
+Route::resource('/rencana-proactive',App\Http\Controllers\RencanaPrima\RencanaProactiveController::class);
+Route::resource('/rencana-innovative',App\Http\Controllers\RencanaPrima\RencanaInnovativeController::class);
+Route::resource('/rencana-modest',App\Http\Controllers\RencanaPrima\RencanaModestController::class);
+Route::resource('/rencana-achievement',App\Http\Controllers\RencanaPrima\RencanaAchievementController::class);
+
+//Nilai Prima
+Route::resource('/penilaian-responsible',App\Http\Controllers\NilaiPrima\NilaiResponsibleController::class);
+Route::resource('/penilaian-proactive',App\Http\Controllers\NilaiPrima\NilaiProactiveController::class);
+Route::resource('/penilaian-innovative',App\Http\Controllers\NilaiPrima\NilaiInnovativeController::class);
+Route::resource('/penilaian-modest',App\Http\Controllers\NilaiPrima\NilaiModestController::class);
+Route::resource('/penilaian-achievement',App\Http\Controllers\NilaiPrima\NilaiAchievementController::class);

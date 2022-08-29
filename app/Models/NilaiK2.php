@@ -11,7 +11,7 @@ class NilaiK2 extends Model
     use HasFactory;
     protected $table = 'nilai_k2';
     protected $fillable = [
-        'rencana_nilai_sosial_id',
+        'rencana_nilai_k2_id',
         'anggota_kelas_id',
         'nilai',
         'deskripsi',
