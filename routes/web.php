@@ -68,3 +68,7 @@ Route::resource('/penilaian-proactive',App\Http\Controllers\NilaiPrima\NilaiProa
 Route::resource('/penilaian-innovative',App\Http\Controllers\NilaiPrima\NilaiInnovativeController::class);
 Route::resource('/penilaian-modest',App\Http\Controllers\NilaiPrima\NilaiModestController::class);
 Route::resource('/penilaian-achievement',App\Http\Controllers\NilaiPrima\NilaiAchievementController::class);
+
+//Mulok
+Route::resource('/rencana-mulok',App\Http\Controllers\RencanaMulokController::class);
+Route::resource('/penilaian-mulok',App\Http\Controllers\NilaiMulokController::class);

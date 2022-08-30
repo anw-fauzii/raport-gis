@@ -163,6 +163,14 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a href="{{route('rencana-mulok.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Mulok Khas PI
+            </p>
+          </a>
+        </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-list-ol"></i>
@@ -239,6 +247,14 @@
               </a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('penilaian-mulok.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Mulok Khas PI
+            </p>
+          </a>
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
