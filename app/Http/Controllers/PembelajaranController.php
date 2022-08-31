@@ -149,7 +149,8 @@ class PembelajaranController extends Controller
         $mapel_id_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->get('mapel_id');
         $data_mapel = Mapel::whereNotIn('id', $mapel_id_pembelajaran_kelas)->where(function($query) {
             $query->where('kategori_mapel_id',"3")
-                ->orWhere('kategori_mapel_id',"5");
+                ->orWhere('kategori_mapel_id',"5")
+                ->orWhere('kategori_mapel_id',"6");
         })->get();
         $data_guru = Guru::where('jabatan', 3)->get();
         return view('admin.pembelajaran.show', compact('title', 'tapel', 'kelas', 'data_kelas', 'data_pembelajaran_kelas', 'data_mapel','data_guru'));

@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class RencanaMulok extends Model
 {
     use HasFactory;
+    protected $table = 'rencana_mulok';
+    protected $fillable = [
+        'pembelajaran_id',
+        'kd_mapel_id',
+    ];
+
+    public function pembelajaran()
+    {
+        return $this->belongsTo(Pembelajaran::class);
+    }
+    
+    public function kd_mapel()
+    {
+        return $this->belongsTo(KdMapel::class);
+    }
 }
