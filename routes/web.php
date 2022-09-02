@@ -54,6 +54,7 @@ Route::post('butir-sikap/import', [App\Http\Controllers\ButirSikapController::cl
 Route::resource('/kd-mapel',App\Http\Controllers\KdMapelController::class);
 Route::post('kd-mapel/import', [App\Http\Controllers\KdMapelController::class,'import'])->name('kd-mapel.import');
 Route::resource('/catatan-umum',App\Http\Controllers\CatatanUmumController::class);
+Route::resource('/catatan-t2q',App\Http\Controllers\CatatanT2QController::class);
 
 //Rencana Prima
 Route::resource('/rencana-responsible',App\Http\Controllers\RencanaPrima\RencanaResponsibleController::class);
@@ -71,4 +72,6 @@ Route::resource('/penilaian-achievement',App\Http\Controllers\NilaiPrima\NilaiAc
 
 //Mulok
 Route::resource('/rencana-mulok',App\Http\Controllers\RencanaMulokController::class);
+Route::resource('/rencana-pelajaran-sholat',App\Http\Controllers\RencanaPelajaranSholatController::class);
+Route::resource('/penilaian-sholat',App\Http\Controllers\NilaiSholatController::class);
 Route::resource('/penilaian-mulok',App\Http\Controllers\NilaiMulokController::class);

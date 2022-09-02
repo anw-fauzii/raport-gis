@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnggotaT2qTable extends Migration
+class CreateRencanaNilaiSholatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateAnggotaT2qTable extends Migration
      */
     public function up()
     {
-        Schema::create('anggota_t2q', function (Blueprint $table) {
+        Schema::create('rencana_nilai_sholat', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('siswa_id')->unsigned();
-            $table->unsignedBigInteger('guru_id')->unsigned();
-            $table->string('tapel')->nullable();
+            $table->integer('tingkat');
+            $table->unsignedBigInteger('guru_id')->unsigned()->nullable();
+            $table->integer('kategori');
+            $table->unsignedBigInteger('butir_sikap_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('siswa_id')->references('id')->on('siswa');
             $table->foreign('guru_id')->references('id')->on('guru');
+            $table->foreign('butir_sikap_id')->references('id')->on('butir_sikap');
+
         });
     }
 
@@ -32,6 +34,6 @@ class CreateAnggotaT2qTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anggota_t2q');
+        Schema::dropIfExists('rencana_nilai_sholat');
     }
 }

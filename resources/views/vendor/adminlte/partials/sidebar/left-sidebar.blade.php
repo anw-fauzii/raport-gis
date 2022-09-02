@@ -297,6 +297,31 @@
             </li>
           </ul>
         </li>
+        <li class="nav-header">T2Q</li>
+        <li class="nav-item">
+          <a href="{{route('catatan-t2q.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Catatan T2Q
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('rencana-pelajaran-sholat.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Ren Pelajaran Sholat
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('penilaian-sholat.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Nil Pelajaran Sholat
+            </p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="{{route('kehadiran.index')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
@@ -310,11 +335,11 @@
           <a href="{{route('catatan-umum.index')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>
-              Catatan Untuk Siswa
+              Catatan Umum
             </p>
           </a>
         </li>
-
+        
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
