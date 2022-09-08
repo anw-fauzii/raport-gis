@@ -21,9 +21,18 @@
                     <p>Untuk menambahkan anggota kelas, silahkan pindahkan nama siswa ke kolom sebelah kanan lalu klik tombol simpan.</p>
                     </div>
                     <input type="hidden" name="guru_id" value="{{$guru->id}}">
+                    <div class="form-group row">
+                    <label for="semester" class="col-sm-2 col-form-label">Tingkat</label>
+                    <div class="col-sm-10">
+                            <select class="form-control select2" name="tingkat" style="width: 100%;" required>
+                                <option value="" disabled>-- Pilih Tingkat Kelas --</option>
+                                @for ($i = 1; $i <= 6; $i++) <option value="{{$i}}">{{$i}}</option> @endfor
+                            </select>
+                        </div>
+                        </div>
                     <select class="duallistbox" multiple="multiple" name="siswa_id[]">
                     @foreach($siswa_belum_masuk_kelas as $belum_masuk_kelas)
-                    <option value="{{$belum_masuk_kelas->id}}">{{$belum_masuk_kelas->nis}} | {{$belum_masuk_kelas->nisn}} | {{$belum_masuk_kelas->nama_lengkap}} ({{$belum_masuk_kelas->kelas_sebelumhya}})</option>
+                    <option value="{{$belum_masuk_kelas->id}}">{{$belum_masuk_kelas->siswa->nis}} | {{$belum_masuk_kelas->siswa->nisn}} | {{$belum_masuk_kelas->siswa->nama_lengkap}} ({{$belum_masuk_kelas->siswa->kelas->nama_kelas}})</option>
                     @endforeach
                     </select>
                 </div>

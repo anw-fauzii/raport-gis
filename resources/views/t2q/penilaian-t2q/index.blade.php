@@ -49,15 +49,15 @@
                 <td>Tingkat {{$penilaian->tingkat}}</td>
                 <td>
                   @if($cek_nilai->where('tingkat',$penilaian->tingkat)->count() == 0)
-                  <span class="badge badge-danger">Belum ada rencana penilaian</span>
+                  <span class="badge badge-danger">Belum Ada yang di nilai</span>
                   @else
-                  <span class="badge badge-success">Sudah Ada Rencana</span>
+                  <span class="badge badge-success">Sudah Dinilai</span>
                   @endif
                 </td>
                 <td>
-                  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="">
-                    <i class="fas fa-plus"></i>
-                  </button>
+                    <a href="{{ route('penilaian-t2q.edit', $penilaian->tingkat) }}" type="button" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i>
+                    </a>
                 </td>
               </tr>            
               @endforeach

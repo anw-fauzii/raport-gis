@@ -25,13 +25,13 @@ class RencanaPelajaranSholatController extends Controller
         $title = 'Rencana Nilai Pengetahuan';
         $tapel = Tapel::findorfail(5);     
         $guru = Guru::where('user_id', 2)->first();
-        $data_rencana_penilaian = AnggotaT2Q::select('siswa.kelas_id')->join('siswa','anggota_t2q.siswa_id','=','siswa.id')->where('anggota_t2q.guru_id', $guru->id)->where('tapel', $tapel->tahun_pelajaran)->distinct('kelas_id')->get();
+        $data_rencana_penilaian = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel', $tapel->tahun_pelajaran)->groupBy('tingkat')->get();
 
         $data_butir_sikap = ButirSikap::select('butir_sikap.*','kategori_butir.jenis')->join('kategori_butir','butir_sikap.kategori_butir_id','=','kategori_butir.id')
         ->where('jenis',"Pelajaran Sholat")->get();
-        $sa = RencanaPelajaranSholat::join('butir_sikap','rencana_nilai_sholat.butir_sikap_id','=','butir_sikap.id')
-        ->select('butir_sikap.kategori_butir_id','butir_sikap.butir_sikap','rencana_nilai_sholat.*')->where('guru_id', $guru->id)->get();
-        return view('t2q.rencana-sholat.index', compact('title', 'data_rencana_penilaian','data_butir_sikap','guru'));
+        $count_nilai = RencanaPelajaranSholat::where('guru_id', $guru->id)->get();
+        $ren_penilaian = RencanaPelajaranSholat::where('guru_id',$guru->id)->get();
+        return view('t2q.rencana-sholat.index', compact('title', 'data_rencana_penilaian','count_nilai','data_butir_sikap','guru','ren_penilaian'));
     }
 
     /**
@@ -60,8 +60,10 @@ class RencanaPelajaranSholatController extends Controller
         } else {
             for ($count = 0; $count < count($request->butir_sikap_id); $count++) {
                 $data_sikap = array(
-                    'kelas_id'  => $request->kelas_id,
+                    'guru_id'  => $request->guru_id,
+                    'tingkat'  => $request->tingkat,
                     'butir_sikap_id'  => $request->butir_sikap_id[$count],
+                    'kategori' =>$request->kategori[$count],
                     'created_at'  => Carbon::now(),
                     'updated_at'  => Carbon::now(),
                 );

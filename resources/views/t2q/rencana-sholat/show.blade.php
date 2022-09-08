@@ -1,5 +1,5 @@
 <!-- Modal tambah  -->
-<div class="modal fade" id="modal-tambah{{$penilaian->id}}">
+<div class="modal fade" id="modal-show{{$penilaian->id}}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
@@ -8,36 +8,35 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{route('rencana-pelajaran-sholat.store')}}" method="POST">
+        <form action="#" method="POST">
             @csrf
             <div class="modal-body">
-            <input type="hidden" name="guru_id" value="{{$penilaian->guru_id}}">
-            <input type="hidden" name="tingkat" value="{{$penilaian->tingkat}}">
-              <div class="table-responsive">
+                <input type="hidden" name="pembelajaran_id" value="{{$penilaian->id}}">
                   <table class="table table-bordered table-hover">
                     <thead class="bg-primary">
                       <tr>
                         <th class="text-center">Butir Sikap Spiritual</th>
-                        <th class="text-center">Pilih</th>
+                        <th class="text-center">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($data_butir_sikap as $sikap)
+                    @foreach($ren_penilaian->where('tingkat',$penilaian->tingkat) as $kd_mapel)
                       <tr>
-                        <td><b>{{$sikap->kategori->kategori_butir_sikap}}</b>, {{$sikap->butir_sikap}}</td>
-                        <td class="text-center">
-                          <input type="checkbox" name="butir_sikap_id[]" value="{{$sikap->id}}" class="form-check-input mx-0">
-                          <input type="hidden" name="kategori[]" value="{{$sikap->kategori_butir_id}}" class="form-check-input mx-0">
-                        </td>
+                        <td><strong>{{$kd_mapel->kategori_id->kategori_butir_sikap}} : </strong>{{$kd_mapel->butir_sikap->butir_sikap}}</td>
+                        <td class="text-center"><form action="{{ route('rencana-pelajaran-sholat.destroy', $kd_mapel->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </form></td>
                       </tr>
                       @endforeach
                     </tbody>
                   </table>
                 </div>
-            </div>
             <div class="modal-footer justify-content-end">
             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
         </div>

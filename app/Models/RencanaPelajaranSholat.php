@@ -11,6 +11,8 @@ class RencanaPelajaranSholat extends Model
     protected $table = 'rencana_nilai_sholat';
     protected $fillable = [
         'kelas_id',
+        'kategori',
+        'tingkat',
         'butir_sikap_id',
     ];
 
@@ -23,4 +25,9 @@ class RencanaPelajaranSholat extends Model
     {
         return $this->belongsTo(ButirSikap::class,'butir_sikap_id','id');
     }
+
+    public function kategori_id()
+    {
+        return $this->belongsTo(KategoriButirSikap::class,'kategori','id');
+    } 
 }

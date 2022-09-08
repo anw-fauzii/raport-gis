@@ -26,48 +26,40 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-book"></i> {{$title}}</h3>
-        <div class="card-tools">
-          <form action="{{ route('penilaian-k1.create') }}" method="GET">
-            @csrf
-            <input type="hidden" name="pembelajaran_id" value="#">
-            <button type="submit" class="btn btn-tool btn-sm">
-              <i class="fas fa-plus"></i>
-            </button>
-          </form>
-        </div>
+        <h3 class="card-title"><i class="fas fa-list-alt"></i> {{$title}}</h3>
       </div>
 
       <div class="card-body">
         <div class="table-responsive">
-          <table id="example1" class="table table-striped table-valign-middle table-hover">
-            <thead>
+          <table class="table table-bordered table-striped">
+            <thead class="bg-info">
               <tr>
                 <th>No</th>
-                <th>NIS</th>
-                <th>Nama Siswa</th>
-                <th>Nilai</th>
-                <th>Deskripsi</th>
+                <th>Tingkat Kelas</th>
+                <th>Jumlah Rencana Penilaian</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               <?php $no = 0; ?>
-              @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+              @foreach($data_rencana_penilaian as $penilaian)
               <?php $no++; ?>
               <tr>
-                <td class="text-center" style="vertical-align: middle;">{{$no}}</td>
-                <td style="vertical-align: middle;">{{$anggota_kelas->siswa->nis}}</td>
-                <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
-                @foreach($anggota_kelas->data_nilai as $nilai)
-                  @if($nilai)
-                    <td>{{$nilai->nilai}}</td>
-                    <td>{{$nilai->deskripsi}}</td>
+                <td>{{$no}}</td>
+                <td>Tingkat {{$penilaian->tingkat}}</td>
+                <td>
+                  @if($cek_nilai->where('tingkat',$penilaian->tingkat)->count() == 0)
+                  <span class="badge badge-danger">Belum Ada yang di nilai</span>
                   @else
-                    <td>-</td>
-                    <td>-</td>
+                  <span class="badge badge-success">Sudah Dinilai</span>
                   @endif
-                @endforeach
-              </tr>
+                </td>
+                <td>
+                    <a href="{{ route('penilaian-sholat.edit', $penilaian->tingkat) }}" type="button" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </td>
+              </tr>            
               @endforeach
             </tbody>
           </table>
@@ -76,7 +68,6 @@
     </div>
     <!-- /.card -->
   </div>
-
 </div>
 
 @stop

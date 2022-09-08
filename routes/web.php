@@ -75,3 +75,5 @@ Route::resource('/rencana-mulok',App\Http\Controllers\RencanaMulokController::cl
 Route::resource('/rencana-pelajaran-sholat',App\Http\Controllers\RencanaPelajaranSholatController::class);
 Route::resource('/penilaian-sholat',App\Http\Controllers\NilaiSholatController::class);
 Route::resource('/penilaian-mulok',App\Http\Controllers\NilaiMulokController::class);
+Route::resource('/penilaian-hafalan',App\Http\Controllers\NilaiHafalanController::class);
+Route::resource('/penilaian-t2q',App\Http\Controllers\NilaiT2QController::class);

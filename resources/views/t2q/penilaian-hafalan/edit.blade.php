@@ -35,7 +35,7 @@
 
       <div class="card-body">
 
-        <form action="{{ route('penilaian-sholat.update', Auth::user()->id) }}" method="POST">
+        <form action="{{ route('penilaian-hafalan.update', Auth::user()->id) }}" method="POST">
           {{ method_field('PATCH') }}
           @csrf
           <div class="table-responsive">
@@ -50,7 +50,6 @@
                   <td>1.</td>
                   <td>2.</td>
                   <td>3.</td>
-                  <td>4.</td>
                 </tr>
               </thead>
               <tbody>
@@ -63,16 +62,13 @@
                   <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
-                    <input type="number" class="form-control" name="praktik_wudhu[{{$i}}]"  value="{{$nilai->praktik_wudhu}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                    <input type="number" class="form-control" name="hadis[{{$i}}]"  value="{{$nilai->hadis}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                   </td>
                   <td>
-                    <input type="number" class="form-control" name="bacaan_sholat[{{$i}}]" value="{{$nilai->bacaan_sholat}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                    <input type="number" class="form-control" name="doa[{{$i}}]" value="{{$nilai->doa}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                   </td>
                   <td>
-                    <input type="number" class="form-control" name="gerakan_sholat[{{$i}}]" value="{{$nilai->gerakan_sholat}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                  </td>
-                  <td>
-                    <input type="number" class="form-control" name="dzikir[{{$i}}]" min="0" value="{{$nilai->dzikir}}" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                    <input type="number" class="form-control" name="hikmah[{{$i}}]" value="{{$nilai->hikmah}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                   </td>
                 </tr>
                 @endforeach
@@ -85,7 +81,7 @@
 
       <div class="card-footer clearfix">
         <button type="submit" class="btn btn-primary float-right">Simpan</button>
-        <a href="{{ route('penilaian-sholat.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+        <a href="{{ route('penilaian-hafalan.index') }}" class="btn btn-default float-right mr-2">Batal</a>
       </div>
       </form>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnggotaT2Q;
+use App\Models\AnggotaKelas;
 use App\Models\Guru;
 use App\Models\Tapel;
 use App\Models\Siswa;
@@ -23,7 +24,7 @@ class Anggotat2qController extends Controller
         $title = 'Data Guru T2Q';
         $data_guru = Guru::where('jabatan', '2')->get();
         foreach ($data_guru as $guru) {
-            $jumlah_anggota = Siswa::where('guru_id', $guru->id)->count();
+            $jumlah_anggota = AnggotaT2Q::where('guru_id', $guru->id)->count();
             $guru->jumlah_anggota = $jumlah_anggota;
         }
         return view('admin.t2q.index', compact('title', 'data_guru', 'tapel', 'data_guru'));
@@ -57,7 +58,8 @@ class Anggotat2qController extends Controller
             $tapel = Tapel::latest()->first();
             for ($count = 0; $count < count($siswa_id); $count++) {
                 $data = array(
-                    'siswa_id' => $siswa_id[$count],
+                    'tingkat'=> $request->tingkat,
+                    'anggota_kelas_id' => $siswa_id[$count],
                     'guru_id'  => $request->guru_id,
                     'tapel' => $tapel->tahun_pelajaran,
                     'created_at'  => Carbon::now(),
@@ -82,20 +84,9 @@ class Anggotat2qController extends Controller
     {
         $title = 'Kelompok T2Q';
         $guru = Guru::findorfail($id);
-        $anggota_t2q = AnggotaT2Q::join('siswa', 'anggota_t2q.siswa_id', '=', 'siswa.id')
-            ->orderBy('siswa.nama_lengkap', 'ASC')
-            ->where('anggota_t2q.guru_id', $id)
-            ->select('siswa.*', 'anggota_t2q.*')
-            ->get();
-        $siswa_belum_masuk_kelas = Siswa::where('guru_id', null)->get();
-        foreach ($siswa_belum_masuk_kelas as $belum_masuk_kelas) {
-            $kelas_sebelumhya = AnggotaT2Q::where('siswa_id', $belum_masuk_kelas->id)->orderBy('id', 'DESC')->first();
-            if (is_null($kelas_sebelumhya)) {
-                $belum_masuk_kelas->kelas_sebelumhya = null;
-            } else {
-                $belum_masuk_kelas->kelas_sebelumhya = $kelas_sebelumhya->kelas->nama_kelas;
-            }
-        }
+        $anggota_t2q = AnggotaT2Q::where('guru_id',$id)->get();
+        $id_anggota_ekstrakulikuler = AnggotaT2Q::where('guru_id', $id)->get('anggota_kelas_id');
+        $siswa_belum_masuk_kelas = AnggotaKelas::whereNotIn('id', $id_anggota_ekstrakulikuler)->get();
         return view('admin.t2q.show', compact('title', 'guru', 'anggota_t2q', 'siswa_belum_masuk_kelas'));
     }
 

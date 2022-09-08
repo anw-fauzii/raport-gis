@@ -31,7 +31,7 @@
 
             <div class="card-body">
 
-              <form action="{{ route('penilaian-sholat.store') }}" method="POST">
+              <form action="{{ route('penilaian-t2q.store') }}" method="POST">
                 @csrf
 
                 <div class="table-responsive">
@@ -40,13 +40,18 @@
                       <tr>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
-                        <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                        <th colspan="5" class="text-center">Tahsin</th>
+                        <th colspan="3" class="text-center">Tahfidz</th>
                       </tr>
                       <tr>
                         <td>1.</td>
                         <td>2.</td>
                         <td>3.</td>
                         <td>4.</td>
+                        <td>5.</td>
+                        <td>1.</td>
+                        <td>2.</td>
+                        <td>3.</td>
                       </tr>
                     </thead>
                     <tbody>
@@ -58,16 +63,41 @@
                         <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
                         <td>
                           <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
-                          <input type="number" class="form-control" name="praktik_wudhu[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <select class="form-control select2" name="tahsin_jilid[{{$i}}]" style="width: 100%;" required>
+                            <option value="">-- Jilid / Surah --</option>
+                            <option value="Jilid 1">Jilid 1</option>
+                            <option value="Jilid 2">Jilid 2</option>
+                            <option value="Jilid 3">Jilid 3</option>
+                            <option value="Jilid 4">Jilid 4</option>
+                            <option value="Tallaqi Juz 1-5">Tallaqi Juz 1-5</option>
+                            <option value="Tallaqi Juz 30">Tallaqi Juz 30</option>
+                            <option value="Ghorib 1">Ghorib 1</option>
+                            <option value="Ghorib 2">Ghorib 2</option>
+                            <option value="Tajwid 1">Tajwid 1</option>
+                            <option value="Tajwid 2">Tajwid 2</option>
+                            <option value="Al-Qur'an">Al-Qur'an</option>
+                          </select>
                         </td>
                         <td>
-                          <input type="number" class="form-control" name="bacaan_sholat[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" min="0" max="100" required>
                         </td>
                         <td>
-                          <input type="number" class="form-control" name="gerakan_sholat[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="text" class="form-control" name="tahsin_kekurangan[{{$i}}]" min="0" max="100" required>
                         </td>
                         <td>
-                          <input type="number" class="form-control" name="dzikir[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="text" class="form-control" name="tahsin_kelebihan[{{$i}}]" min="0" max="100" required>
+                        </td>
+                        <td>
+                          <input type="number" class="form-control" name="tahsin_nilai[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="tahfidz_surah[{{$i}}]" min="0" max="100" required>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="tahfidz_ayat[{{$i}}]" min="0" max="100" required>
+                        </td>
+                        <td>
+                          <input type="number" class="form-control" name="tahfidz_nilai[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
                       </tr>
                       @endforeach
@@ -90,16 +120,22 @@
 @stop
 
 @section('css')
+<link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('vendor/datatables/css/dataTables.bootstrap4.css')}}">
 @stop
 
 @section('js')
+<script src="{{asset('vendor/select2/js/select2.full.min.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/dataTables.bootstrap4.js')}}"></script>
 
 <script>
   $(function () {
     $("#example1").DataTable();
+    $('.select2').select2({
+      theme : 'bootstrap4',
+    })
   });
 </script>
 @stop

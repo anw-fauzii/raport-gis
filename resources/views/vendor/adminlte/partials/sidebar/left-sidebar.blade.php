@@ -299,26 +299,34 @@
         </li>
         <li class="nav-header">T2Q</li>
         <li class="nav-item">
-          <a href="{{route('catatan-t2q.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
-            <p>
-              Catatan T2Q
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{route('rencana-pelajaran-sholat.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
-            <p>
-              Ren Pelajaran Sholat
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="{{route('penilaian-sholat.index')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>
               Nil Pelajaran Sholat
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('penilaian-hafalan.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Nil Hafalan
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('penilaian-t2q.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Nil Pelajaran Sholat
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('catatan-t2q.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-calendar-check"></i>
+            <p>
+              Catatan T2Q
             </p>
           </a>
         </li>

@@ -58,12 +58,12 @@
               <?php $no++; ?>
               <tr>
                 <td>{{$no}}</td>
-                <td>{{$anggota->siswa->nis}}</td>
-                <td>{{$anggota->siswa->nisn}}</td>
-                <td>@if($anggota->kelas_id){{$anggota->kelas->nama_kelas}}@else Belum masuk kelas @endif</td>
-                <td>{{$anggota->siswa->nama_lengkap}}</td>
-                <td>{{$anggota->siswa->tanggal_lahir}}</td>
-                <td>{{$anggota->siswa->jenis_kelamin}}</td>
+                <td>{{$anggota->anggota_kelas->siswa->nis}}</td>
+                <td>{{$anggota->anggota_kelas->siswa->nisn}}</td>
+                <td>{{$anggota->anggota_kelas->siswa->kelas->nama_kelas}}</td>
+                <td>{{$anggota->anggota_kelas->siswa->nama_lengkap}}</td>
+                <td>{{$anggota->anggota_kelas->siswa->tanggal_lahir}}</td>
+                <td>{{$anggota->anggota_kelas->siswa->jenis_kelamin}}</td>
                 <td>
                   <form action="{{ route('t2q.destroy', $anggota->id) }}" method="POST">
                     @csrf
