@@ -21,9 +21,8 @@
 
 @section('content')
 <div class="container-fluid">
-
-  <!-- Info -->
-  <div class="callout callout-success">
+    <!-- Info -->
+    <div class="callout callout-success">
     <h5>{{$sekolah->nama_sekolah}}</h5>
     <p>Tahun Pelajaran {{$tapel->tahun_pelajaran}}
       @if($tapel->semester == 1)
@@ -35,87 +34,72 @@
   </div>
   <!-- End Info  -->
 
-  <!-- Info boxes -->
   <div class="row">
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-tie"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Jumlah Guru</span>
-          <span class="info-box-number">
-            {{$jumlah_guru}}
-          </span>
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-danger shadow">
+        <div class="inner">
+        <h3>65</h3>
+        <p>Unique Visitors</p>
         </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Jumlah Siswa</span>
-          <span class="info-box-number">{{$jumlah_siswa}}</span>
+        <div class="icon">
+        <i class="fas fa-chart-pie"></i>
         </div>
-        <!-- /.info-box-content -->
+        <a href="#" class="small-box-footer">
+        More info <i class="fas fa-arrow-circle-right"></i>
+        </a>
       </div>
-      <!-- /.info-box -->
     </div>
-    <!-- /.col -->
-
-    <!-- fix for small devices only -->
-    <div class="clearfix hidden-md-up"></div>
-
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-layer-group"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Jumlah Kelas</span>
-          <span class="info-box-number">{{$jumlah_kelas}}</span>
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-danger shadow">
+        <div class="inner">
+        <h3>65</h3>
+        <p>Unique Visitors</p>
         </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book-reader "></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Jumlah Ekstrakulikuler</span>
-          <span class="info-box-number">{{$jumlah_ekstrakulikuler}}</span>
+        <div class="icon">
+        <i class="fas fa-chart-pie"></i>
         </div>
-        <!-- /.info-box-content -->
+        <a href="#" class="small-box-footer">
+        More info <i class="fas fa-arrow-circle-right"></i>
+        </a>
       </div>
-      <!-- /.info-box -->
     </div>
-    <!-- /.col -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-danger shadow">
+        <div class="inner">
+        <h3>65</h3>
+        <p>Unique Visitors</p>
+        </div>
+        <div class="icon">
+        <i class="fas fa-chart-pie"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+        More info <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-danger shadow">
+        <div class="inner">
+        <h3>65</h3>
+        <p>Unique Visitors</p>
+        </div>
+        <div class="icon">
+        <i class="fas fa-chart-pie"></i>
+        </div>
+        <a href="#" class="small-box-footer">
+        More info <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
   </div>
-  <!-- /.row -->
-
-
   <!-- Main row -->
   <div class="row">
     <!-- Left col -->
-    <div class="col-md-8">
+    <div class="col-md-7">
       <!-- MAP & BOX PANE -->
-      <div class="card">
+      <div class="card card-success shadow">
         <div class="card-header">
-          <h3 class="card-title">Pengumuman</h3>
-
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
+          <h3 class="card-title"><i class="fas fa-bullhorn"></i> Pengumuman</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body pr-1">
@@ -158,60 +142,61 @@
     </div>
     <!-- /.col -->
 
-    <div class="col-md-4">
+    <div class="col-md-5">
       <!-- PRODUCT LIST -->
-      <div class="card">
+      <div class="card card-info shadow">
         <div class="card-header">
-          <h3 class="card-title">Riwayat Login</h3>
-
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
+          <h3 class="card-title"><i class="fas fa-school"></i> Informasi Sekolah</h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body p-0">
-          <ul class="products-list product-list-in-card pl-2 pr-2">
-            @foreach($data_riwayat_login as $riwayat_login)
-            <li class="item">
-
-              <div class="product-img">
-                <img src="{{asset('storage/logo/user.png')}}" alt="Avatar" class="img-size-50">
-              </div>
-
-              <div class="product-info">
-                <a href="javascript:void(0)" class="product-title">
-                @if(Cache::has('is_online' . $riwayat_login->id))
-                    <span class="badge badge-success float-right">Online</span>
-                @else
-                    <span class="badge badge-warning float-right">Offline</span>
-                @endif
-                </a>
-
-                <span class="product-description">
-                  {{$riwayat_login->name}}
-                  @if(!Cache::has('is_online' . $riwayat_login->id))
-                  <span class="time float-right"><i class="far fa-clock"></i> {{ \Carbon\Carbon::parse($riwayat_login->last_seen)->diffForHumans() }}</span>
-                  @endif
-                </span>
-              </div>
-            </li>
-            <!-- /.item -->
-            @endforeach
-          </ul>
+        <div class="card-body pr-1">
+          <table>
+            <tr>
+              <td>NPSN</td>
+              <td>:</td>
+              <td>{{$sekolah->npsn}}</td>
+            </tr>
+            <tr>
+              <td>Sekolah</td>
+              <td>:</td>
+              <td>{{$sekolah->nama_sekolah}}</td>
+            </tr>
+            <tr>
+              <td>Kepala Sekolah</td>
+              <td>:</td>
+              <td>{{$sekolah->kepala_sekolah}}</td>
+            </tr>
+            <tr>
+              <td>NRKS.</td>
+              <td>:</td>
+              <td>{{$sekolah->nip_kepala_sekolah}}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>:</td>
+              <td>{{$sekolah->email}}</td>
+            </tr>
+            <tr>
+              <td>Website</td>
+              <td>:</td>
+              <td>{{$sekolah->website}}</td>
+            </tr><tr>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{$sekolah->alamat}}</td>
+            </tr>
+          </table>
         </div>
         <!-- /.card-body -->
-
       </div>
       <!-- /.card -->
     </div>
     <!-- /.col -->
   </div>
   <!-- /.row -->
+</div>
+
+
 </div>
 <!--/. container-fluid -->
 
