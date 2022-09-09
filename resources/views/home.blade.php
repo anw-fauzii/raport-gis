@@ -39,10 +39,10 @@
       <div class="small-box bg-danger shadow">
         <div class="inner">
         <h3>65</h3>
-        <p>Unique Visitors</p>
+        <p>Rombel</p>
         </div>
         <div class="icon">
-        <i class="fas fa-chart-pie"></i>
+        <i class="fas fa-layer-group"></i>
         </div>
         <a href="#" class="small-box-footer">
         More info <i class="fas fa-arrow-circle-right"></i>
@@ -53,10 +53,10 @@
       <div class="small-box bg-danger shadow">
         <div class="inner">
         <h3>65</h3>
-        <p>Unique Visitors</p>
+        <p>Peserta Didik</p>
         </div>
         <div class="icon">
-        <i class="fas fa-chart-pie"></i>
+        <i class="fas fa-users"></i>
         </div>
         <a href="#" class="small-box-footer">
         More info <i class="fas fa-arrow-circle-right"></i>
@@ -67,10 +67,10 @@
       <div class="small-box bg-danger shadow">
         <div class="inner">
         <h3>65</h3>
-        <p>Unique Visitors</p>
+        <p>Guru dan Tendik</p>
         </div>
         <div class="icon">
-        <i class="fas fa-chart-pie"></i>
+        <i class="fas fa-user-tie"></i>
         </div>
         <a href="#" class="small-box-footer">
         More info <i class="fas fa-arrow-circle-right"></i>
@@ -80,11 +80,11 @@
     <div class="col-lg-3 col-6">
       <div class="small-box bg-danger shadow">
         <div class="inner">
-        <h3>65</h3>
-        <p>Unique Visitors</p>
+        <h3>14</h3>
+        <p>Ruang Kelas</p>
         </div>
         <div class="icon">
-        <i class="fas fa-chart-pie"></i>
+        <i class="fas fa-building"></i>
         </div>
         <a href="#" class="small-box-footer">
         More info <i class="fas fa-arrow-circle-right"></i>
