@@ -36,37 +36,37 @@
 
   <div class="row">
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-danger shadow">
+      <div class="small-box bg-info shadow">
         <div class="inner">
-        <h3>65</h3>
+        <h3>{{$kelas}}</h3>
         <p>Rombel</p>
         </div>
         <div class="icon">
         <i class="fas fa-layer-group"></i>
         </div>
-        <a href="#" class="small-box-footer">
+        <a href="{{route('kelas.index')}}" class="small-box-footer">
         More info <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-danger shadow">
+      <div class="small-box bg-success shadow">
         <div class="inner">
-        <h3>65</h3>
+        <h3>{{$siswa}}</h3>
         <p>Peserta Didik</p>
         </div>
         <div class="icon">
         <i class="fas fa-users"></i>
         </div>
-        <a href="#" class="small-box-footer">
+        <a href="{{route('siswa.index')}}" class="small-box-footer">
         More info <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-danger shadow">
+      <div class="small-box bg-warning shadow">
         <div class="inner">
-        <h3>65</h3>
+        <h3>{{$guru}}</h3>
         <p>Guru dan Tendik</p>
         </div>
         <div class="icon">
@@ -80,13 +80,13 @@
     <div class="col-lg-3 col-6">
       <div class="small-box bg-danger shadow">
         <div class="inner">
-        <h3>14</h3>
+        <h3>{{$kelas}}</h3>
         <p>Ruang Kelas</p>
         </div>
         <div class="icon">
         <i class="fas fa-building"></i>
         </div>
-        <a href="#" class="small-box-footer">
+        <a href="{{route('kelas.index')}}" class="small-box-footer">
         More info <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>

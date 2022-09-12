@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Nilai Pelajaran Sholat')
 
 @section('content_header')
     
@@ -42,11 +42,11 @@
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
                         <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
                       </tr>
-                      <tr>
-                        <td>1.</td>
-                        <td>2.</td>
-                        <td>3.</td>
-                        <td>4.</td>
+                      <tr class="text-center">
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Paktek Wudhu"><b>2.1</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Bacaan Shalat"><b>2.2</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Gerakan Shalat"><b>2.3</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Dzikir Ba'da Shalat"><b>2.4</b></a></td>
                       </tr>
                     </thead>
                     <tbody>
@@ -101,5 +101,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

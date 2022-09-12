@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Nilai Tahsin dan Tahfidz')
 
 @section('content_header')
     
@@ -43,15 +43,15 @@
                         <th colspan="5" class="text-center">Tahsin</th>
                         <th colspan="3" class="text-center">Tahfidz</th>
                       </tr>
-                      <tr>
-                        <td>1.</td>
-                        <td>2.</td>
-                        <td>3.</td>
-                        <td>4.</td>
-                        <td>5.</td>
-                        <td>1.</td>
-                        <td>2.</td>
-                        <td>3.</td>
+                      <tr class="text-center">
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Jilid-Surah"><b>3.1</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Halaman/Ayat"><b>3.2</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>3.3</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>3.4</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>3.5</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Surah"><b>4.1</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Ayat"><b>4.2</b></a></td>
+                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>4.3</b></a></td>
                       </tr>
                     </thead>
                     <tbody>
@@ -137,5 +137,8 @@
       theme : 'bootstrap4',
     })
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

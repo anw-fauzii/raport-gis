@@ -21,7 +21,7 @@
           <!-- User Block  -->
           <a class="user-block" data-toggle="dropdown" href="#">
             <img class="img-circle" src="{{asset('storage/logo/user.png')}}" alt="User Image">
-            <span class="username">Anwar Fauzi</span>
+            <span class="username">{{Auth::user()->name}}</span>
             <span class="description">Administrator</span>
           </a>
           <!-- End User Block  -->

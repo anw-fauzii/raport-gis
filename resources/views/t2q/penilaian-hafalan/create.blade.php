@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Nilai Hafalan')
 
 @section('content_header')
     
@@ -42,11 +42,11 @@
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
                         <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
                       </tr>
-                      <tr>
-                        <td>1.</td>
-                        <td>2.</td>
-                        <td>3.</td>
-                      </tr>
+                      <tr class="text-center">
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Hadits"><b>1.1</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="THafalan Do'a"><b>1.2</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Kata Hikmah"><b>1.3</b></a></td>
+                </tr>
                     </thead>
                     <tbody>
                       <?php $i = 0; ?>
@@ -97,5 +97,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

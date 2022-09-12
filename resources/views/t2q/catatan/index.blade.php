@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Catatan T2Q Siswa')
 
 @section('content_header')
     
@@ -36,21 +36,23 @@
                     <tr>
                     <th class="text-center" style="width: 5%;">No</th>
                     <th class="text-center" style="width: 5%;">NIS</th>
-                    <th class="text-center" style="width: 35%;">Nama Siswa</th>
+                    <th class="text-center" style="width: 30%;">Nama Siswa</th>
+                    <th class="text-center" style="width: 5%;">Kelas</th>
                     <th class="text-center" style="width: 5%;">L/P</th>
                     <th class="text-center" style="width: 50%;">Catatan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 0; ?>
-                    @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+                    @foreach($data_anggota_kelas as $anggota_kelas)
                     <?php $no++; ?>
                     <tr>
                     <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
                     <td class="text-center">{{$no}}</td>
-                    <td class="text-center">{{$anggota_kelas->siswa->nis}}</td>
-                    <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
-                    <td class="text-center">{{$anggota_kelas->siswa->jenis_kelamin}}</td>
+                    <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->nis}}</td>
+                    <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
+                    <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
+                    <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->jenis_kelamin}}</td>
                     <td>
                       <textarea class="form-control" name="catatan[]" id="" oninvalid="this.setCustomValidity('Isian tidak boleh kosong')" oninput="setCustomValidity('')">{{$anggota_kelas->catatan}}</textarea>
                     </td>

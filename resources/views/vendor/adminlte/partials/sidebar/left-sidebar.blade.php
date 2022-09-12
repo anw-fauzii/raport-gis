@@ -20,6 +20,7 @@
             </p>
           </a>
         </li>
+        @role('admin')
         <li class="nav-item">
           <a href="{{route('pengumuman.index')}}" class="nav-link">
             <i class="nav-icon fas fa-bullhorn"></i>
@@ -127,6 +128,8 @@
             </p>
           </a>
         </li>
+        @endrole
+        @role('mapel|wali')
         <li class="nav-header">Rencana Penilaian</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
@@ -297,39 +300,42 @@
             </li>
           </ul>
         </li>
-        <li class="nav-header">T2Q</li>
+        @endrole
+        @role('t2q')
         <li class="nav-item">
-          <a href="{{route('penilaian-sholat.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+          <a href="{{route('penilaian-hafalan.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-brain"></i>
             <p>
-              Nil Pelajaran Sholat
+              Hafalan
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('penilaian-hafalan.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+          <a href="{{route('penilaian-sholat.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-pray"></i>
             <p>
-              Nil Hafalan
+              Pelajaran Sholat
             </p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{route('penilaian-t2q.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+            <i class="nav-icon fas fa-quran"></i>
             <p>
-              Nil Pelajaran Sholat
+              Tahsin Tahfidz
             </p>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{route('catatan-t2q.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+          <i class="nav-icon fas fa-comments"></i>
             <p>
               Catatan T2Q
             </p>
           </a>
         </li>
+        @endrole
+        @role('wali')
         <li class="nav-item">
           <a href="{{route('kehadiran.index')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
@@ -338,7 +344,6 @@
             </p>
           </a>
         </li>
-
         <li class="nav-item">
           <a href="{{route('catatan-umum.index')}}" class="nav-link">
             <i class="nav-icon fas fa-calendar-check"></i>
@@ -346,8 +351,7 @@
               Catatan Umum
             </p>
           </a>
-        </li>
-        
+        </li>   
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
@@ -356,7 +360,6 @@
             </p>
           </a>
         </li>
-
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-print"></i>
@@ -374,6 +377,8 @@
             </li>
           </ul>
         </li>
+        @endrole
+        
         <li class="nav-item">
           <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
            document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i>
