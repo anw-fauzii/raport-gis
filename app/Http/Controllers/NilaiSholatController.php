@@ -69,7 +69,7 @@ class NilaiSholatController extends Controller
                 );
                 NilaiSholat::insert($data_nilai);  
             }
-            return redirect('penilaian-sholat')->with('success', 'Data nilai sosial berhasil disimpan.');
+            return redirect('penilaian-sholat')->with('success', 'Data nilai pelajaran shalat berhasil disimpan.');
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }
@@ -137,7 +137,7 @@ class NilaiSholatController extends Controller
                 );
                 $nilai->update($data_nilai);  
             }
-            return redirect('penilaian-sholat')->with('success', 'Data nilai sosial berhasil diupdate.');
+            return redirect('penilaian-sholat')->with('success', 'Data nilai pelajaran shalat berhasil diupdate.');
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }

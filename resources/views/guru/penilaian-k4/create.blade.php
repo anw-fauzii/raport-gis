@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Nilai KI-4/Keterampilan')
 
 @section('content_header')
     
@@ -24,66 +24,66 @@
 
 <!-- ./row -->
 <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
-            </div>
-
-            <div class="card-body">
-              <form action="{{ route('penilaian-k4.store') }}" method="POST">
-                @csrf
-
-                <div class="table-responsive">
-                  <table class="table table-bordered table-hover">
-                    <thead class="bg-primary">
-                      <tr>
-                        <th class="text-center" style="width: 100px;">No</th>
-                        <th class="text-center">Nama Siswa</th>
-                        <th class="text-center">KD</th>
-                        <th class="text-center">Nilai</th>
-                        @foreach($data_rencana_penilaian as $rencana_penilaian)
-                        <input type="hidden" name="rencana_nilai_k4_id[]" value="{{$rencana_penilaian->id}}">
-                        @endforeach
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $no = 0; ?>
-                      @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
-                      <?php $no++; ?>
-                      <tr>
-                        <td rowspan="{{$count_kd + 1}}" class="text-center">{{$no}}</td>
-                        <td rowspan="{{$count_kd + 1}}">{{$anggota_kelas->siswa->nama_lengkap}}</td>
-                        <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
-                      </tr>
-                      <?php $i = -1; ?>
-                        @foreach($data_rencana_penilaian as $rencana_penilaian)
-                        <?php $i++; ?>
-                        <tr>
-                          <td class="text-center"><strong>{{$rencana_penilaian->kd_mapel->kode_kd}}</strong></td>
-                        <td>
-                          <input type="number" class="form-control" name="nilai[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                        </td>
-                        </tr>
-                        @endforeach
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-                <p id="demo"></p>
-            </div>
-
-            <div class="card-footer clearfix">
-              <button type="submit" class="btn btn-primary float-right">Simpan</button>
-              <a href="{{ route('penilaian-k4.index') }}" class="btn btn-default float-right mr-2">Batal</a>
-            </div>
-            </form>
-          </div>
-          <!-- /.card -->
-        </div>
-
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
       </div>
-      <!-- /.row -->
+
+      <div class="card-body">
+        <form action="{{ route('penilaian-k4.store') }}" method="POST">
+          @csrf
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="bg-primary">
+                <tr>
+                  <th class="text-center" style="width: 100px;">No</th>
+                  <th class="text-center">Nama Siswa</th>
+                  <th class="text-center">KD</th>
+                  <th class="text-center">Nilai</th>
+                  @foreach($data_rencana_penilaian as $rencana_penilaian)
+                  <input type="hidden" name="rencana_nilai_k4_id[]" value="{{$rencana_penilaian->id}}">
+                  @endforeach
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 0; ?>
+                @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+                <?php $no++; ?>
+                <tr>
+                  <td rowspan="{{$count_kd + 1}}" class="text-center">{{$no}}</td>
+                  <td rowspan="{{$count_kd + 1}}">{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                  <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
+                </tr>
+                <?php $i = -1; ?>
+                  @foreach($data_rencana_penilaian as $rencana_penilaian)
+                  <?php $i++; ?>
+                  <tr>
+                    <td class="text-center"><a href="#" type="button"  class="btn btn-sm btn-light" data-toggle="tooltip" title="{{$rencana_penilaian->kd_mapel->kompetensi_dasar}}"><strong>{{$rencana_penilaian->kd_mapel->kode_kd}}</strong></a></td>
+                  <td>
+                    <input type="number" class="form-control" name="nilai[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                  </td>
+                  </tr>
+                  @endforeach
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <p id="demo"></p>
+      </div>
+
+      <div class="card-footer clearfix">
+        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <a href="{{ route('penilaian-k4.index') }}" class="btn btn-default float-right mr-2">Batal</a>
+      </div>
+      </form>
+    </div>
+    <!-- /.card -->
+  </div>
+
+</div>
+<!-- /.row -->
 
 @stop
 
@@ -99,5 +99,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

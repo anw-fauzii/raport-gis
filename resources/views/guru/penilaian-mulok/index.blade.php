@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Nilai Mulok Khas PI')
 
 @section('content_header')
     
@@ -127,11 +127,11 @@
             <table class="table table-bordered table-hover">
                 <thead class="bg-success">
                 <tr>
-                    <th rowspan="2" class="text-center" style="width: 100px;">No</th>
-                    <th rowspan="2" class="text-center">Mata Pelajaran</th>
-                    <th rowspan="2" class="text-center">Kelas</th>
+                    <th rowspan="2" class="text-center" style="width: 100px;vertical-align: middle;">No</th>
+                    <th rowspan="2" style="vertical-align: middle;" class="text-center">Mata Pelajaran</th>
+                    <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
                     <th colspan="2" class="text-center" style="width: 200px;">Jumlah</th>
-                    <th rowspan="2" class="text-center" style="width: 100px;">Input Nilai</th>
+                    <th rowspan="2" class="text-center" style="width: 100px;vertical-align: middle;">Input Nilai</th>
                 </tr>
                 <tr>
                     <th class="text-center" style="width: 100px;">Rencana Penilaian</th>

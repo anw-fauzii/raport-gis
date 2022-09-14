@@ -129,7 +129,15 @@
           </a>
         </li>
         @endrole
-        @role('mapel|wali')
+        @role('mapel')
+        <li class="nav-item">
+          <a href="{{route('data-siswa-wali')}}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Data Siswa
+            </p>
+          </a>
+        </li>
         <li class="nav-header">Rencana Penilaian</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
@@ -140,9 +148,10 @@
             </p>
           </a>
           <ul class="nav nav-treeview bg-secondary">
+          @role('wali')
             <li class="nav-item">
               <a href="{{route('rencana-k1.index')}}" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
+                <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-1</p>
               </a>
             </li>
@@ -152,6 +161,7 @@
                 <p>KI-2</p>
               </a>
             </li>
+            @endrole
             <li class="nav-item">
               <a href="{{route('rencana-k3.index')}}" class="nav-link">
                 <i class="fas fa-check-square nav-icon"></i>
@@ -166,9 +176,10 @@
             </li>
           </ul>
         </li>
+        @role('wali')
         <li class="nav-item">
           <a href="{{route('rencana-mulok.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+            <i class="nav-icon fas fa-globe"></i>
             <p>
               Mulok Khas PI
             </p>
@@ -176,7 +187,7 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-list-ol"></i>
+            <i class="nav-icon fas fa-star"></i>
             <p>
               Nilai PRIMA
               <i class="fas fa-angle-left right"></i>
@@ -185,7 +196,7 @@
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
               <a href="{{route('rencana-proactive.index')}}" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
+                <i class="fas fa-check-square nav-icon"></i>
                 <p>Proactive</p>
               </a>
             </li>
@@ -197,7 +208,7 @@
             </li>
             <li class="nav-item">
               <a href="{{route('rencana-innovative.index')}}" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
+                <i class="fas fa-check-square nav-icon"></i>
                 <p>Innovative</p>
               </a>
             </li>
@@ -215,6 +226,7 @@
             </li>
           </ul>
         </li>
+        @endrole
         <li class="nav-header">Penilaian</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
@@ -225,9 +237,10 @@
             </p>
           </a>
           <ul class="nav nav-treeview bg-secondary">
+            @role('wali')
             <li class="nav-item">
               <a href="{{route('penilaian-k1.index')}}" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
+                <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-1</p>
               </a>
             </li>
@@ -237,9 +250,10 @@
                 <p>KI-2</p>
               </a>
             </li>
+            @endrole
             <li class="nav-item">
               <a href="{{route('penilaian-k3.index')}}" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
+                <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-3</p>
               </a>
             </li>
@@ -251,9 +265,10 @@
             </li>
           </ul>
         </li>
+        @role('wali')
         <li class="nav-item">
           <a href="{{route('penilaian-mulok.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+            <i class="nav-icon fas fa-globe"></i>
             <p>
               Mulok Khas PI
             </p>
@@ -261,7 +276,7 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-list-ol"></i>
+            <i class="nav-icon fas fa-star"></i>
             <p>
               Penilaian PRIMA
               <i class="fas fa-angle-left right"></i>
@@ -270,7 +285,7 @@
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
               <a href="{{route('penilaian-proactive.index')}}" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
+                <i class="fas fa-check-square nav-icon"></i>
                 <p>Proactive</p>
               </a>
             </li>
@@ -282,7 +297,7 @@
             </li>
             <li class="nav-item">
               <a href="{{route('penilaian-innovative.index')}}" class="nav-link">
-                <i class="fas fa-check-circle nav-icon"></i>
+                <i class="fas fa-check-square nav-icon"></i>
                 <p>Innovative</p>
               </a>
             </li>
@@ -300,6 +315,7 @@
             </li>
           </ul>
         </li>
+        @endrole
         @endrole
         @role('t2q')
         <li class="nav-item">
@@ -346,9 +362,9 @@
         </li>
         <li class="nav-item">
           <a href="{{route('catatan-umum.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-calendar-check"></i>
+            <i class="nav-icon fas fa-sticky-note"></i>
             <p>
-              Catatan Umum
+              Catatan Wali Kelas
             </p>
           </a>
         </li>   
@@ -360,22 +376,13 @@
             </p>
           </a>
         </li>
-        <li class="nav-item has-treeview">
+        <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-print"></i>
             <p>
               Cetak Raport
-              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview bg-secondary">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-print nav-icon"></i>
-                <p>Raport Semester</p>
-              </a>
-            </li>
-          </ul>
         </li>
         @endrole
         

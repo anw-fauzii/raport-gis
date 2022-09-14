@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data K4')
+@section('title', 'Rencana KI-4 / Nilai Keterampilan')
 
 @section('content_header')
     

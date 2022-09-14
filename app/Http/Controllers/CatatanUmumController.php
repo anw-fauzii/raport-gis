@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CatatanUmumController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','revalidate']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,21 +25,24 @@ class CatatanUmumController extends Controller
      */
     public function index()
     {
-        $title = 'Input CatatanUmum Siswa';
-        $tapel = Tapel::findorfail(5);
-        $guru = Guru::where('user_id', 4)->first();
-        $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
-        $data_anggota_kelas = AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->get();
-        foreach ($data_anggota_kelas as $anggota) {
-            $catatan = CatatanUmum::where('anggota_kelas_id', $anggota->id)->first();
-            if (is_null($catatan)) {
-                $anggota->catatan = "-";
-            } else {
-                $anggota->catatan = $catatan->catatan;
+        if(Auth::user()->hasRole('wali')){
+            $title = 'Input Catatan Umum Siswa';
+            $tapel = Tapel::findorfail(5);
+            $guru = Guru::where('user_id', 4)->first();
+            $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
+            $data_anggota_kelas = AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->get();
+            foreach ($data_anggota_kelas as $anggota) {
+                $catatan = CatatanUmum::where('anggota_kelas_id', $anggota->id)->first();
+                if (is_null($catatan)) {
+                    $anggota->catatan = "-";
+                } else {
+                    $anggota->catatan = $catatan->catatan;
+                }
             }
+            return view('walikelas.catatan-umum.index', compact('title', 'data_anggota_kelas'));
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
         }
-
-        return view('walikelas.catatan-umum.index', compact('title', 'data_anggota_kelas'));
     }
 
     /**
@@ -55,24 +63,28 @@ class CatatanUmumController extends Controller
      */
     public function store(Request $request)
     {
-        if (is_null($request->anggota_kelas_id)) {
-            return back()->with('error', 'Data siswa tidak ditemukan');
-        } else {
-            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                $data = array(
-                    'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                    'catatan'  => $request->catatan[$cound_siswa],
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
-                );
-                $cek_data = CatatanUmum::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
-                if (is_null($cek_data)) {
-                    CatatanUmum::insert($data);
-                } else {
-                    $cek_data->update($data);
+        if(Auth::user()->hasRole('wali')){
+            if (is_null($request->anggota_kelas_id)) {
+                return back()->with('error', 'Data siswa tidak ditemukan');
+            } else {
+                for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                    $data = array(
+                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                        'catatan'  => $request->catatan[$cound_siswa],
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $cek_data = CatatanUmum::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
+                    if (is_null($cek_data)) {
+                        CatatanUmum::insert($data);
+                    } else {
+                        $cek_data->update($data);
+                    }
                 }
+                return redirect('catatan-umum')->with('success', 'Catatan Umum siswa berhasil disimpan');
             }
-            return redirect('catatan-umum')->with('success', 'Catatan Umum siswa berhasil disimpan');
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
         }
     }
 

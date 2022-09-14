@@ -77,3 +77,6 @@ Route::resource('/penilaian-sholat',App\Http\Controllers\NilaiSholatController::
 Route::resource('/penilaian-mulok',App\Http\Controllers\NilaiMulokController::class);
 Route::resource('/penilaian-hafalan',App\Http\Controllers\NilaiHafalanController::class);
 Route::resource('/penilaian-t2q',App\Http\Controllers\NilaiT2QController::class);
+
+Route::get('data-siswa', [App\Http\Controllers\SiswaKelasController::class,'wali'])->name('data-siswa-wali');
+Route::get('detail-siswa/{id}', [App\Http\Controllers\SiswaKelasController::class,'detail'])->name('detail-siswa');

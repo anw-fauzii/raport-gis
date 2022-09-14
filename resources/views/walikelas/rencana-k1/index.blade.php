@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Rencana KI-1/Sikap Spiritual')
 
 @section('content_header')
     

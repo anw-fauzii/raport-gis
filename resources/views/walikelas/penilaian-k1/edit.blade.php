@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Nilai KI-1/Sikap Spiritual')
 
 @section('content_header')
     
@@ -50,9 +50,7 @@
                 <tr>
                   @foreach($data_kd_nilai as $kd_nilai)
                   <input type="hidden" name="rencana_nilai_k1_id[]" value="{{$kd_nilai->rencana_nilai_k1_id}}">
-                  <td class="text-center" style="width: 200px;"><small></small> <button type="" class="btn btn-sm btn-primary" title="{{$kd_nilai->rencana_nilai_k1->butir_sikap->butir_sikap}}">
-                        <b>{{$kd_nilai->rencana_nilai_k1->butir_sikap->kode}}</b>
-                          </button></td>
+                  <td class="text-center" style="width: 200px;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="{{$kd_nilai->rencana_nilai_k1->butir_sikap->butir_sikap}}"><b>{{$kd_nilai->rencana_nilai_k1->butir_sikap->kode}}</b></a></td>
                   @endforeach
                 </tr>
               </thead>
@@ -111,5 +109,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

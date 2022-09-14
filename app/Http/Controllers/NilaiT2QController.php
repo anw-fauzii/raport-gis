@@ -73,7 +73,7 @@ class NilaiT2QController extends Controller
                 );
                 NilaiT2Q::insert($data_nilai);  
             }
-            return redirect('penilaian-t2q')->with('success', 'Data nilai sosial berhasil disimpan.');
+            return redirect('penilaian-t2q')->with('success', 'Data nilai tahsin tahfidz berhasil disimpan.');
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }
@@ -147,7 +147,7 @@ class NilaiT2QController extends Controller
                 );
                 $nilai->update($data_nilai);  
             }
-            return redirect('penilaian-t2q')->with('success', 'Data nilai sosial berhasil diupdate.');
+            return redirect('penilaian-t2q')->with('success', 'Data nilai tahsin tahfidz berhasil diupdate.');
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }

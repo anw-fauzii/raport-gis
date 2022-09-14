@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Nilai KI-3 / Pengetahuan')
 
 @section('content_header')
     
@@ -62,7 +62,7 @@
                         @foreach($data_rencana_penilaian as $rencana_penilaian)
                         <?php $i++; ?>
                         <tr>
-                          <td class="text-center"><strong>{{$rencana_penilaian->kd_mapel->kode_kd}}</strong></td>
+                        <td class="text-center"><a href="#" type="button"  class="btn btn-sm btn-light" data-toggle="tooltip" title="{{$rencana_penilaian->kd_mapel->kompetensi_dasar}}"><strong>{{$rencana_penilaian->kd_mapel->kode_kd}}</strong></a></td>
                         <td>
                           <input type="number" class="form-control" name="nilai_ph[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
@@ -107,5 +107,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

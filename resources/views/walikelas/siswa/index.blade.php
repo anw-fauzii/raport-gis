@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nilai KI-1/Sikap Spiritual')
+@section('title', 'Data Siswa')
 
 @section('content_header')
     
@@ -21,52 +21,48 @@
 @stop
 
 @section('content')
-
+<!-- ./row -->
 <div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-book"></i> {{$title}}</h3>
-        <div class="card-tools">
-          <form action="{{ route('penilaian-k1.create') }}" method="GET">
-            @csrf
-            <input type="hidden" name="pembelajaran_id" value="#">
-            <button type="submit" class="btn btn-tool btn-sm">
-              <i class="fas fa-plus"></i>
-            </button>
-          </form>
-        </div>
+        <h3 class="card-title"><i class="fas fa-users"></i> {{$title}}</h3>
       </div>
 
       <div class="card-body">
         <div class="table-responsive">
           <table id="example1" class="table table-striped table-valign-middle table-hover">
             <thead>
-              <tr>
+              <tr class="text-center">
                 <th>No</th>
-                <th>NIS</th>
+                <th>NIS / NISN</th>
                 <th>Nama Siswa</th>
-                <th>Nilai</th>
-                <th>Deskripsi</th>
+                <th>Tanggal Lahir</th>
+                <th>L/P</th>
+                <th>Pembimbing T2Q</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               <?php $no = 0; ?>
-              @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+              @foreach($data_siswa as $siswa)
               <?php $no++; ?>
               <tr>
-                <td class="text-center" style="vertical-align: middle;">{{$no}}</td>
-                <td style="vertical-align: middle;">{{$anggota_kelas->siswa->nis}}</td>
-                <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
-                @foreach($anggota_kelas->data_nilai as $nilai)
-                  @if($nilai)
-                    <td>{{$nilai->nilai}}</td>
-                    <td>{{$nilai->deskripsi}}</td>
+                <td>{{$no}}</td>
+                <td>{{$siswa->nis}} / {{$siswa->nisn}}</td>
+                <td>{{$siswa->nama_lengkap}}</td>
+                <td>{{$siswa->tanggal_lahir->format('d-M-Y')}}</td>
+                <td>{{$siswa->jenis_kelamin}}</td>
+                <td>
+                  @if($siswa->guru_id == null)
+                  <span class="badge light badge-warning">Belum masuk anggota T2Q</span>
                   @else
-                    <td>-</td>
-                    <td>-</td>
+                  {{$siswa->guru->nama_lengkap}}, {{$siswa->guru->gelar}}
                   @endif
-                @endforeach
+                </td>
+                <td>
+                  <a href="{{route('detail-siswa',$siswa->id)}}" type="button"  class="btn btn-sm btn-info" data-toggle="tooltip"><i class="fas fa-user-plus"></i></a>
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -78,7 +74,7 @@
   </div>
 
 </div>
-
+<!-- /.row -->
 @stop
 
 @section('css')

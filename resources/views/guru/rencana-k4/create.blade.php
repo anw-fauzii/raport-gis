@@ -20,7 +20,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($data_kd_mapel->where('mapel_id', $penilaian->mapel_id) as $kd_mapel)
+                    @foreach($data_kd_mapel->where('mapel_id', $penilaian->mapel_id)->where('tingkatan_kelas', substr($penilaian->kelas->nama_kelas,0,1)) as $kd_mapel)
                       <tr>
                         <td><strong>{{$kd_mapel->kode_kd}} </strong>{{$kd_mapel->kompetensi_dasar}}</td>
                         <td class="text-center">

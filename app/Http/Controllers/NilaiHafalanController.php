@@ -68,7 +68,7 @@ class NilaiHafalanController extends Controller
                     );
                     NilaiHafalan::insert($data_nilai);  
             }
-            return redirect('penilaian-hafalan')->with('success', 'Data nilai sosial berhasil disimpan.');
+            return redirect('penilaian-hafalan')->with('success', 'Data nilai hafalan berhasil disimpan.');
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }
@@ -136,7 +136,7 @@ class NilaiHafalanController extends Controller
                 );
                 $nilai->update($data_nilai);  
             }
-            return redirect('penilaian-hafalan')->with('success', 'Data nilai sosial berhasil diupdate.');
+            return redirect('penilaian-hafalan')->with('success', 'Data nilai hafalan berhasil diupdate.');
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }
