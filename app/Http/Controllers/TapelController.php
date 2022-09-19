@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class TapelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','revalidate']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +21,13 @@ class TapelController extends Controller
      */
     public function index()
     {
-        $title = 'Data Tahun Pelajaran';
-        $data_tapel = Tapel::orderBy('id', 'DESC')->get();
-        return view('admin.tapel.index', compact('title', 'data_tapel'));
+        if(Auth::user()->hasRole('admin')){
+            $title = 'Data Tahun Pelajaran';
+            $data_tapel = Tapel::orderBy('id', 'DESC')->get();
+            return view('admin.tapel.index', compact('title', 'data_tapel'));
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 
     /**
@@ -38,19 +48,23 @@ class TapelController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'tahun_pelajaran' => 'required|min:9|max:9',
-            'semester' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return back()->with('error', $validator->messages()->all()[0])->withInput();
-        } else {
-            $tapel = new Tapel([
-                'tahun_pelajaran' => $request->tahun_pelajaran,
-                'semester' => $request->semester,
+        if(Auth::user()->hasRole('admin')){
+            $validator = Validator::make($request->all(), [
+                'tahun_pelajaran' => 'required|min:9|max:9',
+                'semester' => 'required',
             ]);
-            $tapel->save();
-            return back()->with('success', 'Sukses! Tahun Pelajaran Disimpan');
+            if ($validator->fails()) {
+                return back()->with('error', $validator->messages()->all()[0])->withInput();
+            } else {
+                $tapel = new Tapel([
+                    'tahun_pelajaran' => $request->tahun_pelajaran,
+                    'semester' => $request->semester,
+                ]);
+                $tapel->save();
+                return back()->with('success', 'Sukses! Tahun Pelajaran Disimpan');
+            }
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
         }
     }
 
@@ -85,20 +99,24 @@ class TapelController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $validator = Validator::make($request->all(), [
-            'tahun_pelajaran' => 'required|min:9|max:9',
-            'semester' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return back()->with('error', $validator->messages()->all()[0])->withInput();
-        } else {
-            $tapel = Tapel::findorfail($id);
-            $data = [
-                'tahun_pelajaran' => $request->tahun_pelajaran,
-                'semester' => $request->semester,
-            ];
-            $tapel->update($data);
-            return back()->with('success', 'Sukses! Tahun Pelajaran Diperbarui');
+        if(Auth::user()->hasRole('admin')){
+            $validator = Validator::make($request->all(), [
+                'tahun_pelajaran' => 'required|min:9|max:9',
+                'semester' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return back()->with('error', $validator->messages()->all()[0])->withInput();
+            } else {
+                $tapel = Tapel::findorfail($id);
+                $data = [
+                    'tahun_pelajaran' => $request->tahun_pelajaran,
+                    'semester' => $request->semester,
+                ];
+                $tapel->update($data);
+                return back()->with('success', 'Sukses! Tahun Pelajaran Diperbarui');
+            }
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
         }
     }
 
@@ -110,8 +128,12 @@ class TapelController extends Controller
      */
     public function destroy($id)
     {
-        $tapel = Tapel::findorfail($id);
-        $tapel->delete();
-        return back()->with('success', 'Sukses! Tahun Pelajaran Dihapus');
+        if(Auth::user()->hasRole('admin')){
+            $tapel = Tapel::findorfail($id);
+            $tapel->delete();
+            return back()->with('success', 'Sukses! Tahun Pelajaran Dihapus');
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 }

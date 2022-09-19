@@ -10,9 +10,15 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Anggotat2qController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','revalidate']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,14 +26,18 @@ class Anggotat2qController extends Controller
      */
     public function index()
     {
-        $tapel = Tapel::findorfail(5);
-        $title = 'Data Guru T2Q';
-        $data_guru = Guru::where('jabatan', '2')->get();
-        foreach ($data_guru as $guru) {
-            $jumlah_anggota = AnggotaT2Q::where('guru_id', $guru->id)->count();
-            $guru->jumlah_anggota = $jumlah_anggota;
+        if(Auth::user()->hasRole('admin')){
+            $tapel = Tapel::findorfail(5);
+            $title = 'Data Guru T2Q';
+            $data_guru = Guru::where('jabatan', '2')->get();
+            foreach ($data_guru as $guru) {
+                $jumlah_anggota = AnggotaT2Q::where('guru_id', $guru->id)->count();
+                $guru->jumlah_anggota = $jumlah_anggota;
+            }
+            return view('admin.t2q.index', compact('title', 'data_guru', 'tapel', 'data_guru'));
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
         }
-        return view('admin.t2q.index', compact('title', 'data_guru', 'tapel', 'data_guru'));
     }
 
     /**
@@ -48,29 +58,32 @@ class Anggotat2qController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'siswa_id' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return back()->with('warning', 'Tidak ada siswa yang dipilih');
-        } else {
-            $siswa_id = $request->input('siswa_id');
-            $tapel = Tapel::latest()->first();
-            for ($count = 0; $count < count($siswa_id); $count++) {
-                $data = array(
-                    'tingkat'=> $request->tingkat,
-                    'anggota_kelas_id' => $siswa_id[$count],
-                    'guru_id'  => $request->guru_id,
-                    'tapel' => $tapel->tahun_pelajaran,
-                    'created_at'  => Carbon::now(),
-                    'updated_at'  => Carbon::now(),
-                );
-                $insert_data[] = $data;
+        if(Auth::user()->hasRole('admin')){
+            $validator = Validator::make($request->all(), [
+                'siswa_id' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return back()->with('warning', 'Tidak ada siswa yang dipilih');
+            } else {
+                $siswa_id = $request->input('siswa_id');
+                $tapel = Tapel::latest()->first();
+                for ($count = 0; $count < count($siswa_id); $count++) {
+                    $data = array(
+                        'tingkat'=> $request->tingkat,
+                        'anggota_kelas_id' => $siswa_id[$count],
+                        'guru_id'  => $request->guru_id,
+                        'tapel' => $tapel->tahun_pelajaran,
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $insert_data[] = $data;
+                }
+                AnggotaT2Q::insert($insert_data);
+                Siswa::whereIn('id', $siswa_id)->update(['guru_id' => $request->input('guru_id')]);
+                return back()->with('success', 'Anggota kelas berhasil ditambahkan');
             }
-
-            AnggotaT2Q::insert($insert_data);
-            Siswa::whereIn('id', $siswa_id)->update(['guru_id' => $request->input('guru_id')]);
-            return back()->with('success', 'Anggota kelas berhasil ditambahkan');
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
         }
     }
 
@@ -82,12 +95,16 @@ class Anggotat2qController extends Controller
      */
     public function show($id)
     {
-        $title = 'Kelompok T2Q';
-        $guru = Guru::findorfail($id);
-        $anggota_t2q = AnggotaT2Q::where('guru_id',$id)->get();
-        $id_anggota_ekstrakulikuler = AnggotaT2Q::where('guru_id', $id)->get('anggota_kelas_id');
-        $siswa_belum_masuk_kelas = AnggotaKelas::whereNotIn('id', $id_anggota_ekstrakulikuler)->get();
-        return view('admin.t2q.show', compact('title', 'guru', 'anggota_t2q', 'siswa_belum_masuk_kelas'));
+        if(Auth::user()->hasRole('admin')){
+            $title = 'Kelompok T2Q';
+            $guru = Guru::findorfail($id);
+            $anggota_t2q = AnggotaT2Q::where('guru_id',$id)->get();
+            $id_anggota_ekstrakulikuler = AnggotaT2Q::where('guru_id', $id)->get('anggota_kelas_id');
+            $siswa_belum_masuk_kelas = AnggotaKelas::whereNotIn('id', $id_anggota_ekstrakulikuler)->get();
+            return view('admin.t2q.show', compact('title', 'guru', 'anggota_t2q', 'siswa_belum_masuk_kelas'));
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 
     /**
@@ -121,19 +138,23 @@ class Anggotat2qController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $anggota_kelas = AnggotaT2Q::findorfail($id);
-            $siswa = Siswa::findorfail($anggota_kelas->siswa_id);
+        if(Auth::user()->hasRole('admin')){
+            try {
+                $anggota_kelas = AnggotaT2Q::findorfail($id);
+                $siswa = Siswa::findorfail($anggota_kelas->siswa_id);
 
-            $update_guru_id = [
-                'guru_id' => null,
-            ];
+                $update_guru_id = [
+                    'guru_id' => null,
+                ];
 
-            $anggota_kelas->delete();
-            $siswa->update($update_guru_id);
-            return back()->with('success', 'Anggota kelas berhasil dihapus');
-        } catch (Exception $e) {
-            return back()->with('error', 'Anggota kelas tidak dapat dihapus');
+                $anggota_kelas->delete();
+                $siswa->update($update_guru_id);
+                return back()->with('success', 'Anggota kelas berhasil dihapus');
+            } catch (Exception $e) {
+                return back()->with('error', 'Anggota kelas tidak dapat dihapus');
+            }
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
         }
     }
 }

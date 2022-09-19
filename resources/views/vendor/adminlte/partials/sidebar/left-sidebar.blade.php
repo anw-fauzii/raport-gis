@@ -47,25 +47,25 @@
             <li class="nav-item">
               <a href="{{route('guru.index')}}" class="nav-link">
                 <i class="fas fa-user-tie nav-icon"></i>
-                <p>Data Guru</p>
+                <p>Guru</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('tahun-pelajaran.index')}}" class="nav-link">
                 <i class="fas fa-calendar-week nav-icon"></i>
-                <p>Data Tahun Pelajaran</p>
+                <p>Tahun Pelajaran</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('mapel.index')}}" class="nav-link">
                 <i class="fas fa-book nav-icon"></i>
-                <p>Data Mata Pelajaran</p>
+                <p>Mata Pelajaran</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('kelas.index')}}" class="nav-link">
                 <i class="fas fa-layer-group nav-icon"></i>
-                <p>Data Kelas & Wali</p>
+                <p>Kelas & Wali</p>
               </a>
             </li>
             <li class="nav-item">
@@ -77,20 +77,20 @@
             <li class="nav-item">
               <a href="{{route('siswa.index')}}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
-                <p>Data Siswa</p>
+                <p>Peserta Didik</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{route('pembelajaran.index')}}" class="nav-link">
                 <i class="fas fa-calendar-check nav-icon"></i>
-                <p>Data Pembelajaran</p>
+                <p>Pembelajaran</p>
               </a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
           <a href="{{route('kkm.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-star"></i>
+            <i class="nav-icon fas fa-greater-than-equal"></i>
             <p>
               KKM
             </p>
@@ -98,7 +98,7 @@
         </li>
         <li class="nav-item">
           <a href="{{route('interval')}}" class="nav-link">
-            <i class="nav-icon fas fa-greater-than-equal"></i>
+            <i class="nav-icon fas fa-columns"></i>
             <p>
               Interval Nilai
             </p>
@@ -124,20 +124,22 @@
           <a href="{{ route('kd-mapel.index') }}" class="nav-link">
             <i class="nav-icon fas fa-clipboard-list"></i>
             <p>
-              Data Kompetensi Dasar
+              Kompetensi Dasar
+            </p>
+          </a>
+        </li>
+        @endrole
+        @role('wali')
+        <li class="nav-item">
+          <a href="{{route('data-siswa-wali')}}" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Peserta Didik
             </p>
           </a>
         </li>
         @endrole
         @role('mapel')
-        <li class="nav-item">
-          <a href="{{route('data-siswa-wali')}}" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
-            <p>
-              Data Siswa
-            </p>
-          </a>
-        </li>
         <li class="nav-header">Rencana Penilaian</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">

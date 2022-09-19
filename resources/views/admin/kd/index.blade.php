@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Guru')
+@section('title', 'Kompetensi Dasar')
 
 @section('content_header')
     

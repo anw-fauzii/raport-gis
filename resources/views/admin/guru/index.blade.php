@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-calendar-week"></i> {{$title}}</h3>
+              <h3 class="card-title"><i class="fas fa-user-tie"></i> {{$title}}</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-tambah">
                   <i class="fas fa-plus"></i>

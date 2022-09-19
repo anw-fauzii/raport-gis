@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Pengumuman')
+@section('title', 'Pembelajaran')
 
 @section('content_header')
     
@@ -28,7 +28,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-book-open"></i> {{$title}}</h3>
+              <h3 class="card-title"><i class="fas fa-calendar-check"></i> {{$title}}</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-settings">
                   <i class="fas fa-cog"></i>

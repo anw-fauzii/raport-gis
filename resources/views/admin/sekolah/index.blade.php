@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Pengumuman')
+@section('title', 'Profil Sekolah')
 
 @section('content_header')
     
