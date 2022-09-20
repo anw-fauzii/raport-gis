@@ -45,9 +45,7 @@
                       <tr>
                         @foreach($data_rencana_penilaian as $rencana_penilaian)
                         <input type="hidden" name="rencana_innovative_id[]" value="{{$rencana_penilaian->id}}">
-                        <td class="text-center" style="width: 200px;"><small></small> <button type="" class="btn btn-sm btn-primary" title="{{$rencana_penilaian->butir_sikap->butir_sikap}}">
-                        <b>{{$rencana_penilaian->butir_sikap->kode}}</b>
-                          </button></td>
+                        <td class="text-center" style="width: 200px;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="{{$rencana_penilaian->butir_sikap->butir_sikap}}"><b>{{$rencana_penilaian->butir_sikap->kode}}</b></a></td>
                         @endforeach
                       </tr>
                     </thead>
@@ -100,5 +98,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

@@ -23,69 +23,67 @@
 @section('content')
 <!-- ./row -->
 <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
-            </div>
-
-            <div class="card-body">
-
-              <form action="{{ route('penilaian-responsible.store') }}" method="POST">
-                @csrf
-
-                <div class="table-responsive">
-                  <table class="table table-bordered table-hover">
-                    <thead class="bg-primary">
-                      <tr>
-                        <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
-                        <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
-                        <th colspan="{{$count_kd}}" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
-                      </tr>
-                      <tr>
-                        @foreach($data_rencana_penilaian as $rencana_penilaian)
-                        <input type="hidden" name="rencana_responsible_id[]" value="{{$rencana_penilaian->id}}">
-                        <td class="text-center" style="width: 200px;"><small></small> <button type="" class="btn btn-sm btn-primary" title="{{$rencana_penilaian->butir_sikap->butir_sikap}}">
-                        <b>{{$rencana_penilaian->butir_sikap->kode}}</b>
-                          </button></td>
-                        @endforeach
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $no = 0; ?>
-                      @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
-                      <?php $no++; ?>
-                      <tr>
-                        <td class="text-center">{{$no}}</td>
-                        <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
-                        <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
-
-                        <?php $i = -1; ?>
-                        @foreach($data_rencana_penilaian as $rencana_penilaian)
-                        <?php $i++; ?>
-                        <td>
-                        <input type="number" class="form-control" name="nilai[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                        </td>
-                        @endforeach
-
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-                <p id="demo"></p>
-            </div>
-
-            <div class="card-footer clearfix">
-              <button type="submit" class="btn btn-primary float-right">Simpan</button>
-            </div>
-            </form>
-          </div>
-          <!-- /.card -->
-        </div>
-
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
       </div>
-      <!-- /.row -->
+
+      <div class="card-body">
+
+        <form action="{{ route('penilaian-responsible.store') }}" method="POST">
+          @csrf
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="bg-primary">
+                <tr>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
+                  <th colspan="{{$count_kd}}" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                </tr>
+                <tr>
+                  @foreach($data_rencana_penilaian as $rencana_penilaian)
+                  <input type="hidden" name="rencana_responsible_id[]" value="{{$rencana_penilaian->id}}">
+                  <td class="text-center" style="width: 200px;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="{{$rencana_penilaian->butir_sikap->butir_sikap}}"><b>{{$rencana_penilaian->butir_sikap->kode}}</b></a></td>
+                  @endforeach
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 0; ?>
+                @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+                <?php $no++; ?>
+                <tr>
+                  <td class="text-center">{{$no}}</td>
+                  <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                  <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
+
+                  <?php $i = -1; ?>
+                  @foreach($data_rencana_penilaian as $rencana_penilaian)
+                  <?php $i++; ?>
+                  <td>
+                  <input type="number" class="form-control" name="nilai[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                  </td>
+                  @endforeach
+
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <p id="demo"></p>
+      </div>
+
+      <div class="card-footer clearfix">
+        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+      </div>
+      </form>
+    </div>
+    <!-- /.card -->
+  </div>
+
+</div>
+<!-- /.row -->
 @stop
 
 @section('css')
@@ -100,5 +98,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop

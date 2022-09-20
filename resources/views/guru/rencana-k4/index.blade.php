@@ -43,7 +43,7 @@
             </thead>
             <tbody>
               <?php $no = 0; ?>
-              @foreach($data_rencana_penilaian as $penilaian)
+              @forelse($data_rencana_penilaian as $penilaian)
               <?php $no++; ?>
               <tr>
                 <td>{{$no}}</td>
@@ -74,7 +74,11 @@
                   @endif
                 </td>
               </tr>            
-              @endforeach
+              @empty
+              <tr>
+                <td colspan="5" class="text-center">Belum ada pelajaran</td>
+              </tr>
+              @endforelse
             </tbody>
           </table>
         </div>

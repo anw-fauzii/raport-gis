@@ -46,7 +46,7 @@
                 </thead>
                 <tbody>
                     <?php $no = 1; ?>
-                    @foreach($data_rencana_penilaian as $data)
+                    @forelse($data_rencana_penilaian as $data)
                     <tr>
                     <td class="text-center">{{$no++}}</td>
                     <td class="text-center">{{$data->kode}}</td>
@@ -59,7 +59,11 @@
                     </button>
                   </form></td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                      <td colspan="4" class="text-center">Rencana Belum Dibuat</td>
+                    </tr>
+                    @endforelse
                 </tbody>
                 </table>
             </div>

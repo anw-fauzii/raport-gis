@@ -32,22 +32,26 @@ class NilaiResponsibleController extends Controller
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $kelas->id)->get();
             
             $id_data_rencana_penilaian = RencanaResponsible::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get('id');
-            $data_kd_nilai = NilaiResponsible::whereIn('rencana_responsible_id', $id_data_rencana_penilaian)->groupBy('rencana_responsible_id')->get();
-        
-            $count_kd_nilai = count($data_kd_nilai);
+            if(count($id_data_rencana_penilaian) == 0){
+                return redirect()->route('rencana-responsible.index')->with('warning', 'Buat terlebih dahulu rancana penilaian.');
+            }else{
+                $data_kd_nilai = NilaiResponsible::whereIn('rencana_responsible_id', $id_data_rencana_penilaian)->groupBy('rencana_responsible_id')->get();
+            
+                $count_kd_nilai = count($data_kd_nilai);
 
-            if ($count_kd_nilai == 0) {
-                $data_rencana_penilaian = RencanaResponsible::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get();
-                $count_kd = count($data_rencana_penilaian);
-                $title = 'Input Nilai responsible';
-                return view('walikelas.prima.penilaian-responsible.create', compact('title', 'data_anggota_kelas', 'data_rencana_penilaian', 'count_kd'));
-            } else {
-                foreach ($data_anggota_kelas as $anggota_kelas) {
-                    $data_nilai = NilaiResponsible::whereIn('rencana_responsible_id', $id_data_rencana_penilaian)->where('anggota_kelas_id', $anggota_kelas->id)->get();
-                    $anggota_kelas->data_nilai = $data_nilai;
+                if ($count_kd_nilai == 0) {
+                    $data_rencana_penilaian = RencanaResponsible::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get();
+                    $count_kd = count($data_rencana_penilaian);
+                    $title = 'Input Nilai responsible';
+                    return view('walikelas.prima.penilaian-responsible.create', compact('title', 'data_anggota_kelas', 'data_rencana_penilaian', 'count_kd'));
+                } else {
+                    foreach ($data_anggota_kelas as $anggota_kelas) {
+                        $data_nilai = NilaiResponsible::whereIn('rencana_responsible_id', $id_data_rencana_penilaian)->where('anggota_kelas_id', $anggota_kelas->id)->get();
+                        $anggota_kelas->data_nilai = $data_nilai;
+                    }
+                    $title = 'Edit Nilai responsible';
+                    return view('walikelas.prima.penilaian-responsible.edit', compact('title', 'data_anggota_kelas', 'count_kd_nilai', 'data_kd_nilai','kelas'));
                 }
-                $title = 'Edit Nilai responsible';
-                return view('walikelas.prima.penilaian-responsible.edit', compact('title', 'data_anggota_kelas', 'count_kd_nilai', 'data_kd_nilai','kelas'));
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);

@@ -65,7 +65,7 @@
                 <td>{{$anggota->anggota_kelas->siswa->tanggal_lahir}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->jenis_kelamin}}</td>
                 <td>
-                  <form action="{{ route('t2q.destroy', $anggota->id) }}" method="POST">
+                  <form action="{{ route('t2q.destroy', $anggota->anggota_kelas->siswa_id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Hapus {{$title}} ?')">

@@ -99,8 +99,16 @@ class Anggotat2qController extends Controller
             $title = 'Kelompok T2Q';
             $guru = Guru::findorfail($id);
             $anggota_t2q = AnggotaT2Q::where('guru_id',$id)->get();
-            $id_anggota_ekstrakulikuler = AnggotaT2Q::where('guru_id', $id)->get('anggota_kelas_id');
-            $siswa_belum_masuk_kelas = AnggotaKelas::whereNotIn('id', $id_anggota_ekstrakulikuler)->get();
+            $siswa_belum_masuk_kelas = Siswa::where('status', 1)->where('guru_id', null)->get();
+            foreach ($siswa_belum_masuk_kelas as $belum_masuk_kelas) {
+                $kelas_sebelumhya = AnggotaT2Q::join('anggota_kelas','anggota_kelas.id','=','anggota_t2q.anggota_kelas_id')
+                ->where('siswa_id', $belum_masuk_kelas->id)->orderBy('anggota_t2q.id', 'DESC')->first();
+                if (is_null($kelas_sebelumhya)) {
+                    $belum_masuk_kelas->kelas_sebelumhya = null;
+                } else {
+                    $belum_masuk_kelas->kelas_sebelumhya = $kelas_sebelumhya->kelas->nama_kelas;
+                }
+            }
             return view('admin.t2q.show', compact('title', 'guru', 'anggota_t2q', 'siswa_belum_masuk_kelas'));
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -140,9 +148,8 @@ class Anggotat2qController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             try {
-                $anggota_kelas = AnggotaT2Q::findorfail($id);
-                $siswa = Siswa::findorfail($anggota_kelas->siswa_id);
-
+                $anggota_kelas = AnggotaT2Q::where('anggota_kelas_id',$id)->first();
+                $siswa = Siswa::findorfail($id);
                 $update_guru_id = [
                     'guru_id' => null,
                 ];

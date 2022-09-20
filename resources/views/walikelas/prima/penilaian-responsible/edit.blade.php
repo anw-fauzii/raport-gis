@@ -50,9 +50,7 @@
                 <tr>
                   @foreach($data_kd_nilai as $kd_nilai)
                   <input type="hidden" name="rencana_responsible_id[]" value="{{$kd_nilai->rencana_responsible_id}}">
-                  <td class="text-center" style="width: 200px;"><small></small> <button type="" class="btn btn-sm btn-primary" title="{{$kd_nilai->rencana_responsible->butir_sikap->butir_sikap}}">
-                        <b>{{$kd_nilai->rencana_responsible->butir_sikap->kode}}</b>
-                          </button></td>
+                  <td class="text-center" style="width: 200px;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="{{$kd_nilai->rencana_responsible->butir_sikap->butir_sikap}}"><b>{{$kd_nilai->rencana_responsible->butir_sikap->kode}}</b></a></td>
                   @endforeach
                 </tr>
               </thead>
@@ -107,5 +105,8 @@
   $(function () {
     $("#example1").DataTable();
   });
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+});
 </script>
 @stop
