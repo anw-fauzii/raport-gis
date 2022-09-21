@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'E-Raport SD GIS Prima Insani',
     'title_prefix' => '',
     'title_postfix' => '',
 
