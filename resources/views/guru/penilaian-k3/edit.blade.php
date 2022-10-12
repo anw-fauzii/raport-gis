@@ -40,10 +40,12 @@
                       <tr>
                         <th class="text-center" style="width: 100px;">No</th>
                         <th class="text-center">Nama Siswa</th>
+                        <th class="text-center">NR</th>
                         <th class="text-center">KD</th>
                         <th class="text-center">PH</th>
                         <th class="text-center">NPTS</th>
                         <th class="text-center">NPAS</th>
+                        <th class="text-center">NAKD</th>
                         @foreach($data_kd_nilai as $rencana_penilaian)
                         <input type="hidden" name="rencana_nilai_k3_id[]" value="{{$rencana_penilaian->rencana_nilai_k3_id}}">
                         @endforeach
@@ -56,6 +58,9 @@
                       <tr>
                         <td rowspan="{{$count_kd + 1}}" class="text-center">{{$no}}</td>
                         <td rowspan="{{$count_kd + 1}}">{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                        @foreach($nilai_rapot->where('anggota_kelas_id',$anggota_kelas->id) as $rapot)
+                        <td class="text-center" rowspan="{{$count_kd + 1}}"><strong>{{$rapot->nilai_raport}}</strong></td>
+                        @endforeach
                         <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
                       </tr>
                       <?php $i = -1; ?>
@@ -72,9 +77,14 @@
                         <td>
                           <input type="number" class="form-control" name="nilai_npas[{{$i}}][]" min="0" max="100" value="{{$nilai->nilai_pas}}" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
+                        <td class="text-center">
+                          <strong>{{$nilai->nilai_kd}}</strong>
+                        </td>
                         </tr>
                         @endforeach
+                        
                       @endforeach
+                      
                     </tbody>
                   </table>
                 </div>

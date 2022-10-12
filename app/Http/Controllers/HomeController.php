@@ -8,12 +8,14 @@ use App\Models\Sekolah;
 use App\Models\AnggotaKelas;
 use App\Models\Kelas;
 use App\Models\Pengumuman;
+use App\Models\NilaiRapotK3;
 use App\Models\User;
 use App\Models\Tapel;
 use App\Models\Guru;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Cache;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -42,5 +44,15 @@ class HomeController extends Controller
         $siswa = AnggotaKelas::where('tapel', $tapel->tahun_pelajaran)->count();
         $guru = Guru::all()->count();
         return view('home',compact('title','data_pengumuman','sekolah','tapel','kelas','siswa','guru'));
+    }
+    
+    public function show(Request $request, $id)
+    {
+        $sekolah = Sekolah::first();
+        $anggota_kelas = AnggotaKelas::findorfail($id);
+        $nilai_k3 = NilaiRapotK3::where('anggota_kelas_id', $id)->get();
+        $title = 'Raport';
+        $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', compact('title', 'sekolah', 'anggota_kelas','nilai_k3'))->setPaper('A4','potrait');
+        return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->siswa->nama_lengkap . ' (' . $anggota_kelas->kelas->nama_kelas . ').pdf');
     }
 }

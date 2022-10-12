@@ -13,7 +13,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-header">MENU UTAMA</li>
         <li class="nav-item">
-          <a href="{{route('home')}}" class="nav-link">
+          <a href="{{route('home')}}" class="nav-link {{(request()->is('home')) ? 'active' :''}}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -22,7 +22,7 @@
         </li>
         @role('admin')
         <li class="nav-item">
-          <a href="{{route('pengumuman.index')}}" class="nav-link">
+          <a href="{{route('pengumuman.index')}}" class="nav-link {{(request()->is('pengumuman')) ? 'active' :''}}">
             <i class="nav-icon fas fa-bullhorn"></i>
             <p>
               Pengumuman
@@ -89,7 +89,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="{{route('kkm.index')}}" class="nav-link">
+          <a href="{{route('kkm.index')}}" class="nav-link  {{(request()->is('kkm')) ? 'active' :''}}">
             <i class="nav-icon fas fa-greater-than-equal"></i>
             <p>
               KKM
@@ -97,7 +97,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('interval')}}" class="nav-link">
+          <a href="{{route('interval')}}" class="nav-link {{(request()->is('interval')) ? 'active' :''}}">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Interval Nilai
@@ -105,7 +105,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('tanggal-raport.index') }}" class="nav-link">
+          <a href="{{ route('tanggal-raport.index') }}" class="nav-link  {{(request()->is('tanggal-raport')) ? 'active' :''}}">
             <i class="nav-icon fas fa-calendar-week"></i>
             <p>
               Input Tanggal Raport
@@ -113,7 +113,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('butir-sikap.index') }}" class="nav-link">
+          <a href="{{ route('butir-sikap.index') }}" class="nav-link {{(request()->is('butir-sikap')) ? 'active' :''}}">
             <i class="nav-icon fas fa-clipboard"></i>
             <p>
               Butir-Butir Sikap
@@ -121,7 +121,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('kd-mapel.index') }}" class="nav-link">
+          <a href="{{ route('kd-mapel.index') }}" class="nav-link {{(request()->is('kd-mapel*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-clipboard-list"></i>
             <p>
               Kompetensi Dasar
@@ -131,7 +131,7 @@
         @endrole
         @role('wali')
         <li class="nav-item">
-          <a href="{{route('data-siswa-wali')}}" class="nav-link">
+          <a href="{{route('data-siswa-wali')}}" class="nav-link {{(request()->is('data-siswa','detail-siswa*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Peserta Didik
@@ -141,8 +141,8 @@
         @endrole
         @role('mapel')
         <li class="nav-header">Rencana Penilaian</li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{(request()->is('rencana-k1*','rencana-k2*','rencana-k3*','rencana-k4*')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('rencana-k1*','rencana-k2*','rencana-k3*','rencana-k4*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
               Kompetensi Dasar
@@ -152,26 +152,26 @@
           <ul class="nav nav-treeview bg-secondary">
           @role('wali')
             <li class="nav-item">
-              <a href="{{route('rencana-k1.index')}}" class="nav-link">
+              <a href="{{route('rencana-k1.index')}}" class="nav-link {{(request()->is('rencana-k1*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-1</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('rencana-k2.index')}}" class="nav-link">
+              <a href="{{route('rencana-k2.index')}}" class="nav-link {{(request()->is('rencana-k2*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-2</p>
               </a>
             </li>
             @endrole
             <li class="nav-item">
-              <a href="{{route('rencana-k3.index')}}" class="nav-link">
+              <a href="{{route('rencana-k3.index')}}" class="nav-link {{(request()->is('rencana-k3*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-3</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('rencana-k4.index')}}" class="nav-link">
+              <a href="{{route('rencana-k4.index')}}" class="nav-link {{(request()->is('rencana-k4*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-4</p>
               </a>
@@ -180,15 +180,15 @@
         </li>
         @role('wali')
         <li class="nav-item">
-          <a href="{{route('rencana-mulok.index')}}" class="nav-link">
+          <a href="{{route('rencana-mulok.index')}}" class="nav-link {{(request()->is('rencana-mulok')) ? 'active' :''}}">
             <i class="nav-icon fas fa-globe"></i>
             <p>
               Mulok Khas PI
             </p>
           </a>
         </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{(request()->is('rencana-proactive','rencana-innovative','rencana-responsible','rencana-modest','rencana-achievement')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('rencana-proactive','rencana-innovative','rencana-responsible','rencana-modest','rencana-achievement')) ? 'active' :''}}">
             <i class="nav-icon fas fa-star"></i>
             <p>
               Nilai PRIMA
@@ -197,31 +197,31 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{route('rencana-proactive.index')}}" class="nav-link">
+              <a href="{{route('rencana-proactive.index')}}" class="nav-link {{(request()->is('rencana-proactive')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Proactive</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('rencana-responsible.index')}}" class="nav-link">
+              <a href="{{route('rencana-responsible.index')}}" class="nav-link {{(request()->is('rencana-responsible')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Responsible</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('rencana-innovative.index')}}" class="nav-link">
+              <a href="{{route('rencana-innovative.index')}}" class="nav-link {{(request()->is('rencana-innovative')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Innovative</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('rencana-modest.index')}}" class="nav-link">
+              <a href="{{route('rencana-modest.index')}}" class="nav-link {{(request()->is('rencana-modest')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Modest</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('rencana-achievement.index')}}" class="nav-link">
+              <a href="{{route('rencana-achievement.index')}}" class="nav-link {{(request()->is('rencana-achievement')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Achievement</p>
               </a>
@@ -230,8 +230,8 @@
         </li>
         @endrole
         <li class="nav-header">Penilaian</li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{(request()->is('penilaian-k1*','penilaian-k2*','penilaian-k3*','penilaian-k4*')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('penilaian-k1*','penilaian-k2*','penilaian-k3*','penilaian-k4*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
               Kompetensi Dasar
@@ -241,26 +241,26 @@
           <ul class="nav nav-treeview bg-secondary">
             @role('wali')
             <li class="nav-item">
-              <a href="{{route('penilaian-k1.index')}}" class="nav-link">
+              <a href="{{route('penilaian-k1.index')}}" class="nav-link {{(request()->is('penilaian-k1*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-1</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('penilaian-k2.index')}}" class="nav-link">
+              <a href="{{route('penilaian-k2.index')}}" class="nav-link {{(request()->is('penilaian-k2*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-2</p>
               </a>
             </li>
             @endrole
             <li class="nav-item">
-              <a href="{{route('penilaian-k3.index')}}" class="nav-link">
+              <a href="{{route('penilaian-k3.index')}}" class="nav-link {{(request()->is('penilaian-k3*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-3</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('penilaian-k4.index')}}" class="nav-link">
+              <a href="{{route('penilaian-k4.index')}}" class="nav-link {{(request()->is('penilaian-k4*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-4</p>
               </a>
@@ -269,15 +269,15 @@
         </li>
         @role('wali')
         <li class="nav-item">
-          <a href="{{route('penilaian-mulok.index')}}" class="nav-link">
+          <a href="{{route('penilaian-mulok.index')}}" class="nav-link {{(request()->is('penilaian-mulok')) ? 'active' :''}}">
             <i class="nav-icon fas fa-globe"></i>
             <p>
               Mulok Khas PI
             </p>
           </a>
         </li>
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview {{(request()->is('penilaian-proactive','penilaian-innovative','penilaian-responsible','penilaian-modest','penilaian-achievement')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('penilaian-proactive','penilaian-innovative','penilaian-responsible','penilaian-modest','penilaian-achievement')) ? 'active' :''}}">
             <i class="nav-icon fas fa-star"></i>
             <p>
               Penilaian PRIMA
@@ -286,31 +286,31 @@
           </a>
           <ul class="nav nav-treeview bg-secondary">
             <li class="nav-item">
-              <a href="{{route('penilaian-proactive.index')}}" class="nav-link">
+              <a href="{{route('penilaian-proactive.index')}}" class="nav-link {{(request()->is('penilaian-proactive')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Proactive</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('penilaian-responsible.index')}}" class="nav-link">
+              <a href="{{route('penilaian-responsible.index')}}" class="nav-link {{(request()->is('penilaian-responsible')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Responsible</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('penilaian-innovative.index')}}" class="nav-link">
+              <a href="{{route('penilaian-innovative.index')}}" class="nav-link {{(request()->is('penilaian-innovative')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Innovative</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('penilaian-modest.index')}}" class="nav-link">
+              <a href="{{route('penilaian-modest.index')}}" class="nav-link {{(request()->is('penilaian-modest')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Modest</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('penilaian-achievement.index')}}" class="nav-link">
+              <a href="{{route('penilaian-achievement.index')}}" class="nav-link {{(request()->is('penilaian-achievement')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Achievement</p>
               </a>
@@ -355,7 +355,7 @@
         @endrole
         @role('wali')
         <li class="nav-item">
-          <a href="{{route('kehadiran.index')}}" class="nav-link">
+          <a href="{{route('kehadiran.index')}}" class="nav-link {{(request()->is('kehadiran')) ? 'active' :''}}">
             <i class="nav-icon fas fa-calendar-check"></i>
             <p>
               Rekap Kehadiran Siswa
@@ -363,7 +363,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('catatan-umum.index')}}" class="nav-link">
+          <a href="{{route('catatan-umum.index')}}" class="nav-link {{(request()->is('catatan-umum')) ? 'active' :''}}">
             <i class="nav-icon fas fa-sticky-note"></i>
             <p>
               Catatan Wali Kelas

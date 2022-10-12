@@ -56,7 +56,7 @@
                         <form action="{{route('pembelajaran.setting')}}" method="POST">
                           @csrf
                           <select class="form-control select2" name="kelas_id" style="width: 100%;" required onchange="this.form.submit();">
-                            <option value="">-- Pilih Kelas --</option>
+                          <option value="" disabled="true" selected="true"> -- Pilih Kelas --</option>
                             @foreach($data_kelas as $kelas)
                             <option value="{{$kelas->id}}">{{$kelas->nama_kelas}} ( {{$kelas->tapel->tahun_pelajaran}}
                               @if($kelas->tapel->semester == 1)

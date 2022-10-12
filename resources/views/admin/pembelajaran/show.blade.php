@@ -37,7 +37,7 @@
                   <form action="{{ route('pembelajaran.setting') }}" method="POST">
                     @csrf
                     <select class="form-control select2" name="kelas_id" style="width: 100%;" required onchange="this.form.submit();">
-                      <option value="" disabled> -- Pilih Kelas --</option>
+                      <option value="" disabled="true" selected="true"> -- Pilih Kelas --</option>
                       <option value="" selected>{{$kelas->nama_kelas}} ( {{$kelas->tapel->tahun_pelajaran}}
                         @if($kelas->tapel->semester == 1)
                         Ganjil
@@ -86,9 +86,9 @@
                           <input type="hidden" name="pembelajaran_id[]" value="{{$pembelajaran->id}}">
                         </td>
                         <td>
-                          <select class="form-control select2" name="update_guru_id[]" style="width: 100%;">
+                          <select class="form-control select2" name="update_guru_id[]" style="width: 100%;" required>
                           @if($pembelajaran->mapel->ringkasan_mapel)
-                            <option value="">-- Pilih Guru -- </option>
+                            <option value="" disabled="true" selected="true"> -- Pilih Kelas --</option>
                             @foreach($data_guru as $guru)
                             <option value="{{$guru->id}}" @if($pembelajaran->guru->id == $guru->id) selected @endif>
                               {{$guru->nama_lengkap}}, {{$guru->gelar}}
