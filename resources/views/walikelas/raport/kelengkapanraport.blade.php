@@ -448,7 +448,7 @@
         </tr>
         <tr style="line-height: 20px;">
           <td style="width: 23%;">Alamat</td>
-          <td colspan="3" style="width: 52%;">: Jl. Ciledug No 281</td>
+          <td colspan="4" style="width: 52%;">: Jl. Ciledug No 281</td>
         </tr>
       </table>
     </div>
@@ -456,45 +456,28 @@
       <h3><strong>PENCAPAIAN KOMPETENSI PESERTA DIDIK</strong></h3>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>A. SIKAP SPIRITUAL (KI-1)</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>A. SIKAP SPIRITUAL (KI-1) DAN SIKAP SOSIAL (KI-2)</strong></td>
         </tr>
         <tr class="heading">
-          <td style="width: 40%;">ASPEK YANG DINILAI</td>
+          <td style="width: 4%;">NO</td>
+          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
-          <td class="predikat">
-            Menerima dan menjalankan agama yang dianutnya : <br/>
-            Terbiasa menyebarkan dan menjawab salam<br/>
-            Terbiasa mengucapkan kalimat thoyyibah<br/>
-            Terbiasa berinfaq<br/>
-            Terbiasa berdoa dan berdzikir setelah sholat<br/>
-            Mengenal dan berlatih shalat dhuha<br/>
-            Terbiasa shalat dhuha<br/>
+          <td>1</td>
+          <td>
+            Penilaian Sikap Spiritual (KI-1)
           </td>
           <td style="text-align:center;">SB</td>
           <td class="description">
             <span>Semua aspek spiritual sudah menjadi kebiasaan, terutama terbiasa menyebarkan dan menjawab salam; terbiasa berinfaq; dan terbiasa berdoa dan berdzikir setelah sholat. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap terbiasa mengucapkan kalimat thoyyibah; mengenal dan berlatih shalat dhuha; dan terbiasa shalat dhuha.</span>
           </td>
         </tr>
-        <tr>
-          <td colspan="3" style="height: 30px;"><strong>B. SIKAP SOSIAL (KI-2)</strong></td>
-        </tr>
-        <tr class="heading">
-          <td style="width: 38%;">ASPEK YANG DINILAI</td>
-          <td style="width: 12%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
-        </tr>
         <tr class="sikap">
-          <td class="predikat">
-              Memiliki perilaku : <br>
-              Menunjukkan perilaku bersih dan rapi <br>
-              Menunjukkan perilaku sopan santun <br>
-              Menunjukkan perilaku disiplin, mandiri dan tanggung jawab <br>
-              Menunjukkan perilaku jujur <br>
-              Menunjukkan perilaku percaya diri <br>
-              Menunjukkan perilaku birrul walidain.
+          <td>2</td>
+          <td>
+              Penilaian Sikap Sosial (KI-2)
           </td>
           <td style="text-align:center;">SB</td>
           <td class="description">
@@ -504,14 +487,14 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>C. PENGETAHUAN KI-1</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>C. PENGETAHUAN KI-1</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
           <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">KKM</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         @foreach($nilai_k3 as $nilai)
         <tr class="sikap">
@@ -529,13 +512,13 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>D. KETERAMPILAN KI-2</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>D. KETERAMPILAN KI-2</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
-          <td style="width: 36%;">KOMPETENSI YANG DINILAI</td>
+          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -550,13 +533,13 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>E. KO KULIKULER DAN EKSTRAKULIKULER</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>E. KO KULIKULER DAN EKSTRAKULIKULER</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
-          <td style="width: 36%;">KOMPETENSI YANG DINILAI</td>
+          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -591,13 +574,13 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>F. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>F. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
-          <td style="width: 36%;">KOMPETENSI YANG DINILAI</td>
+          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -632,16 +615,16 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>G. MUATAN LOKAL PAI KHAS PRIMA INSANI</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>G. MUATAN LOKAL PAI KHAS PRIMA INSANI</strong></td>
         </tr>
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>1. PELAJARAN SHOLAT</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>1. PELAJARAN SHOLAT</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
-          <td style="width: 36%;">KOMPETENSI YANG DINILAI</td>
+          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -686,13 +669,13 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>2. HAFALAN</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>2. HAFALAN</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
-          <td style="width: 36%;">KOMPETENSI YANG DINILAI</td>
+          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -727,13 +710,13 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>3. TAHSIN DAN TAHFIDZ AL-QUR'AN</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>3. TAHSIN DAN TAHFIDZ AL-QUR'AN</strong></td>
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
-          <td style="width: 36%;">TAHSIN AL-QUR'AN</td>
+          <td style="width: 26%;">TAHSIN AL-QUR'AN</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -747,9 +730,9 @@
         </tr>
         <tr class="heading">
           <td style="width: 4%;">NO</td>
-          <td style="width: 36%;">TAHFIDZ AL-QUR'AN</td>
+          <td style="width: 26%;">TAHFIDZ AL-QUR'AN</td>
           <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 50%;">DESKRIPSI</td>
+          <td style="width: 60%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -774,14 +757,14 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="3" style="height: 30px;"><strong>H. BUDAYA NILAI PRIMA</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>H. BUDAYA NILAI PRIMA</strong></td>
         </tr>
         <thead>
           <tr class="heading">
             <td style="width: 4%;">NO</td>
-            <td style="width: 36%;">BUDAYA</td>
+            <td style="width: 26%;">BUDAYA</td>
             <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 50%;">DESKRIPSI</td>
+            <td style="width: 60%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>

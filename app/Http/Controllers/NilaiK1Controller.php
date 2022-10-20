@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NilaiK1;
+use App\Models\NilaiRapotK1;
 use App\Models\RencanaNilaiK1;
 use App\Models\Tapel;
 use App\Models\Guru;
@@ -94,6 +95,26 @@ class NilaiK1Controller extends Controller
                     $store_data_penilaian = $data_penilaian_siswa;
                 }
                 NilaiK1::insert($store_data_penilaian);
+                for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                    $nilai_kd = round((NilaiK1::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai'))/count($request->rencana_nilai_k1_id),1);
+                    if($nilai_kd >= 3.1){
+                        $nilai_fix = "SB";
+                    }else if($nilai_kd >= 2.1){
+                        $nilai_fix = "B";
+                    }else{
+                        $nilai_fix = "C";
+                    }
+                    $rapot = array(
+                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                        'nilai_ra' => $nilai_kd,
+                        'nilai_raport' => $nilai_fix,
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $data_rapot[] = $rapot;
+                }
+                dd($data_rapot);
+                NilaiRapotK1::insert($data_rapot);
                 return redirect()->back()->with('success', 'Data nilai spiritual berhasil disimpan.');
             }
         }else{
