@@ -40,15 +40,9 @@
                       <tr>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
-                        <th colspan="5" class="text-center">Tahsin</th>
                         <th colspan="3" class="text-center">Tahfidz</th>
                       </tr>
                       <tr class="text-center">
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Jilid-Surah"><b>3.1</b></a></td>
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Halaman/Ayat"><b>3.2</b></a></td>
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>3.3</b></a></td>
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>3.4</b></a></td>
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>3.5</b></a></td>
                         <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Surah"><b>4.1</b></a></td>
                         <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Ayat"><b>4.2</b></a></td>
                         <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>4.3</b></a></td>
@@ -63,34 +57,6 @@
                         <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
                         <td>
                           <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
-                          <select class="form-control select2" name="tahsin_jilid[{{$i}}]" style="width: 100%;" required>
-                            <option value="">-- Jilid / Surah --</option>
-                            <option value="Jilid 1">Jilid 1</option>
-                            <option value="Jilid 2">Jilid 2</option>
-                            <option value="Jilid 3">Jilid 3</option>
-                            <option value="Jilid 4">Jilid 4</option>
-                            <option value="Tallaqi Juz 1-5">Tallaqi Juz 1-5</option>
-                            <option value="Tallaqi Juz 30">Tallaqi Juz 30</option>
-                            <option value="Ghorib 1">Ghorib 1</option>
-                            <option value="Ghorib 2">Ghorib 2</option>
-                            <option value="Tajwid 1">Tajwid 1</option>
-                            <option value="Tajwid 2">Tajwid 2</option>
-                            <option value="Al-Qur'an">Al-Qur'an</option>
-                          </select>
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" min="0" max="100" required>
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" name="tahsin_kekurangan[{{$i}}]" min="0" max="100" required>
-                        </td>
-                        <td>
-                          <input type="text" class="form-control" name="tahsin_kelebihan[{{$i}}]" min="0" max="100" required>
-                        </td>
-                        <td>
-                          <input type="number" class="form-control" name="tahsin_nilai[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                        </td>
-                        <td>
                           <input type="text" class="form-control" name="tahfidz_surah[{{$i}}]" min="0" max="100" required>
                         </td>
                         <td>

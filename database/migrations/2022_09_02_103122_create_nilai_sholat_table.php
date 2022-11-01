@@ -21,8 +21,12 @@ class CreateNilaiSholatTable extends Migration
             $table->integer('bacaan_sholat')->nullable();
             $table->integer('gerakan_sholat')->nullable();
             $table->integer('dzikir')->nullable();
+            $table->text('deskripsi_praktik_wudhu')->nullable();
+            $table->text('deskripsi_bacaan_sholat')->nullable();
+            $table->text('deskripsi_gerakan_sholat')->nullable();
+            $table->text('deskripsi_dzikir')->nullable();
             $table->timestamps();
-
+            
             $table->foreign('anggota_kelas_id')->references('id')->on('anggota_kelas');
         });
     }

@@ -321,7 +321,7 @@
         @endrole
         @role('t2q')
         <li class="nav-item">
-          <a href="{{route('penilaian-hafalan.index')}}" class="nav-link">
+          <a href="{{route('penilaian-hafalan.index')}}" class="nav-link {{(request()->is('penilaian-hafalan*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-brain"></i>
             <p>
               Hafalan
@@ -329,7 +329,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('penilaian-sholat.index')}}" class="nav-link">
+          <a href="{{route('penilaian-sholat.index')}}" class="nav-link {{(request()->is('penilaian-sholat*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-pray"></i>
             <p>
               Pelajaran Sholat
@@ -337,15 +337,23 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('penilaian-t2q.index')}}" class="nav-link">
+          <a href="{{route('penilaian-tahsin.index')}}" class="nav-link {{(request()->is('penilaian-tahsin*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-quran"></i>
             <p>
-              Tahsin Tahfidz
+              Tahsin
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('catatan-t2q.index')}}" class="nav-link">
+          <a href="{{route('penilaian-t2q.index')}}" class="nav-link {{(request()->is('penilaian-t2q*')) ? 'active' :''}}">
+            <i class="nav-icon fas fa-quran"></i>
+            <p>
+              Tahfidz
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('catatan-t2q.index')}}" class="nav-link {{(request()->is('catatan-t2q*')) ? 'active' :''}}">
           <i class="nav-icon fas fa-comments"></i>
             <p>
               Catatan T2Q

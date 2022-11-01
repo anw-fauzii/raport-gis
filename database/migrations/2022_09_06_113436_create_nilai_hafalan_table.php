@@ -20,6 +20,9 @@ class CreateNilaiHafalanTable extends Migration
             $table->integer('hadis')->nullable();
             $table->integer('doa')->nullable();
             $table->integer('hikmah')->nullable();
+            $table->text('deskripsi_hadis')->nullable();
+            $table->text('deskripsi_doa')->nullable();
+            $table->text('deskripsi_hikmah')->nullable();
             $table->timestamps();
 
             $table->foreign('anggota_kelas_id')->references('id')->on('anggota_kelas');

@@ -508,6 +508,28 @@
             <span>{{$nilai->deskripsi}}Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
           </td>
         </tr>
+        <tr class="sikap">
+          <td>1</td>
+          <td>
+            {{$nilai->pembelajaran->mapel->nama_mapel}}
+          </td>
+          <td style="text-align:center;">72</td>
+          <td style="text-align:center;">{{$nilai->nilai_raport}}</td>
+          <td class="description">
+            <span>{{$nilai->deskripsi}}Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+          </td>
+        </tr>
+        <tr class="sikap">
+          <td>1</td>
+          <td>
+            {{$nilai->pembelajaran->mapel->nama_mapel}}
+          </td>
+          <td style="text-align:center;">72</td>
+          <td style="text-align:center;">{{$nilai->nilai_raport}}</td>
+          <td class="description">
+            <span>{{$nilai->deskripsi}}Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+          </td>
+        </tr>
         @endforeach
       </table>
       <table cellspacing="0">
@@ -519,6 +541,26 @@
           <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
+        </tr>
+        <tr class="sikap">
+          <td>1</td>
+          <td>
+            Bahasa Indonesia
+          </td>
+          <td style="text-align:center;">99</td>
+          <td class="description">
+            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+          </td>
+        </tr>
+        <tr class="sikap">
+          <td>1</td>
+          <td>
+            Bahasa Indonesia
+          </td>
+          <td style="text-align:center;">99</td>
+          <td class="description">
+            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+          </td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -548,7 +590,7 @@
           </td>
           <td style="text-align:center;">99</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>b; dan menunjukkan perilaku percaya diri.</span>
           </td>
         </tr>
         <tr class="sikap">
@@ -631,9 +673,9 @@
           <td>
             Praktek Wudhu
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_sholat->praktik_wudhu}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$nilai_sholat->deskripsi_praktik_wudhu}}</span>
           </td>
         </tr>
         <tr class="sikap">
@@ -641,9 +683,9 @@
           <td>
             Bacaan Sholat
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_sholat->bacaan_sholat}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$nilai_sholat->deskripsi_bacaan_sholat}}</span>
           </td>
         </tr>
         <tr class="sikap">
@@ -651,9 +693,9 @@
           <td>
             Gerakan Sholat
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_sholat->gerakan_sholat}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$nilai_sholat->deskripsi_gerakan_sholat}}</span>
           </td>
         </tr>
         <tr class="sikap">
@@ -661,9 +703,9 @@
           <td>
             Dzikir Bacaan Sholat
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_sholat->dzikir}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$nilai_sholat->deskripsi_dzikir}}</span>
           </td>
         </tr>
       </table>
@@ -682,9 +724,9 @@
           <td>
             Hafalan Hadis
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_hafalan->hadis}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$nilai_hafalan->deskripsi_hadis}}</span>
           </td>
         </tr>
         <tr class="sikap">
@@ -692,9 +734,9 @@
           <td>
             Hafalan Dia
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_hafalan->doa}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$nilai_hafalan->deskripsi_doa}}</span>
           </td>
         </tr>
         <tr class="sikap">
@@ -702,9 +744,9 @@
           <td>
             Hafalan Kata - Kata Hikmah
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_hafalan->hikmah}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$nilai_hafalan->deskripsi_hikmah}}</span>
           </td>
         </tr>
       </table>
@@ -712,20 +754,26 @@
         <tr>
           <td colspan="4" style="height: 30px;"><strong>3. TAHSIN DAN TAHFIDZ AL-QUR'AN</strong></td>
         </tr>
+        <thead style="display: table-row-group;">
         <tr class="heading">
           <td style="width: 4%;">NO</td>
           <td style="width: 26%;">TAHSIN AL-QUR'AN</td>
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
         </tr>
+        </thead>
         <tr class="sikap">
           <td>1</td>
           <td>
             JILID 3 HALAMAN 14
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_t2q->tahsin_nilai}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            @if($nilai_t2q->tahfidz_nilai < 85)
+            <span>Sudah menguasai sebagian besar kompetensi tahsin dengan baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
+            @elseif($nilai_t2q->tahfidz_nilai < 100)
+            <span>Sudah menguasai seluruh kompetensi tahsin dengan sangat baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
+            @endif 
           </td>
         </tr>
         <tr class="heading">
@@ -737,11 +785,15 @@
         <tr class="sikap">
           <td>1</td>
           <td>
-            AL-'ADIYAT AYAT 6
+            Surah {{$nilai_t2q->tahfidz_surah}} Ayat {{$nilai_t2q->tahfidz_ayat}}
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$nilai_t2q->tahfidz_nilai}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            @if($nilai_t2q->tahsin_nilai < 85)
+            <span>Sudah menguasai sebagian kompetensi hafalan dengan baik. Perlu penguatan untuk murojaah setiap hari.</span>
+            @elseif($nilai_t2q->tahsin_nilai < 100)
+            <span>Sudah menguasai seluruh kompetensi hafalan dengan baik.</span>
+            @endif 
           </td>
         </tr>
       </table>
@@ -751,15 +803,15 @@
         </tr>
         <tr class="sikap">
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$catatan_t2q->catatan}}</span>
           </td>
         </tr>
       </table>
-      <table cellspacing="0">
+      <table cellspacing="0" page-break-inside: auto>
         <tr>
           <td colspan="4" style="height: 30px;"><strong>H. BUDAYA NILAI PRIMA</strong></td>
         </tr>
-        <thead>
+        <thead >
           <tr class="heading">
             <td style="width: 4%;">NO</td>
             <td style="width: 26%;">BUDAYA</td>
@@ -775,7 +827,7 @@
           </td>
           <td style="text-align:center;">S</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>asas</span>  
           </td>
         </tr>
         <tr class="sikap">

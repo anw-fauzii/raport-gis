@@ -20,6 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('getCourse/{id}', function ($id) {
+    $course = App\Models\Komentar::where('jenis',$id)->get();
+    return response()->json($course);
+});
 Route::get('/pdf/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('show');
 Route::get('/interval-nilai', [App\Http\Controllers\IntervalController::class, 'index'])->name('interval');
 Route::resource('/pengumuman',App\Http\Controllers\PengumumanController::class);
@@ -78,6 +82,7 @@ Route::resource('/penilaian-sholat',App\Http\Controllers\NilaiSholatController::
 Route::resource('/penilaian-mulok',App\Http\Controllers\NilaiMulokController::class);
 Route::resource('/penilaian-hafalan',App\Http\Controllers\NilaiHafalanController::class);
 Route::resource('/penilaian-t2q',App\Http\Controllers\NilaiT2QController::class);
+Route::resource('/penilaian-tahsin',App\Http\Controllers\NilaiTahsinController::class);
 
 Route::get('data-siswa', [App\Http\Controllers\SiswaKelasController::class,'wali'])->name('data-siswa-wali');
 Route::get('detail-siswa/{id}', [App\Http\Controllers\SiswaKelasController::class,'detail'])->name('detail-siswa');

@@ -15,6 +15,10 @@ class NilaiSholat extends Model
         'praktik_wudhu',
         'bacaan_sholat',
         'gerakan_sholat',
-        'dzikir'
+        'dzikir',
+        'deskripsi_praktik_wudhu',
+        'deskripsi_bacaan_sholat',
+        'deskripsi_gerakan_sholat',
+        'deskripsi_dzikir'
     ];
 }

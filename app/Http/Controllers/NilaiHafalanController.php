@@ -8,6 +8,7 @@ use App\Models\Guru;
 use App\Models\Kelas;
 use Carbon\Carbon;
 use App\Models\AnggotaT2Q;
+use App\Models\AnggotaKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,15 +59,76 @@ class NilaiHafalanController extends Controller
     {
         if(Auth::user()->hasRole('t2q')){
             for ($cound_siswa = 1; $cound_siswa <= $request->jumlah; $cound_siswa++) {
-                    $data_nilai = array(
-                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                        'hadis'  => $request->hadis[$cound_siswa],
-                        'doa'  => $request->doa[$cound_siswa],
-                        'hikmah'  => $request->hikmah[$cound_siswa],
-                        'created_at'  => Carbon::now(),
-                        'updated_at'  => Carbon::now(),
-                    );
-                    NilaiHafalan::insert($data_nilai);  
+                $anggota = AnggotaKelas::find($request->anggota_kelas_id[$cound_siswa]);
+                $kelas_id = Kelas::find($anggota->kelas_id);
+                if($kelas_id->tingkatan_kelas = 1){
+                    $kompetensi_hadis = "ini hadis kelas 1";
+                    $kompetensi_doa = "ini doa kelas 1";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 1";
+                }else if($kelas_id->tingkatan_kelas = 2){
+                    $kompetensi_hadis = "ini hadis kelas 2";
+                    $kompetensi_doa = "ini doa kelas 2";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 2";
+                }else if($kelas_id->tingkatan_kelas = 3){
+                    $kompetensi_hadis = "ini hadis kelas 3";
+                    $kompetensi_doa = "ini doa kelas 3";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 3";
+                }else if($kelas_id->tingkatan_kelas = 4){
+                    $kompetensi_hadis = "ini hadis kelas 4";
+                    $kompetensi_doa = "ini doa kelas 4";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 4";
+                }else if($kelas_id->tingkatan_kelas = 5){
+                    $kompetensi_hadis = "ini hadis kelas 5";
+                    $kompetensi_doa = "ini doa kelas 5";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 5";
+                }else if($kelas_id->tingkatan_kelas = 6){
+                    $kompetensi_hadis = "ini hadis kelas 6";
+                    $kompetensi_doa = "ini doa kelas 6";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 6";
+                }
+
+                if($request->hadis[$cound_siswa] < 75){
+                    $deskripsi_hadis = "Ananda kurang dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }else if($request->hadis[$cound_siswa] < 84){
+                    $deskripsi_hadis = "Ananda cukup dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }else if($request->hadis[$cound_siswa] < 93){
+                    $deskripsi_hadis = "Ananda baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }else if($request->hadis[$cound_siswa] < 100){
+                    $deskripsi_hadis = "Ananda sangat baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }
+                
+                if($request->doa[$cound_siswa] < 75){
+                    $deskripsi_doa = "Ananda kurang dalam menghafal ".$kompetensi_doa;
+                }else if($request->doa[$cound_siswa] < 84){
+                    $deskripsi_doa = "Ananda cukup dalam menghafal ".$kompetensi_doa;
+                }else if($request->doa[$cound_siswa] < 93){
+                    $deskripsi_doa = "Ananda baik dalam menghafal ".$kompetensi_doa;
+                }else if($request->doa[$cound_siswa] < 100){
+                    $deskripsi_doa = "Ananda sangat baik dalam menghafal ".$kompetensi_doa;
+                }
+                
+                if($request->hikmah[$cound_siswa] < 75){
+                    $deskripsi_hikmah = "Ananda kurang dalam menghafal dan memahami kata-kata hikmah tentang ".$kompetensi_hikmah;
+                }else if($request->hikmah[$cound_siswa] < 84){
+                    $deskripsi_hikmah = "Ananda cukup dalam menghafal dan memahami kata-kata hikmah tentang ".$kompetensi_hikmah;
+                }else if($request->hikmah[$cound_siswa] < 93){
+                    $deskripsi_hikmah = "Ananda baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
+                }else if($request->hikmah[$cound_siswa] < 100){
+                    $deskripsi_hikmah = "Ananda sangat baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
+                }
+
+                $data_nilai = array(
+                    'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                    'hadis'  => $request->hadis[$cound_siswa],
+                    'doa'  => $request->doa[$cound_siswa],
+                    'hikmah'  => $request->hikmah[$cound_siswa],
+                    'deskripsi_hadis'  => $deskripsi_hadis,
+                    'deskripsi_doa'  => $deskripsi_doa,
+                    'deskripsi_hikmah'  => $deskripsi_hikmah,
+                    'created_at'  => Carbon::now(),
+                    'updated_at'  => Carbon::now(),
+                );
+                NilaiHafalan::insert($data_nilai);  
             }
             return redirect('penilaian-hafalan')->with('success', 'Data nilai hafalan berhasil disimpan.');
         }else{
@@ -128,10 +190,70 @@ class NilaiHafalanController extends Controller
         if(Auth::user()->hasRole('t2q')){
             for ($cound_siswa = 1; $cound_siswa <= $request->jumlah; $cound_siswa++) {
                 $nilai = NilaiHafalan::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
+                $anggota = AnggotaKelas::find($request->anggota_kelas_id[$cound_siswa]);
+                $kelas_id = Kelas::find($anggota->kelas_id);
+                if($kelas_id->tingkatan_kelas = 1){
+                    $kompetensi_hadis = "ini hadis kelas 1";
+                    $kompetensi_doa = "ini doa kelas 1";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 1";
+                }else if($kelas_id->tingkatan_kelas = 2){
+                    $kompetensi_hadis = "ini hadis kelas 2";
+                    $kompetensi_doa = "ini doa kelas 2";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 2";
+                }else if($kelas_id->tingkatan_kelas = 3){
+                    $kompetensi_hadis = "ini hadis kelas 3";
+                    $kompetensi_doa = "ini doa kelas 3";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 3";
+                }else if($kelas_id->tingkatan_kelas = 4){
+                    $kompetensi_hadis = "ini hadis kelas 4";
+                    $kompetensi_doa = "ini doa kelas 4";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 4";
+                }else if($kelas_id->tingkatan_kelas = 5){
+                    $kompetensi_hadis = "ini hadis kelas 5";
+                    $kompetensi_doa = "ini doa kelas 5";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 5";
+                }else if($kelas_id->tingkatan_kelas = 6){
+                    $kompetensi_hadis = "ini hadis kelas 6";
+                    $kompetensi_doa = "ini doa kelas 6";
+                    $kompetensi_hikmah = "ini kata hikmah kelas 6";
+                }
+
+                if($request->hadis[$cound_siswa] < 75){
+                    $deskripsi_hadis = "Ananda kurang dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }else if($request->hadis[$cound_siswa] < 84){
+                    $deskripsi_hadis = "Ananda cukup dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }else if($request->hadis[$cound_siswa] < 93){
+                    $deskripsi_hadis = "Ananda baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }else if($request->hadis[$cound_siswa] < 100){
+                    $deskripsi_hadis = "Ananda sangat baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
+                }
+                
+                if($request->doa[$cound_siswa] < 75){
+                    $deskripsi_doa = "Ananda kurang dalam menghafal ".$kompetensi_doa;
+                }else if($request->doa[$cound_siswa] < 84){
+                    $deskripsi_doa = "Ananda cukup dalam menghafal ".$kompetensi_doa;
+                }else if($request->doa[$cound_siswa] < 93){
+                    $deskripsi_doa = "Ananda baik dalam menghafal ".$kompetensi_doa;
+                }else if($request->doa[$cound_siswa] < 100){
+                    $deskripsi_doa = "Ananda sangat baik dalam menghafal ".$kompetensi_doa;
+                }
+                
+                if($request->hikmah[$cound_siswa] < 75){
+                    $deskripsi_hikmah = "Ananda kurang dalam menghafal dan memahami kata-kata hikmah tentang ".$kompetensi_hikmah;
+                }else if($request->hikmah[$cound_siswa] < 84){
+                    $deskripsi_hikmah = "Ananda cukup dalam menghafal dan memahami kata-kata hikmah tentang ".$kompetensi_hikmah;
+                }else if($request->hikmah[$cound_siswa] < 93){
+                    $deskripsi_hikmah = "Ananda baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
+                }else if($request->hikmah[$cound_siswa] < 100){
+                    $deskripsi_hikmah = "Ananda sangat baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
+                }
                 $data_nilai = array(
                     'hadis'  => $request->hadis[$cound_siswa],
                     'doa'  => $request->doa[$cound_siswa],
                     'hikmah'  => $request->hikmah[$cound_siswa],
+                    'deskripsi_hadis'  => $deskripsi_hadis,
+                    'deskripsi_doa'  => $deskripsi_doa,
+                    'deskripsi_hikmah'  => $deskripsi_hikmah,
                     'updated_at'  => Carbon::now(),
                 );
                 $nilai->update($data_nilai);  

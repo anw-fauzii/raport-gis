@@ -53,6 +53,7 @@
   width: 100%;
   line-height: inherit;
   text-align: left;
+  table-layout:fixed;
 }
 
 /* Heading */
@@ -68,7 +69,6 @@
 .invoice-box table tr.sikap td {
   border: 1px solid #333;
   padding: 6px;
-  height: 150px;
 }
 
 .invoice-box table tr.sikap td.predikat {
@@ -80,7 +80,6 @@
   vertical-align: top;
   text-align: justify;
   line-height: 20px;
-  height: 150px;
 }
 /* End Sikap  */
 
@@ -95,7 +94,6 @@
 .invoice-box table tr.nilai td.description {
   text-align: justify;
   font-size: 12px;
-  line-height: 14px;
 }
 /* .invoice-box table tr.nilai td.value {
   border-left: 0;

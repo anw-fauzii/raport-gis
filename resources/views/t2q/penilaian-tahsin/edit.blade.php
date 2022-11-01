@@ -35,7 +35,7 @@
 
       <div class="card-body">
 
-        <form action="{{ route('penilaian-t2q.update', Auth::user()->id) }}" method="POST">
+        <form action="{{ route('penilaian-tahsin.update', Auth::user()->id) }}" method="POST">
           {{ method_field('PATCH') }}
           @csrf
           <div class="table-responsive">
@@ -44,12 +44,14 @@
                 <tr>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
-                  <th colspan="3" class="text-center">Tahfidz</th>
+                  <th colspan="5" class="text-center">Tahsin</th>
                 </tr>
                 <tr class="text-center">
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Surah"><b>4.1</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Ayat"><b>4.2</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>4.3</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Jilid-Surah"><b>3.1</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Halaman/Ayat"><b>3.2</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>3.3</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>3.4</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>3.5</b></a></td>
                 </tr>
               </thead>
               <tbody>
@@ -62,13 +64,19 @@
                   <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
-                    <input type="text" class="form-control" name="tahfidz_surah[{{$i}}]" value="{{$nilai->tahfidz_surah}}" min="0" max="100" required>
+                    <input type="text" class="form-control" name="tahsin_jilid[{{$i}}]" value="{{$nilai->tahsin_jilid}}" min="0" max="100" required>
                   </td>
                   <td>
-                    <input type="text" class="form-control" name="tahfidz_ayat[{{$i}}]" value="{{$nilai->tahfidz_ayat}}" min="0" max="100" required>
+                    <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" value="{{$nilai->tahsin_halaman}}" min="0" max="100" required>
                   </td>
                   <td>
-                    <input type="number" class="form-control" name="tahfidz_nilai[{{$i}}]" value="{{$nilai->tahfidz_nilai}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                    <input type="text" class="form-control" name="tahsin_kekurangan[{{$i}}]" value="{{$nilai->tahsin_kekurangan}}" min="0" max="100" required>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" name="tahsin_kelebihan[{{$i}}]" value="{{$nilai->tahsin_kelebihan}}" min="0" max="100" required>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control" name="tahsin_nilai[{{$i}}]" value="{{$nilai->tahsin_nilai}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                   </td>
                 </tr>
                 @endforeach

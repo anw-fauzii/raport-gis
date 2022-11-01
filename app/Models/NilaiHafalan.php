@@ -14,6 +14,9 @@ class NilaiHafalan extends Model
         'tingkat',
         'hadis',
         'doa',
-        'hikmah'
+        'hikmah',
+        'deskripsi_hadis',
+        'deskripsi_doa',
+        'deskripsi_hikmah'
     ];
 }

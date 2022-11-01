@@ -55,7 +55,7 @@
                   @endif
                 </td>
                 <td>
-                    <a href="{{ route('penilaian-t2q.edit', $penilaian->tingkat) }}" type="button" class="btn btn-sm btn-primary">
+                    <a href="{{ route('penilaian-tahsin.edit', $penilaian->tingkat) }}" type="button" class="btn btn-sm btn-primary">
                         <i class="fas fa-plus"></i>
                     </a>
                 </td>
