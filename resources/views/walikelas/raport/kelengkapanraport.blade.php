@@ -469,9 +469,36 @@
           <td>
             Penilaian Sikap Spiritual (KI-1)
           </td>
-          <td style="text-align:center;">SB</td>
+          @php
+          $hasil_k1=round($des_ki1->sum('nilai')/$des_ki1->count(),1);
+          @endphp
+          <td style="text-align:center;">
+            @if($hasil_k1 >= 3.1)
+            SB
+            @elseif($hasil_k1 >= 2.1)
+            B
+            @else
+            C
+            @endif
+          </td>
           <td class="description">
-            <span>Semua aspek spiritual sudah menjadi kebiasaan, terutama terbiasa menyebarkan dan menjawab salam; terbiasa berinfaq; dan terbiasa berdoa dan berdzikir setelah sholat. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap terbiasa mengucapkan kalimat thoyyibah; mengenal dan berlatih shalat dhuha; dan terbiasa shalat dhuha.</span>
+            <span>Ananda sangat baik terutama
+              @foreach($des_ki1->where('nilai',4) as $ki1)
+              {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta baik terutama
+              @foreach($des_ki1->where('nilai',3) as $ki1)
+              {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta cukup terutama
+              @foreach($des_ki1->where('nilai',2) as $ki1)
+              {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta kurang terutama
+              @foreach($des_ki1->where('nilai',1) as $ki1)
+              {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+              @endforeach
+            </span>
           </td>
         </tr>
         <tr class="sikap">
@@ -479,9 +506,36 @@
           <td>
               Penilaian Sikap Sosial (KI-2)
           </td>
-          <td style="text-align:center;">SB</td>
+          @php
+          $hasil_k2 = round($des_ki2->sum('nilai')/$des_ki2->count(),1);
+          @endphp
+          <td style="text-align:center;">
+            @if($hasil_k2 >= 3.1)
+            SB
+            @elseif($hasil_k2 >= 2.1)
+            B
+            @else
+            C
+            @endif
+          </td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>Ananda sangat baik terutama
+              @foreach($des_ki2->where('nilai',4) as $ki2)
+              {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta baik terutama
+              @foreach($des_ki2->where('nilai',3) as $ki2)
+              {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta cukup terutama
+              @foreach($des_ki2->where('nilai',2) as $ki2)
+              {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta kurang terutama
+              @foreach($des_ki2->where('nilai',1) as $ki2)
+              {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+              @endforeach
+            </span>
           </td>
         </tr>
       </table>
@@ -496,38 +550,44 @@
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
         </tr>
-        @foreach($nilai_k3 as $nilai)
+        @foreach($nilai_ki3 as $ki3)
         <tr class="sikap">
           <td>1</td>
           <td>
-            {{$nilai->pembelajaran->mapel->nama_mapel}}
+            {{$ki3->pembelajaran->mapel->nama_mapel}}
           </td>
-          <td style="text-align:center;">72</td>
-          <td style="text-align:center;">{{$nilai->nilai_raport}}</td>
+          <td style="text-align:center;">{{$ki3->predikat_c}}</td>
+          <td style="text-align:center;">{{$ki3->nilai_raport}}</td>
           <td class="description">
-            <span>{{$nilai->deskripsi}}Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            {{$nilai->pembelajaran->mapel->nama_mapel}}
-          </td>
-          <td style="text-align:center;">72</td>
-          <td style="text-align:center;">{{$nilai->nilai_raport}}</td>
-          <td class="description">
-            <span>{{$nilai->deskripsi}}Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            {{$nilai->pembelajaran->mapel->nama_mapel}}
-          </td>
-          <td style="text-align:center;">72</td>
-          <td style="text-align:center;">{{$nilai->nilai_raport}}</td>
-          <td class="description">
-            <span>{{$nilai->deskripsi}}Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>
+              sangat baik 
+              @foreach($des_ki3 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                    @if($deskripsi->nilai_kd <= $ki3->predikat_a)
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @elseif($deskripsi->nilai_kd <= $ki3->predikat_b)
+                    @elseif($deskripsi->nilai_kd <= $ki3->predikat_c)
+                    @endif
+                  @endif
+              @endforeach
+              baik 
+              @foreach($des_ki3 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                    @if($deskripsi->nilai_kd <= $ki3->predikat_b)
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @elseif($deskripsi->nilai_kd <= $ki3->predikat_c)
+                    @endif
+                  @endif
+              @endforeach
+              perbaikan 
+              @foreach($des_ki3 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                    @if($deskripsi->nilai_kd <= $ki3->predikat_c)
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @endif
+                  @endif
+              @endforeach
+            </span>
           </td>
         </tr>
         @endforeach
@@ -541,26 +601,6 @@
           <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Bahasa Indonesia
-          </td>
-          <td style="text-align:center;">99</td>
-          <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Bahasa Indonesia
-          </td>
-          <td style="text-align:center;">99</td>
-          <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
-          </td>
         </tr>
         <tr class="sikap">
           <td>1</td>
@@ -788,7 +828,7 @@
             Surah {{$nilai_t2q->tahfidz_surah}} Ayat {{$nilai_t2q->tahfidz_ayat}}
           </td>
           <td style="text-align:center;">{{$nilai_t2q->tahfidz_nilai}}</td>
-          <td class="description">
+        <td class="description">
             @if($nilai_t2q->tahsin_nilai < 85)
             <span>Sudah menguasai sebagian kompetensi hafalan dengan baik. Perlu penguatan untuk murojaah setiap hari.</span>
             @elseif($nilai_t2q->tahsin_nilai < 100)

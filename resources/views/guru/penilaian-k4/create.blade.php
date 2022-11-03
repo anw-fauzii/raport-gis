@@ -33,7 +33,7 @@
       <div class="card-body">
         <form action="{{ route('penilaian-k4.store') }}" method="POST">
           @csrf
-
+          <input type="text" name="pembelajaran_id" value="{{$pembelajaran->id}}">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead class="bg-primary">

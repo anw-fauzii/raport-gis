@@ -106,14 +106,12 @@ class NilaiK1Controller extends Controller
                     }
                     $rapot = array(
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                        'nilai_ra' => $nilai_kd,
                         'nilai_raport' => $nilai_fix,
                         'created_at'  => Carbon::now(),
                         'updated_at'  => Carbon::now(),
                     );
                     $data_rapot[] = $rapot;
                 }
-                dd($data_rapot);
                 NilaiRapotK1::insert($data_rapot);
                 return redirect()->back()->with('success', 'Data nilai spiritual berhasil disimpan.');
             }

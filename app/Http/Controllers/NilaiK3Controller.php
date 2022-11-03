@@ -37,7 +37,7 @@ class NilaiK3Controller extends Controller
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
 
-            $data_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+            $data_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',3)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
 
             foreach ($data_penilaian as $penilaian) {
                 $data_rencana_nilai = RencanaNilaiK3::where('pembelajaran_id', $penilaian->id)->get();
@@ -80,13 +80,18 @@ class NilaiK3Controller extends Controller
                 for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                     for ($count_penilaian = 0; $count_penilaian < count($request->rencana_nilai_k3_id); $count_penilaian++) {
                         if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
+                            if($request->nilai_npts[$count_penilaian][$cound_siswa]){
+                                $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/4;
+                            }else{
+                                $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npas[$count_penilaian][$cound_siswa])/3;
+                            }
                             $data_nilai = array(
                                 'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                                 'rencana_nilai_k3_id' => $request->rencana_nilai_k3_id[$count_penilaian],
                                 'nilai_ph'  => ltrim($request->nilai_ph[$count_penilaian][$cound_siswa]),
                                 'nilai_pts'  => ltrim($request->nilai_npts[$count_penilaian][$cound_siswa]),
                                 'nilai_pas'  => ltrim($request->nilai_npas[$count_penilaian][$cound_siswa]),
-                                'nilai_kd' => round(($request->nilai_ph[$count_penilaian][$cound_siswa] + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/3,0),
+                                'nilai_kd' => round($rumus,0),
                                 'created_at'  => Carbon::now(),
                                 'updated_at'  => Carbon::now(),
                             );
@@ -103,13 +108,19 @@ class NilaiK3Controller extends Controller
                 $guru = Guru::where('user_id', Auth::user()->id)->first();
                 $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
                 $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
+                $range = (100 - $kkm->kkm) / 3;
+                $predikat_c = round($kkm->kkm, 0);
+                $predikat_b = round($kkm->kkm + $range, 0);
+                $predikat_a = round($kkm->kkm + ($range * 2), 0);
                 for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                     $nilai_kd = round((NilaiK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai_kd'))/count($request->rencana_nilai_k3_id),0);
                     $rapot = array(
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                         'pembelajaran_id' => $request->pembelajaran_id,
                         'nilai_raport' => $nilai_kd,
-                        'kkm' => $kkm->kkm,
+                        'predikat_a' => $predikat_a,
+                        'predikat_b' => $predikat_b,
+                        'predikat_c' => $predikat_c,
                         'created_at'  => Carbon::now(),
                         'updated_at'  => Carbon::now(),
                     );
@@ -184,11 +195,16 @@ class NilaiK3Controller extends Controller
                 for ($count_penilaian = 0; $count_penilaian < count($request->rencana_nilai_k3_id); $count_penilaian++) {
                     if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
                         $nilai = NilaiK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('rencana_nilai_k3_id', $request->rencana_nilai_k3_id[$count_penilaian])->first();
+                        if($request->nilai_npts[$count_penilaian][$cound_siswa]){
+                            $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/4;
+                        }else{
+                            $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npas[$count_penilaian][$cound_siswa])/3;
+                        }
                         $data_nilai = [
                             'nilai_ph'  => ltrim($request->nilai_ph[$count_penilaian][$cound_siswa]),
                             'nilai_pts'  => ltrim($request->nilai_npts[$count_penilaian][$cound_siswa]),
                             'nilai_pas'  => ltrim($request->nilai_npas[$count_penilaian][$cound_siswa]),
-                            'nilai_kd' => round(($request->nilai_ph[$count_penilaian][$cound_siswa] + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/3,0),
+                            'nilai_kd' => round($rumus,0),
                             'updated_at'  => Carbon::now(),
                         ];
                         $nilai->update($data_nilai);

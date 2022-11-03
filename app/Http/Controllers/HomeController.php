@@ -8,11 +8,16 @@ use App\Models\Sekolah;
 use App\Models\AnggotaKelas;
 use App\Models\Kelas;
 use App\Models\Pengumuman;
+use App\Models\NilaiRapotK4;
 use App\Models\NilaiRapotK3;
 use App\Models\NilaiHafalan;
 use App\Models\NilaiSholat;
 use App\Models\NilaiT2Q;
 use App\Models\CatatanT2Q;
+use App\Models\NilaiK1;
+use App\Models\NilaiK2;
+use App\Models\NilaiK3;
+use App\Models\NilaiK4;
 use App\Models\User;
 use App\Models\Tapel;
 use App\Models\Guru;
@@ -55,20 +60,19 @@ class HomeController extends Controller
     {
         $sekolah = Sekolah::first();
         $anggota_kelas = AnggotaKelas::findorfail($id);
-        $nilai_k3 = NilaiRapotK3::where('anggota_kelas_id', $id)->get();
+        $des_ki1=NilaiK1::where('anggota_kelas_id', $id)->get();
+        $des_ki2=NilaiK2::where('anggota_kelas_id', $id)->get();
+        $des_ki3=NilaiK3::where('anggota_kelas_id', $id)->get();
+        $des_ki4=NilaiK4::where('anggota_kelas_id', $id)->get();
+        $nilai_ki3 = NilaiRapotK3::where('anggota_kelas_id', $id)->get();
+        $nilai_ki4 = NilaiRapotK4::where('anggota_kelas_id', $id)->get();
         $nilai_hafalan = NilaiHafalan::where('anggota_kelas_id', $id)->first();
         $nilai_sholat = NilaiSholat::where('anggota_kelas_id', $id)->first();
         $nilai_t2q = NilaiT2Q::where('anggota_kelas_id', $id)->first();
         $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $id)->first();
         $title = 'Raport';
-        $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', compact('title','nilai_hafalan','catatan_t2q','nilai_t2q','nilai_sholat', 'sekolah', 'anggota_kelas','nilai_k3'))->setPaper('A4','potrait');
+        $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', 
+        compact('des_ki1','des_ki2','des_ki3','des_ki4','title','nilai_hafalan','catatan_t2q','nilai_t2q','nilai_sholat', 'sekolah', 'anggota_kelas','nilai_ki3','nilai_ki4'))->setPaper('A4','potrait');
         return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->siswa->nama_lengkap . ' (' . $anggota_kelas->kelas->nama_kelas . ').pdf');
-    }
-
-    public function komentar(Request $request)
-    {
-        $data = Komentar::where("jenis", $request->country_id)
-        ->get();
-        return response()->json($data);
     }
 }

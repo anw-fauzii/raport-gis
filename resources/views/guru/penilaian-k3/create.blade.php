@@ -67,7 +67,7 @@
                           <input type="number" class="form-control" name="nilai_ph[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
                         <td>
-                          <input type="number" class="form-control" name="nilai_npts[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <input type="number" class="form-control" name="nilai_npts[{{$i}}][]" min="0" max="100" oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
                         <td>
                           <input type="number" class="form-control" name="nilai_npas[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">

@@ -34,7 +34,7 @@ class RencanaNilaiK4Controller extends Controller
         if(Auth::user()->hasRole('wali')){
             $kelas_diampu = Kelas::where('guru_id', $guru->id)->first();
             $data_kd_mapel = KdMapel::where('tapel_id', $tapel->id)->where('tingkatan_kelas',$kelas_diampu->tingkatan_kelas)->where('jenis_kompetensi', 2)->get();
-            $data_rencana_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+            $data_rencana_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',3)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
             $ren_penilaian = RencanaNilaiK4::all();
             foreach ($data_rencana_penilaian as $penilaian) {
                 $rencana_penilaian = RencanaNilaiK4::where('pembelajaran_id', $penilaian->id)->get();
@@ -44,7 +44,7 @@ class RencanaNilaiK4Controller extends Controller
 
         }else if(Auth::user()->hasRole('mapel')){
             $data_kd_mapel = KdMapel::where('tapel_id', $tapel->id)->where('jenis_kompetensi', 2)->get();
-            $data_rencana_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+            $data_rencana_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',3)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
             $ren_penilaian = RencanaNilaiK4::all();
             foreach ($data_rencana_penilaian as $penilaian) {
                 $rencana_penilaian = RencanaNilaiK4::where('pembelajaran_id', $penilaian->id)->get();

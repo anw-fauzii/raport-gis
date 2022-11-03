@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\NilaiK4;
+use App\Models\NilaiRapotK4;
 use App\Models\AnggotaKelas;
 use App\Models\Guru;
 use App\Models\RencanaNilaiK4;
 use App\Models\Kelas;
+use App\Models\KKM;
 use App\Models\Pembelajaran;
 use App\Models\Tapel;
 use Carbon\Carbon;
@@ -35,7 +37,7 @@ class NilaiK4Controller extends Controller
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
 
-            $data_penilaian = Pembelajaran::where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+            $data_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',3)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
 
             foreach ($data_penilaian as $penilaian) {
                 $data_rencana_nilai = RencanaNilaiK4::where('pembelajaran_id', $penilaian->id)->get();
@@ -92,6 +94,30 @@ class NilaiK4Controller extends Controller
                     $store_data_penilaian = $data_penilaian_siswa;
                 }
                 NilaiK4::insert($store_data_penilaian);
+                $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+                $tapel = Tapel::findorfail(5);
+                $guru = Guru::where('user_id', Auth::user()->id)->first();
+                $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+                $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
+                $range = (100 - $kkm->kkm) / 3;
+                $predikat_c = round($kkm->kkm, 0);
+                $predikat_b = round($kkm->kkm + $range, 0);
+                $predikat_a = round($kkm->kkm + ($range * 2), 0);
+                for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                    $nilai_kd = round((NilaiK4::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai'))/count($request->rencana_nilai_k4_id),0);
+                    $rapot = array(
+                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                        'pembelajaran_id' => $request->pembelajaran_id,
+                        'nilai_raport' => $nilai_kd,
+                        'predikat_a' => $predikat_a,
+                        'predikat_b' => $predikat_b,
+                        'predikat_c' => $predikat_c,
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $data_rapot[] = $rapot;
+                }
+                NilaiRapotK4::insert($data_rapot);
                 return redirect('penilaian-k4')->with('success', 'Data nilai keterampilan berhasil disimpan.');
             }
         }else{
