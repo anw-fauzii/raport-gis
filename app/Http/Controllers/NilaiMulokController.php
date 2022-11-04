@@ -9,6 +9,8 @@ use App\Models\RencanaMulok;
 use App\Models\Kelas;
 use App\Models\Pembelajaran;
 use App\Models\Tapel;
+use App\Models\KKM;
+use App\Models\NilaiRapotMulok;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,12 +75,18 @@ class NilaiMulokController extends Controller
                 for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                     for ($count_penilaian = 0; $count_penilaian < count($request->rencana_mulok_id); $count_penilaian++) {
                         if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
+                            if($request->nilai_npts[$count_penilaian][$cound_siswa]){
+                                $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/4;
+                            }else{
+                                $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npas[$count_penilaian][$cound_siswa])/3;
+                            }
                             $data_nilai = array(
                                 'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                                 'rencana_mulok_id' => $request->rencana_mulok_id[$count_penilaian],
                                 'nilai_ph'  => ltrim($request->nilai_ph[$count_penilaian][$cound_siswa]),
                                 'nilai_pts'  => ltrim($request->nilai_npts[$count_penilaian][$cound_siswa]),
                                 'nilai_pas'  => ltrim($request->nilai_npas[$count_penilaian][$cound_siswa]),
+                                'nilai_kd' => round($rumus,0),
                                 'created_at'  => Carbon::now(),
                                 'updated_at'  => Carbon::now(),
                             );
@@ -90,6 +98,30 @@ class NilaiMulokController extends Controller
                     $store_data_penilaian = $data_penilaian_siswa;
                 }
                 NilaiMulok::insert($store_data_penilaian);
+                $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+                $tapel = Tapel::findorfail(5);
+                $guru = Guru::where('user_id', Auth::user()->id)->first();
+                $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+                $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
+                $range = (100 - $kkm->kkm) / 3;
+                $predikat_c = round($kkm->kkm, 0);
+                $predikat_b = round($kkm->kkm + $range, 0);
+                $predikat_a = round($kkm->kkm + ($range * 2), 0);
+                for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                    $nilai_kd = round((NilaiMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai_kd'))/count($request->rencana_mulok_id),0);
+                    $rapot = array(
+                        'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                        'pembelajaran_id' => $request->pembelajaran_id,
+                        'nilai_raport' => $nilai_kd,
+                        'predikat_a' => $predikat_a,
+                        'predikat_b' => $predikat_b,
+                        'predikat_c' => $predikat_c,
+                        'created_at'  => Carbon::now(),
+                        'updated_at'  => Carbon::now(),
+                    );
+                    $data_rapot[] = $rapot;
+                }
+                NilaiRapotMulok::insert($data_rapot);
                 return redirect('penilaian-mulok')->with('success', 'Data nilai mulok berhasil disimpan.');
             }
         }else{

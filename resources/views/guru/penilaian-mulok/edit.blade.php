@@ -29,11 +29,11 @@
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
             </div>
-
             <div class="card-body">
               <form action="{{ route('penilaian-mulok.update', $pembelajaran->id) }}" method="POST">
               {{ method_field('PATCH') }}
               @csrf
+              <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
                 <div class="table-responsive">
                   <table class="table table-bordered table-hover">
                     <thead class="bg-primary">

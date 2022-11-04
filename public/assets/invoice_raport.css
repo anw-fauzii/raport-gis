@@ -39,6 +39,7 @@
 /* Conten */
 .invoice-box div.content {
   padding-top: 80px;
+  page-break-inside: auto;
   right: 0;
   left: 0;
 }
@@ -52,8 +53,8 @@
 .invoice-box table {
   width: 100%;
   line-height: inherit;
+  page-break-inside: auto;
   text-align: left;
-  table-layout:fixed;
 }
 
 /* Heading */

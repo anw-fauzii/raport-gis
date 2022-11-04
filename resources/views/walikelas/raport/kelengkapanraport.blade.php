@@ -543,197 +543,228 @@
         <tr>
           <td colspan="4" style="height: 30px;"><strong>C. PENGETAHUAN KI-1</strong></td>
         </tr>
-        <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-          <td style="width: 10%;">KKM</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
-        </tr>
-        @foreach($nilai_ki3 as $ki3)
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            {{$ki3->pembelajaran->mapel->nama_mapel}}
-          </td>
-          <td style="text-align:center;">{{$ki3->predikat_c}}</td>
-          <td style="text-align:center;">{{$ki3->nilai_raport}}</td>
-          <td class="description">
-            <span>
-              Ananda sangat baik dalam hal
-              @foreach($des_ki3 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
-                    @if($deskripsi->nilai_kd > $ki3->predikat_a && $deskripsi->nilai_kd <= 100 )
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">KKM</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($nilai_ki3 as $ki3)
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              {{$ki3->pembelajaran->mapel->nama_mapel}}
+            </td>
+            <td style="text-align:center;">{{$ki3->predikat_c}}</td>
+            <td style="text-align:center;">{{$ki3->nilai_raport}}</td>
+            <td class="description">
+              <span>
+                Ananda sangat baik dalam hal
+                @foreach($des_ki3 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                      @if($deskripsi->nilai_kd > $ki3->predikat_a && $deskripsi->nilai_kd <= 100 )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-              Baik dalam hal
-              @foreach($des_ki3 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
-                    @if($deskripsi->nilai_kd > $ki3->predikat_b && $deskripsi->nilai_kd < $ki3->predikat_a )
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                @endforeach
+                Baik dalam hal
+                @foreach($des_ki3 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                      @if($deskripsi->nilai_kd > $ki3->predikat_b && $deskripsi->nilai_kd < $ki3->predikat_a )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-              Cukup dalam hal
-              @foreach($des_ki3 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
-                    @if($deskripsi->nilai_kd > $ki3->predikat_c && $deskripsi->nilai_kd < $ki3->predikat_b )
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                @endforeach
+                Cukup dalam hal
+                @foreach($des_ki3 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                      @if($deskripsi->nilai_kd > $ki3->predikat_c && $deskripsi->nilai_kd < $ki3->predikat_b )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-              Perlu perbaikan
-              @foreach($des_ki3 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
-                    @if($deskripsi->nilai_kd < $ki3->predikat_c)
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                @endforeach
+                Perlu perbaikan
+                @foreach($des_ki3 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                      @if($deskripsi->nilai_kd < $ki3->predikat_c)
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-            </span>
-          </td>
-        </tr>
-        @endforeach
+                @endforeach
+              </span>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
       </table>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>D. KETERAMPILAN KI-2</strong></td>
         </tr>
-        <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
-        </tr>
-        @foreach($nilai_ki4 as $ki4)
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-          {{$ki4->pembelajaran->mapel->nama_mapel}}
-          </td>
-          <td style="text-align:center;">{{$ki4->nilai_raport}}</td>
-          <td class="description">
-          <span>
-              Ananda sangat baik dalam hal
-              @foreach($des_ki4 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
-                    @if($deskripsi->nilai > $ki4->predikat_a && $deskripsi->nilai <= 100 )
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($nilai_ki4 as $ki4)
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+            {{$ki4->pembelajaran->mapel->nama_mapel}}
+            </td>
+            <td style="text-align:center;">{{$ki4->nilai_raport}}</td>
+            <td class="description">
+            <span>
+                Ananda sangat baik dalam hal
+                @foreach($des_ki4 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                      @if($deskripsi->nilai > $ki4->predikat_a && $deskripsi->nilai <= 100 )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-              Baik dalam hal
-              @foreach($des_ki4 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
-                    @if($deskripsi->nilai > $ki4->predikat_b && $deskripsi->nilai < $ki4->predikat_a )
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                @endforeach
+                Baik dalam hal
+                @foreach($des_ki4 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                      @if($deskripsi->nilai > $ki4->predikat_b && $deskripsi->nilai < $ki4->predikat_a )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-              Cukup dalam hal
-              @foreach($des_ki4 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
-                    @if($deskripsi->nilai > $ki4->predikat_c && $deskripsi->nilai < $ki4->predikat_b )
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                @endforeach
+                Cukup dalam hal
+                @foreach($des_ki4 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                      @if($deskripsi->nilai > $ki4->predikat_c && $deskripsi->nilai < $ki4->predikat_b )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-              Perlu perbaikan
-              @foreach($des_ki4 as $deskripsi)
-                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
-                    @if($deskripsi->nilai < $ki4->predikat_c)
-                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                @endforeach
+                Perlu perbaikan
+                @foreach($des_ki4 as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                      @if($deskripsi->nilai < $ki4->predikat_c)
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
                     @endif
-                  @endif
-              @endforeach
-            </span>
-          </td>
-        </tr>
-        @endforeach
+                @endforeach
+              </span>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
       </table>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>E. KO KULIKULER DAN EKSTRAKULIKULER</strong></td>
         </tr>
-        <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Bahasa Sunda
-          </td>
-          <td style="text-align:center;">99</td>
-          <td class="description">
-            <span>b; dan menunjukkan perilaku percaya diri.</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>2</td>
-          <td>
-            Pramuka
-          </td>
-          <td style="text-align:center;">99</td>
-          <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>3</td>
-          <td>
-            Futsal
-          </td>
-          <td style="text-align:center;">99</td>
-          <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
-          </td>
-        </tr>
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              Bahasa Sunda
+            </td>
+            <td style="text-align:center;">99</td>
+            <td class="description">
+              <span>b; dan menunjukkan perilaku percaya diri. b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.</span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>2</td>
+            <td>
+              Pramuka
+            </td>
+            <td style="text-align:center;">99</td>
+            <td class="description">
+              <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>3</td>
+            <td>
+              Futsal
+            </td>
+            <td style="text-align:center;">99</td>
+            <td class="description">
+              <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>F. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
         </tr>
-        <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Handwritting
-          </td>
-          <td style="text-align:center;">-</td>
-          <td class="description">
-            <span>-</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>2</td>
-          <td>
-            Jurnal
-          </td>
-          <td style="text-align:center;">-</td>
-          <td>
-            <span>-</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>3</td>
-          <td>
-            Kitabah
-          </td>
-          <td style="text-align:center;">-</td>
-          <td class="description">
-            <span>-</span>
-          </td>
-        </tr>
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($nilai_mulok as $mulok)
+            <tr class="sikap">
+              <td>1</td>
+              <td>
+                {{$mulok->pembelajaran->mapel->nama_mapel}}
+              </td>
+              <td style="text-align:center;">{{$mulok->nilai_raport}}</td>
+              <td class="description">
+                <span>
+                  Ananda sangat baik dalam hal
+                  @foreach($des_mulok as $deskripsi)
+                      @if($deskripsi->rencana_mulok->pembelajaran_id == $mulok->pembelajaran_id)
+                        @if($deskripsi->nilai_kd > $mulok->predikat_a && $deskripsi->nilai_kd <= 100 )
+                        {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                        @endif
+                      @endif
+                  @endforeach
+                  Baik dalam hal
+                  @foreach($des_mulok as $deskripsi)
+                      @if($deskripsi->rencana_mulok->pembelajaran_id == $mulok->pembelajaran_id)
+                        @if($deskripsi->nilai_kd > $mulok->predikat_b && $deskripsi->nilai_kd < $mulok->predikat_a )
+                        {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                        @endif
+                      @endif
+                  @endforeach
+                  Cukup dalam hal
+                  @foreach($des_mulok as $deskripsi)
+                      @if($deskripsi->rencana_mulok->pembelajaran_id == $mulok->pembelajaran_id)
+                        @if($deskripsi->nilai_kd > $mulok->predikat_c && $deskripsi->nilai_kd < $mulok->predikat_b )
+                        {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                        @endif
+                      @endif
+                  @endforeach
+                  Perlu perbaikan
+                  @foreach($des_mulok as $deskripsi)
+                      @if($deskripsi->rencana_mulok->pembelajaran_id == $mulok->pembelajaran_id)
+                        @if($deskripsi->nilai_kd < $mulok->predikat_c)
+                        {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                        @endif
+                      @endif
+                  @endforeach
+                </span>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
       </table>
       <table cellspacing="0">
         <tr>
@@ -742,106 +773,112 @@
         <tr>
           <td colspan="4" style="height: 30px;"><strong>1. PELAJARAN SHOLAT</strong></td>
         </tr>
-        <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Praktek Wudhu
-          </td>
-          <td style="text-align:center;">{{$nilai_sholat->praktik_wudhu}}</td>
-          <td class="description">
-            <span>{{$nilai_sholat->deskripsi_praktik_wudhu}}</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>2</td>
-          <td>
-            Bacaan Sholat
-          </td>
-          <td style="text-align:center;">{{$nilai_sholat->bacaan_sholat}}</td>
-          <td class="description">
-            <span>{{$nilai_sholat->deskripsi_bacaan_sholat}}</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>3</td>
-          <td>
-            Gerakan Sholat
-          </td>
-          <td style="text-align:center;">{{$nilai_sholat->gerakan_sholat}}</td>
-          <td class="description">
-            <span>{{$nilai_sholat->deskripsi_gerakan_sholat}}</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>4</td>
-          <td>
-            Dzikir Bacaan Sholat
-          </td>
-          <td style="text-align:center;">{{$nilai_sholat->dzikir}}</td>
-          <td class="description">
-            <span>{{$nilai_sholat->deskripsi_dzikir}}</span>
-          </td>
-        </tr>
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              Praktek Wudhu
+            </td>
+            <td style="text-align:center;">{{$nilai_sholat->praktik_wudhu}}</td>
+            <td class="description">
+              <span>{{$nilai_sholat->deskripsi_praktik_wudhu}}</span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>2</td>
+            <td>
+              Bacaan Sholat
+            </td>
+            <td style="text-align:center;">{{$nilai_sholat->bacaan_sholat}}</td>
+            <td class="description">
+              <span>{{$nilai_sholat->deskripsi_bacaan_sholat}}</span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>3</td>
+            <td>
+              Gerakan Sholat
+            </td>
+            <td style="text-align:center;">{{$nilai_sholat->gerakan_sholat}}</td>
+            <td class="description">
+              <span>{{$nilai_sholat->deskripsi_gerakan_sholat}}</span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>4</td>
+            <td>
+              Dzikir Bacaan Sholat
+            </td>
+            <td style="text-align:center;">{{$nilai_sholat->dzikir}}</td>
+            <td class="description">
+              <span>{{$nilai_sholat->deskripsi_dzikir}}</span>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>2. HAFALAN</strong></td>
         </tr>
-        <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
-        </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Hafalan Hadis
-          </td>
-          <td style="text-align:center;">{{$nilai_hafalan->hadis}}</td>
-          <td class="description">
-            <span>{{$nilai_hafalan->deskripsi_hadis}}</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>2</td>
-          <td>
-            Hafalan Dia
-          </td>
-          <td style="text-align:center;">{{$nilai_hafalan->doa}}</td>
-          <td class="description">
-            <span>{{$nilai_hafalan->deskripsi_doa}}</span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>3</td>
-          <td>
-            Hafalan Kata - Kata Hikmah
-          </td>
-          <td style="text-align:center;">{{$nilai_hafalan->hikmah}}</td>
-          <td class="description">
-            <span>{{$nilai_hafalan->deskripsi_hikmah}}</span>
-          </td>
-        </tr>
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              Hafalan Hadis
+            </td>
+            <td style="text-align:center;">{{$nilai_hafalan->hadis}}</td>
+            <td class="description">
+              <span>{{$nilai_hafalan->deskripsi_hadis}}</span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>2</td>
+            <td>
+              Hafalan Dia
+            </td>
+            <td style="text-align:center;">{{$nilai_hafalan->doa}}</td>
+            <td class="description">
+              <span>{{$nilai_hafalan->deskripsi_doa}}</span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>3</td>
+            <td>
+              Hafalan Kata - Kata Hikmah
+            </td>
+            <td style="text-align:center;">{{$nilai_hafalan->hikmah}}</td>
+            <td class="description">
+              <span>{{$nilai_hafalan->deskripsi_hikmah}}</span>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>3. TAHSIN DAN TAHFIDZ AL-QUR'AN</strong></td>
         </tr>
-        <thead style="display: table-row-group;">
         <tr class="heading">
           <td style="width: 4%;">NO</td>
           <td style="width: 26%;">TAHSIN AL-QUR'AN</td>
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
         </tr>
-        </thead>
         <tr class="sikap">
           <td>1</td>
           <td>
@@ -887,7 +924,7 @@
           </td>
         </tr>
       </table>
-      <table cellspacing="0" page-break-inside: auto>
+      <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>H. BUDAYA NILAI PRIMA</strong></td>
         </tr>
@@ -900,138 +937,193 @@
           </tr>
         </thead>
         <tbody>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Proactive
-          </td>
-          <td style="text-align:center;">S</td>
-          <td class="description">
-            <span>
-              Ananda sangat baik terutama
-              @foreach($proactive->where('nilai',4) as $nilai)
-              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta baik terutama
-              @foreach($proactive->where('nilai',3) as $nilai)
-              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta cukup terutama
-              @foreach($proactive->where('nilai',2) as $nilai)
-              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta kurang terutama
-              @foreach($proactive->where('nilai',1) as $nilai)
-              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
-              @endforeach
-            </span>  
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>2</td>
-          <td>
-            Responsible
-          </td>
-          <td style="text-align:center;">S</td>
-          <td class="description">
-            <span>
-              Ananda sangat baik terutama
-              @foreach($responsible->where('nilai',4) as $nilai)
-              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta baik terutama
-              @foreach($responsible->where('nilai',3) as $nilai)
-              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta cukup terutama
-              @foreach($responsible->where('nilai',2) as $nilai)
-              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta kurang terutama
-              @foreach($responsible->where('nilai',1) as $nilai)
-              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
-              @endforeach
-            </span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>3</td>
-          <td>
-            Innovative
-          </td>
-          <td style="text-align:center;">S</td>
-          <td class="description">
-            <span>Ananda sangat baik terutama
-              @foreach($innovative->where('nilai',4) as $nilai)
-              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta baik terutama
-              @foreach($innovative->where('nilai',3) as $nilai)
-              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta cukup terutama
-              @foreach($innovative->where('nilai',2) as $nilai)
-              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta kurang terutama
-              @foreach($innovative->where('nilai',1) as $nilai)
-              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
-              @endforeach
-            </span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>4</td>
-          <td>
-            Modest
-          </td>
-          <td style="text-align:center;">S</td>
-          <td class="description">
-            <span>Ananda sangat baik terutama
-              @foreach($modest->where('nilai',4) as $nilai)
-              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta baik terutama
-              @foreach($modest->where('nilai',3) as $nilai)
-              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta cukup terutama
-              @foreach($modest->where('nilai',2) as $nilai)
-              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta kurang terutama
-              @foreach($modest->where('nilai',1) as $nilai)
-              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
-              @endforeach
-            </span>
-          </td>
-        </tr>
-        <tr class="sikap">
-          <td>5</td>
-          <td>
-            Achievement
-          </td>
-          <td style="text-align:center;">S</td>
-          <td class="description">
-            <span>Ananda sangat baik terutama
-              @foreach($achievement->where('nilai',4) as $nilai)
-              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta baik terutama
-              @foreach($achievement->where('nilai',3) as $nilai)
-              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta cukup terutama
-              @foreach($achievement->where('nilai',2) as $nilai)
-              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
-              @endforeach
-              Serta kurang terutama
-              @foreach($achievement->where('nilai',1) as $nilai)
-              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
-              @endforeach
-            </span>
-          </td>
-        </tr>
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              Proactive
+            </td>
+            @php
+            $hasil_proactive = round($proactive->sum('nilai')/$proactive->count(),1);
+            @endphp
+            <td style="text-align:center;">
+              @if($hasil_proactive >= 3.1)
+              SB
+              @elseif($hasil_proactive >= 2.1)
+              B
+              @else
+              C
+              @endif
+            </td>
+            <td class="description">
+              <span>
+                Ananda sangat baik terutama
+                @foreach($proactive->where('nilai',4) as $nilai)
+                {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta baik terutama
+                @foreach($proactive->where('nilai',3) as $nilai)
+                {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta cukup terutama
+                @foreach($proactive->where('nilai',2) as $nilai)
+                {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta kurang terutama
+                @foreach($proactive->where('nilai',1) as $nilai)
+                {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+                @endforeach
+              </span>  
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>2</td>
+            <td>
+              Responsible
+            </td>
+            @php
+            $hasil_responsible = round($responsible->sum('nilai')/$responsible->count(),1);
+            @endphp
+            <td style="text-align:center;">
+              @if($hasil_responsible >= 3.1)
+              SB
+              @elseif($hasil_responsible >= 2.1)
+              B
+              @else
+              C
+              @endif
+            </td>
+            <td class="description">
+              <span>
+                Ananda sangat baik terutama
+                @foreach($responsible->where('nilai',4) as $nilai)
+                {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta baik terutama
+                @foreach($responsible->where('nilai',3) as $nilai)
+                {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta cukup terutama
+                @foreach($responsible->where('nilai',2) as $nilai)
+                {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta kurang terutama
+                @foreach($responsible->where('nilai',1) as $nilai)
+                {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+                @endforeach
+              </span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>3</td>
+            <td>
+              Innovative
+            </td>
+            @php
+            $hasil_innovative = round($innovative->sum('nilai')/$innovative->count(),1);
+            @endphp
+            <td style="text-align:center;">
+              @if($hasil_innovative >= 3.1)
+              SB
+              @elseif($hasil_innovative >= 2.1)
+              B
+              @else
+              C
+              @endif
+            </td>
+            <td class="description">
+              <span>Ananda sangat baik terutama
+                @foreach($innovative->where('nilai',4) as $nilai)
+                {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta baik terutama
+                @foreach($innovative->where('nilai',3) as $nilai)
+                {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta cukup terutama
+                @foreach($innovative->where('nilai',2) as $nilai)
+                {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta kurang terutama
+                @foreach($innovative->where('nilai',1) as $nilai)
+                {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+                @endforeach
+              </span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>4</td>
+            <td>
+              Modest
+            </td>
+            @php
+            $hasil_modest = round($modest->sum('nilai')/$modest->count(),1);
+            @endphp
+            <td style="text-align:center;">
+              @if($hasil_modest >= 3.1)
+              SB
+              @elseif($hasil_modest >= 2.1)
+              B
+              @else
+              C
+              @endif
+            </td>
+            <td class="description">
+              <span>Ananda sangat baik terutama
+                @foreach($modest->where('nilai',4) as $nilai)
+                {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta baik terutama
+                @foreach($modest->where('nilai',3) as $nilai)
+                {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta cukup terutama
+                @foreach($modest->where('nilai',2) as $nilai)
+                {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta kurang terutama
+                @foreach($modest->where('nilai',1) as $nilai)
+                {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+                @endforeach
+              </span>
+            </td>
+          </tr>
+          <tr class="sikap">
+            <td>5</td>
+            <td>
+              Achievement
+            </td>
+            @php
+            $hasil_achievement = round($achievement->sum('nilai')/$achievement->count(),1);
+            @endphp
+            <td style="text-align:center;">
+              @if($hasil_achievement >= 3.1)
+              SB
+              @elseif($hasil_achievement >= 2.1)
+              B
+              @else
+              C
+              @endif
+            </td>
+            <td class="description">
+              <span>Ananda sangat baik terutama
+                @foreach($achievement->where('nilai',4) as $nilai)
+                {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta baik terutama
+                @foreach($achievement->where('nilai',3) as $nilai)
+                {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta cukup terutama
+                @foreach($achievement->where('nilai',2) as $nilai)
+                {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+                @endforeach
+                Serta kurang terutama
+                @foreach($achievement->where('nilai',1) as $nilai)
+                {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+                @endforeach
+              </span>
+            </td>
+          </tr>
         </tbody>
       </table>
       <table cellspacing="0">
@@ -1048,17 +1140,17 @@
         <tr>
           <td style="height: 30px;"><strong>KETIDAKHADIRAN</strong></td>
         </tr>
-        <tr class="nilai">
+        <tr class="sikap">
           <td colspan="1" style="border-right:0 ;">Sakit</td>
           <td style="border-left:0 ;">: 0 hari</td>
           <td class="false"></td>
         </tr>
-        <tr class="nilai">
+        <tr class="sikap">
           <td colspan="1" style="border-right:0 ;">Izin</td>
           <td style="border-left:0 ;">: 0 hari</td>
           <td class="false"></td>
         </tr>
-        <tr class="nilai">
+        <tr class="sikap">
           <td colspan="1" style="border-right:0 ;">Tanpa Keterangan</td>
           <td style="border-left:0 ;">: 0 hari</td>
           <td class="false"></td>
@@ -1085,8 +1177,8 @@
           <td style="width: 35%;">
             Mengetahui <br>
             Kepala Sekolah, <br><br><br><br>
-            <b><u>PUJI FAUZIAH, S.Pd.SD</u></b><br>
-            NRKS. 12313 123 123 12 3123123
+            <b><u>{{$sekolah->kepala_sekolah}}</u></b><br>
+            NRKS. {{$sekolah->nip_kepala_sekolah}}
           </td>
           <td style="width: 35%;"></td>
         </tr>
