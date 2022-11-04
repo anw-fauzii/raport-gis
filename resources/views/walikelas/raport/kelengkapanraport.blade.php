@@ -1132,7 +1132,7 @@
         </tr>
         <tr class="sikap">
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>{{$catatan_umum->catatan}}</span>
           </td>
         </tr>
       </table>

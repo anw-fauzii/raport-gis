@@ -14,6 +14,7 @@ use App\Models\NilaiHafalan;
 use App\Models\NilaiSholat;
 use App\Models\NilaiT2Q;
 use App\Models\CatatanT2Q;
+use App\Models\CatatanUmum;
 use App\Models\NilaiK1;
 use App\Models\NilaiK2;
 use App\Models\NilaiK3;
@@ -89,11 +90,12 @@ class HomeController extends Controller
         $nilai_sholat = NilaiSholat::where('anggota_kelas_id', $id)->first();
         $nilai_t2q = NilaiT2Q::where('anggota_kelas_id', $id)->first();
         $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $id)->first();
+        $catatan_umum = CatatanUmum::where('anggota_kelas_id', $id)->first();
         $title = 'Raport';
         $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', 
         compact('des_ki1','des_ki2','des_ki3','des_ki4','des_mulok',
         'proactive','responsible','innovative','modest','achievement',
-        'title','nilai_hafalan','catatan_t2q','nilai_t2q','nilai_sholat', 'sekolah',
+        'title','nilai_hafalan','catatan_t2q','catatan_umum','nilai_t2q','nilai_sholat', 'sekolah',
         'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok'))->setPaper('A4','potrait');
         return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->siswa->nama_lengkap . ' (' . $anggota_kelas->kelas->nama_kelas . ').pdf');
     }
