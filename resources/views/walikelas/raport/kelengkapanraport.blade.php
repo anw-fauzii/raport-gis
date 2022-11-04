@@ -560,29 +560,34 @@
           <td style="text-align:center;">{{$ki3->nilai_raport}}</td>
           <td class="description">
             <span>
-              sangat baik 
+              Ananda sangat baik dalam hal
               @foreach($des_ki3 as $deskripsi)
                   @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
-                    @if($deskripsi->nilai_kd <= $ki3->predikat_a)
+                    @if($deskripsi->nilai_kd > $ki3->predikat_a && $deskripsi->nilai_kd <= 100 )
                     {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
-                    @elseif($deskripsi->nilai_kd <= $ki3->predikat_b)
-                    @elseif($deskripsi->nilai_kd <= $ki3->predikat_c)
                     @endif
                   @endif
               @endforeach
-              baik 
+              Baik dalam hal
               @foreach($des_ki3 as $deskripsi)
                   @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
-                    @if($deskripsi->nilai_kd <= $ki3->predikat_b)
+                    @if($deskripsi->nilai_kd > $ki3->predikat_b && $deskripsi->nilai_kd < $ki3->predikat_a )
                     {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
-                    @elseif($deskripsi->nilai_kd <= $ki3->predikat_c)
                     @endif
                   @endif
               @endforeach
-              perbaikan 
+              Cukup dalam hal
               @foreach($des_ki3 as $deskripsi)
                   @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
-                    @if($deskripsi->nilai_kd <= $ki3->predikat_c)
+                    @if($deskripsi->nilai_kd > $ki3->predikat_c && $deskripsi->nilai_kd < $ki3->predikat_b )
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @endif
+                  @endif
+              @endforeach
+              Perlu perbaikan
+              @foreach($des_ki3 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki3->pembelajaran_id)
+                    @if($deskripsi->nilai_kd < $ki3->predikat_c)
                     {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
                     @endif
                   @endif
@@ -602,16 +607,51 @@
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
         </tr>
+        @foreach($nilai_ki4 as $ki4)
         <tr class="sikap">
           <td>1</td>
           <td>
-            Bahasa Indonesia
+          {{$ki4->pembelajaran->mapel->nama_mapel}}
           </td>
-          <td style="text-align:center;">99</td>
+          <td style="text-align:center;">{{$ki4->nilai_raport}}</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+          <span>
+              Ananda sangat baik dalam hal
+              @foreach($des_ki4 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                    @if($deskripsi->nilai > $ki4->predikat_a && $deskripsi->nilai <= 100 )
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @endif
+                  @endif
+              @endforeach
+              Baik dalam hal
+              @foreach($des_ki4 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                    @if($deskripsi->nilai > $ki4->predikat_b && $deskripsi->nilai < $ki4->predikat_a )
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @endif
+                  @endif
+              @endforeach
+              Cukup dalam hal
+              @foreach($des_ki4 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                    @if($deskripsi->nilai > $ki4->predikat_c && $deskripsi->nilai < $ki4->predikat_b )
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @endif
+                  @endif
+              @endforeach
+              Perlu perbaikan
+              @foreach($des_ki4 as $deskripsi)
+                  @if($deskripsi->rencana_mapel->pembelajaran_id == $ki4->pembelajaran_id)
+                    @if($deskripsi->nilai < $ki4->predikat_c)
+                    {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                    @endif
+                  @endif
+              @endforeach
+            </span>
           </td>
         </tr>
+        @endforeach
       </table>
       <table cellspacing="0">
         <tr>
@@ -867,7 +907,24 @@
           </td>
           <td style="text-align:center;">S</td>
           <td class="description">
-            <span>asas</span>  
+            <span>
+              Ananda sangat baik terutama
+              @foreach($proactive->where('nilai',4) as $nilai)
+              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta baik terutama
+              @foreach($proactive->where('nilai',3) as $nilai)
+              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta cukup terutama
+              @foreach($proactive->where('nilai',2) as $nilai)
+              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta kurang terutama
+              @foreach($proactive->where('nilai',1) as $nilai)
+              {{$nilai->rencana_proactive->butir_sikap->butir_sikap}},
+              @endforeach
+            </span>  
           </td>
         </tr>
         <tr class="sikap">
@@ -877,7 +934,24 @@
           </td>
           <td style="text-align:center;">S</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>
+              Ananda sangat baik terutama
+              @foreach($responsible->where('nilai',4) as $nilai)
+              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta baik terutama
+              @foreach($responsible->where('nilai',3) as $nilai)
+              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta cukup terutama
+              @foreach($responsible->where('nilai',2) as $nilai)
+              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta kurang terutama
+              @foreach($responsible->where('nilai',1) as $nilai)
+              {{$nilai->rencana_responsible->butir_sikap->butir_sikap}},
+              @endforeach
+            </span>
           </td>
         </tr>
         <tr class="sikap">
@@ -887,7 +961,23 @@
           </td>
           <td style="text-align:center;">S</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>Ananda sangat baik terutama
+              @foreach($innovative->where('nilai',4) as $nilai)
+              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta baik terutama
+              @foreach($innovative->where('nilai',3) as $nilai)
+              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta cukup terutama
+              @foreach($innovative->where('nilai',2) as $nilai)
+              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta kurang terutama
+              @foreach($innovative->where('nilai',1) as $nilai)
+              {{$nilai->rencana_innovative->butir_sikap->butir_sikap}},
+              @endforeach
+            </span>
           </td>
         </tr>
         <tr class="sikap">
@@ -897,7 +987,23 @@
           </td>
           <td style="text-align:center;">S</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>Ananda sangat baik terutama
+              @foreach($modest->where('nilai',4) as $nilai)
+              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta baik terutama
+              @foreach($modest->where('nilai',3) as $nilai)
+              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta cukup terutama
+              @foreach($modest->where('nilai',2) as $nilai)
+              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta kurang terutama
+              @foreach($modest->where('nilai',1) as $nilai)
+              {{$nilai->rencana_modest->butir_sikap->butir_sikap}},
+              @endforeach
+            </span>
           </td>
         </tr>
         <tr class="sikap">
@@ -907,7 +1013,23 @@
           </td>
           <td style="text-align:center;">S</td>
           <td class="description">
-            <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+            <span>Ananda sangat baik terutama
+              @foreach($achievement->where('nilai',4) as $nilai)
+              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta baik terutama
+              @foreach($achievement->where('nilai',3) as $nilai)
+              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta cukup terutama
+              @foreach($achievement->where('nilai',2) as $nilai)
+              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+              @endforeach
+              Serta kurang terutama
+              @foreach($achievement->where('nilai',1) as $nilai)
+              {{$nilai->rencana_achievement->butir_sikap->butir_sikap}},
+              @endforeach
+            </span>
           </td>
         </tr>
         </tbody>

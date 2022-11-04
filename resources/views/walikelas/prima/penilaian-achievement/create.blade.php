@@ -62,7 +62,12 @@
                         @foreach($data_rencana_penilaian as $rencana_penilaian)
                         <?php $i++; ?>
                         <td>
-                        <input type="number" class="form-control" name="nilai[{{$i}}][]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          <select class="form-control" name="nilai[{{$i}}][]" style="width: 100%;" required oninvalid="this.setCustomValidity('silakan pilih item dalam daftar')" oninput="setCustomValidity('')">
+                            <option value="4">Sangat Baik</option>
+                            <option value="3" selected>Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                          </select>
                         </td>
                         @endforeach
 

@@ -67,10 +67,14 @@
                   @foreach($anggota_kelas->data_nilai as $nilai)
                   <?php $i++; ?>
                   <td>
-                    <input type="number" class="form-control" name="nilai[{{$i}}][]" min="0" value="{{$nilai->nilai}}" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                    <select class="form-control" name="nilai[{{$i}}][]" style="width: 100%;" required oninvalid="this.setCustomValidity('silakan pilih item dalam daftar')" oninput="setCustomValidity('')">
+                      <option value="4" @if($nilai->nilai==4) selected @endif>Sangat Baik</option>
+                      <option value="3" @if($nilai->nilai==3) selected @endif>Baik</option>
+                      <option value="2" @if($nilai->nilai==2) selected @endif>Cukup</option>
+                      <option value="1" @if($nilai->nilai==1) selected @endif>Kurang</option>
+                    </select>
                   </td>
                   @endforeach
-
                 </tr>
                 @endforeach
               </tbody>

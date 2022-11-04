@@ -18,6 +18,11 @@ use App\Models\NilaiK1;
 use App\Models\NilaiK2;
 use App\Models\NilaiK3;
 use App\Models\NilaiK4;
+use App\Models\NIlaiPrima\NilaiProactive;
+use App\Models\NIlaiPrima\NilaiInnovative;
+use App\Models\NIlaiPrima\NilaiModest;
+use App\Models\NIlaiPrima\NilaiResponsible;
+use App\Models\NIlaiPrima\NilaiAchievement;
 use App\Models\User;
 use App\Models\Tapel;
 use App\Models\Guru;
@@ -64,6 +69,11 @@ class HomeController extends Controller
         $des_ki2=NilaiK2::where('anggota_kelas_id', $id)->get();
         $des_ki3=NilaiK3::where('anggota_kelas_id', $id)->get();
         $des_ki4=NilaiK4::where('anggota_kelas_id', $id)->get();
+        $proactive=NilaiProactive::where('anggota_kelas_id', $id)->get();
+        $responsible=NilaiResponsible::where('anggota_kelas_id', $id)->get();
+        $innovative=NilaiInnovative::where('anggota_kelas_id', $id)->get();
+        $modest=NilaiModest::where('anggota_kelas_id', $id)->get();
+        $achievement=NilaiAchievement::where('anggota_kelas_id', $id)->get();
         $nilai_ki3 = NilaiRapotK3::where('anggota_kelas_id', $id)->get();
         $nilai_ki4 = NilaiRapotK4::where('anggota_kelas_id', $id)->get();
         $nilai_hafalan = NilaiHafalan::where('anggota_kelas_id', $id)->first();
@@ -72,7 +82,9 @@ class HomeController extends Controller
         $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $id)->first();
         $title = 'Raport';
         $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', 
-        compact('des_ki1','des_ki2','des_ki3','des_ki4','title','nilai_hafalan','catatan_t2q','nilai_t2q','nilai_sholat', 'sekolah', 'anggota_kelas','nilai_ki3','nilai_ki4'))->setPaper('A4','potrait');
+        compact('des_ki1','des_ki2','des_ki3','des_ki4',
+        'proactive','responsible','innovative','modest','achievement',
+        'title','nilai_hafalan','catatan_t2q','nilai_t2q','nilai_sholat', 'sekolah', 'anggota_kelas','nilai_ki3','nilai_ki4'))->setPaper('A4','potrait');
         return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->siswa->nama_lengkap . ' (' . $anggota_kelas->kelas->nama_kelas . ').pdf');
     }
 }

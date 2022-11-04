@@ -68,7 +68,6 @@
                             <option value="2">Cukup</option>
                             <option value="1">Kurang</option>
                           </select>
-
                         </td>
                         @endforeach
 
