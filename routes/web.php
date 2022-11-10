@@ -86,3 +86,10 @@ Route::resource('/penilaian-tahsin',App\Http\Controllers\NilaiTahsinController::
 
 Route::get('data-siswa', [App\Http\Controllers\SiswaKelasController::class,'wali'])->name('data-siswa-wali');
 Route::get('detail-siswa/{id}', [App\Http\Controllers\SiswaKelasController::class,'detail'])->name('detail-siswa');
+
+Route::resource('/rencana-kokulikuler',App\Http\Controllers\RencanaKokulikulerController::class);
+Route::resource('/penilaian-kokulikuler',App\Http\Controllers\NilaiKokulikulerController::class);
+
+Route::resource('/ekstrakulikuler',App\Http\Controllers\EkstrakulikulerController::class);
+Route::post('ekstrakulikuler/anggota', [App\Http\Controllers\AnggotaEkstrakulikulerController::class,'store_anggota'])->name('ekstrakulikuler.anggota');
+Route::delete('ekstrakulikuler/anggota/{id}', [App\Http\Controllers\AnggotaEkstrakulikulerController::class,'delete_anggota'])->name('ekstrakulikuler.anggota.delete');

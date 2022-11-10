@@ -81,6 +81,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="{{route('ekstrakulikuler.index')}}" class="nav-link">
+                <i class="fas fa-users nav-icon"></i>
+                <p>Ekstrakulikuler</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{route('pembelajaran.index')}}" class="nav-link">
                 <i class="fas fa-calendar-check nav-icon"></i>
                 <p>Pembelajaran</p>
@@ -141,8 +147,8 @@
         @endrole
         @role('mapel')
         <li class="nav-header">Rencana Penilaian</li>
-        <li class="nav-item has-treeview {{(request()->is('rencana-k1*','rencana-k2*','rencana-k3*','rencana-k4*')) ? 'menu-open' :''}}">
-          <a href="#" class="nav-link {{(request()->is('rencana-k1*','rencana-k2*','rencana-k3*','rencana-k4*')) ? 'active' :''}}">
+        <li class="nav-item has-treeview {{(request()->is('rencana-k1*','rencana-k2*','rencana-k3*','rencana-k4*','rencana-kokulikuler*')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('rencana-k1*','rencana-k2*','rencana-k3*','rencana-k4*','rencana-kokulikuler*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
               Kompetensi Dasar
@@ -174,6 +180,12 @@
               <a href="{{route('rencana-k4.index')}}" class="nav-link {{(request()->is('rencana-k4*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-4</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('rencana-kokulikuler.index')}}" class="nav-link {{(request()->is('rencana-kokulikuler*')) ? 'active' :''}}">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Kokulikuler</p>
               </a>
             </li>
           </ul>
@@ -230,8 +242,8 @@
         </li>
         @endrole
         <li class="nav-header">Penilaian</li>
-        <li class="nav-item has-treeview {{(request()->is('penilaian-k1*','penilaian-k2*','penilaian-k3*','penilaian-k4*')) ? 'menu-open' :''}}">
-          <a href="#" class="nav-link {{(request()->is('penilaian-k1*','penilaian-k2*','penilaian-k3*','penilaian-k4*')) ? 'active' :''}}">
+        <li class="nav-item has-treeview {{(request()->is('penilaian-k1*','penilaian-k2*','penilaian-k3*','penilaian-k4*','penilaian-kokulikuler*')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('penilaian-k1*','penilaian-k2*','penilaian-k3*','penilaian-k4*','penilaian-kokulikuler*')) ? 'active' :''}}">
             <i class="nav-icon fas fa-list-ol"></i>
             <p>
               Kompetensi Dasar
@@ -263,6 +275,12 @@
               <a href="{{route('penilaian-k4.index')}}" class="nav-link {{(request()->is('penilaian-k4*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>KI-4</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('penilaian-kokulikuler.index')}}" class="nav-link {{(request()->is('penilaian-kokulikuler*')) ? 'active' :''}}">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Kokulikuler</p>
               </a>
             </li>
           </ul>

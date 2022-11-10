@@ -13,6 +13,7 @@ class Siswa extends Model
         'user_id',
         'kelas_id',
         'guru_id',
+        'ekstrakulikuler_id',
         'jenis_pendaftaran',
         'nis',
         'nisn',

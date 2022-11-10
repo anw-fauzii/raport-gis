@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNilaiRapotK3Table extends Migration
+class CreateNilaiRapotKokulikulerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNilaiRapotK3Table extends Migration
      */
     public function up()
     {
-        Schema::create('nilai_rapot_k3', function (Blueprint $table) {
+        Schema::create('nilai_rapot_kokulikuler', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pembelajaran_id')->unsigned();
             $table->unsignedBigInteger('anggota_kelas_id')->unsigned();
@@ -36,6 +36,6 @@ class CreateNilaiRapotK3Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nilai_rapot_k3');
+        Schema::dropIfExists('nilai_rapot_kokulikuler');
     }
 }

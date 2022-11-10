@@ -8,7 +8,7 @@
 </head>
 <style>
   body {
-    margin-left: 16mm;
+    margin-left: 16mm; 
   }
   table {
     page-break-inside:avoid;
@@ -120,6 +120,7 @@
     </div>
   </div>
   <div class="page-break"></div>
+
   <!-- Page 3 Petunjuk penggunaan -->
   <div class="invoice-box">
     <div style="text-align: center;">
@@ -216,6 +217,7 @@
     </div>
   </div>
   <div class="page-break"></div>
+
   <!-- Page 4 Identitas Peserta Didik -->
   <div class="invoice-box">
     <div style="text-align: center;">
@@ -419,6 +421,8 @@
     </div>
   </div>
   <div class="page-break"></div>
+
+  <!-- Page 5 Penilaian Peserta Didik -->
   <div class="invoice-box">
     <div class="header">
       <table>
@@ -541,7 +545,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>C. PENGETAHUAN KI-1</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>B. PENGETAHUAN KI-3</strong></td>
         </tr>
         <thead>
           <tr class="heading">
@@ -603,7 +607,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>D. KETERAMPILAN KI-2</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>C. KETERAMPILAN KI-4</strong></td>
         </tr>
         <thead>
           <tr class="heading">
@@ -663,7 +667,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>E. KO KULIKULER DAN EKSTRAKULIKULER</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>D. KOKULIKULER</strong></td>
         </tr>
         <thead>
           <tr class="heading">
@@ -674,16 +678,66 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($nilai_kokulikuler as $kokulikuler)
           <tr class="sikap">
             <td>1</td>
             <td>
-              Bahasa Sunda
+              {{$kokulikuler->pembelajaran->mapel->nama_mapel}}
             </td>
-            <td style="text-align:center;">99</td>
+            <td style="text-align:center;">{{$kokulikuler->nilai_raport}}</td>
             <td class="description">
-              <span>b; dan menunjukkan perilaku percaya diri. b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.b; dan menunjukkan perilaku percaya diri.</span>
+              <span>
+                Ananda sangat baik dalam hal
+                @foreach($des_kokulikuler as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $kokulikuler->pembelajaran_id)
+                      @if($deskripsi->nilai_kd > $kokulikuler->predikat_a && $deskripsi->nilai_kd <= 100 )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
+                    @endif
+                @endforeach
+                Baik dalam hal
+                @foreach($des_kokulikuler as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $kokulikuler->pembelajaran_id)
+                      @if($deskripsi->nilai_kd > $kokulikuler->predikat_b && $deskripsi->nilai_kd < $kokulikuler->predikat_a )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
+                    @endif
+                @endforeach
+                Cukup dalam hal
+                @foreach($des_kokulikuler as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $kokulikuler->pembelajaran_id)
+                      @if($deskripsi->nilai_kd > $kokulikuler->predikat_c && $deskripsi->nilai_kd < $kokulikuler->predikat_b )
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
+                    @endif
+                @endforeach
+                Perlu perbaikan
+                @foreach($des_kokulikuler as $deskripsi)
+                    @if($deskripsi->rencana_mapel->pembelajaran_id == $kokulikuler->pembelajaran_id)
+                      @if($deskripsi->nilai_kd < $kokulikuler->predikat_c)
+                      {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                      @endif
+                    @endif
+                @endforeach
+              </span>
             </td>
           </tr>
+          @endforeach
+        </tbody>
+      </table>
+      <table cellspacing="0">
+        <tr>
+          <td colspan="4" style="height: 30px;"><strong>D. EKSTRAKULIKULER</strong></td>
+        </tr>
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
           <tr class="sikap">
             <td>2</td>
             <td>
@@ -708,7 +762,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>F. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>E. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
         </tr>
         <thead>
           <tr class="heading">
@@ -768,7 +822,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>G. MUATAN LOKAL PAI KHAS PRIMA INSANI</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>F. MUATAN LOKAL PAI KHAS PRIMA INSANI</strong></td>
         </tr>
         <tr>
           <td colspan="4" style="height: 30px;"><strong>1. PELAJARAN SHOLAT</strong></td>
@@ -916,7 +970,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td style="height: 30px;"><strong>CATATAN TAHSIN TAHFIDZ AL-QUR'AN</strong></td>
+          <td style="height: 30px;"><strong>G. CATATAN TAHSIN TAHFIDZ AL-QUR'AN</strong></td>
         </tr>
         <tr class="sikap">
           <td class="description">
@@ -1128,32 +1182,33 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td style="height: 30px;"><strong>CATATAN WALI KELAS</strong></td>
+          <td style="height: 30px;"><strong>I. CATATAN WALI KELAS</strong></td>
         </tr>
         <tr class="sikap">
           <td class="description">
-            <span>{{$catatan_umum->catatan}}</span>
+            <span>{{$catatan_umum->catatan
+            }}</span>
           </td>
         </tr>
       </table>
       <table cellspacing="0">
         <tr>
-          <td style="height: 30px;"><strong>KETIDAKHADIRAN</strong></td>
+          <td style="height: 30px;"><strong>I. KETIDAKHADIRAN</strong></td>
         </tr>
         <tr class="sikap">
-          <td colspan="1" style="border-right:0 ;">Sakit</td>
-          <td style="border-left:0 ;">: 0 hari</td>
-          <td class="false"></td>
+          <td width="25%">Sakit</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->sakit}} Hari</td>
         </tr>
         <tr class="sikap">
-          <td colspan="1" style="border-right:0 ;">Izin</td>
-          <td style="border-left:0 ;">: 0 hari</td>
-          <td class="false"></td>
+          <td width="25%">Izin</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->izin}} Hari</td>
         </tr>
         <tr class="sikap">
-          <td colspan="1" style="border-right:0 ;">Tanpa Keterangan</td>
-          <td style="border-left:0 ;">: 0 hari</td>
-          <td class="false"></td>
+          <td width="25%">Tanpa Keterangan</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->tanpa_keterangan}} Hari</td>
         </tr>
       </table>
       <div style="padding-top:1rem; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
@@ -1186,6 +1241,19 @@
       </div>
     </div>
   </div>
+  <script type="text/php">
+      if ( isset($pdf) ) {
+          $x = 520;
+          $y = 800;
+          $text = "{PAGE_NUM} of {PAGE_COUNT}";
+          $font = $fontMetrics->get_font("helvetica", "bold");
+          $size = 10;
+          $color = array(0,0,0);
+          $word_space = 0.0;
+          $char_space = 0.0;
+          $angle = 0.0;
+          $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+      }
+  </script>
 </body>
-
 </html>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NilaiK3;
-use App\Models\NilaiRapotK3;
+use App\Models\NilaiKokulikuler;
+use App\Models\NilaiRapotKokulikuler;
 use App\Models\AnggotaKelas;
 use App\Models\Guru;
 use App\Models\KKM;
-use App\Models\RencanaNilaiK3;
+use App\Models\RencanaKokulikuler;
 use App\Models\Kelas;
 use App\Models\Pembelajaran;
 use App\Models\Tapel;
@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class NilaiK3Controller extends Controller
+class NilaiKokulikulerController extends Controller
 {
     public function __construct()
     {
@@ -37,18 +37,18 @@ class NilaiK3Controller extends Controller
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
 
-            $data_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',3)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+            $data_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',5)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
 
             foreach ($data_penilaian as $penilaian) {
-                $data_rencana_nilai = RencanaNilaiK3::where('pembelajaran_id', $penilaian->id)->get();
-                $id_rencana_nilai = RencanaNilaiK3::where('pembelajaran_id', $penilaian->id)->get('id');
-                $telah_dinilai = NilaiK3::whereIn('rencana_nilai_k3_id', $id_rencana_nilai)->groupBy('rencana_nilai_k3_id')->get();
+                $data_rencana_nilai = RencanaKokulikuler::where('pembelajaran_id', $penilaian->id)->get();
+                $id_rencana_nilai = RencanaKokulikuler::where('pembelajaran_id', $penilaian->id)->get('id');
+                $telah_dinilai = NilaiKokulikuler::whereIn('rencana_kokulikuler_id', $id_rencana_nilai)->groupBy('rencana_kokulikuler_id')->get();
 
                 $penilaian->jumlah_rencana_penilaian = count($data_rencana_nilai);
                 $penilaian->jumlah_telah_dinilai = count($telah_dinilai);
                 $penilaian->data_rencana_nilai = $data_rencana_nilai;
             }
-            return view('guru.penilaian-k3.index', compact('title', 'data_penilaian'));
+            return view('guru.penilaian-kokulikuler.index', compact('title', 'data_penilaian'));
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }
@@ -77,7 +77,7 @@ class NilaiK3Controller extends Controller
                 return back()->with('toast_error', 'Data siswa tidak ditemukan');
             } else {
                 for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                    for ($count_penilaian = 0; $count_penilaian < count($request->rencana_nilai_k3_id); $count_penilaian++) {
+                    for ($count_penilaian = 0; $count_penilaian < count($request->rencana_kokulikuler_id); $count_penilaian++) {
                         if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
                             if($request->nilai_npts[$count_penilaian][$cound_siswa]){
                                 $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/4;
@@ -86,7 +86,7 @@ class NilaiK3Controller extends Controller
                             }
                             $data_nilai = array(
                                 'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
-                                'rencana_nilai_k3_id' => $request->rencana_nilai_k3_id[$count_penilaian],
+                                'rencana_kokulikuler_id' => $request->rencana_kokulikuler_id[$count_penilaian],
                                 'nilai_ph'  => ltrim($request->nilai_ph[$count_penilaian][$cound_siswa]),
                                 'nilai_pts'  => ltrim($request->nilai_npts[$count_penilaian][$cound_siswa]),
                                 'nilai_pas'  => ltrim($request->nilai_npas[$count_penilaian][$cound_siswa]),
@@ -101,7 +101,7 @@ class NilaiK3Controller extends Controller
                     }
                     $store_data_penilaian = $data_penilaian_siswa;
                 }
-                NilaiK3::insert($store_data_penilaian);
+                NilaiKokulikuler::insert($store_data_penilaian);
                 $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
                 $tapel = Tapel::findorfail(5);
                 $guru = Guru::where('user_id', Auth::user()->id)->first();
@@ -112,7 +112,7 @@ class NilaiK3Controller extends Controller
                 $predikat_b = round($kkm->kkm + $range, 0);
                 $predikat_a = round($kkm->kkm + ($range * 2), 0);
                 for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                    $nilai_kd = round((NilaiK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai_kd'))/count($request->rencana_nilai_k3_id),0);
+                    $nilai_kd = round((NilaiKokulikuler::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai_kd'))/count($request->rencana_kokulikuler_id),0);
                     $rapot = array(
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                         'pembelajaran_id' => $request->pembelajaran_id,
@@ -125,8 +125,8 @@ class NilaiK3Controller extends Controller
                     );
                     $data_rapot[] = $rapot;
                 }
-                NilaiRapotK3::insert($data_rapot);
-                return redirect('penilaian-k3')->with('success', 'Data nilai pengetahuan berhasil disimpan.');
+                NilaiRapotKokulikuler::insert($data_rapot);
+                return redirect('penilaian-kokulikuler')->with('success', 'Data nilai pengetahuan berhasil disimpan.');
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -136,10 +136,10 @@ class NilaiK3Controller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NilaiK3  $nilaiK3
+     * @param  \App\Models\NilaiKokulikuler  $nilaiKokulikuler
      * @return \Illuminate\Http\Response
      */
-    public function show(NilaiK3 $nilaiK3)
+    public function show(NilaiKokulikuler $nilaiKokulikuler)
     {
         //
     }
@@ -147,7 +147,7 @@ class NilaiK3Controller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NilaiK3  $nilaiK3
+     * @param  \App\Models\NilaiKokulikuler  $nilaiKokulikuler
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -156,24 +156,24 @@ class NilaiK3Controller extends Controller
             $pembelajaran = Pembelajaran::findorfail($id);
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
 
-            $id_data_rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->orderBy('kd_mapel_id', 'DESC')->get('id');
+            $id_data_rencana_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->orderBy('kd_mapel_id', 'DESC')->get('id');
 
-            $data_kd_nilai = NilaiK3::whereIn('rencana_nilai_k3_id', $id_data_rencana_penilaian)->groupBy('rencana_nilai_k3_id')->get();
+            $data_kd_nilai = NilaiKokulikuler::whereIn('rencana_kokulikuler_id', $id_data_rencana_penilaian)->groupBy('rencana_kokulikuler_id')->get();
             $count_kd_nilai = count($data_kd_nilai);
-            $data_kode_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->get();
+            $data_kode_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->get();
             $count_kd = count($data_kode_penilaian);
             if ($count_kd_nilai == 0) {
-                $data_rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->get();
+                $data_rencana_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->get();
                 $title = 'Input Nilai KI-3 '.$pembelajaran->mapel->nama_mapel;
-                return view('guru.penilaian-k3.create', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
+                return view('guru.penilaian-kokulikuler.create', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
             } else {
                 foreach ($data_anggota_kelas as $anggota_kelas) {
-                    $data_nilai = NilaiK3::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_nilai_k3_id', $id_data_rencana_penilaian)->get();
+                    $data_nilai = NilaiKokulikuler::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_kokulikuler_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $nilai_rapot = NilaiRapotK3::where('pembelajaran_id', $id)->get();
+                $nilai_rapot = NilaiRapotKokulikuler::where('pembelajaran_id', $id)->get();
                 $title = 'Edit Nilai KI-3 '.$pembelajaran->mapel->nama_mapel;
-                return view('guru.penilaian-k3.edit', compact('nilai_rapot','title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
+                return view('guru.penilaian-kokulikuler.edit', compact('nilai_rapot','title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -184,16 +184,16 @@ class NilaiK3Controller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NilaiK3  $nilaiK3
+     * @param  \App\Models\NilaiKokulikuler  $nilaiKokulikuler
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         if(Auth::user()->hasAnyRole('wali|mapel')){
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                for ($count_penilaian = 0; $count_penilaian < count($request->rencana_nilai_k3_id); $count_penilaian++) {
+                for ($count_penilaian = 0; $count_penilaian < count($request->rencana_kokulikuler_id); $count_penilaian++) {
                     if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
-                        $nilai = NilaiK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('rencana_nilai_k3_id', $request->rencana_nilai_k3_id[$count_penilaian])->first();
+                        $nilai = NilaiKokulikuler::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('rencana_kokulikuler_id', $request->rencana_kokulikuler_id[$count_penilaian])->first();
                         if($request->nilai_npts[$count_penilaian][$cound_siswa]){
                             $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/4;
                         }else{
@@ -212,7 +212,7 @@ class NilaiK3Controller extends Controller
                     }
                 }
             }
-            return redirect('penilaian-k3')->with('success', 'Data nilai pengetahuan berhasil diedit.');
+            return redirect('penilaian-kokulikuler')->with('success', 'Data nilai pengetahuan berhasil diedit.');
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }
@@ -221,10 +221,10 @@ class NilaiK3Controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NilaiK3  $nilaiK3
+     * @param  \App\Models\NilaiKokulikuler  $nilaiKokulikuler
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NilaiK3 $nilaiK3)
+    public function destroy(NilaiKokulikuler $nilaiKokulikuler)
     {
         //
     }

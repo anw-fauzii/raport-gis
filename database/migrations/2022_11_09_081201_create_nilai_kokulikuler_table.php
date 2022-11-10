@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNilaiRapotK3Table extends Migration
+class CreateNilaiKokulikulerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateNilaiRapotK3Table extends Migration
      */
     public function up()
     {
-        Schema::create('nilai_rapot_k3', function (Blueprint $table) {
+        Schema::create('nilai_kokulikuler', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pembelajaran_id')->unsigned();
+            $table->unsignedBigInteger('rencana_kokulikuler_id')->unsigned();
             $table->unsignedBigInteger('anggota_kelas_id')->unsigned();
-            $table->integer('nilai_raport');
-            $table->integer('predikat_c');
-            $table->integer('predikat_b');
-            $table->integer('predikat_a');
-            $table->integer('deskripsi');
+            $table->integer('nilai_ph');
+            $table->integer('nilai_pts');
+            $table->integer('nilai_pas');
+            $table->integer('nilai_kd');
             $table->timestamps();
 
-            $table->foreign('pembelajaran_id')->references('id')->on('pembelajaran');
+            $table->foreign('rencana_kokulikuler_id')->references('id')->on('rencana_kokulikuler');
             $table->foreign('anggota_kelas_id')->references('id')->on('anggota_kelas');
         });
     }
@@ -36,6 +35,6 @@ class CreateNilaiRapotK3Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nilai_rapot_k3');
+        Schema::dropIfExists('nilai_kokulikuler');
     }
 }
