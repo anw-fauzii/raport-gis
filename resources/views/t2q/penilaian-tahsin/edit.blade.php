@@ -64,7 +64,20 @@
                   <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
-                    <input type="text" class="form-control" name="tahsin_jilid[{{$i}}]" value="{{$nilai->tahsin_jilid}}" min="0" max="100" required>
+                    <select id="category{{$i}}" data-category="{{$i}}" class="form-control select2" name="tahsin_jilid[{{$i}}]" style="width: 100%;" required>
+                      <option value="">-- Jilid / Surah --</option>
+                      <option value="Jilid 1" @if($nilai->tahsin_jilid=="Jilid 1") selected @endif>Jilid 1</option>
+                      <option value="Jilid 2" @if($nilai->tahsin_jilid=="Jilid 2") selected @endif>Jilid 2</option>
+                      <option value="Jilid 3" @if($nilai->tahsin_jilid=="Jilid 3") selected @endif>Jilid 3</option>
+                      <option value="Jilid 4" @if($nilai->tahsin_jilid=="Jilid 4") selected @endif>Jilid 4</option>
+                      <option value="Tallaqi Juz 1-5" @if($nilai->tahsin_jilid=="Tallaqi juz 1-5") selected @endif>Tallaqi Juz 1-5</option>
+                      <option value="Tallaqi Juz 30" @if($nilai->tahsin_jilid=="Tallaqi Juz 30") selected @endif>Tallaqi Juz 30</option>
+                      <option value="Ghorib 1" @if($nilai->tahsin_jilid=="Ghorib 1") selected @endif>Ghorib 1</option>
+                      <option value="Ghorib 2" @if($nilai->tahsin_jilid=="Ghorib 2") selected @endif>Ghorib 2</option>
+                      <option value="Tajwid 1" @if($nilai->tahsin_jilid=="Tajwid 1") selected @endif>Tajwid 1</option>
+                      <option value="Tajwid 2" @if($nilai->tahsin_jilid=="Tajwid 2") selected @endif>Tajwid 2</option>
+                      <option value="Al-Qur'an" @if($nilai->tahsin_jilid=="Al-Qur'an") selected @endif>Al-Qur'an</option>
+                    </select>
                   </td>
                   <td>
                     <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" value="{{$nilai->tahsin_halaman}}" min="0" max="100" required>

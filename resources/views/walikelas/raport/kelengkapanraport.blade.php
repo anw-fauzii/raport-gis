@@ -739,24 +739,45 @@
         </thead>
         <tbody>
           <tr class="sikap">
-            <td>2</td>
+            <td>1</td>
             <td>
               Pramuka
             </td>
-            <td style="text-align:center;">99</td>
+            <td style="text-align:center;">
+              @if($pramuka->nilai == 4)
+              SB
+              @elseif($pramuka->nilai == 3)
+              B
+              @elseif($pramuka->nilai == 2)
+              C
+              @else
+              K
+              @endif</td>
             <td class="description">
-              <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+              <span>
+              Ini adalah deskripsi
+              </span>
             </td>
           </tr>
+          @foreach($ekstrakulikuler as $nilai_ekstra)
           <tr class="sikap">
-            <td>3</td>
-            <td>
-              Futsal
-            </td>
-            <td style="text-align:center;">99</td>
+            <td>2</td>
+            <td>{{$nilai_ekstra->ekstrakulikuler->nama_ekstrakulikuler}}</td>
+            <td style="text-align:center;">
+            @if($nilai_ekstra->nilai == 4)
+            SB
+            @elseif($nilai_ekstra->nilai == 3)
+            B
+            @elseif($nilai_ekstra->nilai == 2)
+            C
+            @elseif($nilai_ekstra->nilai == 1)
+            K
+            @endif
+          </td>
             <td class="description">
-              <span>Semua aspek sikap sudah menjadi kebiasaan, terutama menunjukkan perilaku bersih dan rapi; menunjukkan perilaku sopan santun; menunjukkan perilaku jujur; dan menunjukkan perilaku birrul walidain. Perlu peningkatan  lebih lanjut dalam mengembangkan sikap menunjukkan perilaku disiplin, mandiri dan tanggung jawab; dan menunjukkan perilaku percaya diri.</span>
+              <span>asdasdas asdasd</span>
             </td>
+          @endforeach
           </tr>
         </tbody>
       </table>
@@ -936,7 +957,7 @@
         <tr class="sikap">
           <td>1</td>
           <td>
-            JILID 3 HALAMAN 14
+          {{$nilai_t2q->tahsin_jilid}} {{$nilai_t2q->tahsin_halaman}}
           </td>
           <td style="text-align:center;">{{$nilai_t2q->tahsin_nilai}}</td>
           <td class="description">

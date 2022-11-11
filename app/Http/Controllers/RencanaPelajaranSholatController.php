@@ -24,7 +24,7 @@ class RencanaPelajaranSholatController extends Controller
     {
         $title = 'Rencana Nilai Pengetahuan';
         $tapel = Tapel::findorfail(5);     
-        $guru = Guru::where('user_id', 2)->first();
+        $guru = Guru::where('user_id', Auth::user()->id)->first();
         $data_rencana_penilaian = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel', $tapel->tahun_pelajaran)->groupBy('tingkat')->get();
 
         $data_butir_sikap = ButirSikap::select('butir_sikap.*','kategori_butir.jenis')->join('kategori_butir','butir_sikap.kategori_butir_id','=','kategori_butir.id')

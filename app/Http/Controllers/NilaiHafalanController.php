@@ -29,7 +29,7 @@ class NilaiHafalanController extends Controller
         if(Auth::user()->hasRole('t2q')){
             $title = 'Nilai Hafalan';
             $tapel = Tapel::findorfail(5);     
-            $guru = Guru::where('user_id', 2)->first();
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_rencana_penilaian = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel', $tapel->tahun_pelajaran)->groupBy('tingkat')->get();
             $cek_nilai = NilaiHafalan::join('anggota_t2q','nilai_hafalan.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
             ->where('guru_id', $guru->id)->get();
@@ -156,7 +156,7 @@ class NilaiHafalanController extends Controller
     public function edit($id)
     {
         if(Auth::user()->hasRole('t2q')){
-            $guru = Guru::where('user_id', 2)->first();
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_anggota_kelas = AnggotaT2Q::where('guru_id', $guru->id)->where('tingkat',$id)->get();
             $cek_nilai = NilaiHafalan::join('anggota_t2q','nilai_hafalan.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
             ->where('guru_id', $guru->id)->where('anggota_t2q.tingkat',$id)->get();

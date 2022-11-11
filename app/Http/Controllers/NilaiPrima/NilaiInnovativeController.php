@@ -27,7 +27,7 @@ class NilaiInnovativeController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('wali')){
-            $guru = Guru::where('user_id', 4)->first();
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('guru_id', $guru->id)->first();
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $kelas->id)->get();
             

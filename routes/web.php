@@ -93,3 +93,6 @@ Route::resource('/penilaian-kokulikuler',App\Http\Controllers\NilaiKokulikulerCo
 Route::resource('/ekstrakulikuler',App\Http\Controllers\EkstrakulikulerController::class);
 Route::post('ekstrakulikuler/anggota', [App\Http\Controllers\AnggotaEkstrakulikulerController::class,'store_anggota'])->name('ekstrakulikuler.anggota');
 Route::delete('ekstrakulikuler/anggota/{id}', [App\Http\Controllers\AnggotaEkstrakulikulerController::class,'delete_anggota'])->name('ekstrakulikuler.anggota.delete');
+
+Route::resource('/penilaian-pramuka',App\Http\Controllers\NilaiPramukaController::class);
+Route::resource('/penilaian-ekstrakulikuler',App\Http\Controllers\NilaiEkstrakulikulerController::class);

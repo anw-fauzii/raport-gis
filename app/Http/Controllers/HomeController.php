@@ -33,6 +33,10 @@ use App\Models\NilaiMulok;
 use App\Models\Guru;
 use App\Models\Komentar;
 use App\Models\Kehadiran;
+use App\Models\NilaiPramuka;
+use App\Models\Ekstrakulikuler;
+use App\Models\NilaiEkstrakulikuler;
+use App\Models\AnggotaEkstrakulikuler;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Cache;
@@ -97,10 +101,22 @@ class HomeController extends Controller
         $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $id)->first();
         $catatan_umum = CatatanUmum::where('anggota_kelas_id', $id)->first();
         $kehadiran = Kehadiran::where('anggota_kelas_id', $id)->first();
+        $pramuka = NilaiPramuka::where('anggota_kelas_id', $id)->first();
+
+        $data_id_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', 5)->get('id');
+        $ekstrakulikuler = AnggotaEkstrakulikuler::whereIn('ekstrakulikuler_id', $data_id_ekstrakulikuler)->where('anggota_kelas_id', $id)->get();
+            foreach ($ekstrakulikuler as $anggota) {
+                $cek_nilai_ekstra = NilaiEkstrakulikuler::where('anggota_ekstrakulikuler_id', $anggota->id)->first();
+                if (is_null($cek_nilai_ekstra)) {
+                    $anggota->nilai = null;
+                } else {
+                    $anggota->nilai = $cek_nilai_ekstra->nilai;
+                }
+            }
         $title = 'Raport';
         $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', 
         compact('des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
-        'proactive','responsible','innovative','modest','achievement',
+        'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
         'title','nilai_hafalan','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
         'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');
         return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->siswa->nama_lengkap . ' (' . $anggota_kelas->kelas->nama_kelas . ').pdf');

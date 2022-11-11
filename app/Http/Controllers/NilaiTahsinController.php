@@ -6,6 +6,7 @@ use App\Models\NilaiT2Q;
 use App\Models\Tapel;
 use App\Models\Guru;
 use App\Models\Kelas;
+use App\Models\Komentar;
 use Carbon\Carbon;
 use App\Models\AnggotaT2Q;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class NilaiTahsinController extends Controller
         if(Auth::user()->hasRole('t2q')){
             $title = 'Nilai Tahsin Tahfidz';
             $tapel = Tapel::findorfail(5);     
-            $guru = Guru::where('user_id', 2)->first();
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_rencana_penilaian = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel', $tapel->tahun_pelajaran)->groupBy('tingkat')->get();
             $cek_nilai = NilaiT2Q::join('anggota_t2q','nilai_t2q.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
             ->where('guru_id', $guru->id)->get();
@@ -97,22 +98,23 @@ class NilaiTahsinController extends Controller
     public function edit($id)
     {
         if(Auth::user()->hasRole('t2q')){
-            $guru = Guru::where('user_id', 2)->first();
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_anggota_kelas = AnggotaT2Q::where('guru_id', $guru->id)->where('tingkat',$id)->get();
             $cek_nilai = NilaiT2Q::join('anggota_t2q','nilai_t2q.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
             ->where('guru_id', $guru->id)->where('anggota_t2q.tingkat',$id)->get();
             $count_kd_nilai = count($cek_nilai);
+            $komentar = Komentar::all();
 
             if ($count_kd_nilai == 0) {
                 $title = 'Input Nilai t2q';
-                return view('t2q.penilaian-tahsin.create', compact('title', 'data_anggota_kelas'));
+                return view('t2q.penilaian-tahsin.create', compact('title', 'data_anggota_kelas','komentar'));
             } else {
                 foreach ($data_anggota_kelas as $anggota_kelas) {
                     $data_nilai = NilaiT2Q::where('anggota_kelas_id', $anggota_kelas->anggota_kelas_id)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
                 $title = 'Edit Nilai Pengetahuan';
-                return view('t2q.penilaian-tahsin.edit', compact('title', 'data_anggota_kelas'));
+                return view('t2q.penilaian-tahsin.edit', compact('title', 'data_anggota_kelas','komentar'));
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);

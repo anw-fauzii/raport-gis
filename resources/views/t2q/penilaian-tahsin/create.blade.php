@@ -35,19 +35,19 @@
           @csrf
 
           <div class="table-responsive">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover" width=100%">
               <thead class="bg-primary">
                 <tr>
-                  <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
-                  <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 5%;">No</th>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 25%;">Nama Siswa</th>
                   <th colspan="5" class="text-center">Tahsin</th>
                 </tr>
                 <tr class="text-center">
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Jilid-Surah"><b>3.1</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Halaman/Ayat"><b>3.2</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>3.3</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>3.4</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>3.5</b></a></td>
+                  <td style="width: 10%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Jilid-Surah"><b>3.1</b></a></td>
+                  <td style="width: 10%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Halaman/Ayat"><b>3.2</b></a></td>
+                  <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>3.3</b></a></td>
+                  <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>3.4</b></a></td>
+                  <td style="width: 10%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>3.5</b></a></td>
                 </tr>
               </thead>
               <tbody>
@@ -61,8 +61,8 @@
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
                     <select id="category{{$i}}" data-category="{{$i}}" class="form-control select2" name="tahsin_jilid[{{$i}}]" style="width: 100%;" required>
                       <option value="">-- Jilid / Surah --</option>
-                      <option value="1">Jilid 1</option>
-                      <option value="2">Jilid 2</option>
+                      <option value="Jilid 1">Jilid 1</option>
+                      <option value="Jilid 2">Jilid 2</option>
                       <option value="Jilid 3">Jilid 3</option>
                       <option value="Jilid 4">Jilid 4</option>
                       <option value="Tallaqi Juz 1-5">Tallaqi Juz 1-5</option>
@@ -78,11 +78,20 @@
                     <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" min="0" max="100" required>
                   </td>
                   <td>
-                  <select id="course{{$i}}" class="form-control select2" name="course{{$i}}" style="width: 100%;" required>
+                    <select id="tahsin_kekurangan[{{$i}}]"" data-category="{{$i}}" class="form-control select2" name="tahsin_kekurangan[{{$i}}]"" style="width: 100%;" required>
+                      <option value="">-- Perbaikan --</option>
+                      @foreach($komentar as $data)
+                      <option value="{{$data->id}}">{{$data->jenis}} - {{$data->komentar}}</option>
+                      @endforeach
                     </select>
                   </td>
                   <td>
-                    <input type="text" class="form-control" name="tahsin_kelebihan[{{$i}}]" min="0" max="100" required>
+                    <select id="tahsin_kelebihan[{{$i}}]"" data-category="{{$i}}" class="form-control select2" name="tahsin_kekurangan[{{$i}}]"" style="width: 100%;" required>
+                      <option value="">-- Sudah Bagus --</option>
+                      @foreach($komentar as $data)
+                      <option value="{{$data->id}}">{{$data->jenis}} - {{$data->komentar}}</option>
+                      @endforeach
+                    </select>
                   </td>
                   <td>
                     <input type="number" class="form-control" name="tahsin_nilai[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
@@ -117,45 +126,12 @@
 <script src="{{asset('vendor/select2/js/select2.full.min.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/dataTables.bootstrap4.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
   $(function () {
     $("#example1").DataTable();
     $('.select2').select2({
       theme : 'bootstrap4',
     })
-  });
-  $(document).ready(function() {
-    var i;
-    for (i = 1; i < 30; ++i) {
-      $('#category'+i).on('change', function() {
-          var categoryID = $(this).val();
-          var linl = "course"+i;
-          if(categoryID) {
-              $.ajax({
-                  url: '/getCourse/'+categoryID,
-                  type: "GET",
-                  data : {"_token":"{{ csrf_token() }}"},
-                  dataType: "json",
-                  success:function(data)
-                  {
-                    if(data){
-                      $('#course'+i).empty();
-                      $('#course'+i).append('<option hidden> Choose Course </option>'); 
-                      $.each(data, function(key, course){
-                          $("select[name=" + linl + "]").append('<option value="'+ key +'">' + course.komentar+ '</option>');
-                      });
-                  }else{
-                      $('#course'+i).empty();
-                  }
-                }
-              });
-          }else{
-            $('#course'+i).empty();
-          }
-      });
-    }
   });
 </script>
 @stop
