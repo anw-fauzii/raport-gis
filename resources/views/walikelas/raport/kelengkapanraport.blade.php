@@ -1234,29 +1234,27 @@
       </table>
       <div style="padding-top:1rem; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
       <table>
-        <tr>
-          <td style="width: 30%;">
+        <tr style="text-align:center" class="sikap">
+          <td style="width: 45%;">
             Mengetahui <br>
             Orang Tua/Wali, <br><br><br><br>
             .............................
           </td>
-          <td style="width: 35%;"></td>
-          <td style="width: 35%;">
-            Garut, 99 DESEMBER 9999<br>
+          <td style="width: 10%;">
+          <td style="width: 45%;">
+          {{$anggota_kelas->kelas->tapel->tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
             Wali Kelas, <br><br><br><br>
             <b><u>IKRIMAH MUKAROMAH, S.Psi.</u></b><br>
             NIPY. 15920019-1
           </td>
         </tr>
-        <tr>
-          <td style="width: 30%;"></td>
-          <td style="width: 35%;">
+        <tr style="text-align:center" class="sikap">
+          <td colspan="3" style="width: 100%;">
             Mengetahui <br>
             Kepala Sekolah, <br><br><br><br>
             <b><u>{{$sekolah->kepala_sekolah}}</u></b><br>
             NRKS. {{$sekolah->nip_kepala_sekolah}}
           </td>
-          <td style="width: 35%;"></td>
         </tr>
       </table>
       </div>

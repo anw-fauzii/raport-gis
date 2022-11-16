@@ -13,4 +13,9 @@ class Tapel extends Model
         'tahun_pelajaran',
         'semester'
     ];
+
+    public function tgl_raport()
+    {
+        return $this->hasOne(TanggalRaport::class);
+    }
 }

@@ -25,6 +25,7 @@ Route::get('getCourse/{id}', function ($id) {
     return response()->json($course);
 });
 Route::get('/pdf/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('show');
+Route::get('/leger-nilai', [App\Http\Controllers\HomeController::class, 'leger'])->name('leger');
 Route::get('/interval-nilai', [App\Http\Controllers\IntervalController::class, 'index'])->name('interval');
 Route::resource('/pengumuman',App\Http\Controllers\PengumumanController::class);
 Route::resource('/sekolah',App\Http\Controllers\SekolahController::class);
