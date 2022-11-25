@@ -80,7 +80,7 @@ class NilaiK3Controller extends Controller
                     for ($count_penilaian = 0; $count_penilaian < count($request->rencana_nilai_k3_id); $count_penilaian++) {
                         if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
                             if($request->nilai_npts[$count_penilaian][$cound_siswa]){
-                                $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/4;
+                                $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa] + $request->nilai_npas[$count_penilaian][$cound_siswa])/4;
                             }else{
                                 $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npas[$count_penilaian][$cound_siswa])/3;
                             }
@@ -112,7 +112,7 @@ class NilaiK3Controller extends Controller
                 $predikat_b = round($kkm->kkm + $range, 0);
                 $predikat_a = round($kkm->kkm + ($range * 2), 0);
                 for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                    $nilai_kd = round((NilaiK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai_kd'))/count($request->rencana_nilai_k3_id),0);
+                    $nilai_kd = round((NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
                     $rapot = array(
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                         'pembelajaran_id' => $request->pembelajaran_id,
@@ -211,6 +211,17 @@ class NilaiK3Controller extends Controller
                         return back()->with('error', 'Nilai harus berisi antara 0 s/d 100');
                     }
                 }
+            }
+            $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+            $tapel = Tapel::findorfail(5);
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                $nilai_raport = round((NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
+                $nilai_edit = NilaiRapotK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
+                    'nilai_raport' => $nilai_raport,
+                    'updated_at'  => Carbon::now(),
+                ]);
             }
             return redirect('penilaian-k3')->with('success', 'Data nilai pengetahuan berhasil diedit.');
         }else{

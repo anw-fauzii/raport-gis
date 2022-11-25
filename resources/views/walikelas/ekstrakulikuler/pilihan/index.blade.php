@@ -42,13 +42,13 @@
             </thead>
             <tbody>
               <?php $no = 0; ?>
-              @foreach($data_ekstrakulikuler as $ekstrakulikuler)
+              @forelse($data_ekstrakulikuler as $ekstrakulikuler)
               <?php $no++; ?>
               <tr>
                 <td>{{$no}}</td>
                 <td>{{$ekstrakulikuler->nama_ekstrakulikuler}}</td>
                 <td>
-                  @if($cek_nilai->count() == 0)
+                  @if($cek_nilai->where('ekstrakulikuler_id',$ekstrakulikuler->id)->count() == 0)
                   <span class="badge badge-danger">Belum Ada yang di nilai</span>
                   @else
                   <span class="badge badge-success">Sudah Dinilai</span>
@@ -59,8 +59,12 @@
                         <i class="fas fa-plus"></i>
                     </a>
                 </td>
-              </tr>            
-              @endforeach
+              </tr>      
+              @empty
+              <tr>
+                <td colspan="4" class="text-center">Tidak ada data</td>
+              </tr>      
+              @endforelse
             </tbody>
           </table>
         </div>

@@ -83,10 +83,10 @@ class HomeController extends Controller
         $anggota_kelas = AnggotaKelas::findorfail($id);
         $des_ki1=NilaiK1::where('anggota_kelas_id', $id)->get();
         $des_ki2=NilaiK2::where('anggota_kelas_id', $id)->get();
-        $des_ki3=NilaiK3::where('anggota_kelas_id', $id)->get();
-        $des_ki4=NilaiK4::where('anggota_kelas_id', $id)->get();
-        $des_kokulikuler=NilaiKokulikuler::where('anggota_kelas_id', $id)->get();
-        $des_mulok=NilaiMulok::where('anggota_kelas_id', $id)->get();
+        $des_ki3=NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('anggota_kelas_id', $id)->get();
+        $des_ki4=NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')->where('anggota_kelas_id', $id)->get();
+        $des_kokulikuler=NilaiKokulikuler::join('rencana_kokulikuler','rencana_kokulikuler.id','=','nilai_kokulikuler.rencana_kokulikuler_id')->where('anggota_kelas_id', $id)->get();
+        $des_mulok=NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')->where('anggota_kelas_id', $id)->get();
         $proactive=NilaiProactive::where('anggota_kelas_id', $id)->get();
         $responsible=NilaiResponsible::where('anggota_kelas_id', $id)->get();
         $innovative=NilaiInnovative::where('anggota_kelas_id', $id)->get();
@@ -130,9 +130,10 @@ class HomeController extends Controller
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
         $data_id_pembelajaran = Pembelajaran::whereIn('kelas_id', $id_kelas_diampu)->get('id');
-        $data_pembelajaran = Pembelajaran::whereIn('kelas_id', $id_kelas_diampu)->where('status',1)->get();
+        $mapel_k3 = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',3)->whereIn('kelas_id', $id_kelas_diampu)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+        $mapel_kokulikuler = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',5)->whereIn('kelas_id', $id_kelas_diampu)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+        $mapel_mulok = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',6)->whereIn('kelas_id', $id_kelas_diampu)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
         $data_anggota_kelas = AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->get();
-        $data_mapel_ki_3 = NilaiRapotK3::whereIn('pembelajaran_id', $data_id_pembelajaran)->groupBy('pembelajaran_id')->get();
         foreach ($data_anggota_kelas as $anggota_kelas) {
             $data_nilai_ki_1 = NilaiK1::where('anggota_kelas_id', $anggota_kelas->id)->avg('nilai');
             $anggota_kelas->data_nilai_ki_1 = round($data_nilai_ki_1, 1);
@@ -140,9 +141,31 @@ class HomeController extends Controller
             $anggota_kelas->data_nilai_ki_2 = round($data_nilai_ki_2, 1);
             $data_nilai_ki_3 = NilaiRapotK3::where('anggota_kelas_id', $anggota_kelas->id)->first();
             $anggota_kelas->data_nilai_ki_3 = $data_nilai_ki_3;
+            $data_nilai_ki_4 = NilaiRapotK4::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $anggota_kelas->data_nilai_ki_4 = $data_nilai_ki_4;
+            $data_nilai_sholat = NilaiSholat::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $anggota_kelas->data_nilai_sholat = $data_nilai_sholat;
+            $data_nilai_t2q = NilaiT2Q::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $anggota_kelas->data_nilai_t2q = $data_nilai_t2q;
+            $data_nilai_hafalan = NilaiHafalan::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $anggota_kelas->data_nilai_hafalan = $data_nilai_hafalan;
+            $data_nilai_kokulikuler = NilaiRapotKokulikuler::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $anggota_kelas->data_nilai_kokulikuler = $data_nilai_kokulikuler;
+            $data_nilai_mulok = NilaiRapotMulok::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $anggota_kelas->data_nilai_mulok = $data_nilai_mulok;
+            $data_nilai_proactive = NilaiProactive::where('anggota_kelas_id', $anggota_kelas->id)->avg('nilai');
+            $anggota_kelas->data_nilai_proactive = round($data_nilai_proactive, 1);
+            $data_nilai_responsible = NilaiResponsible::where('anggota_kelas_id', $anggota_kelas->id)->avg('nilai');
+            $anggota_kelas->data_nilai_responsible = round($data_nilai_responsible, 1);
+            $data_nilai_innovative = NilaiInnovative::where('anggota_kelas_id', $anggota_kelas->id)->avg('nilai');
+            $anggota_kelas->data_nilai_innovative = round($data_nilai_innovative, 1);
+            $data_nilai_modest = NilaiModest::where('anggota_kelas_id', $anggota_kelas->id)->avg('nilai');
+            $anggota_kelas->data_nilai_modest = round($data_nilai_modest, 1);
+            $data_nilai_achievement = NilaiAchievement::where('anggota_kelas_id', $anggota_kelas->id)->avg('nilai');
+            $anggota_kelas->data_nilai_achievement = round($data_nilai_achievement, 1);
             $kehadiran = Kehadiran::where('anggota_kelas_id', $anggota_kelas->id)->first();
             $anggota_kelas->kehadiran = $kehadiran;
         }
-        return view('walikelas.raport.leger',compact('title','data_mapel_ki_3','data_anggota_kelas','data_pembelajaran'));
+        return view('walikelas.raport.leger',compact('title','data_anggota_kelas','mapel_k3','mapel_kokulikuler','mapel_mulok'));
     }
 }

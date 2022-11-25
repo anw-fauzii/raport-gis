@@ -87,7 +87,7 @@
                         </td>
                         <td>
                           <select class="form-control select2" name="update_guru_id[]" style="width: 100%;" required>
-                          @if($pembelajaran->mapel->ringkasan_mapel)
+                          @if($pembelajaran->mapel->beda_guru)
                             <option value="" disabled="true" selected="true"> -- Pilih Kelas --</option>
                             @foreach($data_guru as $guru)
                             <option value="{{$guru->id}}" @if($pembelajaran->guru->id == $guru->id) selected @endif>
@@ -113,7 +113,6 @@
                         </td>
                       </tr>
                       @endforeach
-
                       @foreach($data_mapel as $mapel)
                       <tr>
                         <td>{{$kelas->nama_kelas}} ( {{$d_kelas->tapel->tahun_pelajaran}}
@@ -130,7 +129,7 @@
                         </td>
                         <td>
                           <select class="form-control select2" name="guru_id[]" style="width: 100%;">
-                          @if($mapel->ringkasan_mapel)
+                          @if($mapel->beda_guru)
                           <option value="">-- Pilih Guru -- </option>
                             @foreach($data_guru as $guru)
                             <option value="{{$guru->id}}">{{$guru->nama_lengkap}}, {{$guru->gelar}}</option>
@@ -153,7 +152,6 @@
                   </table>
                 </div>
             </div>
-
             <div class="card-footer clearfix">
               <button type="submit" class="btn btn-success float-right">Simpan</button>
             </div>

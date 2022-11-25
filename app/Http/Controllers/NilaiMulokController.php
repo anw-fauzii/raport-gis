@@ -168,8 +168,9 @@ class NilaiMulokController extends Controller
                     $data_nilai = NilaiMulok::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_mulok_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
+                $nilai_rapot = NilaiRapotMulok::where('pembelajaran_id', $id)->get();
                 $title = 'Edit Nilai '.$pembelajaran->mapel->nama_mapel;
-                return view('guru.penilaian-mulok.edit', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
+                return view('guru.penilaian-mulok.edit', compact('title','nilai_rapot', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -190,10 +191,16 @@ class NilaiMulokController extends Controller
                 for ($count_penilaian = 0; $count_penilaian < count($request->rencana_mulok_id); $count_penilaian++) {
                     if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
                         $nilai = NilaiMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('rencana_mulok_id', $request->rencana_mulok_id[$count_penilaian])->first();
+                        if($request->nilai_npts[$count_penilaian][$cound_siswa]){
+                            $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npts[$count_penilaian][$cound_siswa]+$request->nilai_npas[$count_penilaian][$cound_siswa])/4;
+                        }else{
+                            $rumus = (($request->nilai_ph[$count_penilaian][$cound_siswa] * 2) + $request->nilai_npas[$count_penilaian][$cound_siswa])/3;
+                        }
                         $data_nilai = [
                             'nilai_ph'  => ltrim($request->nilai_ph[$count_penilaian][$cound_siswa]),
                             'nilai_pts'  => ltrim($request->nilai_npts[$count_penilaian][$cound_siswa]),
                             'nilai_pas'  => ltrim($request->nilai_npas[$count_penilaian][$cound_siswa]),
+                            'nilai_kd' => round($rumus,0),
                             'updated_at'  => Carbon::now(),
                         ];
                         $nilai->update($data_nilai);
@@ -201,6 +208,17 @@ class NilaiMulokController extends Controller
                         return back()->with('error', 'Nilai harus berisi antara 0 s/d 100');
                     }
                 }
+            }
+            $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+            $tapel = Tapel::findorfail(5);
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                $nilai_raport = round((NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
+                $nilai_edit = NilaiRapotMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
+                    'nilai_raport' => $nilai_raport,
+                    'updated_at'  => Carbon::now(),
+                ]);
             }
             return redirect('penilaian-mulok')->with('success', 'Data nilai mulok berhasil diedit.');
         }else{

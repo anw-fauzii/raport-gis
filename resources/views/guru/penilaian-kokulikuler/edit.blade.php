@@ -34,6 +34,7 @@
               <form action="{{ route('penilaian-kokulikuler.update', $pembelajaran->id) }}" method="POST">
               {{ method_field('PATCH') }}
               @csrf
+              <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
                 <div class="table-responsive">
                   <table class="table table-bordered table-hover">
                     <thead class="bg-primary">

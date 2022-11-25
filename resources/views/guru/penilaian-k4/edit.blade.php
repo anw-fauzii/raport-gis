@@ -34,12 +34,14 @@
               <form action="{{ route('penilaian-k4.update', $pembelajaran->id) }}" method="POST">
               {{ method_field('PATCH') }}
               @csrf
+              <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
                 <div class="table-responsive">
                   <table class="table table-bordered table-hover">
                     <thead class="bg-primary">
                       <tr>
                         <th class="text-center" style="width: 100px;">No</th>
                         <th class="text-center">Nama Siswa</th>
+                        <th class="text-center">NR</th>
                         <th class="text-center">KD</th>
                         <th class="text-center">Nilai</th>
                         @foreach($data_kd_nilai as $rencana_penilaian)
@@ -54,6 +56,9 @@
                       <tr>
                         <td rowspan="{{$count_kd + 1}}" class="text-center">{{$no}}</td>
                         <td rowspan="{{$count_kd + 1}}">{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                        @foreach($nilai_rapot->where('anggota_kelas_id',$anggota_kelas->id) as $rapot)
+                        <td class="text-center" rowspan="{{$count_kd + 1}}"><strong>{{$rapot->nilai_raport}}</strong></td>
+                        @endforeach
                         <input type="hidden" name="anggota_kelas_id[]" value="{{$anggota_kelas->id}}">
                       </tr>
                       <?php $i = -1; ?>

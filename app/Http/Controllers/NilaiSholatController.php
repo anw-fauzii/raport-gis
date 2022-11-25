@@ -59,43 +59,43 @@ class NilaiSholatController extends Controller
         if(Auth::user()->hasRole('t2q')){
             for ($cound_siswa = 1; $cound_siswa <= $request->jumlah; $cound_siswa++) {
                 if($request->praktik_wudhu[$cound_siswa] < 75){
-                    $deskripsi_praktik_wudhu = "Ananda kurang dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda kurang dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 84){
-                    $deskripsi_praktik_wudhu = "Ananda cukup dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda cukup dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 93){
-                    $deskripsi_praktik_wudhu = "Ananda baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 100){
-                    $deskripsi_praktik_wudhu = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }
                 
                 if($request->bacaan_sholat[$cound_siswa] < 75){
-                    $deskripsi_bacaan_sholat = "Ananda kurang dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda kurang dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 84){
-                    $deskripsi_bacaan_sholat = "Ananda cukup dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda cukup dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 93){
-                    $deskripsi_bacaan_sholat = "Ananda baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 100){
-                    $deskripsi_bacaan_sholat = "Ananda sangat baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda sangat baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }
 
                 if($request->gerakan_sholat[$cound_siswa]<75){
-                    $deskripsi_gerakan_sholat = "Ananda kurang dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda kurang dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 84){
-                    $deskripsi_gerakan_sholat = "Ananda cukup dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda cukup dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 93){
-                    $deskripsi_gerakan_sholat = "Ananda baik dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 100){
-                    $deskripsi_gerakan_sholat = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }
 
                 if($request->dzikir[$cound_siswa]<75){
-                    $deskripsi_dzikir = "Ananda kurang dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda kurang dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 84){
-                    $deskripsi_dzikir = "Ananda cukup dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda cukup dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 93){
-                    $deskripsi_dzikir = "Ananda baik dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda baik dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 100){
-                    $deskripsi_dzikir = "Ananda sangat baik dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda sangat baik dalam melafalkan bacaan dzikir ba'da shalat.";
                 }
                 
                 $data_nilai = array(
@@ -173,43 +173,43 @@ class NilaiSholatController extends Controller
             for ($cound_siswa = 1; $cound_siswa <= $request->jumlah; $cound_siswa++) {
                 $nilai = NilaiSholat::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
                 if($request->praktik_wudhu[$cound_siswa] < 75){
-                    $deskripsi_praktik_wudhu = "Ananda kurang dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda kurang dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 84){
-                    $deskripsi_praktik_wudhu = "Ananda cukup dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda cukup dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 93){
-                    $deskripsi_praktik_wudhu = "Ananda baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 100){
-                    $deskripsi_praktik_wudhu = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu";
+                    $deskripsi_praktik_wudhu = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }
                 
                 if($request->bacaan_sholat[$cound_siswa] < 75){
-                    $deskripsi_bacaan_sholat = "Ananda kurang dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda kurang dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 84){
-                    $deskripsi_bacaan_sholat = "Ananda cukup dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda cukup dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 93){
-                    $deskripsi_bacaan_sholat = "Ananda baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 100){
-                    $deskripsi_bacaan_sholat = "Ananda sangat baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat";
+                    $deskripsi_bacaan_sholat = "Ananda sangat baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }
 
                 if($request->gerakan_sholat[$cound_siswa] < 75){
-                    $deskripsi_gerakan_sholat = "Ananda kurang dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda kurang dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 84){
-                    $deskripsi_gerakan_sholat = "Ananda cukup dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda cukup dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 93){
-                    $deskripsi_gerakan_sholat = "Ananda baik dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 100){
-                    $deskripsi_gerakan_sholat = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara gerakan shalat";
+                    $deskripsi_gerakan_sholat = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }
 
                 if($request->dzikir[$cound_siswa] < 75){
-                    $deskripsi_dzikir = "Ananda kurang dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda kurang dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 84){
-                    $deskripsi_dzikir = "Ananda cukup dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda cukup dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 93){
-                    $deskripsi_dzikir = "Ananda baik dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda baik dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 100){
-                    $deskripsi_dzikir = "Ananda sangat baik dalam melafalkan bacaan dzikir ba'da shalat";
+                    $deskripsi_dzikir = "Ananda sangat baik dalam melafalkan bacaan dzikir ba'da shalat.";
                 }
                 $data_nilai = array(
                     'praktik_wudhu'  => $request->praktik_wudhu[$cound_siswa],

@@ -81,7 +81,7 @@
                     <select id="tahsin_kekurangan[{{$i}}]"" data-category="{{$i}}" class="form-control select2" name="tahsin_kekurangan[{{$i}}]"" style="width: 100%;" required>
                       <option value="">-- Perbaikan --</option>
                       @foreach($komentar as $data)
-                      <option value="{{$data->id}}">{{$data->jenis}} - {{$data->komentar}}</option>
+                      <option value="{{$data->id}}">{{$data->jenis}} - {{$data->komentar}}.</option>
                       @endforeach
                     </select>
                   </td>

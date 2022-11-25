@@ -164,8 +164,9 @@ class NilaiK4Controller extends Controller
                     $data_nilai = NilaiK4::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_nilai_k4_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
+                $nilai_rapot = NilaiRapotK4::where('pembelajaran_id', $id)->get();
                 $title = 'Edit Nilai KI-4 '.$pembelajaran->mapel->nama_mapel;
-                return view('guru.penilaian-k4.edit', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
+                return view('guru.penilaian-k4.edit', compact('title','nilai_rapot', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -195,6 +196,17 @@ class NilaiK4Controller extends Controller
                         return back()->with('error', 'Nilai harus berisi antara 0 s/d 100');
                     }
                 }
+            }
+            $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+            $tapel = Tapel::findorfail(5);
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                $nilai_raport = round((NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai')),0);
+                $nilai_edit = NilaiRapotK4::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
+                    'nilai_raport' => $nilai_raport,
+                    'updated_at'  => Carbon::now(),
+                ]);
             }
             return redirect('penilaian-k4')->with('success', 'Data nilai keterampilan berhasil diedit.');
         }else{

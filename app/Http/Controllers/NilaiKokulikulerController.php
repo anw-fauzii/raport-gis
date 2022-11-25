@@ -155,9 +155,7 @@ class NilaiKokulikulerController extends Controller
         if(Auth::user()->hasAnyRole('wali|mapel')){
             $pembelajaran = Pembelajaran::findorfail($id);
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
-
             $id_data_rencana_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->orderBy('kd_mapel_id', 'DESC')->get('id');
-
             $data_kd_nilai = NilaiKokulikuler::whereIn('rencana_kokulikuler_id', $id_data_rencana_penilaian)->groupBy('rencana_kokulikuler_id')->get();
             $count_kd_nilai = count($data_kd_nilai);
             $data_kode_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->get();
@@ -172,7 +170,7 @@ class NilaiKokulikulerController extends Controller
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
                 $nilai_rapot = NilaiRapotKokulikuler::where('pembelajaran_id', $id)->get();
-                $title = 'Edit Nilai KI-3 '.$pembelajaran->mapel->nama_mapel;
+                $title = 'Edit Nilai Kokulikuler '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-kokulikuler.edit', compact('nilai_rapot','title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }
         }else{
@@ -211,6 +209,17 @@ class NilaiKokulikulerController extends Controller
                         return back()->with('error', 'Nilai harus berisi antara 0 s/d 100');
                     }
                 }
+            }
+            $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+            $tapel = Tapel::findorfail(5);
+            $guru = Guru::where('user_id', Auth::user()->id)->first();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                $nilai_raport = round((NilaiKokulikuler::join('rencana_kokulikuler','rencana_kokulikuler.id','=','nilai_kokulikuler.rencana_kokulikuler_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
+                $nilai_edit = NilaiRapotKokulikuler::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
+                    'nilai_raport' => $nilai_raport,
+                    'updated_at'  => Carbon::now(),
+                ]);
             }
             return redirect('penilaian-kokulikuler')->with('success', 'Data nilai pengetahuan berhasil diedit.');
         }else{

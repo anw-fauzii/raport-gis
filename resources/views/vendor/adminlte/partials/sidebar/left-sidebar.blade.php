@@ -337,7 +337,7 @@
         </li>
         <li class="nav-item has-treeview {{(request()->is('penilaian-pramuka','penilaian-ekstrakulikuler')) ? 'menu-open' :''}}">
           <a href="#" class="nav-link {{(request()->is('penilaian-pramuka','penilaian-ekstrakulikuler')) ? 'active' :''}}">
-            <i class="nav-icon fas fa-star"></i>
+            <i class="nav-icon fas fa-book-reader"></i>
             <p>
               Penilaian Ekstrakuler
               <i class="fas fa-angle-left right"></i>
@@ -420,7 +420,7 @@
           </a>
         </li>   
         <li class="nav-item">
-          <a href="{{route('leger')}}" class="nav-link">
+          <a href="{{route('leger')}}" class="nav-link {{(request()->is('leger-nilai')) ? 'active' :''}}"">
             <i class="nav-icon fas fa-table"></i>
             <p>
               Leger Nilai Siswa
