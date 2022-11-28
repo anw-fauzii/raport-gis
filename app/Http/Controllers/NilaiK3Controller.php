@@ -8,10 +8,13 @@ use App\Models\AnggotaKelas;
 use App\Models\Guru;
 use App\Models\KKM;
 use App\Models\RencanaNilaiK3;
+use App\Exports\NilaiK3Export;
+use App\Imports\NilaiK3Import;
 use App\Models\Kelas;
 use App\Models\Pembelajaran;
 use App\Models\Tapel;
 use Carbon\Carbon;
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -212,16 +215,40 @@ class NilaiK3Controller extends Controller
                     }
                 }
             }
-            $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+            $pembelajaran = Pembelajaran::find($request->pembelajaran_id);
             $tapel = Tapel::findorfail(5);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
+            $range = (100 - $kkm->kkm) / 3;
+            $predikat_c = round($kkm->kkm, 0);
+            $predikat_b = round($kkm->kkm + $range, 0);
+            $predikat_a = round($kkm->kkm + ($range * 2), 0);
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                $nilai_raport = round((NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
-                $nilai_edit = NilaiRapotK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
-                    'nilai_raport' => $nilai_raport,
-                    'updated_at'  => Carbon::now(),
-                ]);
+                $cek = NilaiRapotK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->count();
+                if($cek == 0){
+                    for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                        $nilai_kd = round((NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
+                        $rapot = array(
+                            'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                            'pembelajaran_id' => $request->pembelajaran_id,
+                            'nilai_raport' => $nilai_kd,
+                            'predikat_a' => $predikat_a,
+                            'predikat_b' => $predikat_b,
+                            'predikat_c' => $predikat_c,
+                            'created_at'  => Carbon::now(),
+                            'updated_at'  => Carbon::now(),
+                        );
+                        $data_rapot[] = $rapot;
+                    }
+                    NilaiRapotK3::insert($data_rapot);
+                }else{
+                    $nilai_raport = round((NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
+                    $nilai_edit = NilaiRapotK3::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
+                        'nilai_raport' => $nilai_raport,
+                        'updated_at'  => Carbon::now(),
+                    ]);
+                }
             }
             return redirect('penilaian-k3')->with('success', 'Data nilai pengetahuan berhasil diedit.');
         }else{
@@ -238,5 +265,29 @@ class NilaiK3Controller extends Controller
     public function destroy(NilaiK3 $nilaiK3)
     {
         //
+    }
+
+    public function eksport($id)
+    {
+        if(Auth::user()->hasRole('wali')){
+            $filename = 'format_import_Nilai_KI3 ' . date('Y-m-d H_i_s') . '.xls';
+            return Excel::download(new NilaiK3Export($id), $filename);
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        if(Auth::user()->hasRole('wali|mapel')){
+            try {
+                Excel::import(new NilaiK3Import, $request->file('file_import'));
+                return back()->with('success', 'Data Nilai berhasil diimport');
+            } catch (Exception $e) {
+                return back()->with('error', 'Maaf, format data tidak sesuai');
+            }
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 }

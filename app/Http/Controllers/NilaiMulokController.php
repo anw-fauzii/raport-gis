@@ -15,6 +15,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Exports\NilaiMulokExport;
+use App\Imports\NilaiMulokImport;
+use Excel;
 
 class NilaiMulokController extends Controller
 {
@@ -209,16 +212,40 @@ class NilaiMulokController extends Controller
                     }
                 }
             }
-            $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+            $pembelajaran = Pembelajaran::find($request->pembelajaran_id);
             $tapel = Tapel::findorfail(5);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
+            $range = (100 - $kkm->kkm) / 3;
+            $predikat_c = round($kkm->kkm, 0);
+            $predikat_b = round($kkm->kkm + $range, 0);
+            $predikat_a = round($kkm->kkm + ($range * 2), 0);
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                $nilai_raport = round((NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
-                $nilai_edit = NilaiRapotMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
-                    'nilai_raport' => $nilai_raport,
-                    'updated_at'  => Carbon::now(),
-                ]);
+                $cek = NilaiRapotMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->count();
+                if($cek == 0){
+                    for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                        $nilai_kd = round((NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
+                        $rapot = array(
+                            'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                            'pembelajaran_id' => $request->pembelajaran_id,
+                            'nilai_raport' => $nilai_kd,
+                            'predikat_a' => $predikat_a,
+                            'predikat_b' => $predikat_b,
+                            'predikat_c' => $predikat_c,
+                            'created_at'  => Carbon::now(),
+                            'updated_at'  => Carbon::now(),
+                        );
+                        $data_rapot[] = $rapot;
+                    }
+                    NilaiRapotMulok::insert($data_rapot);
+                }else{
+                    $nilai_raport = round((NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai_kd')),0);
+                    $nilai_edit = NilaiRapotMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
+                        'nilai_raport' => $nilai_raport,
+                        'updated_at'  => Carbon::now(),
+                    ]);
+                }
             }
             return redirect('penilaian-mulok')->with('success', 'Data nilai mulok berhasil diedit.');
         }else{
@@ -235,5 +262,29 @@ class NilaiMulokController extends Controller
     public function destroy(NilaiMulok $nilaiMulok)
     {
         //
+    }
+
+    public function eksport($id)
+    {
+        if(Auth::user()->hasRole('wali')){
+            $filename = 'format_import_Nilai_KI3 ' . date('Y-m-d H_i_s') . '.xls';
+            return Excel::download(new NilaiMulokExport($id), $filename);
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        if(Auth::user()->hasRole('wali|mapel')){
+            try {
+                Excel::import(new NilaiMulokImport, $request->file('file_import'));
+                return back()->with('success', 'Data Nilai berhasil diimport');
+            } catch (Exception $e) {
+                return back()->with('error', 'Maaf, format data tidak sesuai');
+            }
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 }

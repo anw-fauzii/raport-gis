@@ -7,6 +7,8 @@ use App\Models\NilaiRapotK4;
 use App\Models\AnggotaKelas;
 use App\Models\Guru;
 use App\Models\RencanaNilaiK4;
+use App\Exports\NilaiK4Export;
+use App\Imports\NilaiK4Import;
 use App\Models\Kelas;
 use App\Models\KKM;
 use App\Models\Pembelajaran;
@@ -15,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Excel;
 
 class NilaiK4Controller extends Controller
 {
@@ -197,16 +200,40 @@ class NilaiK4Controller extends Controller
                     }
                 }
             }
-            $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
+            $pembelajaran = Pembelajaran::find($request->pembelajaran_id);
             $tapel = Tapel::findorfail(5);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
+            $range = (100 - $kkm->kkm) / 3;
+            $predikat_c = round($kkm->kkm, 0);
+            $predikat_b = round($kkm->kkm + $range, 0);
+            $predikat_a = round($kkm->kkm + ($range * 2), 0);
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
-                $nilai_raport = round((NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai')),0);
-                $nilai_edit = NilaiRapotK4::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
-                    'nilai_raport' => $nilai_raport,
-                    'updated_at'  => Carbon::now(),
-                ]);
+                $cek = NilaiRapotK4::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->count();
+                if($cek == 0){
+                    for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
+                        $nilai_kd = round((NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai')),0);
+                        $rapot = array(
+                            'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
+                            'pembelajaran_id' => $request->pembelajaran_id,
+                            'nilai_raport' => $nilai_kd,
+                            'predikat_a' => $predikat_a,
+                            'predikat_b' => $predikat_b,
+                            'predikat_c' => $predikat_c,
+                            'created_at'  => Carbon::now(),
+                            'updated_at'  => Carbon::now(),
+                        );
+                        $data_rapot[] = $rapot;
+                    }
+                    NilaiRapotK4::insert($data_rapot);
+                }else{
+                    $nilai_raport = round((NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')->where('pembelajaran_id',$request->pembelajaran_id)->where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->avg('nilai')),0);
+                    $nilai_edit = NilaiRapotK4::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->update([
+                        'nilai_raport' => $nilai_raport,
+                        'updated_at'  => Carbon::now(),
+                    ]);
+                }
             }
             return redirect('penilaian-k4')->with('success', 'Data nilai keterampilan berhasil diedit.');
         }else{
@@ -223,5 +250,29 @@ class NilaiK4Controller extends Controller
     public function destroy(NilaiK4 $nilaiK4)
     {
         //
+    }
+
+    public function eksport($id)
+    {
+        if(Auth::user()->hasRole('wali')){
+            $filename = 'format_import_Nilai_KI4 ' . date('Y-m-d H_i_s') . '.xls';
+            return Excel::download(new NilaiK4Export($id), $filename);
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        if(Auth::user()->hasRole('wali|mapel')){
+            try {
+                Excel::import(new NilaiK4Import, $request->file('file_import'));
+                return back()->with('success', 'Data Nilai berhasil diimport');
+            } catch (Exception $e) {
+                return back()->with('error', 'Maaf, format data tidak sesuai');
+            }
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 }

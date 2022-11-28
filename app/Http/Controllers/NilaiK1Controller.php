@@ -8,10 +8,12 @@ use App\Models\RencanaNilaiK1;
 use App\Models\Tapel;
 use App\Models\Guru;
 use App\Models\Kelas;
+use App\Exports\NilaiK1Export;
 use Carbon\Carbon;
 use App\Models\AnggotaKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Excel;
 
 class NilaiK1Controller extends Controller
 {
@@ -177,5 +179,15 @@ class NilaiK1Controller extends Controller
     public function destroy(NilaiK1 $nilaiK1)
     {
         //
+    }
+
+    public function eksport()
+    {
+        if(Auth::user()->hasRole('wali')){
+            $filename = 'format_import_kkm_k13 ' . date('Y-m-d H_i_s') . '.xls';
+            return Excel::download(new NilaiK1Export, $filename);
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 }

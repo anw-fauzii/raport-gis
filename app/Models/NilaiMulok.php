@@ -15,6 +15,7 @@ class NilaiMulok extends Model
         'nilai_ph',
         'nilai_pts',
         'nilai_pas',
+        'nilai_kd',
     ];
 
     public function rencana_mulok()

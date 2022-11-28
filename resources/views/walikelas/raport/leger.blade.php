@@ -110,51 +110,51 @@
                         @endif
                       </td>
                       @foreach($mapel_k3 as $mapel)
-                      @if($anggota_kelas->data_nilai_ki_3->pembelajaran_id == $mapel->id)
-                        @if($anggota_kelas->data_nilai_ki_3)
-                        <td>{{$anggota_kelas->data_nilai_ki_3->nilai_raport}}</td>
-                        @else
-                        <td>-</td>
-                        @endif
-                      @else
-                      <td>-</td>
-                      @endif
+                        <td>
+                        @foreach($anggota_kelas->data_nilai_ki_3->where('pembelajaran_id',$mapel->id) as $da)
+                          @if($da->nilai_raport)
+                            {{$da->nilai_raport}}
+                          @else
+                            
+                          @endif
+                        @endforeach
+                        </td>
                       @endforeach
 
                       @foreach($mapel_k3 as $mapel)
-                      @if($anggota_kelas->data_nilai_ki_4->pembelajaran_id == $mapel->id)
-                        @if($anggota_kelas->data_nilai_ki_4)
-                        <td>{{$anggota_kelas->data_nilai_ki_4->nilai_raport}}</td>
-                        @else
-                        <td>-</td>
-                        @endif
-                      @else
-                      <td>-</td>
-                      @endif
+                        <td>
+                        @foreach($anggota_kelas->data_nilai_ki_4->where('pembelajaran_id',$mapel->id) as $da)
+                          @if($da->nilai_raport)
+                            {{$da->nilai_raport}}
+                          @else
+                            
+                          @endif
+                        @endforeach
+                        </td>
                       @endforeach
 
                       @foreach($mapel_kokulikuler as $mapel)
-                      @if($anggota_kelas->data_nilai_kokulikuler->pembelajaran_id == $mapel->id)
-                        @if($anggota_kelas->data_nilai_kokulikuler)
-                        <td>{{$anggota_kelas->data_nilai_kokulikuler->nilai_raport}}</td>
-                        @else
-                        <td>-</td>
-                        @endif
-                      @else
-                      <td>-</td>
-                      @endif
+                        <td>
+                        @foreach($anggota_kelas->data_nilai_kokulikuler->where('pembelajaran_id',$mapel->id) as $da)
+                          @if($da->nilai_raport)
+                            {{$da->nilai_raport}}
+                          @else
+                            
+                          @endif
+                        @endforeach
+                        </td>
                       @endforeach
                       
                       @foreach($mapel_mulok as $mapel)
-                      @if($anggota_kelas->data_nilai_mulok->pembelajaran_id == $mapel->id)
-                        @if($anggota_kelas->data_nilai_mulok)
-                        <td>{{$anggota_kelas->data_nilai_mulok->nilai_raport}}</td>
-                        @else
-                        <td>-</td>
-                        @endif
-                      @else
-                      <td>-</td>
-                      @endif
+                        <td>
+                        @foreach($anggota_kelas->data_nilai_mulok->where('pembelajaran_id',$mapel->id) as $da)
+                          @if($da->nilai_raport)
+                            {{$da->nilai_raport}}
+                          @else
+                            
+                          @endif
+                        @endforeach
+                        </td>
                       @endforeach
 
                       @if($anggota_kelas->data_nilai_sholat)
@@ -163,10 +163,10 @@
                       <td>{{$anggota_kelas->data_nilai_sholat->gerakan_sholat}}</td>
                       <td>{{$anggota_kelas->data_nilai_sholat->dzikir}}</td>
                       @else
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
                       @endif
 
                       @if($anggota_kelas->data_nilai_hafalan)
@@ -174,17 +174,17 @@
                       <td>{{$anggota_kelas->data_nilai_hafalan->doa}}</td>
                       <td>{{$anggota_kelas->data_nilai_hafalan->hikmah}}</td>
                       @else
-                      <td>-</td>
-                      <td>-</td>
-                      <td>-</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
                       @endif
 
                       @if($anggota_kelas->data_nilai_t2q)
                       <td>{{$anggota_kelas->data_nilai_t2q->tahsin_nilai}}</td>
                       <td>{{$anggota_kelas->data_nilai_t2q->tahfidz_nilai}}</td>
                       @else
-                      <td>-</td>
-                      <td>-</td>
+                      <td> </td>
+                      <td> </td>
                       @endif
                       
                       <td>

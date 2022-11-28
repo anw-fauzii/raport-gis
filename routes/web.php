@@ -34,8 +34,13 @@ Route::resource('/rencana-k2',App\Http\Controllers\RencanaNilaiK2Controller::cla
 Route::resource('/rencana-k3',App\Http\Controllers\RencanaNilaiK3Controller::class);
 Route::resource('/rencana-k4',App\Http\Controllers\RencanaNilaiK4Controller::class);
 Route::resource('/penilaian-k1',App\Http\Controllers\NilaiK1Controller::class);
+Route::get('nilai-k1/eksport', [App\Http\Controllers\NilaiK1Controller::class,'eksport'])->name('nilai-k1.eksport');
+Route::get('nilai-k3/eksport/{id}', [App\Http\Controllers\NilaiK3Controller::class,'eksport'])->name('nilai-k3.eksport');
+Route::post('nilai-k3/import', [App\Http\Controllers\NilaiK3Controller::class,'import'])->name('nilai-k3.import');
 Route::resource('/penilaian-k2',App\Http\Controllers\NilaiK2Controller::class);
 Route::resource('/penilaian-k3',App\Http\Controllers\NilaiK3Controller::class);
+Route::get('nilai-k4/eksport/{id}', [App\Http\Controllers\NilaiK4Controller::class,'eksport'])->name('nilai-k4.eksport');
+Route::post('nilai-k4/import', [App\Http\Controllers\NilaiK4Controller::class,'import'])->name('nilai-k4.import');
 Route::resource('/penilaian-k4',App\Http\Controllers\NilaiK4Controller::class);
 Route::resource('/guru',App\Http\Controllers\GuruController::class);
 Route::resource('/kkm',App\Http\Controllers\KkmController::class);
@@ -78,9 +83,12 @@ Route::resource('/penilaian-achievement',App\Http\Controllers\NilaiPrima\NilaiAc
 
 //Mulok
 Route::resource('/rencana-mulok',App\Http\Controllers\RencanaMulokController::class);
+Route::resource('/penilaian-mulok',App\Http\Controllers\NilaiMulokController::class);
+Route::get('mulok/eksport/{id}', [App\Http\Controllers\NilaiMulokController::class,'eksport'])->name('mulok.eksport');
+Route::post('mulok/import', [App\Http\Controllers\NilaiMulokController::class,'import'])->name('mulok.import');
+
 Route::resource('/rencana-pelajaran-sholat',App\Http\Controllers\RencanaPelajaranSholatController::class);
 Route::resource('/penilaian-sholat',App\Http\Controllers\NilaiSholatController::class);
-Route::resource('/penilaian-mulok',App\Http\Controllers\NilaiMulokController::class);
 Route::resource('/penilaian-hafalan',App\Http\Controllers\NilaiHafalanController::class);
 Route::resource('/penilaian-t2q',App\Http\Controllers\NilaiT2QController::class);
 Route::resource('/penilaian-tahsin',App\Http\Controllers\NilaiTahsinController::class);
@@ -90,6 +98,8 @@ Route::get('detail-siswa/{id}', [App\Http\Controllers\SiswaKelasController::clas
 
 Route::resource('/rencana-kokulikuler',App\Http\Controllers\RencanaKokulikulerController::class);
 Route::resource('/penilaian-kokulikuler',App\Http\Controllers\NilaiKokulikulerController::class);
+Route::get('nilai-kokulikuler/eksport/{id}', [App\Http\Controllers\NilaiKokulikulerController::class,'eksport'])->name('kokulikuler.eksport');
+Route::post('nilai-kokulikuler/import', [App\Http\Controllers\NilaiKokulikulerController::class,'import'])->name('kokulikuler.import');
 
 Route::resource('/ekstrakulikuler',App\Http\Controllers\EkstrakulikulerController::class);
 Route::post('ekstrakulikuler/anggota', [App\Http\Controllers\AnggotaEkstrakulikulerController::class,'store_anggota'])->name('ekstrakulikuler.anggota');

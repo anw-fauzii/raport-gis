@@ -139,9 +139,9 @@ class HomeController extends Controller
             $anggota_kelas->data_nilai_ki_1 = round($data_nilai_ki_1, 1);
             $data_nilai_ki_2 = NilaiK2::where('anggota_kelas_id', $anggota_kelas->id)->avg('nilai');
             $anggota_kelas->data_nilai_ki_2 = round($data_nilai_ki_2, 1);
-            $data_nilai_ki_3 = NilaiRapotK3::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $data_nilai_ki_3 = NilaiRapotK3::where('anggota_kelas_id', $anggota_kelas->id)->get();
             $anggota_kelas->data_nilai_ki_3 = $data_nilai_ki_3;
-            $data_nilai_ki_4 = NilaiRapotK4::where('anggota_kelas_id', $anggota_kelas->id)->first();
+            $data_nilai_ki_4 = NilaiRapotK4::where('anggota_kelas_id', $anggota_kelas->id)->get();
             $anggota_kelas->data_nilai_ki_4 = $data_nilai_ki_4;
             $data_nilai_sholat = NilaiSholat::where('anggota_kelas_id', $anggota_kelas->id)->first();
             $anggota_kelas->data_nilai_sholat = $data_nilai_sholat;

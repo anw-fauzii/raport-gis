@@ -28,7 +28,13 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-import">
+                  <i class="fas fa-upload"></i>
+                </button>
+              </div>
             </div>
+            @include('guru.penilaian-kokulikuler.import')
 
             <div class="card-body">
               <form action="{{ route('penilaian-kokulikuler.store') }}" method="POST">

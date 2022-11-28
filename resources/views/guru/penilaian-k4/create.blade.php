@@ -28,12 +28,18 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-import">
+            <i class="fas fa-upload"></i>
+          </button>
+        </div>
       </div>
+      @include('guru.penilaian-k4.import')
 
       <div class="card-body">
         <form action="{{ route('penilaian-k4.store') }}" method="POST">
           @csrf
-          <input type="text" name="pembelajaran_id" value="{{$pembelajaran->id}}">
+          <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead class="bg-primary">
