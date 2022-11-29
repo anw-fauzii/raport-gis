@@ -70,7 +70,7 @@
 
                     @if($penilaian->jumlah_rencana_penilaian != 0)
                     <td class="text-center">
-                    <a href="{{ route('penilaian-k3.edit', $penilaian->id) }}" type="button" class="btn btn-sm btn-primary">
+                    <a href="{{ route('penilaian-k3.edit', Crypt::encrypt($penilaian->id)) }}" type="button" class="btn btn-sm btn-primary">
                         <i class="fas fa-plus"></i>
                     </a>
                     </td>

@@ -11,6 +11,7 @@ use App\Models\Guru;
 use App\Models\Tapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class NilaiEkstrakulikulerController extends Controller
 {
@@ -92,10 +93,11 @@ class NilaiEkstrakulikulerController extends Controller
     {
         $title = 'Input Nilai Ekstrakulikuler';
         $tapel = Tapel::findorfail(5);
+        $decrypted = Crypt::decrypt($id);
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();
 
-        $ekstrakulikuler = Ekstrakulikuler::findorfail($id);
+        $ekstrakulikuler = Ekstrakulikuler::findorfail($decrypted);
 
         $id_all_anggota_ekstra = AnggotaEkstrakulikuler::where('ekstrakulikuler_id', $ekstrakulikuler->id)->get('anggota_kelas_id');
         $id_anggota_kelas_dipilih = AnggotaKelas::whereIn('id', $id_all_anggota_ekstra)->get('id');

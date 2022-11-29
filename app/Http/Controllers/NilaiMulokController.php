@@ -14,6 +14,7 @@ use App\Models\NilaiRapotMulok;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use App\Exports\NilaiMulokExport;
 use App\Imports\NilaiMulokImport;
@@ -152,18 +153,19 @@ class NilaiMulokController extends Controller
     public function edit($id)
     {
         if(Auth::user()->hasRole('wali')){
-            $pembelajaran = Pembelajaran::findorfail($id);
+            $decrypted = Crypt::decrypt($id);
+            $pembelajaran = Pembelajaran::findorfail($decrypted);
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
 
-            $id_data_rencana_penilaian = RencanaMulok::where('pembelajaran_id', $id)->orderBy('kd_mapel_id', 'DESC')->get('id');
+            $id_data_rencana_penilaian = RencanaMulok::where('pembelajaran_id', $decrypted)->orderBy('kd_mapel_id', 'DESC')->get('id');
 
             $data_kd_nilai = NilaiMulok::whereIn('rencana_mulok_id', $id_data_rencana_penilaian)->groupBy('rencana_mulok_id')->get();
             $count_kd_nilai = count($data_kd_nilai);
 
-            $data_kode_penilaian = RencanaMulok::where('pembelajaran_id', $id)->get();
+            $data_kode_penilaian = RencanaMulok::where('pembelajaran_id', $decrypted)->get();
             $count_kd = count($data_kode_penilaian);
             if ($count_kd_nilai == 0) {
-                $data_rencana_penilaian = RencanaMulok::where('pembelajaran_id', $id)->get();
+                $data_rencana_penilaian = RencanaMulok::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Input Nilai '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-mulok.create', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
             } else {
@@ -171,7 +173,7 @@ class NilaiMulokController extends Controller
                     $data_nilai = NilaiMulok::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_mulok_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $nilai_rapot = NilaiRapotMulok::where('pembelajaran_id', $id)->get();
+                $nilai_rapot = NilaiRapotMulok::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Edit Nilai '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-mulok.edit', compact('title','nilai_rapot', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }

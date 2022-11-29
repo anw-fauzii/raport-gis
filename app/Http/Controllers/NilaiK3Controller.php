@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
 class NilaiK3Controller extends Controller
@@ -156,17 +157,18 @@ class NilaiK3Controller extends Controller
     public function edit($id)
     {
         if(Auth::user()->hasAnyRole('wali|mapel')){
-            $pembelajaran = Pembelajaran::findorfail($id);
+            $decrypted = Crypt::decrypt($id);
+            $pembelajaran = Pembelajaran::findorfail($decrypted);
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
 
-            $id_data_rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->orderBy('kd_mapel_id', 'DESC')->get('id');
+            $id_data_rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $decrypted)->orderBy('kd_mapel_id', 'DESC')->get('id');
 
             $data_kd_nilai = NilaiK3::whereIn('rencana_nilai_k3_id', $id_data_rencana_penilaian)->groupBy('rencana_nilai_k3_id')->get();
             $count_kd_nilai = count($data_kd_nilai);
-            $data_kode_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->get();
+            $data_kode_penilaian = RencanaNilaiK3::where('pembelajaran_id', $decrypted)->get();
             $count_kd = count($data_kode_penilaian);
             if ($count_kd_nilai == 0) {
-                $data_rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $id)->get();
+                $data_rencana_penilaian = RencanaNilaiK3::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Input Nilai KI-3 '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-k3.create', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
             } else {
@@ -174,7 +176,7 @@ class NilaiK3Controller extends Controller
                     $data_nilai = NilaiK3::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_nilai_k3_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $nilai_rapot = NilaiRapotK3::where('pembelajaran_id', $id)->get();
+                $nilai_rapot = NilaiRapotK3::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Edit Nilai KI-3 '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-k3.edit', compact('nilai_rapot','title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\AnggotaKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class SiswaKelasController extends Controller
 {
@@ -33,7 +34,8 @@ class SiswaKelasController extends Controller
 
     public function detail($id){
         if(Auth::user()->hasAnyRole('wali|t2q|mapel|admin')){
-            $siswa = Siswa::findOrFail($id);
+            $decrypted = Crypt::decrypt($id);
+            $siswa = Siswa::findOrFail($decrypted);
             $title = 'Detail Siswa';
             return view('walikelas.siswa.show', compact('title', 'siswa'));
         }

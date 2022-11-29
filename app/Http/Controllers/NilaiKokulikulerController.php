@@ -17,6 +17,7 @@ use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
 class NilaiKokulikulerController extends Controller
@@ -34,7 +35,7 @@ class NilaiKokulikulerController extends Controller
     public function index()
     {
         if(Auth::user()->hasAnyRole('wali|mapel')){
-            $title = 'Nilai KI-3/Pengetahuan';
+            $title = 'Nilai Kokulikuler';
             $tapel = Tapel::findorfail(5);
 
             $guru = Guru::where('user_id', Auth::user()->id)->first();
@@ -156,15 +157,16 @@ class NilaiKokulikulerController extends Controller
     public function edit($id)
     {
         if(Auth::user()->hasAnyRole('wali|mapel')){
-            $pembelajaran = Pembelajaran::findorfail($id);
+            $decrypted = Crypt::decrypt($id);
+            $pembelajaran = Pembelajaran::findorfail($decrypted);
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
-            $id_data_rencana_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->orderBy('kd_mapel_id', 'DESC')->get('id');
+            $id_data_rencana_penilaian = RencanaKokulikuler::where('pembelajaran_id', $decrypted)->orderBy('kd_mapel_id', 'DESC')->get('id');
             $data_kd_nilai = NilaiKokulikuler::whereIn('rencana_kokulikuler_id', $id_data_rencana_penilaian)->groupBy('rencana_kokulikuler_id')->get();
             $count_kd_nilai = count($data_kd_nilai);
-            $data_kode_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->get();
+            $data_kode_penilaian = RencanaKokulikuler::where('pembelajaran_id', $decrypted)->get();
             $count_kd = count($data_kode_penilaian);
             if ($count_kd_nilai == 0) {
-                $data_rencana_penilaian = RencanaKokulikuler::where('pembelajaran_id', $id)->get();
+                $data_rencana_penilaian = RencanaKokulikuler::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Input Nilai KI-3 '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-kokulikuler.create', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
             } else {
@@ -172,7 +174,7 @@ class NilaiKokulikulerController extends Controller
                     $data_nilai = NilaiKokulikuler::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_kokulikuler_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $nilai_rapot = NilaiRapotKokulikuler::where('pembelajaran_id', $id)->get();
+                $nilai_rapot = NilaiRapotKokulikuler::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Edit Nilai Kokulikuler '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-kokulikuler.edit', compact('nilai_rapot','title', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }

@@ -39,10 +39,10 @@ use App\Models\Ekstrakulikuler;
 use App\Models\NilaiEkstrakulikuler;
 use App\Models\AnggotaEkstrakulikuler;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use Cache;
 use PDF;
-use Dompdf\Options;
 
 class HomeController extends Controller
 {
@@ -75,37 +75,34 @@ class HomeController extends Controller
     
     public function show(Request $request, $id)
     {
-        $options = new Options();
-        $options->set('enable_html5_parser', true);
-        $options->set('chroot', 'path-to-test-html-files');
-
+        $decrypted = Crypt::decrypt($id);
         $sekolah = Sekolah::first();
-        $anggota_kelas = AnggotaKelas::findorfail($id);
-        $des_ki1=NilaiK1::where('anggota_kelas_id', $id)->get();
-        $des_ki2=NilaiK2::where('anggota_kelas_id', $id)->get();
-        $des_ki3=NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('anggota_kelas_id', $id)->get();
-        $des_ki4=NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')->where('anggota_kelas_id', $id)->get();
-        $des_kokulikuler=NilaiKokulikuler::join('rencana_kokulikuler','rencana_kokulikuler.id','=','nilai_kokulikuler.rencana_kokulikuler_id')->where('anggota_kelas_id', $id)->get();
-        $des_mulok=NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')->where('anggota_kelas_id', $id)->get();
-        $proactive=NilaiProactive::where('anggota_kelas_id', $id)->get();
-        $responsible=NilaiResponsible::where('anggota_kelas_id', $id)->get();
-        $innovative=NilaiInnovative::where('anggota_kelas_id', $id)->get();
-        $modest=NilaiModest::where('anggota_kelas_id', $id)->get();
-        $achievement=NilaiAchievement::where('anggota_kelas_id', $id)->get();
-        $nilai_ki3 = NilaiRapotK3::where('anggota_kelas_id', $id)->get();
-        $nilai_ki4 = NilaiRapotK4::where('anggota_kelas_id', $id)->get();
-        $nilai_mulok = NilaiRapotMulok::where('anggota_kelas_id', $id)->get();
-        $nilai_kokulikuler = NilaiRapotKokulikuler::where('anggota_kelas_id', $id)->get();
-        $nilai_hafalan = NilaiHafalan::where('anggota_kelas_id', $id)->first();
-        $nilai_sholat = NilaiSholat::where('anggota_kelas_id', $id)->first();
-        $nilai_t2q = NilaiT2Q::where('anggota_kelas_id', $id)->first();
-        $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $id)->first();
-        $catatan_umum = CatatanUmum::where('anggota_kelas_id', $id)->first();
-        $kehadiran = Kehadiran::where('anggota_kelas_id', $id)->first();
-        $pramuka = NilaiPramuka::where('anggota_kelas_id', $id)->first();
+        $anggota_kelas = AnggotaKelas::findorfail($decrypted);
+        $des_ki1=NilaiK1::where('anggota_kelas_id', $decrypted)->get();
+        $des_ki2=NilaiK2::where('anggota_kelas_id', $decrypted)->get();
+        $des_ki3=NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')->where('anggota_kelas_id', $decrypted)->get();
+        $des_ki4=NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')->where('anggota_kelas_id', $decrypted)->get();
+        $des_kokulikuler=NilaiKokulikuler::join('rencana_kokulikuler','rencana_kokulikuler.id','=','nilai_kokulikuler.rencana_kokulikuler_id')->where('anggota_kelas_id', $decrypted)->get();
+        $des_mulok=NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')->where('anggota_kelas_id', $decrypted)->get();
+        $proactive=NilaiProactive::where('anggota_kelas_id', $decrypted)->get();
+        $responsible=NilaiResponsible::where('anggota_kelas_id', $decrypted)->get();
+        $innovative=NilaiInnovative::where('anggota_kelas_id', $decrypted)->get();
+        $modest=NilaiModest::where('anggota_kelas_id', $decrypted)->get();
+        $achievement=NilaiAchievement::where('anggota_kelas_id', $decrypted)->get();
+        $nilai_ki3 = NilaiRapotK3::where('anggota_kelas_id', $decrypted)->get();
+        $nilai_ki4 = NilaiRapotK4::where('anggota_kelas_id', $decrypted)->get();
+        $nilai_mulok = NilaiRapotMulok::where('anggota_kelas_id', $decrypted)->get();
+        $nilai_kokulikuler = NilaiRapotKokulikuler::where('anggota_kelas_id', $decrypted)->get();
+        $nilai_hafalan = NilaiHafalan::where('anggota_kelas_id', $decrypted)->first();
+        $nilai_sholat = NilaiSholat::where('anggota_kelas_id', $decrypted)->first();
+        $nilai_t2q = NilaiT2Q::where('anggota_kelas_id', $decrypted)->first();
+        $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $decrypted)->first();
+        $catatan_umum = CatatanUmum::where('anggota_kelas_id', $decrypted)->first();
+        $kehadiran = Kehadiran::where('anggota_kelas_id', $decrypted)->first();
+        $pramuka = NilaiPramuka::where('anggota_kelas_id', $decrypted)->first();
 
         $data_id_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', 5)->get('id');
-        $ekstrakulikuler = AnggotaEkstrakulikuler::whereIn('ekstrakulikuler_id', $data_id_ekstrakulikuler)->where('anggota_kelas_id', $id)->get();
+        $ekstrakulikuler = AnggotaEkstrakulikuler::whereIn('ekstrakulikuler_id', $data_id_ekstrakulikuler)->where('anggota_kelas_id', $decrypted)->get();
             foreach ($ekstrakulikuler as $anggota) {
                 $cek_nilai_ekstra = NilaiEkstrakulikuler::where('anggota_ekstrakulikuler_id', $anggota->id)->first();
                 if (is_null($cek_nilai_ekstra)) {

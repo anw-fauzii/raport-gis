@@ -61,8 +61,8 @@
                   @endif
                 </td>
                 <td>
-                  <a href="{{route('detail-siswa',$siswa->id)}}" type="button"  class="btn btn-sm btn-info" data-toggle="tooltip"><i class="fas fa-user-graduate"></i></a>
-                  <a href="{{route('show',$siswa->id)}}" type="button" class="btn btn-sm btn-success" data-toggle="tooltip"><i class="fas fa-paste"></i></a>
+                  <a href="{{route('detail-siswa',Crypt::encrypt($siswa->id))}}" type="button"  class="btn btn-sm btn-info" data-toggle="tooltip"><i class="fas fa-user-graduate"></i></a>
+                  <a href="{{route('show',Crypt::encrypt($siswa->id))}}" type="button" class="btn btn-sm btn-success" data-toggle="tooltip"><i class="fas fa-paste"></i></a>
                 </td>
               </tr>
               @endforeach

@@ -55,7 +55,7 @@
                   @endif
                 </td>
                 <td>
-                    <a href="{{ route('penilaian-ekstrakulikuler.edit', $ekstrakulikuler->id) }}" type="button" class="btn btn-sm btn-primary">
+                    <a href="{{ route('penilaian-ekstrakulikuler.edit', Crypt::encrypt($ekstrakulikuler->id)) }}" type="button" class="btn btn-sm btn-primary">
                         <i class="fas fa-plus"></i>
                     </a>
                 </td>

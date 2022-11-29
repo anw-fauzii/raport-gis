@@ -16,6 +16,7 @@ use App\Models\Tapel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Excel;
 
@@ -148,18 +149,19 @@ class NilaiK4Controller extends Controller
     public function edit($id)
     {
         if(Auth::user()->hasAnyRole('wali|mapel')){
-            $pembelajaran = Pembelajaran::findorfail($id);
+            $decrypted = Crypt::decrypt($id);
+            $pembelajaran = Pembelajaran::findorfail($decrypted);
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
 
-            $id_data_rencana_penilaian = RencanaNilaiK4::where('pembelajaran_id', $id)->orderBy('kd_mapel_id', 'DESC')->get('id');
+            $id_data_rencana_penilaian = RencanaNilaiK4::where('pembelajaran_id', $decrypted)->orderBy('kd_mapel_id', 'DESC')->get('id');
 
             $data_kd_nilai = NilaiK4::whereIn('rencana_nilai_k4_id', $id_data_rencana_penilaian)->groupBy('rencana_nilai_k4_id')->get();
             $count_kd_nilai = count($data_kd_nilai);
 
-            $data_kode_penilaian = RencanaNilaiK4::where('pembelajaran_id', $id)->get();
+            $data_kode_penilaian = RencanaNilaiK4::where('pembelajaran_id', $decrypted)->get();
             $count_kd = count($data_kode_penilaian);
             if ($count_kd_nilai == 0) {
-                $data_rencana_penilaian = RencanaNilaiK4::where('pembelajaran_id', $id)->get();
+                $data_rencana_penilaian = RencanaNilaiK4::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Input Nilai KI-4 '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-k4.create', compact('title', 'pembelajaran', 'data_anggota_kelas', 'data_rencana_penilaian', 'data_kode_penilaian', 'count_kd'));
             } else {
@@ -167,7 +169,7 @@ class NilaiK4Controller extends Controller
                     $data_nilai = NilaiK4::where('anggota_kelas_id', $anggota_kelas->id)->whereIn('rencana_nilai_k4_id', $id_data_rencana_penilaian)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $nilai_rapot = NilaiRapotK4::where('pembelajaran_id', $id)->get();
+                $nilai_rapot = NilaiRapotK4::where('pembelajaran_id', $decrypted)->get();
                 $title = 'Edit Nilai KI-4 '.$pembelajaran->mapel->nama_mapel;
                 return view('guru.penilaian-k4.edit', compact('title','nilai_rapot', 'pembelajaran', 'data_anggota_kelas', 'data_kode_penilaian','count_kd', 'count_kd_nilai', 'data_kd_nilai',));
             }
