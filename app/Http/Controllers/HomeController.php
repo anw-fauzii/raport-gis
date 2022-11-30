@@ -77,6 +77,7 @@ class HomeController extends Controller
     {
         $decrypted = Crypt::decrypt($id);
         $sekolah = Sekolah::first();
+        $guru = Guru::where('user_id', Auth::user()->id)->first();
         $anggota_kelas = AnggotaKelas::findorfail($decrypted);
         $des_ki1=NilaiK1::where('anggota_kelas_id', $decrypted)->get();
         $des_ki2=NilaiK2::where('anggota_kelas_id', $decrypted)->get();
@@ -113,7 +114,7 @@ class HomeController extends Controller
             }
         $title = 'Raport';
         $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', 
-        compact('des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
+        compact('guru','des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
         'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
         'title','nilai_hafalan','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
         'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');

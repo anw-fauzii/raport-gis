@@ -18,7 +18,7 @@ class GuruImport implements ToCollection
         foreach ($collection as $key => $row) {
             if ($key >= 9 && $key <= 59) {
                 $user = User::create([
-                    'name' => strtoupper($row[1]),
+                    'name' => $row[1],
                     'email' => $row[3],
                     'password' => Hash::make('12345678'),
                 ]);
@@ -26,7 +26,7 @@ class GuruImport implements ToCollection
                 $tanggal_lahir = ($row[7] - 25569) * 86400;
                 Guru::create([
                     'user_id' => $user->id,
-                    'nama_lengkap' => strtoupper($row[1]),
+                    'nama_lengkap' => $row[1],
                     'gelar' => $row[2],
                     'nip' => $row[3],
                     'jabatan' => $row[4],

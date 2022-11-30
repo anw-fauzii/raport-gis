@@ -108,7 +108,7 @@ class SekolahController extends Controller
                     $logo_file->move('assets/images/logo/', $name_logo);
 
                     $data_sekolah = [
-                        'nama_sekolah' => strtoupper($request->nama_sekolah),
+                        'nama_sekolah' => $request->nama_sekolah,
                         'npsn' => $request->npsn,
                         'nss' => $request->nss,
                         'alamat' => $request->alamat,
@@ -116,13 +116,13 @@ class SekolahController extends Controller
                         'email' => $request->email,
                         'nomor_telpon' => $request->nomor_telpon,
                         'website' => $request->website,
-                        'kepala_sekolah' => strtoupper($request->kepala_sekolah),
+                        'kepala_sekolah' => $request->kepala_sekolah,
                         'nip_kepala_sekolah' => $request->nip_kepala_sekolah,
                         'logo' => $name_logo,
                     ];
                 } else {
                     $data_sekolah = [
-                        'nama_sekolah' => strtoupper($request->nama_sekolah),
+                        'nama_sekolah' => $request->nama_sekolah,
                         'npsn' => $request->npsn,
                         'nss' => $request->nss,
                         'alamat' => $request->alamat,
@@ -130,7 +130,7 @@ class SekolahController extends Controller
                         'email' => $request->email,
                         'nomor_telpon' => $request->nomor_telpon,
                         'website' => $request->website,
-                        'kepala_sekolah' => strtoupper($request->kepala_sekolah),
+                        'kepala_sekolah' => $request->kepala_sekolah,
                         'nip_kepala_sekolah' => $request->nip_kepala_sekolah,
                     ];
                 }

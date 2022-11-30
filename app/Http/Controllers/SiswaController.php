@@ -119,7 +119,7 @@ class SiswaController extends Controller
                     'jenis_pendaftaran' => $request->jenis_pendaftaran,
                     'nis' => $request->nis,
                     'nisn' => $request->nisn,
-                    'nama_lengkap' => strtoupper($request->nama_lengkap),
+                    'nama_lengkap' => $request->nama_lengkap,
                     'tempat_lahir' => $request->tempat_lahir,
                     'tanggal_lahir' => $request->tanggal_lahir,
                     'jenis_kelamin' => $request->jenis_kelamin,
@@ -221,7 +221,7 @@ class SiswaController extends Controller
                 $data_siswa = [
                     'nis' => $request->nis,
                     'nisn' => $request->nisn,
-                    'nama_lengkap' => strtoupper($request->nama_lengkap),
+                    'nama_lengkap' => $request->nama_lengkap,
                     'tempat_lahir' => $request->tempat_lahir,
                     'tanggal_lahir' => $request->tanggal_lahir,
                     'jenis_kelamin' => $request->jenis_kelamin,

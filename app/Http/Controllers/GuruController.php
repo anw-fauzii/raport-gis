@@ -88,7 +88,7 @@ class GuruController extends Controller
 
                 $guru = new Guru([
                     'user_id' => $user->id,
-                    'nama_lengkap' => strtoupper($request->nama_lengkap),
+                    'nama_lengkap' => $request->nama_lengkap,
                     'gelar' => $request->gelar,
                     'nip' => $request->nip,
                     'jenis_kelamin' => $request->jenis_kelamin,

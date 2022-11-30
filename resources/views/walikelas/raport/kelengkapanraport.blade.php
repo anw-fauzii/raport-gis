@@ -473,134 +473,144 @@
           <td>
             Penilaian Sikap Spiritual (KI-1)
           </td>
-          @php
-          $hasil_k1=round($des_ki1->sum('nilai')/$des_ki1->count(),1);
-          @endphp
-          <td style="text-align:center;">
-            @if($hasil_k1 >= 3.1)
-            SB
-            @elseif($hasil_k1 >= 2.1)
-            B
-            @else
-            C
-            @endif
-          </td>
-          <td class="description">
-            <span>
-              Semua aspek spiritual 
-              @if($des_ki1->where('nilai',4)->count() != 0)
-                  sudah menjadi kebiasaan terutama
-                  @foreach($des_ki1->where('nilai',4) as $ki1)
-                      @if(!$loop->last)
-                        {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
+          @if($des_ki1->count() != 0)
+            @php
+            $hasil_k1=round($des_ki1->sum('nilai')/$des_ki1->count(),1);
+            @endphp
+            <td style="text-align:center;">
+              @if($hasil_k1 >= 3.1)
+              SB
+              @elseif($hasil_k1 >= 2.1)
+              B
+              @else
+              C
               @endif
-
-              @if($des_ki1->where('nilai',3)->count() != 0)
-                  Sudah berkembang dalam
-                  @foreach($des_ki1->where('nilai',3) as $ki1)
-                      @if(!$loop->last)
-                        {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-              
-              @if($des_ki1->where('nilai',2)->count() != 0 || $des_ki1->where('nilai',1)->count() != 0)
-                Perlu peningkatan lebih lanjut dalam
-                  @foreach($des_ki1->where('nilai', 2) as $ki1)
-                      @if(!$loop->last)
-                        {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
-                      @else
-                        @if($des_ki1->where('nilai',1)->count() == 0)
-                          {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
-                        @else
+            </td>
+            <td class="description">
+              <span>
+                Semua aspek spiritual 
+                @if($des_ki1->where('nilai',4)->count() != 0)
+                    sudah menjadi kebiasaan terutama
+                    @foreach($des_ki1->where('nilai',4) as $ki1)
+                        @if(!$loop->last)
                           {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
                         @endif
-                      @endif
-                  @endforeach
+                    @endforeach
+                @endif
 
-                  @foreach($des_ki1->where('nilai', 1) as $ki1)
-                      @if(!$loop->last)
-                        {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-            </span>
-          </td>
+                @if($des_ki1->where('nilai',3)->count() != 0)
+                    Sudah berkembang dalam
+                    @foreach($des_ki1->where('nilai',3) as $ki1)
+                        @if(!$loop->last)
+                          {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+                
+                @if($des_ki1->where('nilai',2)->count() != 0 || $des_ki1->where('nilai',1)->count() != 0)
+                  Perlu peningkatan lebih lanjut dalam
+                    @foreach($des_ki1->where('nilai', 2) as $ki1)
+                        @if(!$loop->last)
+                          {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+                        @else
+                          @if($des_ki1->where('nilai',1)->count() == 0)
+                            {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
+                          @else
+                            {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+                          @endif
+                        @endif
+                    @endforeach
+
+                    @foreach($des_ki1->where('nilai', 1) as $ki1)
+                        @if(!$loop->last)
+                          {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+              </span>
+            </td>
+          @else
+            <td style="text-align:center;"> - </td>
+            <td style="text-align:center;"> - </td>
+          @endif
         </tr>
         <tr class="sikap">
           <td>2</td>
           <td>
               Penilaian Sikap Sosial (KI-2)
           </td>
-          @php
-          $hasil_k2 = round($des_ki2->sum('nilai')/$des_ki2->count(),1);
-          @endphp
-          <td style="text-align:center;">
-            @if($hasil_k2 >= 3.1)
-            SB
-            @elseif($hasil_k2 >= 2.1)
-            B
-            @else
-            C
-            @endif
-          </td>
-          <td class="description">
-            <span>
-              Semua aspek sikap 
-              @if($des_ki2->where('nilai',4)->count() != 0)
-                  sudah menjadi kebiasaan terutama
-                  @foreach($des_ki2->where('nilai',4) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
+          @if($des_ki2->count() != 0)
+            @php
+            $hasil_k2 = round($des_ki2->sum('nilai')/$des_ki2->count(),1);
+            @endphp
+            <td style="text-align:center;">
+              @if($hasil_k2 >= 3.1)
+              SB
+              @elseif($hasil_k2 >= 2.1)
+              B
+              @else
+              C
               @endif
-
-              @if($des_ki2->where('nilai',3)->count() != 0)
-                  Sudah berkembang dalam
-                  @foreach($des_ki2->where('nilai',3) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-              
-              @if($des_ki2->where('nilai',2)->count() != 0 || $des_ki2->where('nilai',1)->count() != 0)
-                Perlu peningkatan lebih lanjut dalam
-                  @foreach($des_ki2->where('nilai', 2) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
-                      @else
-                        @if($des_ki2->where('nilai',1)->count() == 0)
-                          {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
-                        @else
+            </td>
+            <td class="description">
+              <span>
+                Semua aspek sikap 
+                @if($des_ki2->where('nilai',4)->count() != 0)
+                    sudah menjadi kebiasaan terutama
+                    @foreach($des_ki2->where('nilai',4) as $ki2)
+                        @if(!$loop->last)
                           {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
                         @endif
-                      @endif
-                  @endforeach
+                    @endforeach
+                @endif
 
-                  @foreach($des_ki2->where('nilai', 1) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-            </span>
-          </td>
+                @if($des_ki2->where('nilai',3)->count() != 0)
+                    Sudah berkembang dalam
+                    @foreach($des_ki2->where('nilai',3) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+                
+                @if($des_ki2->where('nilai',2)->count() != 0 || $des_ki2->where('nilai',1)->count() != 0)
+                  Perlu peningkatan lebih lanjut dalam
+                    @foreach($des_ki2->where('nilai', 2) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+                        @else
+                          @if($des_ki2->where('nilai',1)->count() == 0)
+                            {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
+                          @else
+                            {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+                          @endif
+                        @endif
+                    @endforeach
+
+                    @foreach($des_ki2->where('nilai', 1) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+              </span>
+            </td>
+          @else
+            <td style="text-align:center;"> - </td>
+            <td style="text-align:center;"> - </td>
+          @endif
         </tr>
       </table>
       <table cellspacing="0">
@@ -618,7 +628,7 @@
         </thead>
         <tbody>
         @php $no = 1; @endphp
-          @foreach($nilai_ki3 as $ki3)
+          @forelse($nilai_ki3 as $ki3)
           <tr class="sikap">
             <td>{{$no++}}</td>
             <td>
@@ -674,7 +684,15 @@
               </span>
             </td>
           </tr>
-          @endforeach
+          @empty
+          <tr class="sikap">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          @endforelse
         </tbody>
       </table>
       <table cellspacing="0">
@@ -690,7 +708,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($nilai_ki4 as $ki4)
+          @forelse($nilai_ki4 as $ki4)
           <tr class="sikap">
             <td>1</td>
             <td>
@@ -745,7 +763,14 @@
               </span>
             </td>
           </tr>
-          @endforeach
+          @empty
+          <tr class="sikap">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          @endforelse
         </tbody>
       </table>
       <table cellspacing="0">
@@ -761,7 +786,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($nilai_kokulikuler as $kokulikuler)
+          @forelse($nilai_kokulikuler as $kokulikuler)
           <tr class="sikap">
             <td>1</td>
             <td>
@@ -816,7 +841,14 @@
               </span>
             </td>
           </tr>
-          @endforeach
+          @empty
+          <tr class="sikap">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          @endforelse
         </tbody>
       </table>
       <table cellspacing="0">
@@ -866,8 +898,10 @@
             C
             @elseif($nilai_ekstra->nilai == 1)
             K
+            @else
+            -
             @endif
-          </td>
+            </td>
             <td class="description">
               <span>asdasdas asdasd</span>
             </td>
@@ -888,7 +922,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($nilai_mulok as $mulok)
+          @forelse($nilai_mulok as $mulok)
             <tr class="sikap">
               <td>1</td>
               <td>
@@ -943,7 +977,14 @@
               </span>
               </td>
             </tr>
-          @endforeach
+          @empty
+            <tr class="sikap">
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+          @endforelse
         </tbody>
       </table>
       <table cellspacing="0">
@@ -962,6 +1003,7 @@
           </tr>
         </thead>
         <tbody>
+          @if($nilai_sholat)
           <tr class="sikap">
             <td>1</td>
             <td>
@@ -1002,6 +1044,14 @@
               <span>{{$nilai_sholat->deskripsi_dzikir}}</span>
             </td>
           </tr>
+          @else
+          <tr class="sikap">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          @endif
         </tbody>
       </table>
       <table cellspacing="0">
@@ -1017,6 +1067,7 @@
           </tr>
         </thead>
         <tbody>
+          @if($nilai_hafalan)
           <tr class="sikap">
             <td>1</td>
             <td>
@@ -1047,6 +1098,14 @@
               <span>{{$nilai_hafalan->deskripsi_hikmah}}</span>
             </td>
           </tr>
+          @else
+          <tr class="sikap">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          @endif
         </tbody>
       </table>
       <table cellspacing="0">
@@ -1059,40 +1118,58 @@
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
         </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-          {{$nilai_t2q->tahsin_jilid}} {{$nilai_t2q->tahsin_halaman}}
-          </td>
-          <td style="text-align:center;">{{$nilai_t2q->tahsin_nilai}}</td>
-          <td class="description">
-            @if($nilai_t2q->tahfidz_nilai < 85)
-            <span>Sudah menguasai sebagian besar kompetensi tahsin dengan baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
-            @elseif($nilai_t2q->tahfidz_nilai < 100)
-            <span>Sudah menguasai seluruh kompetensi tahsin dengan sangat baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
-            @endif 
-          </td>
-        </tr>
+        @if($nilai_t2q)
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+            {{$nilai_t2q->tahsin_jilid}} {{$nilai_t2q->tahsin_halaman}}
+            </td>
+            <td style="text-align:center;">{{$nilai_t2q->tahsin_nilai}}</td>
+            <td class="description">
+              @if($nilai_t2q->tahfidz_nilai < 85)
+              <span>Sudah menguasai sebagian besar kompetensi tahsin dengan baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
+              @elseif($nilai_t2q->tahfidz_nilai < 100)
+              <span>Sudah menguasai seluruh kompetensi tahsin dengan sangat baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
+              @endif 
+            </td>
+          </tr>
+        @else
+          <tr class="sikap">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        @endif
         <tr class="heading">
           <td style="width: 4%;">NO</td>
           <td style="width: 26%;">TAHFIDZ AL-QUR'AN</td>
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
         </tr>
-        <tr class="sikap">
-          <td>1</td>
-          <td>
-            Surah {{$nilai_t2q->tahfidz_surah}} Ayat {{$nilai_t2q->tahfidz_ayat}}
-          </td>
-          <td style="text-align:center;">{{$nilai_t2q->tahfidz_nilai}}</td>
-        <td class="description">
-            @if($nilai_t2q->tahsin_nilai < 85)
-            <span>Sudah menguasai sebagian kompetensi hafalan dengan baik. Perlu penguatan untuk murojaah setiap hari.</span>
-            @elseif($nilai_t2q->tahsin_nilai < 100)
-            <span>Sudah menguasai seluruh kompetensi hafalan dengan baik.</span>
-            @endif 
-          </td>
-        </tr>
+        @if($nilai_t2q)
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              Surah {{$nilai_t2q->tahfidz_surah}} Ayat {{$nilai_t2q->tahfidz_ayat}}
+            </td>
+            <td style="text-align:center;">{{$nilai_t2q->tahfidz_nilai}}</td>
+            <td class="description">
+              @if($nilai_t2q->tahsin_nilai < 85)
+              <span>Sudah menguasai sebagian kompetensi hafalan dengan baik. Perlu penguatan untuk murojaah setiap hari.</span>
+              @elseif($nilai_t2q->tahsin_nilai < 100)
+              <span>Sudah menguasai seluruh kompetensi hafalan dengan baik.</span>
+              @endif 
+            </td>
+          </tr>
+        @else
+          <tr class="sikap">
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        @endif
       </table>
       <table cellspacing="0">
         <tr>
@@ -1100,7 +1177,11 @@
         </tr>
         <tr class="sikap">
           <td class="description">
+            @if($catatan_t2q)
             <span>{{$catatan_t2q->catatan}}</span>
+            @else
+            -
+            @endif
           </td>
         </tr>
       </table>
@@ -1117,341 +1198,400 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="sikap">
-            <td>1</td>
-            <td>
-              Proactive
-            </td>
-            @php
-            $hasil_proactive = round($proactive->sum('nilai')/$proactive->count(),1);
-            @endphp
-            <td style="text-align:center;">
-              @if($hasil_proactive >= 3.1)
-              SB
-              @elseif($hasil_proactive >= 2.1)
-              B
-              @else
-              C
-              @endif
-            </td>
-            <td class="description">
-            <span>
-              Semua aspek  
-              @if($proactive->where('nilai',4)->count() != 0)
-                  sudah menjadi kebiasaan terutama
-                  @foreach($proactive->where('nilai',4) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-
-              @if($proactive->where('nilai',3)->count() != 0)
-                  Sudah berkembang dalam
-                  @foreach($proactive->where('nilai',3) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-              
-              @if($proactive->where('nilai',2)->count() != 0 || $proactive->where('nilai',1)->count() != 0)
-                Perlu peningkatan lebih lanjut dalam
-                  @foreach($proactive->where('nilai', 2) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
-                      @else
-                        @if($proactive->where('nilai',1)->count() == 0)
-                          {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
-                        @else
+          @if($proactive->count() != 0)
+            <tr class="sikap">
+              <td>1</td>
+              <td>
+                Proactive
+              </td>
+              @php
+              $hasil_proactive = round($proactive->sum('nilai')/$proactive->count(),1);
+              @endphp
+              <td style="text-align:center;">
+                @if($hasil_proactive >= 3.1)
+                SB
+                @elseif($hasil_proactive >= 2.1)
+                B
+                @else
+                C
+                @endif
+              </td>
+              <td class="description">
+              <span>
+                Semua aspek  
+                @if($proactive->where('nilai',4)->count() != 0)
+                    sudah menjadi kebiasaan terutama
+                    @foreach($proactive->where('nilai',4) as $ki2)
+                        @if(!$loop->last)
                           {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
-                        @endif
-                      @endif
-                  @endforeach
-
-                  @foreach($proactive->where('nilai', 1) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-            </span>
-            </td>
-          </tr>
-          <tr class="sikap">
-            <td>2</td>
-            <td>
-              Responsible
-            </td>
-            @php
-            $hasil_responsible = round($responsible->sum('nilai')/$responsible->count(),1);
-            @endphp
-            <td style="text-align:center;">
-              @if($hasil_responsible >= 3.1)
-              SB
-              @elseif($hasil_responsible >= 2.1)
-              B
-              @else
-              C
-              @endif
-            </td>
-            <td class="description">
-            <span>
-              Semua aspek  
-              @if($responsible->where('nilai',4)->count() != 0)
-                  sudah menjadi kebiasaan terutama
-                  @foreach($responsible->where('nilai',4) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-
-              @if($responsible->where('nilai',3)->count() != 0)
-                  Sudah berkembang dalam
-                  @foreach($responsible->where('nilai',3) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-              
-              @if($responsible->where('nilai',2)->count() != 0 || $responsible->where('nilai',1)->count() != 0)
-                Perlu peningkatan lebih lanjut dalam
-                  @foreach($responsible->where('nilai', 2) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
-                      @else
-                        @if($responsible->where('nilai',1)->count() == 0)
-                          {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
                         @else
+                          {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+
+                @if($proactive->where('nilai',3)->count() != 0)
+                    Sudah berkembang dalam
+                    @foreach($proactive->where('nilai',3) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+                
+                @if($proactive->where('nilai',2)->count() != 0 || $proactive->where('nilai',1)->count() != 0)
+                  Perlu peningkatan lebih lanjut dalam
+                    @foreach($proactive->where('nilai', 2) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
+                        @else
+                          @if($proactive->where('nilai',1)->count() == 0)
+                            {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
+                          @else
+                            {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
+                          @endif
+                        @endif
+                    @endforeach
+
+                    @foreach($proactive->where('nilai', 1) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_proactive->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+              </span>
+              </td>
+            </tr>
+          @else
+            <tr class="sikap">
+              <td>1</td>
+              <td>
+                Proactive
+              </td>
+              <td style="text-align:center;">-</td>
+              <td>-</td>
+            </tr>
+          @endif
+
+          @if($responsible->count() != 0)
+            <tr class="sikap">
+              <td>2</td>
+              <td>
+                Responsible
+              </td>
+              @php
+              $hasil_responsible = round($responsible->sum('nilai')/$responsible->count(),1);
+              @endphp
+              <td style="text-align:center;">
+                @if($hasil_responsible >= 3.1)
+                SB
+                @elseif($hasil_responsible >= 2.1)
+                B
+                @else
+                C
+                @endif
+              </td>
+              <td class="description">
+              <span>
+                Semua aspek  
+                @if($responsible->where('nilai',4)->count() != 0)
+                    sudah menjadi kebiasaan terutama
+                    @foreach($responsible->where('nilai',4) as $ki2)
+                        @if(!$loop->last)
                           {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
-                        @endif
-                      @endif
-                  @endforeach
-
-                  @foreach($responsible->where('nilai', 1) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-            </span>
-            </td>
-          </tr>
-          <tr class="sikap">
-            <td>3</td>
-            <td>
-              Innovative
-            </td>
-            @php
-            $hasil_innovative = round($innovative->sum('nilai')/$innovative->count(),1);
-            @endphp
-            <td style="text-align:center;">
-              @if($hasil_innovative >= 3.1)
-              SB
-              @elseif($hasil_innovative >= 2.1)
-              B
-              @else
-              C
-              @endif
-            </td>
-            <td class="description">
-            <span>
-              Semua aspek  
-              @if($innovative->where('nilai',4)->count() != 0)
-                  sudah menjadi kebiasaan terutama
-                  @foreach($innovative->where('nilai',4) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-
-              @if($innovative->where('nilai',3)->count() != 0)
-                  Sudah berkembang dalam
-                  @foreach($innovative->where('nilai',3) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-              
-              @if($innovative->where('nilai',2)->count() != 0 || $innovative->where('nilai',1)->count() != 0)
-                Perlu peningkatan lebih lanjut dalam
-                  @foreach($innovative->where('nilai', 2) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
-                      @else
-                        @if($innovative->where('nilai',1)->count() == 0)
-                          {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
                         @else
+                          {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+
+                @if($responsible->where('nilai',3)->count() != 0)
+                    Sudah berkembang dalam
+                    @foreach($responsible->where('nilai',3) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+                
+                @if($responsible->where('nilai',2)->count() != 0 || $responsible->where('nilai',1)->count() != 0)
+                  Perlu peningkatan lebih lanjut dalam
+                    @foreach($responsible->where('nilai', 2) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
+                        @else
+                          @if($responsible->where('nilai',1)->count() == 0)
+                            {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
+                          @else
+                            {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
+                          @endif
+                        @endif
+                    @endforeach
+
+                    @foreach($responsible->where('nilai', 1) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_responsible->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+              </span>
+              </td>
+            </tr>
+          @else
+            <tr class="sikap">
+              <td>2</td>
+              <td>
+                Responsible
+              </td>
+              <td style="text-align:center;">-</td>
+              <td>-</td>
+            </tr>
+          @endif
+        
+          @if($innovative->count() != 0)
+            <tr class="sikap">
+              <td>3</td>
+              <td>
+                Innovative
+              </td>
+              @php
+              $hasil_innovative = round($innovative->sum('nilai')/$innovative->count(),1);
+              @endphp
+              <td style="text-align:center;">
+                @if($hasil_innovative >= 3.1)
+                SB
+                @elseif($hasil_innovative >= 2.1)
+                B
+                @else
+                C
+                @endif
+              </td>
+              <td class="description">
+              <span>
+                Semua aspek  
+                @if($innovative->where('nilai',4)->count() != 0)
+                    sudah menjadi kebiasaan terutama
+                    @foreach($innovative->where('nilai',4) as $ki2)
+                        @if(!$loop->last)
                           {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
-                        @endif
-                      @endif
-                  @endforeach
-
-                  @foreach($innovative->where('nilai', 1) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-            </span>
-            </td>
-          </tr>
-          <tr class="sikap">
-            <td>4</td>
-            <td>
-              Modest
-            </td>
-            @php
-            $hasil_modest = round($modest->sum('nilai')/$modest->count(),1);
-            @endphp
-            <td style="text-align:center;">
-              @if($hasil_modest >= 3.1)
-              SB
-              @elseif($hasil_modest >= 2.1)
-              B
-              @else
-              C
-              @endif
-            </td>
-            <td class="description">
-            <span>
-              Semua aspek  
-              @if($modest->where('nilai',4)->count() != 0)
-                  sudah menjadi kebiasaan terutama
-                  @foreach($modest->where('nilai',4) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-
-              @if($modest->where('nilai',3)->count() != 0)
-                  Sudah berkembang dalam
-                  @foreach($modest->where('nilai',3) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-              
-              @if($modest->where('nilai',2)->count() != 0 || $modest->where('nilai',1)->count() != 0)
-                Perlu peningkatan lebih lanjut dalam
-                  @foreach($modest->where('nilai', 2) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
-                      @else
-                        @if($modest->where('nilai',1)->count() == 0)
-                          {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
                         @else
+                          {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+
+                @if($innovative->where('nilai',3)->count() != 0)
+                    Sudah berkembang dalam
+                    @foreach($innovative->where('nilai',3) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+                
+                @if($innovative->where('nilai',2)->count() != 0 || $innovative->where('nilai',1)->count() != 0)
+                  Perlu peningkatan lebih lanjut dalam
+                    @foreach($innovative->where('nilai', 2) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
+                        @else
+                          @if($innovative->where('nilai',1)->count() == 0)
+                            {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
+                          @else
+                            {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
+                          @endif
+                        @endif
+                    @endforeach
+
+                    @foreach($innovative->where('nilai', 1) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_innovative->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+              </span>
+              </td>
+            </tr>
+          @else
+            <tr class="sikap">
+              <td>3</td>
+              <td>
+                Innovative
+              </td>
+              <td style="text-align:center;">-</td>
+              <td>-</td>
+            </tr>
+          @endif
+
+          @if($modest->count() != 0)
+            <tr class="sikap">
+              <td>4</td>
+              <td>
+                Modest
+              </td>
+              @php
+              $hasil_modest = round($modest->sum('nilai')/$modest->count(),1);
+              @endphp
+              <td style="text-align:center;">
+                @if($hasil_modest >= 3.1)
+                SB
+                @elseif($hasil_modest >= 2.1)
+                B
+                @else
+                C
+                @endif
+              </td>
+              <td class="description">
+              <span>
+                Semua aspek  
+                @if($modest->where('nilai',4)->count() != 0)
+                    sudah menjadi kebiasaan terutama
+                    @foreach($modest->where('nilai',4) as $ki2)
+                        @if(!$loop->last)
                           {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
-                        @endif
-                      @endif
-                  @endforeach
-
-                  @foreach($modest->where('nilai', 1) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-            </span>
-            </td>
-          </tr>
-          <tr class="sikap">
-            <td>5</td>
-            <td>
-              Achievement
-            </td>
-            @php
-            $hasil_achievement = round($achievement->sum('nilai')/$achievement->count(),1);
-            @endphp
-            <td style="text-align:center;">
-              @if($hasil_achievement >= 3.1)
-              SB
-              @elseif($hasil_achievement >= 2.1)
-              B
-              @else
-              C
-              @endif
-            </td>
-            <td class="description">
-            <span>
-              Semua aspek  
-              @if($achievement->where('nilai',4)->count() != 0)
-                  sudah menjadi kebiasaan terutama
-                  @foreach($achievement->where('nilai',4) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-
-              @if($achievement->where('nilai',3)->count() != 0)
-                  Sudah berkembang dalam
-                  @foreach($achievement->where('nilai',3) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-              
-              @if($achievement->where('nilai',2)->count() != 0 || $achievement->where('nilai',1)->count() != 0)
-                Perlu peningkatan lebih lanjut dalam
-                  @foreach($achievement->where('nilai', 2) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
-                      @else
-                        @if($achievement->where('nilai',1)->count() == 0)
-                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
                         @else
-                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
+                          {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
                         @endif
-                      @endif
-                  @endforeach
+                    @endforeach
+                @endif
 
-                  @foreach($achievement->where('nilai', 1) as $ki2)
-                      @if(!$loop->last)
-                        {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
-                      @else
-                        {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
-                      @endif
-                  @endforeach
-              @endif
-            </span>
-            </td>
-          </tr>
+                @if($modest->where('nilai',3)->count() != 0)
+                    Sudah berkembang dalam
+                    @foreach($modest->where('nilai',3) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+                
+                @if($modest->where('nilai',2)->count() != 0 || $modest->where('nilai',1)->count() != 0)
+                  Perlu peningkatan lebih lanjut dalam
+                    @foreach($modest->where('nilai', 2) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
+                        @else
+                          @if($modest->where('nilai',1)->count() == 0)
+                            {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
+                          @else
+                            {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
+                          @endif
+                        @endif
+                    @endforeach
+
+                    @foreach($modest->where('nilai', 1) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_modest->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+              </span>
+              </td>
+            </tr>
+          @else
+            <tr class="sikap">
+              <td>4</td>
+              <td>
+                Modest
+              </td>
+              <td style="text-align:center;">-</td>
+              <td>-</td>
+            </tr>
+          @endif
+
+          @if($achievement->count() != 0)
+            <tr class="sikap">
+              <td>5</td>
+              <td>
+                Achievement
+              </td>
+              @php
+              $hasil_achievement = round($achievement->sum('nilai')/$achievement->count(),1);
+              @endphp
+              <td style="text-align:center;">
+                @if($hasil_achievement >= 3.1)
+                SB
+                @elseif($hasil_achievement >= 2.1)
+                B
+                @else
+                C
+                @endif
+              </td>
+              <td class="description">
+              <span>
+                Semua aspek  
+                @if($achievement->where('nilai',4)->count() != 0)
+                    sudah menjadi kebiasaan terutama
+                    @foreach($achievement->where('nilai',4) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+
+                @if($achievement->where('nilai',3)->count() != 0)
+                    Sudah berkembang dalam
+                    @foreach($achievement->where('nilai',3) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+                
+                @if($achievement->where('nilai',2)->count() != 0 || $achievement->where('nilai',1)->count() != 0)
+                  Perlu peningkatan lebih lanjut dalam
+                    @foreach($achievement->where('nilai', 2) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
+                        @else
+                          @if($achievement->where('nilai',1)->count() == 0)
+                            {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
+                          @else
+                            {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
+                          @endif
+                        @endif
+                    @endforeach
+
+                    @foreach($achievement->where('nilai', 1) as $ki2)
+                        @if(!$loop->last)
+                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
+                        @else
+                          {{$ki2->rencana_achievement->butir_sikap->butir_sikap}}.
+                        @endif
+                    @endforeach
+                @endif
+              </span>
+              </td>
+            </tr>
+          @else
+            <tr class="sikap">
+              <td>5</td>
+              <td>
+                Achievement
+              </td>
+              <td style="text-align:center;">-</td>
+              <td>-</td>
+            </tr>
+          @endif
         </tbody>
       </table>
       <table cellspacing="0">
@@ -1460,8 +1600,11 @@
         </tr>
         <tr class="sikap">
           <td class="description">
-            <span>{{$catatan_umum->catatan
-            }}</span>
+            @if($catatan_umum)
+            <span>{{$catatan_umum->catatan}}</span>
+            @else
+            -
+            @endif
           </td>
         </tr>
       </table>
@@ -1497,15 +1640,15 @@
           <td style="width: 45%;">
           {{$anggota_kelas->kelas->tapel->tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
             Wali Kelas, <br><br><br><br><br>
-            <span style="text-transform: capitalize;"><b><u>Ikrimah Mukaromah, S.Psi.</u></b></span><br>
-            NIPY. 15920019-1
+            <span style="text-transform: capitalize;"><b><u>{{$guru->nama_lengkap}}, {{$guru->gelar}}</u></b></span><br>
+            NIPY. {{$guru->nip}}
           </td>
         </tr>
         <tr style="text-align:center" class="sikap">
           <td colspan="3" style="width: 100%;">
             Mengetahui <br>
             Kepala Sekolah, <br><br><br><br><br>
-            <b><u>{{$sekolah->kepala_sekolah}}</u></b><br>
+            <b><u>Puji Fauziah, S.Pd.SD.</u></b><br>
             NRKS. {{$sekolah->nip_kepala_sekolah}}
           </td>
         </tr>

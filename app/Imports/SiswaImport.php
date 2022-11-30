@@ -18,7 +18,7 @@ class SiswaImport implements ToCollection
         foreach ($collection as $key => $row) {
             if ($key >= 9 && $key <= 300) {
                 $user = User::create([
-                    'name' => strtoupper($row[1]),
+                    'name' => $row[1],
                     'email' => $row[3],
                     'password' => Hash::make('12345678'),
                 ]);
@@ -28,7 +28,7 @@ class SiswaImport implements ToCollection
                     'user_id' => $user->id,
                     'nis' => $row[1],
                     'nisn' => $row[2],
-                    'nama_lengkap' => strtoupper($row[3]),
+                    'nama_lengkap' => $row[3],
                     'jenis_kelamin' => $row[4],
                     'tempat_lahir' => $row[5],
                     'tanggal_lahir' => gmdate('Y-m-d', $tanggal_lahir),
