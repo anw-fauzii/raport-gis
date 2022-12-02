@@ -22,7 +22,14 @@ class GuruImport implements ToCollection
                     'email' => $row[3],
                     'password' => Hash::make('12345678'),
                 ]);
-
+                if($row[4] == 1){
+                    $user->assignRole('wali');
+                }else if($row[4] == 2){
+                    $user->assignRole('t2q');
+                }else if($row[4] == 3){
+                    $user->assignRole('mapel');
+                }
+                
                 $tanggal_lahir = ($row[7] - 25569) * 86400;
                 Guru::create([
                     'user_id' => $user->id,

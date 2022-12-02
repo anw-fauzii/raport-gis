@@ -18,11 +18,11 @@ class SiswaImport implements ToCollection
         foreach ($collection as $key => $row) {
             if ($key >= 9 && $key <= 300) {
                 $user = User::create([
-                    'name' => $row[1],
-                    'email' => $row[3],
+                    'name' => $row[3],
+                    'email' => $row[1],
                     'password' => Hash::make('12345678'),
                 ]);
-
+                $user->assignRole('siswa');
                 $tanggal_lahir = ($row[6] - 25569) * 86400;
                 Siswa::create([
                     'user_id' => $user->id,
@@ -37,15 +37,19 @@ class SiswaImport implements ToCollection
                     'status_dalam_keluarga' => $row[9],
                     'anak_ke' => $row[10],
                     'alamat' => $row[11],
-                    'nomor_hp' => $row[12],
-                    'nama_ayah' => $row[13],
-                    'pekerjaan_ayah' => $row[14],
-                    'pendidikan_ayah' => $row[15],
-                    'nama_ibu' => $row[16],
-                    'pekerjaan_ibu' => $row[17],
-                    'pendidikan_ibu' => $row[18],
-                    'nama_wali' => $row[19],
-                    'pekerjaan_wali' => $row[20],
+                    'desa' => $row[12],
+                    'kecamatan' => $row[13],
+                    'kabupaten' => $row[14],
+                    'provinsi' => $row[15],
+                    'nomor_hp' => $row[16],
+                    'nama_ayah' => $row[17],
+                    'pekerjaan_ayah' => $row[18],
+                    'pendidikan_ayah' => $row[19],
+                    'nama_ibu' => $row[20],
+                    'pekerjaan_ibu' => $row[21],
+                    'pendidikan_ibu' => $row[22],
+                    'nama_wali' => $row[23],
+                    'pekerjaan_wali' => $row[24],
                     'avatar' => 'default.png',
                     'status' => 1,
                 ]);

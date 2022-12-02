@@ -107,3 +107,7 @@ Route::delete('ekstrakulikuler/anggota/{id}', [App\Http\Controllers\AnggotaEkstr
 
 Route::resource('/penilaian-pramuka',App\Http\Controllers\NilaiPramukaController::class);
 Route::resource('/penilaian-ekstrakulikuler',App\Http\Controllers\NilaiEkstrakulikulerController::class);
+
+Route::resource('/user',App\Http\Controllers\UserController::class);
+Route::get('user-reset/{id}', [App\Http\Controllers\UserController::class,'reset'])->name('user-reset');
+Route::get('user-aktivasi/{id}', [App\Http\Controllers\UserController::class,'aktivasi'])->name('user-aktivasi');
