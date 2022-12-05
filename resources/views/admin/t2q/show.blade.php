@@ -45,6 +45,7 @@
                 <th>No</th>
                 <th>NIS</th>
                 <th>NISN</th>
+                <th>Tingkat</th>
                 <th>Kelas</th>
                 <th>Nama Siswa</th>
                 <th>Tanggal Lahir</th>
@@ -60,6 +61,7 @@
                 <td>{{$no}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->nis}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->nisn}}</td>
+                <td>{{$anggota->tingkat}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->kelas->nama_kelas}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->nama_lengkap}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->tanggal_lahir}}</td>

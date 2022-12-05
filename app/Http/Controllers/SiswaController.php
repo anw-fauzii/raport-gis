@@ -40,7 +40,7 @@ class SiswaController extends Controller
             } else {
                 $tingkatan_akhir = Kelas::where('tapel_id', $tapel->id)->max('tingkatan_kelas');
                 $data_kelas_all = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
-                $data_siswa = Siswa::where('status', 1)->orderBy('nis', 'ASC')->get();
+                $data_siswa = Siswa::where('status', 1)->orderBy('nama_lengkap', 'ASC')->get();
                 return view('admin.siswa.index', compact('title', 'data_kelas_all', 'data_siswa', 'tingkatan_akhir'));
             }
         }else{

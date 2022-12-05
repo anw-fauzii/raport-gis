@@ -86,7 +86,6 @@
                 <th>Mata Pelajaran</th>
                 <th>Kompetensi</th>
                 <th>Tingkatan Kelas</th>
-                <th>Semester</th>
                 <th>Kode</th>
                 <th>Kompetensi Dasar</th>
                 <th>Aksi</th>
@@ -107,13 +106,6 @@
                   @endif
                 </td>
                 <td>{{$kd->tingkatan_kelas}}</td>
-                <td>
-                  @if($kd->semester == 1)
-                  Ganjil
-                  @elseif($kd->semester == 2)
-                  Genap
-                  @endif
-                </td>
                 <td>{{$kd->kode_kd}}</td>
                 <td>{{$kd->kompetensi_dasar}}</td>
                 <td>

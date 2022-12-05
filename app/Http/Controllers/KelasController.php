@@ -23,7 +23,7 @@ class KelasController extends Controller
         if(Auth::user()->hasRole('admin')){
             $tapel = Tapel::findorfail(5);
             $title = 'Data Kelas Dan Pembimbing';
-            $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
+            $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('id', 'ASC')->get();
             foreach ($data_kelas as $kelas) {
                 $jumlah_anggota = Siswa::where('kelas_id', $kelas->id)->count();
                 $kelas->jumlah_anggota = $jumlah_anggota;
