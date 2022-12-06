@@ -67,6 +67,7 @@ class NilaiPramukaController extends Controller
                     $data = array(
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                         'nilai'  => $request->nilai[$cound_siswa],
+                        'deskripsi' => $request->deskripsi[$cound_siswa],
                         'created_at'  => Carbon::now(),
                         'updated_at'  => Carbon::now(),
                     );

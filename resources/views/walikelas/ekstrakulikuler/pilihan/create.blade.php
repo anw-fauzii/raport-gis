@@ -42,13 +42,14 @@
                   <th class="text-center" style="width: 7%;">Kelas</th>
                   <th class="text-center" style="width: 10%;">Ekstrakulikuler</th>
                   <th class="text-center" style="width: 10%;">Nilai</th>
+                  <th class="text-center">Deskripsi</th>
                 </tr>
               </thead>
               <tbody>
                 <input type="hidden" name="ekstrakulikuler_id" value="{{$ekstrakulikuler->id}}">
 
                 <?php $no = 0; ?>
-                @foreach($data_anggota_ekstrakulikuler->sortBy('anggota_kelas.siswa.nama_lengkap') as $anggota_ekstrakulikuler)
+                @foreach($data_anggota_ekstrakulikuler->sortBy('anggota_kelas.kelas_id') as $anggota_ekstrakulikuler)
                 <?php $no++; ?>
                 <input type="hidden" name="anggota_ekstrakulikuler_id[]" value="{{$anggota_ekstrakulikuler->id}}">
                 <tr>
@@ -71,6 +72,7 @@
                       <option value="1" @if($anggota_ekstrakulikuler->nilai == 1) selected @endif>Kurang</option>
                       @endif
                     </select>
+                    <td><textarea name="deskripsi[]" class="form-control">{{$anggota_ekstrakulikuler->deskripsi}}</textarea></td>
                   </td>
                 </tr>
                 @endforeach

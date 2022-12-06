@@ -51,7 +51,7 @@
                 <th>NIS</th>
                 <th>NISN</th>
                 <th>Nama Siswa</th>
-                <th>Tanggal Lahir</th>
+                <th>Kelas</th>
                 <th>L/P</th>
                 <th>Hapus Anggota</th>
               </tr>
@@ -65,7 +65,7 @@
                 <td>{{$anggota->anggota_kelas->siswa->nis}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->nisn}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->nama_lengkap}}</td>
-                <td>{{$anggota->anggota_kelas->siswa->tanggal_lahir}}</td>
+                <td>{{$anggota->anggota_kelas->siswa->kelas->nama_kelas}}</td>
                 <td>{{$anggota->anggota_kelas->siswa->jenis_kelamin}}</td>
                 <td>
                   <form action="{{ route('ekstrakulikuler.anggota.delete', $anggota->anggota_kelas_id) }}" method="POST">

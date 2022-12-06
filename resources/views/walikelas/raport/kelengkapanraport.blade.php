@@ -309,13 +309,13 @@
           <td style="width: 4%;"></td>
           <td style="width: 25%;">a. Ayah</td>
           <td style="width: 2%;">:</td>
-          <td>Pendidikan {{$anggota_kelas->siswa->nama_ayah}}</td>
+          <td>{{$anggota_kelas->siswa->pendidikan_ayah}}</td>
         </tr>
         <tr style="line-height: 15px;">
           <td style="width: 4%;"></td>
           <td style="width: 25%;">b. Ibu</td>
           <td style="width: 2%;">:</td>
-          <td>Pendidikan {{$anggota_kelas->siswa->nama_ibu}}</td>
+          <td>{{$anggota_kelas->siswa->pendidikan_ibu}}</td>
         </tr>
         <tr style="line-height: 15px;">
           <td style="width: 4%;">11</td>
@@ -345,31 +345,31 @@
           <td style="width: 4%;"></td>
           <td style="width: 25%;">a. Alamat</td>
           <td style="width: 2%;">:</td>
-          <td>Alamat</td>
+          <td>{{$anggota_kelas->siswa->alamat}}</td>
         </tr>
         <tr style="line-height: 15px;">
           <td style="width: 4%;"></td>
           <td style="width: 25%;">b. Kelurahan / Desa</td>
           <td style="width: 2%;">:</td>
-          <td>Alamat</td>
+          <td>{{$anggota_kelas->siswa->desa}}</td>
         </tr>
         <tr style="line-height: 15px;">
           <td style="width: 4%;"></td>
           <td style="width: 25%;">c. Kecamatan</td>
           <td style="width: 2%;">:</td>
-          <td>Alamat</td>
+          <td>{{$anggota_kelas->siswa->kecamatan}}</td>
         </tr>
         <tr style="line-height: 15px;">
           <td style="width: 4%;"></td>
           <td style="width: 25%;">d. Kabupaten / Kota</td>
           <td style="width: 2%;">:</td>
-          <td>Alamat</td>
+          <td>{{$anggota_kelas->siswa->kabupaten}}</td>
         </tr>
         <tr style="line-height: 15px;">
           <td style="width: 4%;"></td>
-          <td style="width: 25%;">a. Alamat</td>
+          <td style="width: 25%;">e. Provinsi</td>
           <td style="width: 2%;">:</td>
-          <td>Alamat</td>
+          <td>{{$anggota_kelas->siswa->provinsi}}</td>
         </tr>
         <tr style="line-height: 15px;">
           <td style="width: 4%;">13</td>
@@ -869,21 +869,26 @@
             <td>
               Pramuka
             </td>
-            <td style="text-align:center;">
-              @if($pramuka->nilai == 4)
-              SB
-              @elseif($pramuka->nilai == 3)
-              B
-              @elseif($pramuka->nilai == 2)
-              C
-              @else
-              K
-              @endif</td>
-            <td class="description">
-              <span>
-              Ini adalah deskripsi
-              </span>
-            </td>
+            @if($pramuka)
+              <td style="text-align:center;">
+                @if($pramuka->nilai == 4)
+                SB
+                @elseif($pramuka->nilai == 3)
+                B
+                @elseif($pramuka->nilai == 2)
+                C
+                @else
+                K
+                @endif</td>
+              <td class="description">
+                <span>
+                {{$pramuka->deskeripsi}}
+                </span>
+              </td>
+            @else
+              <td>-</td>
+              <td>-</td>
+            @endif
           </tr>
           @foreach($ekstrakulikuler as $nilai_ekstra)
           <tr class="sikap">
@@ -903,7 +908,7 @@
             @endif
             </td>
             <td class="description">
-              <span>asdasdas asdasd</span>
+              <span>{{$nilai_ekstra->deskeripsi}}</span>
             </td>
           @endforeach
           </tr>
@@ -1612,6 +1617,7 @@
         <tr>
           <td style="height: 30px;"><strong>I. KETIDAKHADIRAN</strong></td>
         </tr>
+        @if($kehadiran)
         <tr class="sikap">
           <td width="25%">Sakit</td>
           <td class="text-center" width="2%">:</td>
@@ -1627,6 +1633,23 @@
           <td class="text-center" width="2%">:</td>
           <td width="13%">{{$kehadiran->tanpa_keterangan}} Hari</td>
         </tr>
+        @else
+        <tr class="sikap">
+          <td width="25%">Sakit</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Izin</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Tanpa Keterangan</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        @endif
       </table>
       <div style="padding-top:1rem; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
       <table>

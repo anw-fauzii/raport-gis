@@ -56,6 +56,7 @@ class NilaiEkstrakulikulerController extends Controller
                     'ekstrakulikuler_id' => $request->ekstrakulikuler_id,
                     'anggota_ekstrakulikuler_id'  => $request->anggota_ekstrakulikuler_id[$cound_siswa],
                     'nilai'  => $request->nilai[$cound_siswa],
+                    'deskripsi'  => $request->deskripsi[$cound_siswa],
                     'created_at'  => Carbon::now(),
                     'updated_at'  => Carbon::now(),
                 );

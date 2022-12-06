@@ -36,9 +36,10 @@
                     <tr>
                     <th class="text-center" style="width: 5%;">No</th>
                     <th class="text-center" style="width: 5%;">NIS</th>
-                    <th class="text-center" style="width: 35%;">Nama Siswa</th>
+                    <th class="text-center" style="width: 25%;">Nama Siswa</th>
                     <th class="text-center" style="width: 5%;">L/P</th>
-                    <th class="text-center" style="width: 50%;">Catatan</th>
+                    <th class="text-center" style="width: 15%;">Nilai</th>
+                    <th class="text-center" style="width: 45%;">Deskripsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +60,7 @@
                         <option value="1" @if($anggota_kelas->nilai==1) selected @endif>Kurang</option>
                       </select>
                     </td>
+                    <td><textarea name="deskripsi[]" class="form-control">{{$anggota_kelas->deskripsi}}</textarea></td>
                     </tr>
                     @endforeach
                 </tbody>

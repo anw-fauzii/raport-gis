@@ -335,6 +335,7 @@
             </li>
           </ul>
         </li>
+        @endrole
         <li class="nav-item has-treeview {{(request()->is('penilaian-pramuka','penilaian-ekstrakulikuler')) ? 'menu-open' :''}}">
           <a href="#" class="nav-link {{(request()->is('penilaian-pramuka','penilaian-ekstrakulikuler')) ? 'active' :''}}">
             <i class="nav-icon fas fa-book-reader"></i>
@@ -344,12 +345,14 @@
             </p>
           </a>
           <ul class="nav nav-treeview bg-secondary">
+          @role('wali')
             <li class="nav-item">
               <a href="{{route('penilaian-pramuka.index')}}" class="nav-link {{(request()->is('penilaian-pramuka')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Pramuka</p>
               </a>
             </li>
+          @endrole
             <li class="nav-item">
               <a href="{{route('penilaian-ekstrakulikuler.index')}}" class="nav-link {{(request()->is('penilaian-ekstrakulikuler')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
@@ -358,7 +361,7 @@
             </li>
           </ul>
         </li>
-        @endrole
+        
         @endrole
         @role('t2q')
         <li class="nav-item">
@@ -401,6 +404,23 @@
             </p>
           </a>
         </li>
+        <li class="nav-item has-treeview {{(request()->is('penilaian-pramuka','penilaian-ekstrakulikuler')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('penilaian-pramuka','penilaian-ekstrakulikuler')) ? 'active' :''}}">
+            <i class="nav-icon fas fa-book-reader"></i>
+            <p>
+              Penilaian Ekstrakuler
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview bg-secondary">
+            <li class="nav-item">
+              <a href="{{route('penilaian-ekstrakulikuler.index')}}" class="nav-link {{(request()->is('penilaian-ekstrakulikuler')) ? 'active' :''}}">
+                <i class="fas fa-check-square nav-icon"></i>
+                <p>Pilihan</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         @endrole
         @role('wali')
         <li class="nav-item">
@@ -435,6 +455,7 @@
             </p>
           </a>
         </li>
+        
         @endrole
         
         <li class="nav-item">
