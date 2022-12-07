@@ -205,7 +205,7 @@ class NilaiK4Controller extends Controller
             $pembelajaran = Pembelajaran::find($request->pembelajaran_id);
             $tapel = Tapel::findorfail(5);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->orWhere('pendamping_id', $guru->id)->first();
             $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
             $range = (100 - $kkm->kkm) / 3;
             $predikat_c = round($kkm->kkm, 0);
@@ -256,7 +256,7 @@ class NilaiK4Controller extends Controller
 
     public function eksport($id)
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             $filename = 'format_import_Nilai_KI4 ' . date('Y-m-d H_i_s') . '.xls';
             return Excel::download(new NilaiK4Export($id), $filename);
         }else{

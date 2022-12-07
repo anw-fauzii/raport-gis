@@ -29,7 +29,7 @@ class NilaiMulokController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             $title = 'Nilai Mulok Khas PI';
             $tapel = Tapel::findorfail(5);
 
@@ -72,7 +72,7 @@ class NilaiMulokController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             if (is_null($request->anggota_kelas_id)) {
                 return back()->with('toast_error', 'Data siswa tidak ditemukan');
             } else {
@@ -152,7 +152,7 @@ class NilaiMulokController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             $decrypted = Crypt::decrypt($id);
             $pembelajaran = Pembelajaran::findorfail($decrypted);
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
@@ -191,7 +191,7 @@ class NilaiMulokController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                 for ($count_penilaian = 0; $count_penilaian < count($request->rencana_mulok_id); $count_penilaian++) {
                     if ($request->nilai_ph[$count_penilaian][$cound_siswa] >= 0 && $request->nilai_ph[$count_penilaian][$cound_siswa] <= 100) {
@@ -217,7 +217,7 @@ class NilaiMulokController extends Controller
             $pembelajaran = Pembelajaran::find($request->pembelajaran_id);
             $tapel = Tapel::findorfail(5);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->orWhere('pendamping_id', $guru->id)->first();
             $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
             $range = (100 - $kkm->kkm) / 3;
             $predikat_c = round($kkm->kkm, 0);
@@ -268,7 +268,7 @@ class NilaiMulokController extends Controller
 
     public function eksport($id)
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             $filename = 'format_import_Nilai_KI3 ' . date('Y-m-d H_i_s') . '.xls';
             return Excel::download(new NilaiMulokExport($id), $filename);
         }else{

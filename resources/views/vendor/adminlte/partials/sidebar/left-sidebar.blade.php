@@ -190,7 +190,6 @@
             </li>
           </ul>
         </li>
-        @role('wali')
         <li class="nav-item">
           <a href="{{route('rencana-mulok.index')}}" class="nav-link {{(request()->is('rencana-mulok')) ? 'active' :''}}">
             <i class="nav-icon fas fa-globe"></i>
@@ -199,6 +198,7 @@
             </p>
           </a>
         </li>
+        @role('wali')
         <li class="nav-item has-treeview {{(request()->is('rencana-proactive','rencana-innovative','rencana-responsible','rencana-modest','rencana-achievement')) ? 'menu-open' :''}}">
           <a href="#" class="nav-link {{(request()->is('rencana-proactive','rencana-innovative','rencana-responsible','rencana-modest','rencana-achievement')) ? 'active' :''}}">
             <i class="nav-icon fas fa-star"></i>
@@ -285,7 +285,6 @@
             </li>
           </ul>
         </li>
-        @role('wali')
         <li class="nav-item">
           <a href="{{route('penilaian-mulok.index')}}" class="nav-link {{(request()->is('penilaian-mulok')) ? 'active' :''}}">
             <i class="nav-icon fas fa-globe"></i>
@@ -294,6 +293,7 @@
             </p>
           </a>
         </li>
+        @role('wali')
         <li class="nav-item has-treeview {{(request()->is('penilaian-proactive','penilaian-innovative','penilaian-responsible','penilaian-modest','penilaian-achievement')) ? 'menu-open' :''}}">
           <a href="#" class="nav-link {{(request()->is('penilaian-proactive','penilaian-innovative','penilaian-responsible','penilaian-modest','penilaian-achievement')) ? 'active' :''}}">
             <i class="nav-icon fas fa-star"></i>

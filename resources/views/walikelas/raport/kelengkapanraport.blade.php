@@ -882,7 +882,7 @@
                 @endif</td>
               <td class="description">
                 <span>
-                {{$pramuka->deskeripsi}}
+                {{$pramuka->deskripsi}}
                 </span>
               </td>
             @else
@@ -908,7 +908,7 @@
             @endif
             </td>
             <td class="description">
-              <span>{{$nilai_ekstra->deskeripsi}}</span>
+              <span>{{$nilai_ekstra->deskripsi}}</span>
             </td>
           @endforeach
           </tr>
@@ -1652,7 +1652,7 @@
         @endif
       </table>
       <div style="padding-top:1rem; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
-      <table>
+      <table cellspacing="0">
         <tr style="text-align:center" class="sikap">
           <td style="width: 45%;">
             Mengetahui <br>

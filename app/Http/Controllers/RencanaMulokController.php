@@ -27,12 +27,13 @@ class RencanaMulokController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             $title = 'Rencana Mulok Khas PI';
             $tapel = Tapel::findorfail(5);     
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
-            $kelas_diampu = Kelas::where('guru_id', $guru->id)->first();
+            $kelas_diampu = Kelas::where('guru_id', $guru->id)->where('pendamping_id', $guru->id)->first();
+            dd($kelas_diampu);
             $data_kd_mapel = KdMapel::where('tapel_id', $tapel->id)->where('tingkatan_kelas',$kelas_diampu->tingkatan_kelas)->where('jenis_kompetensi', 1)->get();
             $data_rencana_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',6)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
             $ren_penilaian = RencanaMulok::all();
@@ -64,7 +65,7 @@ class RencanaMulokController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             $validator = Validator::make($request->all(), [
                 'butir_sikap_id' => 'required',
             ]);
@@ -130,7 +131,7 @@ class RencanaMulokController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::user()->hasRole('wali')){
+        if(Auth::user()->hasRole('wali|mapel')){
             $butir_sikap = RencanaMulok::findorfail($id);
             $butir_sikap->delete();
             return back()->with('success', 'Butir Sikap berhasil dihapus');
