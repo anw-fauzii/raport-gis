@@ -27,14 +27,23 @@ class RencanaMulokController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole('wali|mapel')){
-            $title = 'Rencana Mulok Khas PI';
-            $tapel = Tapel::findorfail(5);     
-            $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
-            $kelas_diampu = Kelas::where('guru_id', $guru->id)->where('pendamping_id', $guru->id)->first();
-            dd($kelas_diampu);
+        $title = 'Rencana Nilai Mulok PI';
+        $tapel = Tapel::findorfail(5);     
+        $guru = Guru::where('user_id', Auth::user()->id)->first();
+        $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
+        if(Auth::user()->hasRole('wali')){
+            $kelas_diampu = Kelas::where('guru_id', $guru->id)->first();
             $data_kd_mapel = KdMapel::where('tapel_id', $tapel->id)->where('tingkatan_kelas',$kelas_diampu->tingkatan_kelas)->where('jenis_kompetensi', 1)->get();
+            $data_rencana_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',6)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
+            $ren_penilaian = RencanaMulok::all();
+            foreach ($data_rencana_penilaian as $penilaian) {
+                $rencana_penilaian = RencanaMulok::where('pembelajaran_id', $penilaian->id)->get();
+                $penilaian->jumlah_rencana_penilaian = count($rencana_penilaian);
+            }
+            return view('guru.rencana-mulok.index', compact('title', 'data_rencana_penilaian','data_kd_mapel','ren_penilaian'));
+
+        }else if(Auth::user()->hasRole('mapel')){
+            $data_kd_mapel = KdMapel::where('tapel_id', $tapel->id)->where('jenis_kompetensi', 1)->get();
             $data_rencana_penilaian = Pembelajaran::select('kategori_mapel_id','pembelajaran.*')->join('mapel','pembelajaran.mapel_id','=','mapel.id')->where('kategori_mapel_id',6)->where('guru_id', $guru->id)->whereIn('kelas_id', $id_kelas)->where('status', 1)->orderBy('mapel_id', 'ASC')->orderBy('kelas_id', 'ASC')->get();
             $ren_penilaian = RencanaMulok::all();
             foreach ($data_rencana_penilaian as $penilaian) {

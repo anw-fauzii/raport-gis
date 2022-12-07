@@ -61,32 +61,31 @@ class NilaiHafalanController extends Controller
             for ($cound_siswa = 1; $cound_siswa <= $request->jumlah; $cound_siswa++) {
                 $anggota = AnggotaKelas::find($request->anggota_kelas_id[$cound_siswa]);
                 $kelas_id = Kelas::find($anggota->kelas_id);
-                if($kelas_id->tingkatan_kelas = 1){
+                if($kelas_id->tingkatan_kelas == 1){
                     $kompetensi_hadis = "ini hadis kelas 1.";
                     $kompetensi_doa = "ini doa kelas 1.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 1.";
-                }else if($kelas_id->tingkatan_kelas = 2){
+                }else if($kelas_id->tingkatan_kelas == 2){
                     $kompetensi_hadis = "ini hadis kelas 2.";
                     $kompetensi_doa = "ini doa kelas 2.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 2.";
-                }else if($kelas_id->tingkatan_kelas = 3){
+                }else if($kelas_id->tingkatan_kelas == 3){
                     $kompetensi_hadis = "ini hadis kelas 3.";
                     $kompetensi_doa = "ini doa kelas 3.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 3.";
-                }else if($kelas_id->tingkatan_kelas = 4){
+                }else if($kelas_id->tingkatan_kelas == 4){
                     $kompetensi_hadis = "ini hadis kelas 4.";
                     $kompetensi_doa = "ini doa kelas 4.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 4.";
-                }else if($kelas_id->tingkatan_kelas = 5){
+                }else if($kelas_id->tingkatan_kelas == 5){
                     $kompetensi_hadis = "ini hadis kelas 5.";
                     $kompetensi_doa = "ini doa kelas 5.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 5.";
-                }else if($kelas_id->tingkatan_kelas = 6){
+                }else if($kelas_id->tingkatan_kelas == 6){
                     $kompetensi_hadis = "ini hadis kelas 6.";
                     $kompetensi_doa = "ini doa kelas 6.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 6.";
                 }
-
                 if($request->hadis[$cound_siswa] < 75){
                     $deskripsi_hadis = "Ananda kurang dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
                 }else if($request->hadis[$cound_siswa] < 84){
@@ -192,27 +191,27 @@ class NilaiHafalanController extends Controller
                 $nilai = NilaiHafalan::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
                 $anggota = AnggotaKelas::find($request->anggota_kelas_id[$cound_siswa]);
                 $kelas_id = Kelas::find($anggota->kelas_id);
-                if($kelas_id->tingkatan_kelas = 1){
+                if($kelas_id->tingkatan_kelas == 1){
                     $kompetensi_hadis = "ini hadis kelas 1.";
                     $kompetensi_doa = "ini doa kelas 1.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 1.";
-                }else if($kelas_id->tingkatan_kelas = 2){
+                }else if($kelas_id->tingkatan_kelas == 2){
                     $kompetensi_hadis = "ini hadis kelas 2.";
                     $kompetensi_doa = "ini doa kelas 2.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 2.";
-                }else if($kelas_id->tingkatan_kelas = 3){
+                }else if($kelas_id->tingkatan_kelas == 3){
                     $kompetensi_hadis = "ini hadis kelas 3.";
                     $kompetensi_doa = "ini doa kelas 3.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 3.";
-                }else if($kelas_id->tingkatan_kelas = 4){
+                }else if($kelas_id->tingkatan_kelas == 4){
                     $kompetensi_hadis = "ini hadis kelas 4.";
                     $kompetensi_doa = "ini doa kelas 4.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 4.";
-                }else if($kelas_id->tingkatan_kelas = 5){
+                }else if($kelas_id->tingkatan_kelas == 5){
                     $kompetensi_hadis = "ini hadis kelas 5.";
                     $kompetensi_doa = "ini doa kelas 5.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 5.";
-                }else if($kelas_id->tingkatan_kelas = 6){
+                }else if($kelas_id->tingkatan_kelas == 6){
                     $kompetensi_hadis = "ini hadis kelas 6.";
                     $kompetensi_doa = "ini doa kelas 6.";
                     $kompetensi_hikmah = "ini kata hikmah kelas 6.";

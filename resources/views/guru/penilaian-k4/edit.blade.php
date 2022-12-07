@@ -79,7 +79,7 @@
             </div>
 
             <div class="card-footer clearfix">
-              <button type="submit" class="btn btn-primary float-right">Simpan</button>
+              <button type="submit" onclick="submitForm(this);" class="btn btn-primary float-right">Simpan</button>
               <a href="{{ route('penilaian-k4.index') }}" class="btn btn-default float-right mr-2">Batal</a>
             </div>
             </form>
@@ -106,6 +106,10 @@
   });
   $(document).ready(function() {
     $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-});
+  });
+  function submitForm(btn) {
+    btn.disabled = true;  
+    btn.form.submit();
+  }
 </script>
 @stop

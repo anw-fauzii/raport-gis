@@ -103,23 +103,15 @@ class NilaiMulokController extends Controller
                 }
                 NilaiMulok::insert($store_data_penilaian);
                 $pembelajaran= Pembelajaran::find($request->pembelajaran_id);
-                $tapel = Tapel::findorfail(5);
-                $guru = Guru::where('user_id', Auth::user()->id)->first();
-                $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->first();
-                $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
-                $range = (100 - $kkm->kkm) / 3;
-                $predikat_c = round($kkm->kkm, 0);
-                $predikat_b = round($kkm->kkm + $range, 0);
-                $predikat_a = round($kkm->kkm + ($range * 2), 0);
                 for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                     $nilai_kd = round((NilaiMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->sum('nilai_kd'))/count($request->rencana_mulok_id),0);
                     $rapot = array(
                         'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                         'pembelajaran_id' => $request->pembelajaran_id,
                         'nilai_raport' => $nilai_kd,
-                        'predikat_a' => $predikat_a,
-                        'predikat_b' => $predikat_b,
-                        'predikat_c' => $predikat_c,
+                        'predikat_a' => 92,
+                        'predikat_b' => 83,
+                        'predikat_c' => 75,
                         'created_at'  => Carbon::now(),
                         'updated_at'  => Carbon::now(),
                     );
@@ -215,14 +207,6 @@ class NilaiMulokController extends Controller
                 }
             }
             $pembelajaran = Pembelajaran::find($request->pembelajaran_id);
-            $tapel = Tapel::findorfail(5);
-            $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id',$guru->id)->orWhere('pendamping_id', $guru->id)->first();
-            $kkm = KKM::where('mapel_id', $pembelajaran->mapel_id)->where('tingkat',$kelas->tingkatan_kelas)->first();
-            $range = (100 - $kkm->kkm) / 3;
-            $predikat_c = round($kkm->kkm, 0);
-            $predikat_b = round($kkm->kkm + $range, 0);
-            $predikat_a = round($kkm->kkm + ($range * 2), 0);
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_kelas_id); $cound_siswa++) {
                 $cek = NilaiRapotMulok::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->where('pembelajaran_id', $request->pembelajaran_id)->count();
                 if($cek == 0){
@@ -232,9 +216,9 @@ class NilaiMulokController extends Controller
                             'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                             'pembelajaran_id' => $request->pembelajaran_id,
                             'nilai_raport' => $nilai_kd,
-                            'predikat_a' => $predikat_a,
-                            'predikat_b' => $predikat_b,
-                            'predikat_c' => $predikat_c,
+                            'predikat_a' => 92,
+                            'predikat_b' => 83,
+                            'predikat_c' => 75,
                             'created_at'  => Carbon::now(),
                             'updated_at'  => Carbon::now(),
                         );

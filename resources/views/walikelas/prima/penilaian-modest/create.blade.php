@@ -80,7 +80,7 @@
       </div>
 
       <div class="card-footer clearfix">
-        <button type="submit" class="btn btn-primary float-right">Simpan</button>
+        <button type="submit" onclick="submitForm(this);" class="btn btn-primary float-right">Simpan</button>
       </div>
       </form>
     </div>
@@ -103,5 +103,9 @@
   $(function () {
     $("#example1").DataTable();
   });
+  function submitForm(btn) {
+    btn.disabled = true;  
+    btn.form.submit();
+  }
 </script>
 @stop
