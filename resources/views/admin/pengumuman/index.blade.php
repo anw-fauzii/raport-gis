@@ -101,5 +101,9 @@
     $('#summernoteedit').summernote({
         height: 300
     });
+    function submitForm(btn) {
+    btn.disabled = true;  
+    btn.form.submit();
+  }
 </script>
 @stop

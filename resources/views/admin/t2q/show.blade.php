@@ -103,5 +103,9 @@
     $("#example1").DataTable();
     $('.duallistbox').bootstrapDualListbox()
   });
+  function submitForm(btn) {
+    btn.disabled = true;  
+    btn.form.submit();
+  }
 </script>
 @stop

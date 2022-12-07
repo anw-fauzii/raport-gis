@@ -68,7 +68,7 @@
               </div>
               <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Import</button>
+                <button type="submit" onclick="submitForm(this);" class="btn btn-primary">Import</button>
               </div>
             </form>
           </div>
@@ -111,7 +111,7 @@
               </div>
               <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" onclick="submitForm(this);" class="btn btn-primary">Simpan</button>
               </div>
             </form>
           </div>
@@ -196,7 +196,7 @@
                       </div>
                       <div class="modal-footer justify-content-end">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" onclick="submitForm(this);" class="btn btn-primary">Simpan</button>
                       </div>
                     </form>
                   </div>
@@ -230,5 +230,9 @@
   $(function () {
     $("#example1").DataTable();
   });
+  function submitForm(btn) {
+    btn.disabled = true;  
+    btn.form.submit();
+  }
 </script>
 @stop
