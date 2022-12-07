@@ -449,69 +449,6 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>D. EKSTRAKULIKULER</strong></td>
-        </tr>
-        <thead>
-          <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="sikap">
-            <td>1</td>
-            <td>
-              Pramuka
-            </td>
-            @if($pramuka)
-              <td style="text-align:center;">
-                @if($pramuka->nilai == 4)
-                SB
-                @elseif($pramuka->nilai == 3)
-                B
-                @elseif($pramuka->nilai == 2)
-                C
-                @else
-                K
-                @endif</td>
-              <td class="description">
-                <span>
-                {{$pramuka->deskripsi}}
-                </span>
-              </td>
-            @else
-              <td>-</td>
-              <td>-</td>
-            @endif
-          </tr>
-          @foreach($ekstrakulikuler as $nilai_ekstra)
-          <tr class="sikap">
-            <td>2</td>
-            <td>{{$nilai_ekstra->ekstrakulikuler->nama_ekstrakulikuler}}</td>
-            <td style="text-align:center;">
-            @if($nilai_ekstra->nilai == 4)
-            SB
-            @elseif($nilai_ekstra->nilai == 3)
-            B
-            @elseif($nilai_ekstra->nilai == 2)
-            C
-            @elseif($nilai_ekstra->nilai == 1)
-            K
-            @else
-            -
-            @endif
-            </td>
-            <td class="description">
-              {{$nilai_ekstra->deskripsi}}
-            </td>
-          @endforeach
-          </tr>
-        </tbody>
-      </table>
-      <table cellspacing="0">
-        <tr>
           <td colspan="4" style="height: 30px;"><strong>E. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
         </tr>
         <thead>
@@ -586,6 +523,69 @@
               <td>-</td>
             </tr>
           @endforelse
+        </tbody>
+      </table>
+      <table cellspacing="0">
+        <tr>
+          <td colspan="4" style="height: 30px;"><strong>D. EKSTRAKULIKULER</strong></td>
+        </tr>
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              Pramuka
+            </td>
+            @if($pramuka)
+              <td style="text-align:center;">
+                @if($pramuka->nilai == 4)
+                SB
+                @elseif($pramuka->nilai == 3)
+                B
+                @elseif($pramuka->nilai == 2)
+                C
+                @else
+                K
+                @endif</td>
+              <td class="description">
+                <span>
+                {{$pramuka->deskripsi}}
+                </span>
+              </td>
+            @else
+              <td>-</td>
+              <td>-</td>
+            @endif
+          </tr>
+          @foreach($ekstrakulikuler as $nilai_ekstra)
+          <tr class="sikap">
+            <td>2</td>
+            <td>{{$nilai_ekstra->ekstrakulikuler->nama_ekstrakulikuler}}</td>
+            <td style="text-align:center;">
+            @if($nilai_ekstra->nilai == 4)
+            SB
+            @elseif($nilai_ekstra->nilai == 3)
+            B
+            @elseif($nilai_ekstra->nilai == 2)
+            C
+            @elseif($nilai_ekstra->nilai == 1)
+            K
+            @else
+            -
+            @endif
+            </td>
+            <td class="description">
+              {{$nilai_ekstra->deskripsi}}
+            </td>
+          @endforeach
+          </tr>
         </tbody>
       </table>
       <table cellspacing="0">

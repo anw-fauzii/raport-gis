@@ -156,7 +156,8 @@ class PembelajaranController extends Controller
         if(Auth::user()->hasRole('admin')){
             $title = 'Setting Pembelajaran';
             $tapel = Tapel::findorfail(5);
-            $kelas = Kelas::findorfail($request->kelas_id);
+            $id_kelas = Kelas::findorfail($request->kelas_id);
+            $kelas = Kelas::where('tingkatan_kelas', $id_kelas->tingkatan_kelas)->get();
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 
             $data_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->get();
@@ -165,9 +166,9 @@ class PembelajaranController extends Controller
                 $query->where('kategori_mapel_id',"3")
                     ->orWhere('kategori_mapel_id',"5")
                     ->orWhere('kategori_mapel_id',"6");
-            })->get();
+            })->orderBy('nama_mapel', 'ASC')->get();
             $data_guru = Guru::where('jabatan', 3)->get();
-            return view('admin.pembelajaran.show', compact('title', 'tapel', 'kelas', 'data_kelas', 'data_pembelajaran_kelas', 'data_mapel','data_guru'));
+            return view('admin.pembelajaran.show', compact('id_kelas','title', 'tapel', 'kelas', 'data_kelas', 'data_pembelajaran_kelas', 'data_mapel','data_guru'));
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }

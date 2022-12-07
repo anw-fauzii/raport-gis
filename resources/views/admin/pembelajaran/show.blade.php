@@ -38,15 +38,15 @@
                     @csrf
                     <select class="form-control select2" name="kelas_id" style="width: 100%;" required onchange="this.form.submit();">
                       <option value="" disabled="true" selected="true"> -- Pilih Kelas --</option>
-                      <option value="" selected>{{$kelas->nama_kelas}} ( {{$kelas->tapel->tahun_pelajaran}}
-                        @if($kelas->tapel->semester == 1)
+                      <option value="" selected>{{$id_kelas->nama_kelas}} ( {{$id_kelas->tapel->tahun_pelajaran}}
+                        @if($id_kelas->tapel->semester == 1)
                         Ganjil
                         @else
                         Genap
                         @endif)
                       </option>
                       @foreach($data_kelas as $d_kelas)
-                      @if($d_kelas->id <> $kelas->id)
+                      @if($d_kelas->id <> $id_kelas->id)
                         <option value="{{$d_kelas->id}}">{{$d_kelas->nama_kelas}} ( {{$d_kelas->tapel->tahun_pelajaran}}
                           @if($d_kelas->tapel->semester == 1)
                           Ganjil
@@ -95,8 +95,10 @@
                             </option>
                             @endforeach
                           @else
-                            <option value="{{$kelas->guru_id}}">{{$kelas->guru->nama_lengkap}}, {{$kelas->guru->gelar}}</option>
-                            <option value="{{$kelas->pendamping_id}}">{{$kelas->pendamping->nama_lengkap}}, {{$kelas->pendamping->gelar}}</option>
+                            @foreach($kelas as $nama)
+                              <option value="{{$nama->guru_id}}">{{$nama->guru->nama_lengkap}}, {{$nama->guru->gelar}}</option>
+                              <option value="{{$nama->pendamping_id}}">{{$nama->pendamping->nama_lengkap}}, {{$nama->pendamping->gelar}}</option>
+                            @endforeach
                           @endif
                           </select>
                         </td>
@@ -115,13 +117,13 @@
                       @endforeach
                       @foreach($data_mapel as $mapel)
                       <tr>
-                        <td>{{$kelas->nama_kelas}} ( {{$d_kelas->tapel->tahun_pelajaran}}
+                        <td>{{$id_kelas->nama_kelas}} ( {{$d_kelas->tapel->tahun_pelajaran}}
                           @if($d_kelas->tapel->semester == 1)
                           Ganjil
                           @else
                           Genap
                           @endif)
-                          <input type="hidden" name="kelas_id[]" value="{{$kelas->id}}">
+                          <input type="hidden" name="kelas_id[]" value="{{$id_kelas->id}}">
                         </td>
                         <td>
                           {{$mapel->nama_mapel}}
@@ -129,14 +131,16 @@
                         </td>
                         <td>
                           <select class="form-control select2" name="guru_id[]" style="width: 100%;">
-                          @if($mapel->beda_guru)
                           <option value="">-- Pilih Guru -- </option>
+                          @if($mapel->beda_guru)
                             @foreach($data_guru as $guru)
                             <option value="{{$guru->id}}">{{$guru->nama_lengkap}}, {{$guru->gelar}}</option>
                             @endforeach
                           @else
-                            <option value="{{$kelas->guru_id}}">{{$kelas->guru->nama_lengkap}}, {{$kelas->guru->gelar}}</option>
-                            <option value="{{$kelas->pendamping_id}}">{{$kelas->pendamping->nama_lengkap}}, {{$kelas->pendamping->gelar}}</option>
+                            @foreach($kelas as $nama)
+                              <option value="{{$nama->guru_id}}">{{$nama->guru->nama_lengkap}}, {{$nama->guru->gelar}}</option>
+                              <option value="{{$nama->pendamping_id}}">{{$nama->pendamping->nama_lengkap}}, {{$nama->pendamping->gelar}}</option>
+                            @endforeach
                           @endif
                           </select>
                         </td>
