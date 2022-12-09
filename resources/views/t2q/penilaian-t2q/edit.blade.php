@@ -44,6 +44,7 @@
                 <tr>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
                   <th colspan="3" class="text-center">Tahfidz</th>
                 </tr>
                 <tr class="text-center">
@@ -60,6 +61,7 @@
                 <tr>
                   <td class="text-center">{{$i}}</td>
                   <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
+                  <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
                     <input type="text" class="form-control" name="tahfidz_surah[{{$i}}]" value="{{$nilai->tahfidz_surah}}" min="0" max="100" required>

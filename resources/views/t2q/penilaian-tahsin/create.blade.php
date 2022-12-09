@@ -31,7 +31,7 @@
 
       <div class="card-body">
 
-        <form action="{{ route('penilaian-tahsin.store') }}" method="POST">
+        <form class="multiple-submits" action="{{ route('penilaian-tahsin.store') }}" method="POST">
           @csrf
 
           <div class="table-responsive">
@@ -40,6 +40,7 @@
                 <tr>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 5%;">No</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 25%;">Nama Siswa</th>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
                   <th colspan="5" class="text-center">Tahsin</th>
                 </tr>
                 <tr class="text-center">
@@ -57,6 +58,7 @@
                 <tr>
                   <td class="text-center">{{$i}}</td>
                   <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
+                  <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
                     <select id="category{{$i}}" data-category="{{$i}}" class="form-control select2" name="tahsin_jilid[{{$i}}]" style="width: 100%;" required>
@@ -105,7 +107,7 @@
       </div>
 
       <div class="card-footer clearfix">
-        <button type="submit" onclick="submitForm(this);" class="btn btn-primary float-right">Simpan</button>
+        <button type="submit" class="btn btn-primary float-right  multiple-submits">Simpan</button>
       </div>
       </form>
     </div>
@@ -133,9 +135,13 @@
       theme : 'bootstrap4',
     })
   });
-  function submitForm(btn) {
-    btn.disabled = true;  
-    btn.form.submit();
-  }
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+  });
+  (function(){
+    $('.multiple-submits').on('submit', function(){
+        $('.multiple-submits').attr('disabled','true');
+    })
+  })();
 </script>
 @stop

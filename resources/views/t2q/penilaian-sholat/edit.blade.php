@@ -44,6 +44,7 @@
                 <tr>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
                   <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
                 </tr>
                 <tr class="text-center">
@@ -61,6 +62,7 @@
                 <tr>
                   <td class="text-center">{{$i}}</td>
                   <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
+                  <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
                     <input type="number" class="form-control" name="praktik_wudhu[{{$i}}]"  value="{{$nilai->praktik_wudhu}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">

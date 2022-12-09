@@ -44,6 +44,7 @@
                 <tr>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
+                  <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
                   <th colspan="5" class="text-center">Tahsin</th>
                 </tr>
                 <tr class="text-center">
@@ -62,6 +63,7 @@
                 <tr>
                   <td class="text-center">{{$i}}</td>
                   <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
+                  <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
                     <select id="category{{$i}}" data-category="{{$i}}" class="form-control select2" name="tahsin_jilid[{{$i}}]" style="width: 100%;" required>

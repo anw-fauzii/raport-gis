@@ -8,11 +8,11 @@
 </head>
 <style>
   body {
-    margin-left: 16mm; 
+    margin-left: 15mm; 
   }
-  table {
-    page-break-inside:avoid;
-  }
+  table { page-break-inside:auto }
+  tr    { page-break-inside:avoid}
+  thead { display:table-header-group }
 </style>
 <body>
   <!-- Page 5 Penilaian Peserta Didik -->
@@ -27,7 +27,7 @@
         </tr>
         <tr style="line-height: 20px;">
           <td style="width: 23%;">Nomor Induk/NISN</td>
-          <td style="width: 52%;">: {{$anggota_kelas->siswa->nis}} / {{$anggota_kelas->siswa->nisn}} </td>
+          <td style="width: 52%;">: {{$anggota_kelas->siswa->nis}}/{{$anggota_kelas->siswa->nisn}} </td>
           <td style="width: 20%;">Semester</td>
           <td style="width: 13%;">:
             @if($anggota_kelas->kelas->tapel->semester == 1)
@@ -210,6 +210,9 @@
         <tr>
           <td colspan="4" style="height: 30px;"><strong>B. PENGETAHUAN KI-3</strong></td>
         </tr>
+        <tr>
+          <td colspan="4"><strong>KKM : 75</strong></td>
+        </tr>
         <thead>
           <tr class="heading">
             <td style="width: 4%;">NO</td>
@@ -295,6 +298,9 @@
         <tr>
           <td colspan="4" style="height: 30px;"><strong>C. KETERAMPILAN KI-4</strong></td>
         </tr>
+        <tr>
+          <td colspan="4"><strong>KKM : 75</strong></td>
+        </tr>
         <thead>
           <tr class="heading">
             <td style="width: 4%;">NO</td>
@@ -372,6 +378,9 @@
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>D. KOKULIKULER</strong></td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>KKM : 75</strong></td>
         </tr>
         <thead>
           <tr class="heading">
@@ -451,6 +460,9 @@
         <tr>
           <td colspan="4" style="height: 30px;"><strong>E. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
         </tr>
+        <tr>
+          <td colspan="4"><strong>KKM : 75</strong></td>
+        </tr>
         <thead>
           <tr class="heading">
             <td style="width: 4%;">NO</td>
@@ -527,70 +539,10 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>D. EKSTRAKULIKULER</strong></td>
-        </tr>
-        <thead>
-          <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="sikap">
-            <td>1</td>
-            <td>
-              Pramuka
-            </td>
-            @if($pramuka)
-              <td style="text-align:center;">
-                @if($pramuka->nilai == 4)
-                SB
-                @elseif($pramuka->nilai == 3)
-                B
-                @elseif($pramuka->nilai == 2)
-                C
-                @else
-                K
-                @endif</td>
-              <td class="description">
-                <span>
-                {{$pramuka->deskripsi}}
-                </span>
-              </td>
-            @else
-              <td>-</td>
-              <td>-</td>
-            @endif
-          </tr>
-          @foreach($ekstrakulikuler as $nilai_ekstra)
-          <tr class="sikap">
-            <td>2</td>
-            <td>{{$nilai_ekstra->ekstrakulikuler->nama_ekstrakulikuler}}</td>
-            <td style="text-align:center;">
-            @if($nilai_ekstra->nilai == 4)
-            SB
-            @elseif($nilai_ekstra->nilai == 3)
-            B
-            @elseif($nilai_ekstra->nilai == 2)
-            C
-            @elseif($nilai_ekstra->nilai == 1)
-            K
-            @else
-            -
-            @endif
-            </td>
-            <td class="description">
-              {{$nilai_ekstra->deskripsi}}
-            </td>
-          @endforeach
-          </tr>
-        </tbody>
-      </table>
-      <table cellspacing="0">
-        <tr>
           <td colspan="4" style="height: 30px;"><strong>F. MUATAN LOKAL PAI KHAS PRIMA INSANI</strong></td>
+        </tr>
+        <tr>
+          <td colspan="4"><strong>KKM : 75</strong></td>
         </tr>
         <tr>
           <td colspan="4" style="height: 30px;"><strong>1. PELAJARAN SHOLAT</strong></td>
@@ -788,7 +740,70 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>H. BUDAYA NILAI PRIMA</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>H. EKSTRAKULIKULER</strong></td>
+        </tr>
+        <thead>
+          <tr class="heading">
+            <td style="width: 4%;">NO</td>
+            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 10%;">CAPAIAN</td>
+            <td style="width: 60%;">DESKRIPSI</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sikap">
+            <td>1</td>
+            <td>
+              Pramuka
+            </td>
+            @if($pramuka)
+              <td style="text-align:center;">
+                @if($pramuka->nilai == 4)
+                SB
+                @elseif($pramuka->nilai == 3)
+                B
+                @elseif($pramuka->nilai == 2)
+                C
+                @else
+                K
+                @endif</td>
+              <td class="description">
+                <span>
+                {{$pramuka->deskripsi}}
+                </span>
+              </td>
+            @else
+              <td>-</td>
+              <td>-</td>
+            @endif
+          </tr>
+          @foreach($ekstrakulikuler as $nilai_ekstra)
+          <tr class="sikap">
+            <td>2</td>
+            <td>{{$nilai_ekstra->ekstrakulikuler->nama_ekstrakulikuler}}</td>
+            <td style="text-align:center;">
+                @if($nilai_ekstra->nilai == 4)
+                SB
+                @elseif($nilai_ekstra->nilai == 3)
+                B
+                @elseif($nilai_ekstra->nilai == 2)
+                C
+                @elseif($nilai_ekstra->nilai == 1)
+                K
+                @else
+                -
+                @endif
+            </td>
+            <td class="description">
+              {{$nilai_ekstra->deskripsi}}
+            </td>
+          @endforeach
+          </tr>
+        </tbody>
+      </table>
+      <table cellspacing="0">
+        <tr>
+          <td colspan="4" style="height: 30px;"><strong>I. BUDAYA NILAI PRIMA</strong></td>
         </tr>
         <thead >
           <tr class="heading">
@@ -1197,7 +1212,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td style="height: 30px;"><strong>I. CATATAN WALI KELAS</strong></td>
+          <td style="height: 30px;"><strong>J. CATATAN WALI KELAS</strong></td>
         </tr>
         <tr class="sikap">
           <td class="description">
@@ -1211,7 +1226,7 @@
       </table>
       <table cellspacing="0">
         <tr>
-          <td style="height: 30px;"><strong>I. KETIDAKHADIRAN</strong></td>
+          <td style="height: 30px;"><strong>K. KETIDAKHADIRAN</strong></td>
         </tr>
         @if($kehadiran)
         <tr class="sikap">
