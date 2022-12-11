@@ -111,3 +111,13 @@ Route::resource('/penilaian-ekstrakulikuler',App\Http\Controllers\NilaiEkstrakul
 Route::resource('/user',App\Http\Controllers\UserController::class);
 Route::get('user-reset/{id}', [App\Http\Controllers\UserController::class,'reset'])->name('user-reset');
 Route::get('user-aktivasi/{id}', [App\Http\Controllers\UserController::class,'aktivasi'])->name('user-aktivasi');
+
+    //Optimize
+    Route::get('/optimize', function() {
+        $exitCode = Artisan::call('optimize');
+        return '<h1>Clear Config cleared</h1>';
+    });
+    Route::get('/foo', function () {
+        Artisan::call('vendor:publish --tag=flare-config');
+        return '<h1>Clear Config cleared</h1>';
+    });

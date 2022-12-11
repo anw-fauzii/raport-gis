@@ -254,7 +254,8 @@ class NilaiKokulikulerController extends Controller
     public function eksport($id)
     {
         if(Auth::user()->hasRole('wali|mapel')){
-            $filename = 'format_import_Nilai_KI3 ' . date('Y-m-d H_i_s') . '.xls';
+            $pembelajaran = Pembelajaran::find($id);
+            $filename = 'Nilai Kokulikuler_'.$pembelajaran->kelas->nama_kelas.'_'.$pembelajaran->mapel->nama_mapel. date('Y-m-d H_i_s') . '.xls';
             return Excel::download(new NilaiKokulikulerExport($id), $filename);
         }else{
             return response()->view('errors.403', [abort(403), 403]);

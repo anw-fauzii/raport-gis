@@ -27,7 +27,7 @@ class NilaiTahsinController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('t2q')){
-            $title = 'Nilai Tahsin Tahfidz';
+            $title = 'Nilai Tahsin';
             $tapel = Tapel::findorfail(5);     
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_rencana_penilaian = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel', $tapel->tahun_pelajaran)->groupBy('tingkat')->get();
@@ -63,8 +63,8 @@ class NilaiTahsinController extends Controller
                     'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                     'tahsin_jilid'  => $request->tahsin_jilid[$cound_siswa],
                     'tahsin_halaman'  => $request->tahsin_halaman[$cound_siswa],
-                    'tahsin_kekurangan'  => $request->tahsin_kekurangan[$cound_siswa],
-                    'tahsin_kelebihan'  => $request->tahsin_kelebihan[$cound_siswa],
+                    'tahsin_kekurangan'  => implode(", ",$request->tahsin_kekurangan[$cound_siswa]),
+                    'tahsin_kelebihan'  => implode(", ",$request->tahsin_kelebihan[$cound_siswa]),
                     'tahsin_nilai'  => $request->tahsin_nilai[$cound_siswa],
                     'created_at'  => Carbon::now(),
                     'updated_at'  => Carbon::now(),
@@ -106,14 +106,14 @@ class NilaiTahsinController extends Controller
             $komentar = Komentar::all();
 
             if ($count_kd_nilai == 0) {
-                $title = 'Input Nilai t2q';
+                $title = 'Input Nilai Tahsin';
                 return view('t2q.penilaian-tahsin.create', compact('title', 'data_anggota_kelas','komentar'));
             } else {
                 foreach ($data_anggota_kelas as $anggota_kelas) {
                     $data_nilai = NilaiT2Q::where('anggota_kelas_id', $anggota_kelas->anggota_kelas_id)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $title = 'Edit Nilai Pengetahuan';
+                $title = 'Edit Nilai Tahsin';
                 return view('t2q.penilaian-tahsin.edit', compact('title', 'data_anggota_kelas','komentar'));
             }
         }else{
@@ -136,8 +136,8 @@ class NilaiTahsinController extends Controller
                 $data_nilai = array(
                     'tahsin_jilid'  => $request->tahsin_jilid[$cound_siswa],
                     'tahsin_halaman'  => $request->tahsin_halaman[$cound_siswa],
-                    'tahsin_kekurangan'  => $request->tahsin_kekurangan[$cound_siswa],
-                    'tahsin_kelebihan'  => $request->tahsin_kelebihan[$cound_siswa],
+                    'tahsin_kekurangan'  => implode(", ",$request->tahsin_kekurangan[$cound_siswa]),
+                    'tahsin_kelebihan'  => implode(", ",$request->tahsin_kelebihan[$cound_siswa]),
                     'tahsin_nilai'  => $request->tahsin_nilai[$cound_siswa],
                     'updated_at'  => Carbon::now(),
                 );

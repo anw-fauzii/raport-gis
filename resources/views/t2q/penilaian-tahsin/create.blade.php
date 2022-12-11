@@ -62,7 +62,7 @@
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
                     <select id="category{{$i}}" data-category="{{$i}}" class="form-control select2" name="tahsin_jilid[{{$i}}]" style="width: 100%;" required>
-                      <option value="">-- Jilid / Surah --</option>
+                      <option value="" disable="true" selected="true" disabled>-- Jilid / Surah --</option>
                       <option value="Jilid 1">Jilid 1</option>
                       <option value="Jilid 2">Jilid 2</option>
                       <option value="Jilid 3">Jilid 3</option>
@@ -80,18 +80,18 @@
                     <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" min="0" max="100" required>
                   </td>
                   <td>
-                    <select id="tahsin_kekurangan[{{$i}}]"" data-category="{{$i}}" class="form-control select2" name="tahsin_kekurangan[{{$i}}]"" style="width: 100%;" required>
-                      <option value="">-- Perbaikan --</option>
+                    <select class="form-control select2" multiple="multiple" name="tahsin_kekurangan[{{$i}}][]" style="width: 100%;" required>
+                      <option value="" disable="true" disabled>-- Perbaikan --</option>
                       @foreach($komentar as $data)
-                      <option value="{{$data->id}}">{{$data->jenis}} - {{$data->komentar}}.</option>
+                      <option value="{{$data->komentar}}">{{$data->jenis}} - {{$data->komentar}}</option>
                       @endforeach
                     </select>
                   </td>
                   <td>
-                    <select id="tahsin_kelebihan[{{$i}}]"" data-category="{{$i}}" class="form-control select2" name="tahsin_kekurangan[{{$i}}]"" style="width: 100%;" required>
-                      <option value="">-- Sudah Bagus --</option>
+                    <select class="form-control select2" multiple="multiple" name="tahsin_kelebihan[{{$i}}][]" style="width: 100%;" required>
+                      <option value="" disable="true" disabled>-- Sudah Bagus --</option>
                       @foreach($komentar as $data)
-                      <option value="{{$data->id}}">{{$data->jenis}} - {{$data->komentar}}</option>
+                      <option value="{{$data->komentar}}">{{$data->jenis}} - {{$data->komentar}}</option>
                       @endforeach
                     </select>
                   </td>

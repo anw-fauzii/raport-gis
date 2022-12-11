@@ -41,34 +41,38 @@
                         <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
-                        <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                        <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Nilai Hafalan</th>
                       </tr>
                       <tr class="text-center">
                   <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Hadits"><b>1.1</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="THafalan Do'a"><b>1.2</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Do'a"><b>1.2</b></a></td>
                   <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Kata Hikmah"><b>1.3</b></a></td>
                 </tr>
                     </thead>
                     <tbody>
                       <?php $i = 0; ?>
-                      @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
-                      <?php $i++; ?>
+                      @forelse($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+                        <?php $i++; ?>
+                        <tr>
+                          <td class="text-center">{{$i}}</td>
+                          <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
+                          <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
+                          <td>
+                            <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
+                            <input type="number" class="form-control" name="hadis[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          </td>
+                          <td>
+                            <input type="number" class="form-control" name="doa[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          </td>
+                          <td>
+                            <input type="number" class="form-control" name="hikmah[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
+                          </td>
+                        </tr>
+                      @empty
                       <tr>
-                        <td class="text-center">{{$i}}</td>
-                        <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
-                        <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
-                        <td>
-                          <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
-                          <input type="number" class="form-control" name="hadis[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                        </td>
-                        <td>
-                          <input type="number" class="form-control" name="doa[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                        </td>
-                        <td>
-                          <input type="number" class="form-control" name="hikmah[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
-                        </td>
+                        <td colspan="7" class="text-center">Data Tidak Ditemukan</td>
                       </tr>
-                      @endforeach
+                      @endforelse
                       <input type="hidden" name="jumlah" value="{{count($data_anggota_kelas)}}">
                     </tbody>
                   </table>

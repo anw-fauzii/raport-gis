@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NilaiT2Q;
+use App\Models\NilaiTahfidz;
 use App\Models\Tapel;
 use App\Models\Guru;
 use App\Models\Kelas;
 use Carbon\Carbon;
 use App\Models\AnggotaT2Q;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,7 @@ class NilaiT2QController extends Controller
             $tapel = Tapel::findorfail(5);     
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_rencana_penilaian = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel', $tapel->tahun_pelajaran)->groupBy('tingkat')->get();
-            $cek_nilai = NilaiT2Q::join('anggota_t2q','nilai_t2q.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
+            $cek_nilai = NilaiTahfidz::join('anggota_t2q','nilai_tahfidz.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
             ->where('guru_id', $guru->id)->get();
             return view('t2q.penilaian-t2q.index', compact('title', 'data_rencana_penilaian','guru','cek_nilai'));
         }else{
@@ -61,12 +62,13 @@ class NilaiT2QController extends Controller
                 $data_nilai = array(
                     'anggota_kelas_id'  => $request->anggota_kelas_id[$cound_siswa],
                     'tahfidz_surah'  => $request->tahfidz_surah[$cound_siswa],
-                    'tahfidz_ayat'  => $request->tahfidz_ayat[$cound_siswa],
+                    'tahfidz_kelebihan'  => implode(", ",$request->tahfidz_kelebihan[$cound_siswa]),
+                    'tahfidz_kekurangan'  => implode(", ",$request->tahfidz_kekurangan[$cound_siswa]),
                     'tahfidz_nilai'  => $request->tahfidz_nilai[$cound_siswa],
                     'created_at'  => Carbon::now(),
                     'updated_at'  => Carbon::now(),
                 );
-                NilaiT2Q::insert($data_nilai);  
+                NilaiTahfidz::insert($data_nilai);  
             }
             return redirect('penilaian-t2q')->with('success', 'Data nilai tahsin tahfidz berhasil disimpan.');
         }else{
@@ -78,10 +80,10 @@ class NilaiT2QController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NilaiT2Q  $nilaiT2Q
+     * @param  \App\Models\NilaiTahfidz  $NilaiTahfidz
      * @return \Illuminate\Http\Response
      */
-    public function show(NilaiT2Q $nilaiT2Q)
+    public function show(NilaiTahfidz $NilaiTahfidz)
     {
         return response()->view('errors.404', [abort(404), 404]);
     }
@@ -89,7 +91,7 @@ class NilaiT2QController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NilaiT2Q  $nilaiT2Q
+     * @param  \App\Models\NilaiTahfidz  $NilaiTahfidz
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -97,20 +99,21 @@ class NilaiT2QController extends Controller
         if(Auth::user()->hasRole('t2q')){
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_anggota_kelas = AnggotaT2Q::where('guru_id', $guru->id)->where('tingkat',$id)->get();
-            $cek_nilai = NilaiT2Q::join('anggota_t2q','nilai_t2q.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
+            $cek_nilai = NilaiTahfidz::join('anggota_t2q','nilai_tahfidz.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
             ->where('guru_id', $guru->id)->where('anggota_t2q.tingkat',$id)->get();
             $count_kd_nilai = count($cek_nilai);
+            $komentar = Komentar::where('jenis', 1)->get();
 
             if ($count_kd_nilai == 0) {
                 $title = 'Input Nilai t2q';
-                return view('t2q.penilaian-t2q.create', compact('title', 'data_anggota_kelas'));
+                return view('t2q.penilaian-t2q.create', compact('title', 'komentar', 'data_anggota_kelas'));
             } else {
                 foreach ($data_anggota_kelas as $anggota_kelas) {
-                    $data_nilai = NilaiT2Q::where('anggota_kelas_id', $anggota_kelas->anggota_kelas_id)->get();
+                    $data_nilai = NilaiTahfidz::where('anggota_kelas_id', $anggota_kelas->anggota_kelas_id)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
                 $title = 'Edit Nilai Pengetahuan';
-                return view('t2q.penilaian-t2q.edit', compact('title', 'data_anggota_kelas'));
+                return view('t2q.penilaian-t2q.edit', compact('title','komentar', 'data_anggota_kelas'));
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -121,17 +124,18 @@ class NilaiT2QController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NilaiT2Q  $nilaiT2Q
+     * @param  \App\Models\NilaiTahfidz  $NilaiTahfidz
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         if(Auth::user()->hasRole('t2q')){
             for ($cound_siswa = 1; $cound_siswa <= $request->jumlah; $cound_siswa++) {
-                $nilai = NilaiT2Q::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
+                $nilai = NilaiTahfidz::where('anggota_kelas_id', $request->anggota_kelas_id[$cound_siswa])->first();
                 $data_nilai = array(
                     'tahfidz_surah'  => $request->tahfidz_surah[$cound_siswa],
-                    'tahfidz_ayat'  => $request->tahfidz_ayat[$cound_siswa],
+                    'tahfidz_kelebihan'  => implode(", ",$request->tahfidz_kelebihan[$cound_siswa]),
+                    'tahfidz_kekurangan'  => implode(", ",$request->tahfidz_kekurangan[$cound_siswa]),
                     'tahfidz_nilai'  => $request->tahfidz_nilai[$cound_siswa],
                     'updated_at'  => Carbon::now(),
                 );
@@ -146,10 +150,10 @@ class NilaiT2QController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NilaiT2Q  $nilaiT2Q
+     * @param  \App\Models\NilaiTahfidz  $NilaiTahfidz
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NilaiT2Q $nilaiT2Q)
+    public function destroy(NilaiTahfidz $NilaiTahfidz)
     {
         return response()->view('errors.404', [abort(404), 404]);
     }

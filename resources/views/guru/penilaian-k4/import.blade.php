@@ -8,7 +8,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <form name="contact-form" action="{{ route('nilai-k4.import') }}" method="POST" enctype="multipart/form-data">
+            <form name="contact-form" class="multiple-submits" action="{{ route('nilai-k4.import') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="modal-body">
                 <div class="callout callout-info">
@@ -20,7 +20,7 @@
                 <label for="file_import" class="col-sm-2 col-form-label">File Import</label>
                 <div class="col-sm-10">
                     <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="file_import" id="customFile" accept="application/vnd.ms-excel">
+                    <input type="file" class="custom-file-input" name="file_import" id="customFile"  required accept="application/vnd.ms-excel">
                     <label class="custom-file-label" for="customFile">Pilih file</label>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                <button type="submit" onclick="submitForm(this);" class="btn btn-primary">Import</button>
+                <button type="submit" class="btn btn-primary multiple-submits">Import</button>
             </div>
             </form>
         </div>

@@ -15,6 +15,7 @@ use App\Models\NilaiRapotKokulikuler;
 use App\Models\NilaiHafalan;
 use App\Models\NilaiSholat;
 use App\Models\NilaiT2Q;
+use App\Models\NilaiTahfidz;
 use App\Models\CatatanT2Q;
 use App\Models\CatatanUmum;
 use App\Models\NilaiK1;
@@ -97,6 +98,7 @@ class HomeController extends Controller
         $nilai_hafalan = NilaiHafalan::where('anggota_kelas_id', $decrypted)->first();
         $nilai_sholat = NilaiSholat::where('anggota_kelas_id', $decrypted)->first();
         $nilai_t2q = NilaiT2Q::where('anggota_kelas_id', $decrypted)->first();
+        $nilai_tahfidz = NilaiTahfidz::where('anggota_kelas_id', $decrypted)->first();
         $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $decrypted)->first();
         $catatan_umum = CatatanUmum::where('anggota_kelas_id', $decrypted)->first();
         $kehadiran = Kehadiran::where('anggota_kelas_id', $decrypted)->first();
@@ -116,7 +118,7 @@ class HomeController extends Controller
         $kelengkapan_raport = PDF::loadview('walikelas.raport.kelengkapanraport', 
         compact('guru','des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
         'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
-        'title','nilai_hafalan','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
+        'title','nilai_hafalan','nilai_tahfidz','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
         'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');
         return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->siswa->nama_lengkap . ' (' . $anggota_kelas->kelas->nama_kelas . ').pdf');
     }

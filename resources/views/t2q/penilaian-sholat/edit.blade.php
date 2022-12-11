@@ -45,7 +45,7 @@
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
-                  <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                  <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Nilai Sholat</th>
                 </tr>
                 <tr class="text-center">
                   <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Paktek Wudhu"><b>2.1</b></a></td>

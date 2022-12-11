@@ -92,7 +92,7 @@ class NilaiHafalanController extends Controller
                     $deskripsi_hadis = "Ananda cukup dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
                 }else if($request->hadis[$cound_siswa] < 93){
                     $deskripsi_hadis = "Ananda baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
-                }else if($request->hadis[$cound_siswa] < 100){
+                }else if($request->hadis[$cound_siswa] <= 100){
                     $deskripsi_hadis = "Ananda sangat baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
                 }
                 
@@ -102,7 +102,7 @@ class NilaiHafalanController extends Controller
                     $deskripsi_doa = "Ananda cukup dalam menghafal ".$kompetensi_doa;
                 }else if($request->doa[$cound_siswa] < 93){
                     $deskripsi_doa = "Ananda baik dalam menghafal ".$kompetensi_doa;
-                }else if($request->doa[$cound_siswa] < 100){
+                }else if($request->doa[$cound_siswa] <= 100){
                     $deskripsi_doa = "Ananda sangat baik dalam menghafal ".$kompetensi_doa;
                 }
                 
@@ -112,7 +112,7 @@ class NilaiHafalanController extends Controller
                     $deskripsi_hikmah = "Ananda cukup dalam menghafal dan memahami kata-kata hikmah tentang ".$kompetensi_hikmah;
                 }else if($request->hikmah[$cound_siswa] < 93){
                     $deskripsi_hikmah = "Ananda baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
-                }else if($request->hikmah[$cound_siswa] < 100){
+                }else if($request->hikmah[$cound_siswa] <= 100){
                     $deskripsi_hikmah = "Ananda sangat baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
                 }
 
@@ -169,7 +169,7 @@ class NilaiHafalanController extends Controller
                     $data_nilai = NilaiHafalan::where('anggota_kelas_id', $anggota_kelas->anggota_kelas_id)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $title = 'Edit Nilai Pengetahuan';
+                $title = 'Edit Nilai Hafalan';
                 return view('t2q.penilaian-hafalan.edit', compact('title', 'data_anggota_kelas'));
             }
         }else{
@@ -223,7 +223,7 @@ class NilaiHafalanController extends Controller
                     $deskripsi_hadis = "Ananda cukup dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
                 }else if($request->hadis[$cound_siswa] < 93){
                     $deskripsi_hadis = "Ananda baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
-                }else if($request->hadis[$cound_siswa] < 100){
+                }else if($request->hadis[$cound_siswa] <= 100){
                     $deskripsi_hadis = "Ananda sangat baik dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
                 }
                 
@@ -233,7 +233,7 @@ class NilaiHafalanController extends Controller
                     $deskripsi_doa = "Ananda cukup dalam menghafal ".$kompetensi_doa;
                 }else if($request->doa[$cound_siswa] < 93){
                     $deskripsi_doa = "Ananda baik dalam menghafal ".$kompetensi_doa;
-                }else if($request->doa[$cound_siswa] < 100){
+                }else if($request->doa[$cound_siswa] <= 100){
                     $deskripsi_doa = "Ananda sangat baik dalam menghafal ".$kompetensi_doa;
                 }
                 
@@ -243,7 +243,7 @@ class NilaiHafalanController extends Controller
                     $deskripsi_hikmah = "Ananda cukup dalam menghafal dan memahami kata-kata hikmah tentang ".$kompetensi_hikmah;
                 }else if($request->hikmah[$cound_siswa] < 93){
                     $deskripsi_hikmah = "Ananda baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
-                }else if($request->hikmah[$cound_siswa] < 100){
+                }else if($request->hikmah[$cound_siswa] <= 100){
                     $deskripsi_hikmah = "Ananda sangat baik dalam menghafal dan memahami kata-kata hikmah tentang".$kompetensi_hikmah;
                 }
                 $data_nilai = array(

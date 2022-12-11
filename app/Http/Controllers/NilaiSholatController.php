@@ -64,7 +64,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_praktik_wudhu = "Ananda cukup dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 93){
                     $deskripsi_praktik_wudhu = "Ananda baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
-                }else if($request->praktik_wudhu[$cound_siswa] < 100){
+                }else if($request->praktik_wudhu[$cound_siswa] <= 100){
                     $deskripsi_praktik_wudhu = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }
                 
@@ -74,7 +74,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_bacaan_sholat = "Ananda cukup dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 93){
                     $deskripsi_bacaan_sholat = "Ananda baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
-                }else if($request->bacaan_sholat[$cound_siswa] < 100){
+                }else if($request->bacaan_sholat[$cound_siswa] <= 100){
                     $deskripsi_bacaan_sholat = "Ananda sangat baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }
 
@@ -84,7 +84,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_gerakan_sholat = "Ananda cukup dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 93){
                     $deskripsi_gerakan_sholat = "Ananda baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
-                }else if($request->gerakan_sholat[$cound_siswa] < 100){
+                }else if($request->gerakan_sholat[$cound_siswa] <= 100){
                     $deskripsi_gerakan_sholat = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }
 
@@ -94,7 +94,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_dzikir = "Ananda cukup dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 93){
                     $deskripsi_dzikir = "Ananda baik dalam melafalkan bacaan dzikir ba'da shalat.";
-                }else if($request->dzikir[$cound_siswa] < 100){
+                }else if($request->dzikir[$cound_siswa] <= 100){
                     $deskripsi_dzikir = "Ananda sangat baik dalam melafalkan bacaan dzikir ba'da shalat.";
                 }
                 
@@ -152,7 +152,7 @@ class NilaiSholatController extends Controller
                     $data_nilai = NilaiSholat::where('anggota_kelas_id', $anggota_kelas->anggota_kelas_id)->get();
                     $anggota_kelas->data_nilai = $data_nilai;
                 }
-                $title = 'Edit Nilai Pengetahuan';
+                $title = 'Edit Nilai Sholat';
                 return view('t2q.penilaian-sholat.edit', compact('title', 'data_anggota_kelas'));
             }
         }else{
@@ -178,7 +178,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_praktik_wudhu = "Ananda cukup dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }else if($request->praktik_wudhu[$cound_siswa] < 93){
                     $deskripsi_praktik_wudhu = "Ananda baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
-                }else if($request->praktik_wudhu[$cound_siswa] < 100){
+                }else if($request->praktik_wudhu[$cound_siswa] <= 100){
                     $deskripsi_praktik_wudhu = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara wudhu serta menyebutkan do'a setelah wudhu.";
                 }
                 
@@ -188,7 +188,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_bacaan_sholat = "Ananda cukup dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }else if($request->bacaan_sholat[$cound_siswa] < 93){
                     $deskripsi_bacaan_sholat = "Ananda baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
-                }else if($request->bacaan_sholat[$cound_siswa] < 100){
+                }else if($request->bacaan_sholat[$cound_siswa] <= 100){
                     $deskripsi_bacaan_sholat = "Ananda sangat baik dalam mempraktekkan dan menyebutkan bacaan gerakan shalat.";
                 }
 
@@ -198,7 +198,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_gerakan_sholat = "Ananda cukup dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }else if($request->gerakan_sholat[$cound_siswa] < 93){
                     $deskripsi_gerakan_sholat = "Ananda baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
-                }else if($request->gerakan_sholat[$cound_siswa] < 100){
+                }else if($request->gerakan_sholat[$cound_siswa] <= 100){
                     $deskripsi_gerakan_sholat = "Ananda sangat baik dalam mempraktekkan dan memahami tata cara gerakan shalat.";
                 }
 
@@ -208,7 +208,7 @@ class NilaiSholatController extends Controller
                     $deskripsi_dzikir = "Ananda cukup dalam melafalkan bacaan dzikir ba'da shalat.";
                 }else if($request->dzikir[$cound_siswa] < 93){
                     $deskripsi_dzikir = "Ananda baik dalam melafalkan bacaan dzikir ba'da shalat.";
-                }else if($request->dzikir[$cound_siswa] < 100){
+                }else if($request->dzikir[$cound_siswa] <= 100){
                     $deskripsi_dzikir = "Ananda sangat baik dalam melafalkan bacaan dzikir ba'da shalat.";
                 }
                 $data_nilai = array(

@@ -85,10 +85,20 @@
                     <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" value="{{$nilai->tahsin_halaman}}" min="0" max="100" required>
                   </td>
                   <td>
-                    <input type="text" class="form-control" name="tahsin_kekurangan[{{$i}}]" value="{{$nilai->tahsin_kekurangan}}" min="0" max="100" required>
+                    <select class="form-control select2" multiple="multiple" name="tahsin_kekurangan[{{$i}}][]" style="width: 100%;" required>
+                      <option value="" disable="true" disabled>-- Perbaikan --</option>
+                      @foreach($komentar as $data)
+                      <option value="{{$data->komentar}}" {{in_array($data->komentar, explode(", ",$nilai->tahsin_kekurangan)) ? 'selected' : '' }}>{{$data->jenis}} - {{$data->komentar}}</option>
+                      @endforeach
+                    </select>
                   </td>
                   <td>
-                    <input type="text" class="form-control" name="tahsin_kelebihan[{{$i}}]" value="{{$nilai->tahsin_kelebihan}}" min="0" max="100" required>
+                    <select class="form-control select2" multiple="multiple" name="tahsin_kelebihan[{{$i}}][]" style="width: 100%;" required>
+                      <option value="" disable="true" disabled>-- Sudah Bagus --</option>
+                      @foreach($komentar as $data)
+                      <option value="{{$data->komentar}}" {{in_array($data->komentar, explode(", ",$nilai->tahsin_kelebihan)) ? 'selected' : '' }}>{{$data->jenis}} - {{$data->komentar}}</option>
+                      @endforeach
+                    </select>
                   </td>
                   <td>
                     <input type="number" class="form-control" name="tahsin_nilai[{{$i}}]" value="{{$nilai->tahsin_nilai}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
@@ -117,16 +127,22 @@
 @stop
 
 @section('css')
+<link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('vendor/datatables/css/dataTables.bootstrap4.css')}}">
 @stop
 
 @section('js')
+<script src="{{asset('vendor/select2/js/select2.full.min.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/dataTables.bootstrap4.js')}}"></script>
 
 <script>
   $(function () {
     $("#example1").DataTable();
+    $('.select2').select2({
+      theme : 'bootstrap4',
+    })
   });
   $(document).ready(function() {
     $("body").tooltip({ selector: '[data-toggle=tooltip]' });

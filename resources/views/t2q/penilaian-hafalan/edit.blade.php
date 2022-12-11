@@ -45,11 +45,11 @@
                   <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
                   <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
-                  <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                  <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Nilai Hafalan</th>
                 </tr>
                 <tr class="text-center">
                   <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Hadits"><b>1.1</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="THafalan Do'a"><b>1.2</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Do'a"><b>1.2</b></a></td>
                   <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Kata Hikmah"><b>1.3</b></a></td>
                 </tr>
               </thead>

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nilai Tahsin dan Tahfidz')
+@section('title', 'Nilai tahsin dan Tahfidz')
 
 @section('content_header')
     
@@ -41,12 +41,13 @@
                         <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
-                        <th colspan="3" class="text-center">Tahfidz</th>
+                        <th colspan="4" class="text-center">Tahfidz</th>
                       </tr>
                       <tr class="text-center">
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Surah"><b>4.1</b></a></td>
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Ayat"><b>4.2</b></a></td>
-                        <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>4.3</b></a></td>
+                        <td style="width: 25%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Surah"><b>4.1</b></a></td>
+                        <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>4.2</b></a></td>
+                        <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>4.2</b></a></td>
+                        <td style="width: 10%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>4.3</b></a></td>
                       </tr>
                     </thead>
                     <tbody>
@@ -62,7 +63,20 @@
                           <input type="text" class="form-control" name="tahfidz_surah[{{$i}}]" min="0" max="100" required>
                         </td>
                         <td>
-                          <input type="text" class="form-control" name="tahfidz_ayat[{{$i}}]" min="0" max="100" required>
+                          <select class="form-control select2" multiple="multiple" name="tahfidz_kekurangan[{{$i}}][]" style="width: 100%;" required>
+                            <option value="" disable="true" disabled>-- Perbaikan --</option>
+                            @foreach($komentar as $data)
+                            <option value="{{$data->komentar}}">{{$data->komentar}}</option>
+                            @endforeach
+                          </select>
+                        </td>
+                        <td>
+                          <select class="form-control select2" multiple="multiple" name="tahfidz_kelebihan[{{$i}}][]" style="width: 100%;" required>
+                            <option value="" disable="true" disabled>-- Sudah Bagus --</option>
+                            @foreach($komentar as $data)
+                            <option value="{{$data->komentar}}">{{$data->komentar}}</option>
+                            @endforeach
+                          </select>
                         </td>
                         <td>
                           <input type="number" class="form-control" name="tahfidz_nilai[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">

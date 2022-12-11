@@ -48,7 +48,7 @@
                 <td>{{$no}}</td>
                 <td>Tingkat {{$penilaian->tingkat}}</td>
                 <td>
-                  @if($cek_nilai->where('tingkat',$penilaian->tingkat)->where('tahsin_nilai', !NULL)->count() == 0)
+                  @if($cek_nilai->where('tingkat',$penilaian->tingkat)->count() == 0)
                   <span class="badge badge-danger">Belum Ada yang di nilai</span>
                   @else
                   <span class="badge badge-success">Sudah Dinilai</span>

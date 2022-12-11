@@ -37,7 +37,7 @@
             @include('guru.penilaian-mulok.import')
 
             <div class="card-body">
-              <form action="{{ route('penilaian-mulok.store') }}" method="POST">
+              <form class="multiple-submits" action="{{ route('penilaian-mulok.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
                 <div class="table-responsive">
@@ -88,7 +88,7 @@
             </div>
 
             <div class="card-footer clearfix">
-              <button type="submit" onclick="submitForm(this);" class="btn btn-primary float-right">Simpan</button>
+              <button type="submit" class="btn btn-primary float-right multiple-submits">Simpan</button>
               <a href="{{ route('penilaian-mulok.index') }}" class="btn btn-default float-right mr-2">Batal</a>
             </div>
             </form>
@@ -113,9 +113,10 @@
   $(function () {
     $("#example1").DataTable();
   });
-  function submitForm(btn) {
-    btn.disabled = true;  
-    btn.form.submit();
-  }
+  (function(){
+    $('.multiple-submits').on('submit', function(){
+        $('.multiple-submits').attr('disabled','true');
+    })
+  })();
 </script>
 @stop

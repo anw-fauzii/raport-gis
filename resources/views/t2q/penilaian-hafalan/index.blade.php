@@ -36,7 +36,7 @@
               <tr>
                 <th>No</th>
                 <th>Tingkat Kelas</th>
-                <th>Jumlah Rencana Penilaian</th>
+                <th>Status Penilaian</th>
                 <th>Aksi</th>
               </tr>
             </thead>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2022 at 07:17 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Dec 11, 2022 at 11:21 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -893,7 +893,8 @@ INSERT INTO `anggota_t2q` (`id`, `tingkat`, `anggota_kelas_id`, `guru_id`, `tape
 (366, 2, 138, 11, '2022/2023', '2022-12-05 07:18:34', '2022-12-05 07:18:34'),
 (367, 2, 146, 11, '2022/2023', '2022-12-05 07:18:34', '2022-12-05 07:18:34'),
 (368, 2, 147, 11, '2022/2023', '2022-12-05 07:18:34', '2022-12-05 07:18:34'),
-(369, 2, 156, 11, '2022/2023', '2022-12-05 07:18:34', '2022-12-05 07:18:34');
+(369, 2, 156, 11, '2022/2023', '2022-12-05 07:18:34', '2022-12-05 07:18:34'),
+(370, 1, 82, 7, '2022/2023', '2022-12-10 11:27:04', '2022-12-10 11:27:04');
 
 -- --------------------------------------------------------
 
@@ -1203,7 +1204,7 @@ INSERT INTO `kd_mapel` (`id`, `mapel_id`, `tingkatan_kelas`, `jenis_kompetensi`,
 (7, 5, '3', '2', 5, '4.2', 'menyajikan laporan tentang konsep ciri-ciri, kebutuhan (makanan dan tempat hidup), pertumbuhan dan perkembangan makhluk hidup yang ada di lingkungan setempat secara tertulis menggunakan kosakata baku dan kalimat efektif', '2022-12-05 07:39:50', '2022-12-05 07:39:50'),
 (8, 5, '3', '2', 5, '4.3', 'menyajikan hasil waawancara tentang cara-cara perawatan tumbuhan dan hewan dalam bentuk tulis dan virtual menggunakan kosakata baku dan kalimat efektif', '2022-12-05 07:39:50', '2022-12-05 07:39:50'),
 (9, 5, '3', '2', 5, '4.4', 'menggunakan pesan dalam dongeng sebagai bentuk ungkapan diri menggunakan kosakata baku dan kalimat efektif', '2022-12-05 07:39:50', '2022-12-05 07:39:50'),
-(10, 5, '3', '2', 5, '4.5', 'Memeragakan ungkapan atau kalimat saran, masukan, dan penyelesaian masalah (sederhana) sebagai bentuk ungkapan diri menggunakan kosakata baku dan kalimat efektif yang dibuat sendiri', '2022-12-05 07:39:50', '2022-12-05 07:39:50'),
+(10, 5, '3', '2', 5, '4.5', 'memeragakan ungkapan atau kalimat saran, masukan, dan penyelesaian masalah (sederhana) sebagai bentuk ungkapan diri menggunakan kosakata baku dan kalimat efektif yang dibuat sendiri', '2022-12-05 07:39:50', '2022-12-11 08:11:42'),
 (11, 3, '3', '1', 5, '3.1', 'memahami makna Q.S. an-Nasr dan al-Kausar', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
 (12, 3, '3', '2', 5, '3.2', 'memahami Hadis yang terkait dengan perilaku mandiri, percaya diri, dan bertanggung jawab', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
 (13, 3, '3', '1', 5, '3.3', 'memahami keesaan Allah Yang Maha Pencipta berdasarkan pengamatan terhadap dirinya dan makhluk ciptaan-Nya yang dijumpai di sekitar rumah dan sekolah', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
@@ -1214,22 +1215,15 @@ INSERT INTO `kd_mapel` (`id`, `mapel_id`, `tingkatan_kelas`, `jenis_kompetensi`,
 (18, 3, '3', '1', 5, '3.8', 'memahami hikmah ibadah salat melalui pengamatan dan pengalaman di rumah dan sekolah', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
 (19, 3, '3', '1', 5, '3.9', 'memahami kisah keteladanan Nabi Yusuf a.s.', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
 (20, 3, '3', '1', 5, '3.10', 'memahami kisah keteladanan Nabi Syu‘aib a.s.', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(21, 3, '3', '1', 5, '3.11', 'Memahami kisah keteladanan Nabi Muhammad Saw', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(22, 3, '3', '2', 5, '4.1', 'mengetahui sikap percaya diri dan kemandirian sebagai wujud dari keteladanan nabi Muhammad saw.', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(23, 3, '3', '2', 5, '4.2', 'menunjukkan hafalan Q.S an-Nasr  dengan lancar dan Mengetahui sikap peduli terhadap sesama sebagai implementasi pemahaman Q.S An-Nasr', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(24, 3, '3', '2', 5, '4.3', 'melakukan pengamatan terhadap diri dan makhluk ciptaan Allah yang dijumpai di sekitar rumah dan sekolah sebagai implementasi iman terhadap keesaan Allah Yang Maha Pencipta dan memahami makna Asmaul Husna, Al-Wahhab, Al-Khaliq', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(25, 3, '3', '2', 5, '4.4', 'Meyakini bahwa perilaku tawaduk, bertanggung jawab dan peduli sesama sebagai cerminan dari iman', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(26, 3, '3', '2', 5, '4.5', 'menunjukkan contoh makna salat sebagai wujud dari pemahaman Q.S. al-Kautsar', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(27, 3, '3', '2', 5, '4.6', 'menceritakan kisah keteladanan Nabi Yusuf a.s dan Nabi Syu\'aib a.s', '2022-12-05 07:49:40', '2022-12-05 07:49:40'),
-(28, 4, '3', '1', 5, '3.1', 'Memahami arti gambar pada lambang negara \"Garuda Indonesia\"', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
+(21, 3, '3', '1', 5, '3.11', 'memahami kisah keteladanan Nabi Muhammad Saw', '2022-12-05 07:49:40', '2022-12-11 08:23:26'),
+(28, 4, '3', '1', 5, '3.1', 'memahami arti gambar pada lambang negara \"Garuda Indonesia\"', '2022-12-05 07:52:22', '2022-12-11 08:24:14'),
 (29, 4, '3', '1', 5, '3.2', 'mengidentifikasi kewajiban dan hak sebagai anggota keluarga dan warga sekolah', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
-(30, 4, '3', '1', 5, '3.3', 'Menjelaskan makna keberagaman karakteristik individu di lingkungan', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
-(31, 4, '3', '1', 5, '3.4', 'memahami makna bersatu dalam keberagaman di sekolah.', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
-(32, 4, '3', '2', 5, '4.1', 'Menceritakan arti gambar pada lambang negara \"Garuda Indonesia\"', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
+(30, 4, '3', '1', 5, '3.3', 'menjelaskan makna keberagaman karakteristik individu di lingkungan', '2022-12-05 07:52:22', '2022-12-11 08:23:48'),
+(31, 4, '3', '1', 5, '3.4', 'memahami makna bersatu dalam keberagaman di lingkungan sekitar', '2022-12-05 07:52:22', '2022-12-11 08:25:54'),
+(32, 4, '3', '2', 5, '4.1', 'menceritakan arti gambar pada lambang negara \"Garuda Indonesia\"', '2022-12-05 07:52:22', '2022-12-11 08:24:00'),
 (33, 4, '3', '2', 5, '4.2', 'menyajikan hasil identifikasi kewajiban dan hak sebagai anggota keluarga dan warga sekolah', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
 (34, 4, '3', '2', 5, '4.3', 'menyajikan makna keberagaman karakteristik individu di lingkungan sekitar', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
 (35, 4, '3', '2', 5, '4.4', 'menyajikan bentuk-bentuk kebersatuan dalam keberagaman di lingkungan sekitar', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
-(36, 4, '3', '2', 5, '4.5', 'keberagaman makhlauk hidup', '2022-12-05 07:52:22', '2022-12-05 07:52:22'),
 (37, 9, '3', '1', 5, '3.1', 'mengetahui unsur-unsur rupa dalam karya dekoratif', '2022-12-05 07:54:14', '2022-12-05 07:54:14'),
 (38, 9, '3', '1', 5, '3.2', 'mengetahui bentuk dan variasi pola irama dalam lagu', '2022-12-05 07:54:14', '2022-12-05 07:54:14'),
 (39, 9, '3', '1', 5, '3.3', 'mengetahui dinamika gerak tari', '2022-12-05 07:54:14', '2022-12-05 07:54:14'),
@@ -1241,12 +1235,10 @@ INSERT INTO `kd_mapel` (`id`, `mapel_id`, `tingkatan_kelas`, `jenis_kompetensi`,
 (45, 6, '3', '1', 5, '3.1', 'menjelaskan sifat-sifat operasi hitung pada bilangan cacah', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (46, 6, '3', '1', 5, '3.2', 'menjelaskan bilangan cacah dna pecahan sederhana (seperti1/2, 1/3, dan 1/4) yang disajikan pada garis bilangan', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (47, 6, '3', '1', 5, '3.3', 'menyatakan suatu bilangan bilangan sebagai jumlah, selisih, hasil kali, atau hasil bagi dua bilangan cacah', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
-(48, 6, '3', '1', 5, '3.4', 'mengeneralisasi ide pecahan sebagai bagian dari keseluruhan menggunakan benda-benda konkret', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (49, 6, '3', '1', 5, '3.5', 'mendeskripsikan dan menentukan hubungan antar satuan baku untuk panjang, berat, dan waktu yang umumnya  digunakan dalam kehidupan sehari-hari', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (50, 6, '3', '2', 5, '4.1', 'menyelesaikan masalah yang melibatkan penggunaan sifat-sifat operasi hitung pada bilangan cacah', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (51, 6, '3', '2', 5, '4.2', 'menggunakan bilangan cacah dna pecahan sederhana (seperti1/2, 1/3, dan 1/4) yang disajikan pada garis bilangan', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (52, 6, '3', '2', 5, '4.3', 'menilai apakah suatu bilangan bilangan sebagai jumlah, selisih, hasil kali, atau hasil bagi dua bilangan cacah', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
-(53, 6, '3', '2', 5, '4.4', 'menyajikan pecahan sebagai bagian dari keseluruhan menggunakan benda-benda konkret', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (54, 6, '3', '2', 5, '4.5', 'menyelesaikan masalah yang berkaitan dengan hubungan antar satuan baku untuk panjang, berat, dan waktu yang umumnya  digunakan dalam kehidupan sehari-hari', '2022-12-05 08:07:01', '2022-12-05 08:07:01'),
 (55, 10, '3', '1', 5, '3.1', 'memahami kombinasi gerak dasar lokomotor sesuai dengan konsep tubuh, ruang, usaha, dan keterhubungan dalam berbagai bentuk permainan sederhana dan atau tradisionalsederhana dan atau tradisional', '2022-12-05 08:19:42', '2022-12-05 08:19:42'),
 (56, 10, '3', '1', 5, '3.2', 'memahami kombinasi gerak dasar non lokomotor sesuai dengan konsep tubuh, ruang, usaha, dan keterhubungan dalam berbagai bentuk  permainan sederhana dan atau tradisional', '2022-12-05 08:19:42', '2022-12-05 08:19:42'),
@@ -1261,32 +1253,27 @@ INSERT INTO `kd_mapel` (`id`, `mapel_id`, `tingkatan_kelas`, `jenis_kompetensi`,
 (65, 12, '3', '1', 5, '3.3', 'memahami teks sederhana tentang cuaca dan musim', '2022-12-06 02:04:32', '2022-12-06 02:04:32'),
 (66, 12, '3', '1', 5, '3.4', 'memahami teks percakapan sederhana tentang kehidupan bergotong royong', '2022-12-06 02:04:32', '2022-12-06 02:04:32'),
 (67, 12, '3', '1', 5, '3.5', 'mengetahui isi teks dalam bermain dan berolahraga', '2022-12-06 02:04:32', '2022-12-06 02:04:32'),
-(68, 12, '3', '1', 5, '4.1', 'Memahami isi pupuh tentang hewan dan tumbuhan', '2022-12-06 02:04:32', '2022-12-06 02:04:32'),
+(68, 12, '3', '1', 5, '4.1', 'melantunkan pupuh', '2022-12-06 02:04:32', '2022-12-11 08:32:34'),
 (69, 12, '3', '1', 5, '4.2', 'membaca nyaring teks narasi sederhana tentang pengalaman yang mengesankan dengan lafal dan intonasi yang benar', '2022-12-06 02:04:32', '2022-12-06 02:04:32'),
 (70, 12, '3', '1', 5, '4.3', 'menyajikan teks deskripsi sederhana tentang cuaca dan musim dalam bahasa lisan dan tulis', '2022-12-06 02:04:32', '2022-12-06 02:04:32'),
 (71, 12, '3', '1', 5, '4.4', 'mendemonstrasikan teks percakapan sederhana tentang kehidupan bergotong royong', '2022-12-06 02:04:32', '2022-12-06 02:04:32'),
-(72, 13, '3', '1', 5, '3.1', 'memahami kata, frasa, dan kalimat yang berkaitan dengan asking and telling names and age', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(73, 13, '3', '1', 5, '3.2', 'memahami kata, frasa, dan kalimat yang berkaitan dengan  asking and telling hobbies', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(74, 13, '3', '1', 5, '3.3', 'memahami kata, frasa, dan kalimat yang berkaitan dengan asking and telling times', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(75, 13, '3', '2', 5, '3.4', 'memahami kata, frasa, dan kalimat yang berkaitan dengan congratulate someone', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(76, 13, '3', '1', 5, '3.5', 'memahami kata, frasa, dan kalimat yang berkaitan dengan asking and telling about jobs', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(77, 13, '3', '1', 5, '4.1', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan asking and telling names and age', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(78, 13, '3', '1', 5, '4.2', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan asking and telling hobbies', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(79, 13, '3', '1', 5, '4.3', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan asking and telling times', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(80, 13, '3', '1', 5, '4.4', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan congratulate someone', '2022-12-06 02:06:02', '2022-12-06 02:06:02'),
-(81, 14, '3', '1', 5, '3.1', 'Mengenal jenis isim muzakkar  dan isim muannas pada tema adawatul kitabah', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(82, 14, '3', '1', 5, '3.2', 'Mengenal kalimat sederhana yang tersusun dari isim isyarah + isim mufrad  dan  isim istifham +  isim isyarah', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(83, 14, '3', '1', 5, '3.3', 'mengenal bunyi mufradat terkait topik Haulal Madrasati baik secara lisan atau tulisan', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(84, 14, '3', '1', 5, '3.4', 'Mengenal bunyi mufradat terkait topic/tema al mihnatu  baik secara lisan maupun tulisan', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(85, 14, '3', '1', 5, '3.5', 'Mengenal bunyi mufradat terkait topic/tema al-\'adadu baik secara lisan maupun tulisan', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(86, 14, '3', '1', 5, '4.1', 'Menyebutkan makna dari mufradat terkait topik adawatul al kitabah  dengan benar', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(87, 14, '3', '1', 5, '4.2', 'Menirukan bunyi kalimat /jumlah ismiyyah  sedehana terkait tema fil fashli', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(88, 14, '3', '1', 5, '4.3', 'Menyebutkan makna dari mufradat terkait topik haulal madrasati dengan benar', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(89, 14, '3', '1', 5, '4.4', 'Menyebutkan makna dari mufradat terkait topik al-mihnatu dengan benar', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
-(90, 14, '3', '1', 5, '4.5', 'Menyebutkan makna dari mufradat terkait topik al-\'adadu dengan benar', '2022-12-06 02:08:29', '2022-12-06 02:08:29'),
+(72, 13, '3', '1', 5, '3.1', 'memahami kata, frasa, dan kalimat yang berkaitan dengan <em>asking and telling names and age</em>', '2022-12-06 02:06:02', '2022-12-11 08:36:56'),
+(73, 13, '3', '1', 5, '3.2', 'memahami kata, frasa, dan kalimat yang berkaitan dengan  <em>asking and telling hobbies</em>', '2022-12-06 02:06:02', '2022-12-11 08:37:15'),
+(74, 13, '3', '1', 5, '3.3', 'memahami kata, frasa, dan kalimat yang berkaitan dengan <em>asking and telling times</em>', '2022-12-06 02:06:02', '2022-12-11 08:37:33'),
+(75, 13, '3', '2', 5, '3.4', 'memahami kata, frasa, dan kalimat yang berkaitan dengan <em>congratulate someone</em>', '2022-12-06 02:06:02', '2022-12-11 08:37:53'),
+(76, 13, '3', '1', 5, '3.5', 'memahami kata, frasa, dan kalimat yang berkaitan dengan <em>asking and telling about jobs</em>', '2022-12-06 02:06:02', '2022-12-11 08:38:11'),
+(77, 13, '3', '1', 5, '4.1', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan <em>asking and telling names and age</em>', '2022-12-06 02:06:02', '2022-12-11 08:38:31'),
+(78, 13, '3', '1', 5, '4.2', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan <em>asking and telling hobbies</em>', '2022-12-06 02:06:02', '2022-12-11 08:38:51'),
+(79, 13, '3', '1', 5, '4.3', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan <em>asking and telling times</em>', '2022-12-06 02:06:02', '2022-12-11 08:39:12'),
+(80, 13, '3', '1', 5, '4.4', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan <em>congratulate someone</em>', '2022-12-06 02:06:02', '2022-12-11 08:39:35'),
+(81, 14, '3', '1', 5, '3.1', 'mengenal bunyi mufradat terkait topik <em>al hayawaanat</em> baik secara lisan maupun tulisan', '2022-12-06 02:08:29', '2022-12-11 08:41:35'),
+(82, 14, '3', '1', 5, '3.2', 'mengenal makna ujaran kata (mufradat) terkait topik <em>al hayawaanat</em>', '2022-12-06 02:08:29', '2022-12-11 08:42:09'),
+(86, 14, '3', '1', 5, '4.1', 'menirukan bunyi mufradat terkait topik <em>al hayawanat </em>', '2022-12-06 02:08:29', '2022-12-11 08:43:45'),
+(87, 14, '3', '1', 5, '4.2', 'menyebutkan kata/mufradat terkait topik <em>al hayawaanat </em>', '2022-12-06 02:08:29', '2022-12-11 08:44:07'),
+(88, 14, '3', '1', 5, '4.3', 'menulis kata/mufradat terkait topik <em>al hayawaanat</em> dengan benar', '2022-12-06 02:08:29', '2022-12-11 08:44:36'),
 (91, 31, '3', '1', 5, '3.1', 'menulis sesuai kaidah handwriting', '2022-12-06 02:13:14', '2022-12-06 02:13:14'),
 (92, 32, '3', '1', 5, '3.1', 'menulis dan menuangkan ide kedalam sebuah cerita', '2022-12-06 02:13:35', '2022-12-06 02:13:35'),
-(93, 33, '3', '1', 5, '3.1', 'menulis dan menyambungkan huruf syin, dal, dzal, ra\' dan ha', '2022-12-06 02:13:54', '2022-12-06 02:13:54'),
+(93, 33, '3', '1', 5, '3.1', 'menulis dan menyambungkan huruf <em>syin, dal, dzal, ra\' dan ha</em>', '2022-12-06 02:13:54', '2022-12-11 08:50:25'),
 (94, 3, '5', '1', 5, '3.10', 'memahami hikmah puasa Ramadan yang dapat membentuk akhlak mulia', '2022-12-06 04:00:27', '2022-12-06 04:00:27'),
 (95, 3, '5', '1', 5, '3.12', 'memahami kisah keteladanan Nabi Dawud a.s.', '2022-12-06 04:00:27', '2022-12-06 04:00:27'),
 (96, 3, '5', '1', 5, '3.13', 'memahami kisah keteladanan Nabi Sulaiman a.s.', '2022-12-06 04:00:27', '2022-12-06 04:00:27'),
@@ -1416,7 +1403,7 @@ INSERT INTO `kd_mapel` (`id`, `mapel_id`, `tingkatan_kelas`, `jenis_kompetensi`,
 (220, 9, '2', '2', 5, '4.2', 'menampilkan pola irama sederhana melalui lagu anak-anak', '2022-12-08 07:04:03', '2022-12-08 07:04:03'),
 (221, 9, '2', '2', 5, '4.3', 'meragakan gerak keseharian dan alam dalam tari', '2022-12-08 07:04:03', '2022-12-08 07:04:03'),
 (222, 9, '2', '2', 5, '4.4', 'membuat hiasan dari bahan alam dan buatan', '2022-12-08 07:04:03', '2022-12-08 07:04:03'),
-(223, 3, '2', '1', 5, '3.4', 'memahami makna al-asmau al-husna', '2022-12-08 07:07:45', '2022-12-08 07:07:45'),
+(223, 3, '2', '1', 5, '3.4', 'memahami makna <em>al-asmau al-husna</em>', '2022-12-08 07:07:45', '2022-12-11 07:44:45'),
 (224, 3, '2', '1', 5, '3.6', 'memahami makna doa sebelum dan sesudah makan', '2022-12-08 07:07:45', '2022-12-08 07:07:45'),
 (225, 3, '2', '1', 5, '3.8', 'memahami kerjasama dan saling tolong menolong', '2022-12-08 07:07:45', '2022-12-08 07:07:45'),
 (226, 3, '2', '1', 5, '3.9', 'memahami doa sebelum dan sesudah berwudu', '2022-12-08 07:07:45', '2022-12-08 07:07:45'),
@@ -1434,10 +1421,10 @@ INSERT INTO `kd_mapel` (`id`, `mapel_id`, `tingkatan_kelas`, `jenis_kompetensi`,
 (238, 6, '2', '2', 5, '4.11', 'memprediksi pola barisan bangun datar dan bangun ruang menggunakan gambar atau benda konkret', '2022-12-08 07:10:19', '2022-12-08 07:10:19'),
 (239, 10, '2', '1', 5, '3.4', 'memahami bergerak secara seimbang, lentur, dan kuat dalam rangka pengembangan kebugaran jasmani melalui permainan sederhana dan atau tradisional', '2022-12-08 07:11:01', '2022-12-08 07:11:01'),
 (240, 10, '2', '2', 5, '4.4', 'mempraktikkan prosedur bergerak secara seimbang, lentur, dan kuat dalam rangka pengembangan kebugaran jasmani melalui permainan sederhana dan atau tradisional', '2022-12-08 07:11:01', '2022-12-08 07:11:01'),
-(241, 13, '2', '1', 5, '3.3', 'memahami kata, frasa, dan kalimat yang berkaitan dengan  keep your body clean', '2022-12-08 07:12:44', '2022-12-08 07:12:44'),
-(242, 13, '2', '1', 5, '3.4', 'memahami kata, frasa, dan kalimat yang berkaitan dengan  keep your body clean', '2022-12-08 07:12:44', '2022-12-08 07:12:44'),
-(243, 13, '2', '1', 5, '4.3', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan keep your body clean', '2022-12-08 07:12:44', '2022-12-08 07:12:44'),
-(244, 13, '2', '1', 5, '4.4', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan food and drinks', '2022-12-08 07:12:44', '2022-12-08 07:12:44'),
+(241, 13, '2', '1', 5, '3.3', 'memahami kata, frasa, dan kalimat yang berkaitan dengan  <em>keep your body clean</em>', '2022-12-08 07:12:44', '2022-12-11 07:50:51'),
+(242, 13, '2', '1', 5, '3.4', 'memahami kata, frasa, dan kalimat yang berkaitan dengan  <em>keep your body clean</em>', '2022-12-08 07:12:44', '2022-12-11 07:51:16'),
+(243, 13, '2', '1', 5, '4.3', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan <em>keep your body clean</em>', '2022-12-08 07:12:44', '2022-12-11 07:51:39'),
+(244, 13, '2', '1', 5, '4.4', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan <em>food and drinks</em>', '2022-12-08 07:12:44', '2022-12-11 07:52:15'),
 (245, 12, '2', '1', 5, '3.3', 'memahami wacana sederhana yang berkaitan dengan “pancen sapopoe”', '2022-12-08 07:14:45', '2022-12-08 07:14:45'),
 (246, 12, '2', '1', 5, '3.4', 'memahami wacana sederhana yang berkaitan dengan “Lingkungan”', '2022-12-08 07:14:45', '2022-12-08 07:14:45'),
 (247, 12, '2', '1', 5, '4.3', 'menyebutkan ragam kegiatan sehari-hari', '2022-12-08 07:14:45', '2022-12-08 07:14:45'),
@@ -1445,17 +1432,45 @@ INSERT INTO `kd_mapel` (`id`, `mapel_id`, `tingkatan_kelas`, `jenis_kompetensi`,
 (249, 11, '2', '1', 5, '3.2', 'mengenal lebih dalam integrasi antar aplikasi pengolah gambar (paint)', '2022-12-08 07:15:53', '2022-12-08 07:15:53'),
 (250, 11, '2', '1', 5, '4.2.1', 'membuat gambar digital yang membutuhkan integrasi objek berupa teks, bentuk atau visualisi', '2022-12-08 07:15:53', '2022-12-08 07:15:53'),
 (251, 11, '2', '1', 5, '4.2.2', 'memakai fitur ikon-ikon pada aplikasi paint', '2022-12-08 07:15:53', '2022-12-08 07:15:53'),
-(252, 14, '2', '1', 5, '3.3', 'mengenal bunyi mufradat terkait topik adawat al-madrasiyyah baik secara lisan maupun tulisan', '2022-12-08 07:18:02', '2022-12-08 07:18:02'),
-(253, 14, '2', '1', 5, '3.4', 'mengenal makna dari ujaran kata (mufradat) terkait topik adawat al-madrasiyyah', '2022-12-08 07:18:03', '2022-12-08 07:18:03'),
-(254, 14, '2', '1', 5, '4.3', 'menirukan bunyi mufradat terkait topik adawat al-madrasiyyah', '2022-12-08 07:18:03', '2022-12-08 07:18:03'),
-(255, 14, '2', '1', 5, '4.4', 'menyebutkan kata/ mufradat terkait topik adawat al-madrasiyyah', '2022-12-08 07:18:03', '2022-12-08 07:18:03'),
-(256, 14, '2', '1', 5, '4.5', 'menulis kata mufradat terkait dengan topik adawat al-madrasiyyah', '2022-12-08 07:18:03', '2022-12-08 07:18:03'),
+(252, 14, '2', '1', 5, '3.3', 'mengenal bunyi mufradat terkait topik <em>adawat al-madrasiyyah</em> baik secara lisan maupun tulisan', '2022-12-08 07:18:02', '2022-12-11 07:55:15'),
+(253, 14, '2', '1', 5, '3.4', 'mengenal makna dari ujaran kata (mufradat) terkait topik <em>adawat al-madrasiyyah</em>', '2022-12-08 07:18:03', '2022-12-11 07:55:36'),
+(254, 14, '2', '1', 5, '4.3', 'menirukan bunyi mufradat terkait topik <em>adawat al-madrasiyyah</em>', '2022-12-08 07:18:03', '2022-12-11 07:56:01'),
+(255, 14, '2', '1', 5, '4.4', 'menyebutkan kata/mufradat terkait topik <em>adawat al-madrasiyyah</em>', '2022-12-08 07:18:03', '2022-12-11 07:56:46'),
+(256, 14, '2', '1', 5, '4.5', 'menulis kata mufradat terkait dengan topik <em>adawat al-madrasiyyah</em>', '2022-12-08 07:18:03', '2022-12-11 07:57:10'),
 (257, 31, '2', '1', 5, '3.2', 'mengenal huruf tegak bersambung sesuai dengan kaidah penulisan yang baik dan benar', '2022-12-08 07:19:03', '2022-12-08 07:19:03'),
 (258, 31, '2', '1', 5, '4.2', 'menulis kalimat pendek dengan huruf tegak bersambung sesuai dengan kaidah penulisan yang baik dan benar', '2022-12-08 07:19:03', '2022-12-08 07:19:03'),
 (259, 32, '2', '1', 5, '3.2', 'memahami kaidah penulisan yang baik dan benar pada sebuah cerita pedek', '2022-12-08 07:20:03', '2022-12-08 07:20:03'),
 (260, 32, '2', '1', 5, '4.2', 'menulis dan menceritakan pengalaman pada kegiatan sehari-hari dalam bentuk tulisan sesuai dengan kaidah yang baik dan benar', '2022-12-08 07:20:03', '2022-12-08 07:20:03'),
 (261, 33, '2', '1', 5, '3.2', 'memahami kaidah penulisan huruf hijaiyyah yang baik dan benar', '2022-12-08 07:20:53', '2022-12-08 07:20:53'),
-(262, 33, '2', '1', 5, '4.2', 'menulis huruf sa, sya, shod, dhod yang berpisan dan bersambung dengan jelas dan benar sesuai dengan kaidah', '2022-12-08 07:20:53', '2022-12-08 07:20:53');
+(262, 33, '2', '1', 5, '4.2', 'menulis huruf <em>sa, sya, shod, dhod</em> yang berpisan dan bersambung dengan jelas dan benar sesuai dengan kaidah', '2022-12-08 07:20:53', '2022-12-11 07:59:46'),
+(263, 3, '3', '2', 5, '4.1', 'menunjukkan hafalan Q.S an-Nasr dan al-Kautsar dengan lancar', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(264, 3, '3', '2', 5, '4.2', 'mencontohkan perilaku mandiri, percaya diri, dan bertanggung jawab sebagai implementasi makna Hadis yang terkandung', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(265, 3, '3', '2', 5, '4.3', 'melakukan pengamatan terhadap diri dan makhluk ciptaan Allah yang dijumpai di sekitar rumah dan sekolah sebagai implementasi iman terhadap keesaan Allah Yang Maha Pencipta', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(266, 3, '3', '2', 5, '4.4', 'membaca al-Asmau al-Husna: al-Wahhab, al-‘Alim, dan as-Sami‘ dengan jelas dan benar', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(267, 3, '3', '2', 5, '4.5', 'mencontohkan perilaku tawaduk, ikhlas, dan mohon pertolongan', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(268, 3, '3', '2', 5, '4.6', 'mencontohkan perilaku peduli terhadap sesama sebagai implementasi pemahaman Q.S. Al-Kautsar', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(269, 3, '3', '2', 5, '4.7', 'menunjukkan contoh makna salat sebagai wujud dari pemahaman Q.S. al-Kautsar', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(270, 3, '3', '2', 5, '4.8', 'menceritakan pengalaman hikmah pelaksanaan ibadah salat di rumah dan sekolah', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(271, 3, '3', '2', 5, '4.9', 'menceritakan kisah keteladanan Nabi Yusuf a.s', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(272, 3, '3', '2', 5, '4.10', 'menceritakan kisah keteladanan Nabi Syu’aib a.s', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(273, 3, '3', '2', 5, '4.11', 'menceritakan kisah keteladanan Nabi Muhammad Saw', '2022-12-11 08:22:02', '2022-12-11 08:22:02'),
+(274, 13, '3', '2', 5, '4.5', 'menyajikan penggunaan kata, frasa, dan kalimat yang berkaitan dengan <em>asking and telling about jobs</em>', '2022-12-11 08:35:00', '2022-12-11 08:36:29'),
+(275, 11, '3', '1', 5, '3.1', 'mengenal fungsian perangkat keras, sistem komputer, serta aplikasi', '2022-12-11 08:49:25', '2022-12-11 08:49:25'),
+(276, 11, '3', '1', 5, '3.2', 'menyebutkan macam-macam perangkat keras komputer', '2022-12-11 08:49:25', '2022-12-11 08:49:25'),
+(277, 11, '3', '1', 5, '3.3', 'mengenal lebih dalam integrasi antar aplikasi office (pengolah gambar) aplikasi paint', '2022-12-11 08:49:25', '2022-12-11 08:49:25'),
+(278, 10, '5', '1', 5, '3.3', 'memahami kombinasi gerak dasar jalan, lari, lompat, dan lempar melalui permainan / olahraga yang dimodifikasi dan atau olahraga tradisional', '2022-12-11 09:12:20', '2022-12-11 09:12:20'),
+(279, 10, '5', '1', 5, '3.4', 'menerapkan variasi  gerak dasar lokomotor dan nonlokomotor untuk membentuk gerak dasar seni beladiri', '2022-12-11 09:12:20', '2022-12-11 09:12:20'),
+(280, 10, '5', '1', 5, '3.5', 'memahami aktivitas latihan daya tahan jantung (cardio respiratory) untuk pengembangan kebugaran jasmani', '2022-12-11 09:12:20', '2022-12-11 09:12:20'),
+(281, 10, '5', '2', 5, '4.3', 'mempraktikkan  kombinasi gerak dasar jalan, lari, lompat, dan lempar melalui permainan / olahraga yang dimodifikasi dan atau olahraga tradisional', '2022-12-11 09:12:20', '2022-12-11 09:12:20'),
+(282, 10, '5', '2', 5, '4.4', 'mempraktikkan variasi gerak dasar lokomotor dan nonlokomotor untuk membentuk gerak dasar seni beladiri', '2022-12-11 09:12:20', '2022-12-11 09:12:20'),
+(283, 10, '5', '2', 5, '4.5', 'mempraktikkan aktivitas latihan daya tahan jantung (cardio respiratory) untuk pengembangan kebugaran jasmani', '2022-12-11 09:12:20', '2022-12-11 09:12:20'),
+(284, 11, '5', '1', 5, '3.2', 'memahami lebih dalam integrasi antar aplikasi office pengolah kata (Microsoft Word)', '2022-12-11 09:14:35', '2022-12-11 09:14:35'),
+(285, 11, '5', '2', 5, '4.2.1', 'membuat laporan yang membutuhkan integrasi objek berupa teks, data dalam bentuk angka atau visualisasi', '2022-12-11 09:14:35', '2022-12-11 09:14:35'),
+(286, 11, '5', '2', 5, '4.2.2', 'memakai fitur lanjut aplikasi office', '2022-12-11 09:14:35', '2022-12-11 09:14:35'),
+(287, 6, '5', '1', 5, '3.3', 'menjelaskan perbandingan dua besaran yang berbeda (kecepatan sebagai perbandingan jarak dan waktu, debit sebagai perbandingan volume dan waktu)', '2022-12-11 09:15:53', '2022-12-11 09:15:53'),
+(288, 6, '5', '1', 5, '3.4', 'menjelaskan skala melalui denah', '2022-12-11 09:15:53', '2022-12-11 09:15:53'),
+(289, 6, '5', '2', 5, '4.3', 'menyelesaikan masalah yang berkaitan dengan perbandingan dua besaran yang berbeda (kecepatan dan debit)', '2022-12-11 09:15:53', '2022-12-11 09:15:53'),
+(290, 6, '5', '2', 5, '4.4', 'menyelesaikan masalah yang berkaitan dengan skala pada denah', '2022-12-11 09:15:53', '2022-12-11 09:15:53');
 
 -- --------------------------------------------------------
 
@@ -1545,122 +1560,51 @@ CREATE TABLE `komentar` (
 --
 
 INSERT INTO `komentar` (`id`, `jenis`, `komentar`, `created_at`, `updated_at`) VALUES
-(1, 'Jilid -1', 'mengenal dan melafalkan huruf hijaiyah lepas berharakat fathah, kasrah dan dhommah', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(2, 'Jilid-1', 'huruf hijaiyah sambung berharakat fathah, kasrah dan dhommah', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(3, 'Jilid-1', 'huruf hijaiyah berharokat tanwin', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(4, 'Jilid-1', 'pengenalan nama huruf hijaiyah', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(5, 'Jilid-1', 'pengenalan angka Arab 1-100', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(6, 'Jilid-1', 'pengenalan nama harakat fathah, kasrah dhommah dan tanwin', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(7, 'Jilid-1', 'konsistensi harakat dhommah', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(8, 'Jilid-1', 'konsistensi harakat fathatain', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(9, 'Jilid-1', 'konsistensi harakat kasratain', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(10, 'Jilid-1', 'konsistensi harakat dhommatain', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(11, 'Jilid-1', 'konsistensi makhorojul huruf', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(12, 'Jilid-1', 'konsistensi makhorojul huruf sambung', '2022-12-09 02:45:33', '2022-12-09 02:45:33'),
-(13, 'Jilid-2', 'mengenal dan membaca bacaan panjang pendek', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(14, 'Jilid-2', 'mengenal tanda baca sukun', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(15, 'Jilid-2', 'pengenalan harakat fathah, kasroh dan dhommah panjang', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(16, 'Jilid-2', 'pengenalan huruf ain dan hamzah sukun', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(17, 'Jilid-2', 'huruf-huruf yang bertasydid', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(18, 'Jilid-2', 'alif lam qomariyyah dan syamsiyyah', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(19, 'Jilid-2', 'konsistensi bacaan mad', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(20, 'Jilid-2', 'konsistensi tanafus', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(21, 'Jilid-2', 'konsistensi bacaan ghunnah', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(22, 'Jilid-2', 'konsistensi waqof ibtida', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(23, 'Jilid-2', 'konsistensi huruf yang disukunkan', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(24, 'Jilid-2', 'konsistensi harakat fathah, kasroh, dan dhommah', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(25, 'Jilid-2', 'konsistensi huruf yang bertasydid', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(26, 'Jilid-2', 'konsistensi alif lam qomariahdan syamsiah', '2022-12-09 02:52:45', '2022-12-09 02:52:45'),
-(27, 'Jilid-3', 'bacaan lin', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(28, 'Jilid-3', 'bacaan mad jaiz munfashil dan wajib muttashil', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(29, 'Jilid-3', 'bacaan ghunnah', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(30, 'Jilid-3', 'bacaan ro tebal dan ro tipis', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(31, 'Jilid-3', 'bacaan idghom bi ghunnah', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(32, 'Jilid-3', 'bacaan dengung', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(33, 'Jilid-3', 'konsistensi makhorijul huruf', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(34, 'Jilid-3', 'konsistensi bacaan mad', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(35, 'Jilid-3', 'konsistensi tanafus', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(36, 'Jilid-3', 'konsistensi bacaan ghunnah', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(37, 'Jilid-3', 'konsistensi waqof ibtida', '2022-12-09 02:57:38', '2022-12-09 02:57:38'),
-(38, 'Jilid-4', 'bacaan yang di waqafkan', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(39, 'Jilid-4', 'bacaan idzhar', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(40, 'Jilid-4', 'lafadz Allah', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(41, 'Jilid-4', 'bacaan qolqolah', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(42, 'Jilid-4', 'bacaan mad Lazim mutsaqol kalimi', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(43, 'Jilid-4', 'pengenalan huruf wawu yang tidak di baca panjang', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(44, 'Jilid-4', 'bacaan fawatihussuwar', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(45, 'Jilid-4', 'pengenalan tanda waqaf dan washal', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(46, 'Jilid-4', 'konsistensi bacaan mad', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(47, 'Jilid-4', 'konsistensi tanafus', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(48, 'Jilid-4', 'konsistensi bacaan ghunnah', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(49, 'Jilid-4', 'konsistensi waqof ibtida', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(50, 'Jilid-4', 'konsistensi bacaan dengung', '2022-12-09 03:02:41', '2022-12-09 03:02:41'),
-(51, 'Talaqqi 30', 'bacaan dengan tartil', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(52, 'Talaqqi 30', 'makhorijul huruf', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(53, 'Talaqqi 30', 'dengung', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(54, 'Talaqqi 30', 'konsistensi bacaan mad', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(55, 'Talaqqi 30', 'konsistensi tanafus', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(56, 'Talaqqi 30', 'konsistensi bacaan ghunnah', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(57, 'Talaqqi 30', 'konsistensi waqof ibtida', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(58, 'Talaqqi 30', 'bacaan idzhar', '2022-12-09 03:07:05', '2022-12-09 03:07:05'),
-(59, 'Talaqqi 1-5', 'bacaan dengan tartil', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(60, 'Talaqqi 1-5', 'panjang pendek', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(61, 'Talaqqi 1-5', 'makhorijul huruf', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(62, 'Talaqqi 1-5', 'dengung', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(63, 'Talaqqi 1-5', 'konsistensi bacaan mad', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(64, 'Talaqqi 1-5', 'konsistensi tanafus', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(65, 'Talaqqi 1-5', 'konsistensi bacaan ghunnah', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(66, 'Talaqqi 1-5', 'konsistensi waqof ibtida', '2022-12-09 03:09:28', '2022-12-09 03:09:28'),
-(67, 'Ghorib 1', 'bacaan dengan tartil', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(68, 'Ghorib 1', 'panjang pendek', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(69, 'Ghorib 1', 'makhorijul huruf', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(70, 'Ghorib 1', 'dengung', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(71, 'Ghorib 1', 'konsistensi bacaan mad', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(72, 'Ghorib 1', 'konsistensi tanafus', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(73, 'Ghorib 1', 'konsistensi bacaan ghunnah', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(74, 'Ghorib 1', 'konsistensi waqof ibtida', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(75, 'Ghorib 1', 'konsistensi bacaan ghunnah', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(76, 'Ghorib 1', 'konsistensi waqof ibtida', '2022-12-09 03:11:50', '2022-12-09 03:11:50'),
-(77, 'Ghorib 2', 'bacaan yang di baca pendek ketika washol dan di baca sukun ketika waqof', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(78, 'Ghorib 2', 'bacaan hati-hati dibaca panjang', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(79, 'Ghorib 2', 'bacaan hati-hati dibaca pendek', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(80, 'Ghorib 2', 'bacaan waqof washol', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(81, 'Ghorib 2', 'ayat-ayat sajdah', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(82, 'Ghorib 2', 'makhorijul huruf', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(83, 'Ghorib 2', 'konsistensi bacaan mad', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(84, 'Ghorib 2', 'konsistensi tanafus', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(85, 'Ghorib 2', 'konsistensi bacaan ghunnah', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(86, 'Ghorib 2', 'konsistensi waqof ibtida', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(87, 'Ghorib 2', 'konsistensi waqof ibtida', '2022-12-09 03:16:46', '2022-12-09 03:16:46'),
-(88, 'Tajwid 1', 'hukum nun sukun atau tanwin (Iqlab, Idhgom Bilaghunnah, Idghom Bighunnah, Idzhar Halqi, Ikhfa Haqiqi)', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(89, 'Tajwid 1', 'ghunnah', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(90, 'Tajwid 1', 'hukum mim sukun', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(91, 'Tajwid 1', 'macam-macam idghom', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(92, 'Tajwid 1', 'hukum lafadz Allah', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(93, 'Tajwid 1', 'qolqolah', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(94, 'Tajwid 1', 'konsistensi bacaan mad', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(95, 'Tajwid 1', 'konsistensi tanafus', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(96, 'Tajwid 1', 'konsistensi bacaan ghunnah', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(97, 'Tajwid 1', 'konsistensi waqof ibtida', '2022-12-09 03:20:16', '2022-12-09 03:20:16'),
-(98, 'Tajwid 2', 'idzhar mutlaq', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(99, 'Tajwid 2', 'hukum Ro', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(100, 'Tajwid 2', 'hukum alif lam', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(101, 'Tajwid 2', 'hukum mad yang dibaca empat harokat', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(102, 'Tajwid 2', 'hukum mad yang dibaca dua sampai enam harokat', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(103, 'Tajwid 2', 'hukum mad yang dibaca enam harokat', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(104, 'Tajwid 2', 'konsistensi bacaan mad', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(105, 'Tajwid 2', 'konsistensi tanafus', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(106, 'Tajwid 2', 'konsistensi bacaan ghunnah', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(107, 'Tajwid 2', 'konsistensi waqof ibtida', '2022-12-09 03:24:03', '2022-12-09 03:24:03'),
-(108, 'Al Quran', 'tahsin Al Quran dengan baik', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(109, 'Al Quran', 'panjang pendek', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(110, 'Al Quran', 'makhorijul huruf', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(111, 'Al Quran', 'dengung', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(112, 'Al Quran', 'latihan setiap hari', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(113, 'Al Quran', 'konsistensi bacaan mad', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(114, 'Al Quran', 'konsistensi tanafus', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(115, 'Al Quran', 'konsistensi bacaan ghunnah', '2022-12-09 03:27:03', '2022-12-09 03:27:03'),
-(116, 'Al Quran', 'konsistensi waqof ibtida', '2022-12-09 03:27:03', '2022-12-09 03:27:03');
+(1, 'Jilid 1', 'huruf hijaiyah lepas', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(2, 'Jilid 1', 'huruf hijaiyah sambung', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(3, 'Jilid 1', 'harakat fathah kasroh dhomah', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(4, 'Jilid 1', 'angka arab', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(5, 'Jilid 2', 'bacaan mad tobi\'i', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(6, 'Jilid 2', 'tanwin', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(7, 'Jilid 2', 'huruf yang disukunkan', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(8, 'Jilid 2', 'huruf bertasydid', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(9, 'Jilid 2', 'alif lam ta\'arif', '2022-12-10 03:41:20', '2022-12-10 03:41:20'),
+(10, 'Jilid 3', 'bacaan liin', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(11, 'Jilid 3', 'mad wajib dan jaiz', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(12, 'Jilid 3', 'gunnah', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(13, 'Jilid 3', 'hukum ro', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(14, 'Jilid 3', 'bacaan dengung', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(15, 'Jilid 3', 'bacaan tidak dengung', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(16, 'Jilid 4', 'bacaan wakof', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(17, 'Jilid 4', 'bacaan jelas (idzhar)', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(19, 'Jilid 4', 'lam jalalah', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(20, 'Jilid 4', 'qolqolah', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(21, 'Jilid 4', 'mad lazim mutsaqol kilmi', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(22, 'Jilid 4', 'fawatihusuwar', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(23, 'Jilid 4', 'tanda waqof', '2022-12-10 03:56:35', '2022-12-10 03:56:35'),
+(24, 'Ghorib', 'bacaan saktah', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(25, 'Ghorib', 'bacaan imalah', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(26, 'Ghorib', 'bacaan saktah', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(27, 'Ghorib', 'bacaan imalah', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(28, 'Ghorib', 'bacaan tahsil', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(29, 'Ghorib', 'bacaan naql', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(30, 'Ghorib', 'bacaan isymam', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(31, 'Ghorib', 'nun wiqoyah', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(32, 'Ghorib', 'bacaan yang dibaca pendek ketika washol dan dibaca panjang ketika waqof', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(33, 'Ghorib', 'bacaan yang dibaca pendek ketika washol dan dibaca sukun ketika waqof', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(34, 'Ghorib', 'bacaan hati-hati', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(35, 'Ghorib', 'bacaan waqof dan washol', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(36, 'Ghorib', 'ayat-ayat sajdah', '2022-12-10 04:03:38', '2022-12-10 04:03:38'),
+(37, 'Talaqqy', 'konsistensi makhroj', '2022-12-10 04:10:29', '2022-12-10 04:10:29'),
+(38, 'Talaqqy', 'konsistensi mad', '2022-12-10 04:10:29', '2022-12-10 04:10:29'),
+(39, 'Talaqqy', 'konsistensi dengung', '2022-12-10 04:10:29', '2022-12-10 04:10:29'),
+(40, 'Talaqqy', 'qolqolah', '2022-12-10 04:10:29', '2022-12-10 04:10:29'),
+(41, 'Talaqqy', 'tuma\'minah/tartil', '2022-12-10 04:10:29', '2022-12-10 04:10:29'),
+(42, '1', 'makhroj', '2022-12-10 16:22:43', '2022-12-10 16:22:43'),
+(43, '1', 'mad', '2022-12-10 16:22:43', '2022-12-10 16:22:43'),
+(44, '1', 'dengung', '2022-12-10 16:22:43', '2022-12-10 16:22:43'),
+(45, '1', 'qolqolah', '2022-12-10 16:22:43', '2022-12-10 16:22:43'),
+(46, '1', 'kelancaran', '2022-12-10 16:22:43', '2022-12-10 16:22:43');
 
 -- --------------------------------------------------------
 
@@ -1775,7 +1719,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (74, '2022_11_09_101436_create_anggota_ekstrakulikuler_table', 23),
 (75, '2022_11_09_101443_create_nilai_ekstrakulikuler_table', 23),
 (76, '2022_11_09_101426_create_ekstrakulikuler_table', 24),
-(77, '2022_11_10_104608_create_nilai_pramuka_table', 25);
+(77, '2022_11_10_104608_create_nilai_pramuka_table', 25),
+(78, '2022_12_10_230138_create_nilai_tahfidz_table', 26);
 
 -- --------------------------------------------------------
 
@@ -2702,8 +2647,23 @@ CREATE TABLE `nilai_t2q` (
   `tahsin_kekurangan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tahsin_kelebihan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tahsin_nilai` int(11) DEFAULT NULL,
-  `tahfidz_surah` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tahfidz_ayat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nilai_tahfidz`
+--
+
+CREATE TABLE `nilai_tahfidz` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `anggota_kelas_id` bigint(20) UNSIGNED NOT NULL,
+  `tingkat` int(11) NOT NULL,
+  `tahfidz_surah` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahfidz_kelebihan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahfidz_kekurangan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tahfidz_nilai` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -3114,7 +3074,7 @@ INSERT INTO `siswa` (`id`, `user_id`, `kelas_id`, `guru_id`, `ekstrakulikuler_id
 (79, 130, 3, NULL, NULL, '1', '222331075', '3157807395', 'Sakha Malik Gibran', 'Tasikmalaya', '2015-10-08', 'L', '1', '1', '1', 'Bumi Proklamasi', 'Jayaraga', 'Tarogong Kidul', 'Garut', 'Jawa Barat', '081322737613', 'Fajar Nurul Ihsan', 'Esti Istikomah', 'Lainnya', 'Lainnya', 'D3', 'S1', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-11-30 07:28:45'),
 (80, 131, 3, 1, NULL, '1', '222331076', '3150811323', 'Salvina Fairuz', 'Garut', '2015-10-13', 'P', '1', '1', '2', 'Sadakeling No 3', 'Regol', 'Garut Kota', 'Garut', 'Jawa Barat', '082116457838', 'Ginanjar Awaludin', 'Sulistiana', 'Karyawan Swasta', 'Tidak bekerja', 'S1', 'S1', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-12-05 04:54:36'),
 (81, 132, 3, 36, NULL, '1', '222331077', '3167709153', 'Shakila Nur Afifa Gumilar', 'Garut', '2016-03-19', 'L', '1', '1', '1', 'Jln. Cimanuk', 'Jayawaras', 'Tarogong Kidul', 'Garut', 'Jawa Barat', NULL, NULL, 'Rohana', 'Karyawan Swasta', 'Tidak bekerja', 'S1', 'SMA / sederajat', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-12-05 06:32:14'),
-(82, 133, 3, NULL, NULL, '1', '222331079', NULL, 'Syahira Ayunindya Faidah', 'Garut', '2016-05-20', 'P', '1', '1', '1', 'Jalan Raya Samarang N0 39', 'Sukagalih', 'Tarogong Kidul', 'Garut', 'Jawa Barat', '081395261982', 'Ichsan Nurdiansyah', 'Kiki Murniaty', 'Karyawan Swasta', 'Karyawan Swasta', 'S1', 'S1', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-11-30 07:28:45'),
+(82, 133, 3, 7, NULL, '1', '222331079', NULL, 'Syahira Ayunindya Faidah', 'Garut', '2016-05-20', 'P', '1', '1', '1', 'Jalan Raya Samarang N0 39', 'Sukagalih', 'Tarogong Kidul', 'Garut', 'Jawa Barat', '081395261982', 'Ichsan Nurdiansyah', 'Kiki Murniaty', 'Karyawan Swasta', 'Karyawan Swasta', 'S1', 'S1', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-12-10 11:27:04'),
 (83, 134, 3, 39, NULL, '1', '222331080', NULL, 'Syaqif Al Farisi', 'Garut', '2014-03-16', 'L', '1', '1', '1', 'Permata Hijau Residence Blok F17', 'Sukagalih', 'Tarogong Kidul', 'Garut', 'Jawa Barat', '081999900922', 'Salman Al Farisi', 'Eneng Tiara', 'Wiraswasta', 'Tidak bekerja', 'S1', 'SMA / sederajat', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-12-05 06:43:48'),
 (84, 135, 3, 39, NULL, '1', '222331082', '3164191615', 'Yasmina Naifatul Akbar', 'Bandung', '2016-05-31', 'P', '1', '1', '1', 'Jl. Terusan Suryani No 100', 'Warung Muncang', 'Bandung Kulon', 'Garut', 'Jawa Barat', '0852223309999', NULL, 'Puji Astuti', 'Lainnya', 'Lainnya', 'S2', 'Tidak sekolah', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-12-05 06:43:48'),
 (85, 136, 3, 39, NULL, '1', '222331085', NULL, 'Ziyad Affan Ma\'ruf', 'Bandung', '2015-05-26', 'L', '1', '1', '2', 'Perum Griya Sahla 1 Blok E9', 'Lebakjaya', 'Karangpawitan', 'Garut', 'Jawa Barat', '081221539391', 'Amirudin Ma\'ruf', 'Ros Nurleli', 'Karyawan Swasta', 'Karyawan Swasta', 'S1', 'S1', NULL, NULL, NULL, 'default.png', '1', '2022-11-30 07:28:27', '2022-12-05 06:43:48'),
@@ -3483,20 +3443,20 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Anwar Fauzi', '21990155-1', NULL, '$2y$10$xU6aFIo6mSqO6X.VR9Y.XOGKvf8/Zqraa1pw1jwMsHVcfGoaKV3WG', '2022-12-09 04:10:42', NULL, '2022-11-30 05:43:57', '2022-12-09 04:10:42'),
+(1, 'Anwar Fauzi', '21990155-1', NULL, '$2y$10$xU6aFIo6mSqO6X.VR9Y.XOGKvf8/Zqraa1pw1jwMsHVcfGoaKV3WG', '2022-12-11 09:15:53', NULL, '2022-11-30 05:43:57', '2022-12-11 09:15:53'),
 (2, 'Eka Rachmayanti', '02800005-1', NULL, '$2y$10$8Xzlw89nVd8FL8S8HvIbt.rU.z3CWCcNixu.hedesGmGpd5LRHSsm', '2022-12-06 04:16:54', NULL, '2022-11-30 05:59:39', '2022-12-06 04:16:54'),
 (3, 'Mela Mulyani', '11810010-1', NULL, '$2y$10$dHj.2acZ/rMe/njGDGj2aursAnSuFbkxcrB1NqboSrqnQZ2u9XSXC', NULL, NULL, '2022-11-30 05:59:40', '2022-11-30 05:59:40'),
 (4, 'Ikrimah Mukaromah', '15920019-1', NULL, '$2y$10$5at6uxMKudfYWGkKBG186uTFV.5C3t41uQbg3VE4.HXh/X1bY08qW', '2022-12-06 02:47:44', NULL, '2022-11-30 05:59:40', '2022-12-06 02:47:44'),
 (5, 'Nuraini', '16940024-1', NULL, '$2y$10$8dbOzxDwqdeJC6q09W5qNe8GLBbTcq2EuR1G7Cs1y.0iKZlR20PEG', NULL, NULL, '2022-11-30 05:59:40', '2022-11-30 05:59:40'),
 (6, 'Sani Nuryanti', '16920032-1', NULL, '$2y$10$pZlsOK9.26k.zPtb6VnlbeDWLjdGXnk/jhIo/cdbse.jJ3kzjoNGq', '2022-12-08 06:10:56', NULL, '2022-11-30 05:59:40', '2022-12-08 06:10:56'),
-(7, 'Amalia Audina', '17940040-1', NULL, '$2y$10$hFRhMgYHFIlXiLD/aoUbfuxOHeVZRIBVZzffn./LcStT16vlKoJpi', NULL, NULL, '2022-11-30 05:59:40', '2022-11-30 05:59:40'),
-(8, 'Dede Nurwahidah', '18950052-1', NULL, '$2y$10$tsgm8K./8zxR8ZTiuilyV.UE/x8z10Bz/MZjrEvuVb5ku0.vsWx9a', '2022-12-09 06:16:35', NULL, '2022-11-30 05:59:40', '2022-12-09 06:16:35'),
+(7, 'Amalia Audina', '17940040-1', NULL, '$2y$10$hFRhMgYHFIlXiLD/aoUbfuxOHeVZRIBVZzffn./LcStT16vlKoJpi', '2022-12-11 06:33:44', NULL, '2022-11-30 05:59:40', '2022-12-11 06:33:44'),
+(8, 'Dede Nurwahidah', '18950052-1', NULL, '$2y$10$tsgm8K./8zxR8ZTiuilyV.UE/x8z10Bz/MZjrEvuVb5ku0.vsWx9a', '2022-12-11 02:55:43', NULL, '2022-11-30 05:59:40', '2022-12-11 02:55:43'),
 (9, 'Rd. Arlan Wulansari', '18950074-1', NULL, '$2y$10$CVBpJsIA9K9BCAirA1WliuKJ8mnWIkzMgL/QmI2M7lqNuGSD9W1gy', NULL, NULL, '2022-11-30 05:59:40', '2022-11-30 05:59:40'),
 (10, 'Eki Nugraha', '19960078-1', NULL, '$2y$10$Gi6daG0SercJOQ8FuRFZJOqoVELy81ZC05tOKlk/8hhgbukQE7IcC', NULL, NULL, '2022-11-30 05:59:40', '2022-11-30 05:59:40'),
 (11, 'Nursadiah', '19960088-1', NULL, '$2y$10$AIzsHpzn1RAjWHxZhLwOMeoG2VDU/ApGHTqQd7b0avwHhrDrcVyiu', NULL, NULL, '2022-11-30 05:59:40', '2022-11-30 05:59:40'),
 (12, 'Rizky Maulana', '19940090-1', NULL, '$2y$10$BSf.HAS98KYmgI7jf9dNzeIUGk5oNofXs2OSFLHfTUibMGTyt4a.u', '2022-12-09 03:58:47', NULL, '2022-11-30 05:59:40', '2022-12-09 03:58:47'),
 (13, 'Meti Sopiani', '20960107-1', NULL, '$2y$10$BidurmjX0LzTwgFvJZ9lHeQdlfCMdkvxtMfI8caVi.xzVK9eVl.9.', NULL, NULL, '2022-11-30 05:59:41', '2022-11-30 05:59:41'),
-(14, 'Ahmad Tantowi', '20910125-1', NULL, '$2y$10$Tpz5So3lenc7FQG6UXHN/Oec4sNvRos/V1z7948OzNSNfn/.LEPai', NULL, NULL, '2022-11-30 05:59:41', '2022-11-30 05:59:41'),
+(14, 'Ahmad Tantowi', '20910125-1', NULL, '$2y$10$Tpz5So3lenc7FQG6UXHN/Oec4sNvRos/V1z7948OzNSNfn/.LEPai', '2022-12-09 06:58:23', NULL, '2022-11-30 05:59:41', '2022-12-09 06:58:23'),
 (15, 'Gerhana Kusuma Hadi', '20970105-1', NULL, '$2y$10$skIImUevDWjTahX605KlJuU/xGE159aTt2/UK1F06PcqlfdNXRI9G', NULL, NULL, '2022-11-30 05:59:41', '2022-11-30 05:59:41'),
 (16, 'Rifa Nur Amalia', '20970106-1', NULL, '$2y$10$xmPMMEw0dONnUSawkaEcVuMLSm5fxUFGk628OyQirBqwU4Qq8sZ/G', NULL, NULL, '2022-11-30 05:59:41', '2022-11-30 05:59:41'),
 (17, 'Ghina Fauziah', '20970109-1', NULL, '$2y$10$8VNkZ3LsQHqcB0GkDggtt.jqywmeIPFaH.4LW0dQIcqpuu7C5oY/2', '2022-12-06 03:46:53', NULL, '2022-11-30 05:59:41', '2022-12-06 03:46:53'),
@@ -3507,7 +3467,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `la
 (22, 'Hana Alis Lumanti', '20940116-1', NULL, '$2y$10$T1W4dov/w31Vn.WH4Jt3mOy2LqktdXNn1TTjlVQrA0FHpmNQV2Gsm', '2022-12-06 03:49:51', NULL, '2022-11-30 05:59:41', '2022-12-06 03:49:51'),
 (23, 'Rohadatul Aisyi', '20980137-1', NULL, '$2y$10$aitlRECfsM7CW8tJsAGlCuCd2Zt5XYlP4NwSaYgiBqUwmTqjbdYI.', NULL, NULL, '2022-11-30 05:59:41', '2022-11-30 05:59:41'),
 (24, 'Reni Listanti', '20970114-1', NULL, '$2y$10$/oEp1fjdALCwJrKGd3QS7et9c8wUrYGBOsatOhn11VOZSKx73nVa2', NULL, NULL, '2022-11-30 05:59:42', '2022-11-30 05:59:42'),
-(25, 'Helni Santika', '19960085-1', NULL, '$2y$10$rNcschurEWkg3SfgsmA6CugG87dIPkabqp2s1jEmr13LtKxmk9MWe', NULL, NULL, '2022-11-30 05:59:42', '2022-11-30 05:59:42'),
+(25, 'Helni Santika', '19960085-1', NULL, '$2y$10$rNcschurEWkg3SfgsmA6CugG87dIPkabqp2s1jEmr13LtKxmk9MWe', '2022-12-11 03:06:12', NULL, '2022-11-30 05:59:42', '2022-12-11 03:06:12'),
 (26, 'Hilda Nurmaida', '20980110-1', NULL, '$2y$10$yDWZ1vm1qlwvuaBr6PLshOegtJ/qugOTjFpAjiIhqQUD1loofWRBi', NULL, NULL, '2022-11-30 05:59:42', '2022-11-30 05:59:42'),
 (27, 'Aini Nurul Fadhillah', '21970140-1', NULL, '$2y$10$OAm.YJi/Gk9bQAV5RlecJ.lawYJySQsOnM81bQ.BKHhBCrp4g.DCO', NULL, NULL, '2022-11-30 05:59:42', '2022-11-30 05:59:42'),
 (28, 'Utari Sawitri ', '21990141-1', NULL, '$2y$10$9hMMwsAF0ZkXJ3HJRZqp.emr3UlNkPjjCSqWUnuDSBKiKs1YgH0N6', NULL, NULL, '2022-11-30 05:59:42', '2022-11-30 05:59:42'),
@@ -4216,6 +4176,13 @@ ALTER TABLE `nilai_t2q`
   ADD KEY `nilai_t2q_anggota_kelas_id_foreign` (`anggota_kelas_id`);
 
 --
+-- Indexes for table `nilai_tahfidz`
+--
+ALTER TABLE `nilai_tahfidz`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nilai_tahfidz_anggota_kelas_id_foreign` (`anggota_kelas_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -4411,7 +4378,7 @@ ALTER TABLE `anggota_kelas`
 -- AUTO_INCREMENT for table `anggota_t2q`
 --
 ALTER TABLE `anggota_t2q`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT for table `butir_sikap`
@@ -4465,7 +4432,7 @@ ALTER TABLE `kategori_mapel`
 -- AUTO_INCREMENT for table `kd_mapel`
 --
 ALTER TABLE `kd_mapel`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
 
 --
 -- AUTO_INCREMENT for table `kehadiran`
@@ -4489,7 +4456,7 @@ ALTER TABLE `kkm`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `mapel`
@@ -4501,7 +4468,7 @@ ALTER TABLE `mapel`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `nilai_achievement`
@@ -4519,7 +4486,7 @@ ALTER TABLE `nilai_ekstrakulikuler`
 -- AUTO_INCREMENT for table `nilai_hafalan`
 --
 ALTER TABLE `nilai_hafalan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nilai_innovative`
@@ -4621,12 +4588,18 @@ ALTER TABLE `nilai_responsible`
 -- AUTO_INCREMENT for table `nilai_sholat`
 --
 ALTER TABLE `nilai_sholat`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nilai_t2q`
 --
 ALTER TABLE `nilai_t2q`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nilai_tahfidz`
+--
+ALTER TABLE `nilai_tahfidz`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -4681,7 +4654,7 @@ ALTER TABLE `rencana_mulok`
 -- AUTO_INCREMENT for table `rencana_nilai_k1`
 --
 ALTER TABLE `rencana_nilai_k1`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rencana_nilai_k2`
@@ -4998,6 +4971,12 @@ ALTER TABLE `nilai_sholat`
 --
 ALTER TABLE `nilai_t2q`
   ADD CONSTRAINT `nilai_t2q_anggota_kelas_id_foreign` FOREIGN KEY (`anggota_kelas_id`) REFERENCES `anggota_kelas` (`id`);
+
+--
+-- Constraints for table `nilai_tahfidz`
+--
+ALTER TABLE `nilai_tahfidz`
+  ADD CONSTRAINT `nilai_tahfidz_anggota_kelas_id_foreign` FOREIGN KEY (`anggota_kelas_id`) REFERENCES `anggota_kelas` (`id`);
 
 --
 -- Constraints for table `pembelajaran`

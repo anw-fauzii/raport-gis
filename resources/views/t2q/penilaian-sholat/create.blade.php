@@ -41,7 +41,7 @@
                         <th rowspan="2" style="vertical-align: middle;" class="text-center" style="width: 100px;">No</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Nama Siswa</th>
                         <th rowspan="2" style="vertical-align: middle;" class="text-center">Kelas</th>
-                        <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Sikap Spiritual</th>
+                        <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Nilai Sholat</th>
                       </tr>
                       <tr class="text-center">
                         <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Paktek Wudhu"><b>2.1</b></a></td>
@@ -52,7 +52,7 @@
                     </thead>
                     <tbody>
                       <?php $i = 0; ?>
-                      @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+                      @forelse($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
                       <?php $i++; ?>
                       <tr>
                         <td class="text-center">{{$i}}</td>
@@ -72,7 +72,11 @@
                           <input type="number" class="form-control" name="dzikir[{{$i}}]" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                         </td>
                       </tr>
-                      @endforeach
+                      @empty
+                      <tr>
+                        <td colspan="8" class="text-center">Data Tidak Ditemukan</td>
+                      </tr>
+                      @endforelse
                       <input type="hidden" name="jumlah" value="{{count($data_anggota_kelas)}}">
                     </tbody>
                   </table>

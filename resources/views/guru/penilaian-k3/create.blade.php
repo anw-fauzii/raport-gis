@@ -37,7 +37,7 @@
             @include('guru.penilaian-k3.import')
 
             <div class="card-body">
-              <form action="{{ route('penilaian-k3.store') }}" method="POST">
+              <form class="multiple-submits" action="{{ route('penilaian-k3.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="pembelajaran_id" value="{{$pembelajaran->id}}">
                 <div class="table-responsive">
@@ -88,7 +88,7 @@
             </div>
 
             <div class="card-footer clearfix">
-              <button type="submit" onclick="submitForm(this);" class="btn btn-primary float-right">Simpan</button>
+              <button type="submit" class="btn btn-primary float-right multiple-submits">Simpan</button>
               <a href="{{ route('penilaian-k3.index') }}" class="btn btn-default float-right mr-2">Batal</a>
             </div>
             </form>
@@ -116,9 +116,10 @@
   $(document).ready(function() {
     $("body").tooltip({ selector: '[data-toggle=tooltip]' });
   });
-  function submitForm(btn) {
-    btn.disabled = true;  
-    btn.form.submit();
-  }
+  (function(){
+    $('.multiple-submits').on('submit', function(){
+        $('.multiple-submits').attr('disabled','true');
+    })
+  })();
 </script>
 @stop

@@ -94,7 +94,11 @@
                 @endif
 
                 @if($des_ki1->where('nilai',3)->count() != 0)
+                  @if($des_ki1->where('nilai',4)->count() == 0)
+                    sudah berkembang dalam
+                  @else
                     Sudah berkembang dalam
+                  @endif
                     @foreach($des_ki1->where('nilai',3) as $ki1)
                         @if(!$loop->last)
                           {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
@@ -166,7 +170,11 @@
                 @endif
 
                 @if($des_ki2->where('nilai',3)->count() != 0)
+                  @if($des_ki2->where('nilai',4)->count() == 0)
+                    sudah berkembang dalam
+                  @else
                     Sudah berkembang dalam
+                  @endif
                     @foreach($des_ki2->where('nilai',3) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
@@ -238,12 +246,12 @@
             <td class="description">
               <span>
                 @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_a,100])->count() != 0)
-                    Sudah menguasai sebagian kompetensi dengan sangat baik terutama
+                    Sangat baik dalam hal
                     @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -252,9 +260,9 @@
                     Baik dalam hal
                     @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_b,$ki3->predikat_a]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -263,20 +271,20 @@
                     Cukup dalam hal
                     @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_c,$ki3->predikat_b]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
 
-                @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [0,$ki3->predikat_c])->count() != 0)
+                @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [0,74])->count() != 0)
                     Perlu perbaikan
-                    @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [0,$ki3->predikat_c]) as $deskripsi)
+                    @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [0,74]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -285,7 +293,6 @@
           </tr>
           @empty
           <tr class="sikap">
-            <td>-</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
@@ -320,12 +327,12 @@
             <td class="description">
               <span>
                 @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_a,100])->count() != 0)
-                    Sudah menguasai sebagian kompetensi dengan sangat baik terutama
+                    Sangat baik dalam hal
                     @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -334,9 +341,9 @@
                     Baik dalam hal
                     @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_b,$ki4->predikat_a]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -345,20 +352,20 @@
                     Cukup dalam hal
                     @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_c,$ki4->predikat_b]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
 
-                @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [0,$ki4->predikat_c])->count() != 0)
+                @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [0,74])->count() != 0)
                     Perlu perbaikan
-                    @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [0,$ki4->predikat_c]) as $deskripsi)
+                    @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [0,74]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -404,9 +411,9 @@
                     Sudah menguasai sebagian kompetensi dengan sangat baik terutama
                     @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -415,9 +422,9 @@
                     Baik dalam hal
                     @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_b,$kokulikuler->predikat_a]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -426,9 +433,9 @@
                     Cukup dalam hal
                     @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_c,$kokulikuler->predikat_b]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -437,9 +444,9 @@
                     Perlu perbaikan
                     @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [0,$kokulikuler->predikat_c]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -485,9 +492,9 @@
                     Sudah menguasai sebagian kompetensi dengan sangat baik terutama
                     @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -496,9 +503,9 @@
                     Baik dalam hal
                     @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_b,$mulok->predikat_a]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -507,9 +514,9 @@
                     Cukup dalam hal
                     @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_c,$mulok->predikat_b]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -518,9 +525,9 @@
                     Perlu perbaikan
                     @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [0,$mulok->predikat_c]) as $deskripsi)
                       @if(!$loop->last)
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}},
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
                       @else
-                          {{$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar}}.
+                          {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!}.
                       @endif
                     @endforeach
                 @endif
@@ -634,7 +641,7 @@
           <tr class="sikap">
             <td>2</td>
             <td>
-              Hafalan Dia
+              Hafalan Do'a
             </td>
             <td style="text-align:center;">{{$nilai_hafalan->doa}}</td>
             <td class="description">
@@ -680,9 +687,9 @@
             <td style="text-align:center;">{{$nilai_t2q->tahsin_nilai}}</td>
             <td class="description">
               @if($nilai_t2q->tahfidz_nilai < 85)
-              <span>Sudah menguasai sebagian besar kompetensi tahsin dengan baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
+              <span>Sudah menguasai sebagian besar kompetensi tahsin dengan baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}.</span>
               @elseif($nilai_t2q->tahfidz_nilai < 100)
-              <span>Sudah menguasai seluruh kompetensi tahsin dengan sangat baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}</span>
+              <span>Sudah menguasai seluruh kompetensi tahsin dengan sangat baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}.</span>
               @endif 
             </td>
           </tr>
@@ -700,18 +707,18 @@
           <td style="width: 10%;">CAPAIAN</td>
           <td style="width: 60%;">DESKRIPSI</td>
         </tr>
-        @if($nilai_t2q)
+        @if($nilai_tahfidz)
           <tr class="sikap">
             <td>1</td>
             <td>
-              Surah {{$nilai_t2q->tahfidz_surah}} Ayat {{$nilai_t2q->tahfidz_ayat}}
+              Surah {{$nilai_tahfidz->tahfidz_surah}}
             </td>
-            <td style="text-align:center;">{{$nilai_t2q->tahfidz_nilai}}</td>
+            <td style="text-align:center;">{{$nilai_tahfidz->tahfidz_nilai}}</td>
             <td class="description">
-              @if($nilai_t2q->tahsin_nilai < 85)
-              <span>Sudah menguasai sebagian kompetensi hafalan dengan baik. Perlu penguatan untuk murojaah setiap hari.</span>
-              @elseif($nilai_t2q->tahsin_nilai < 100)
-              <span>Sudah menguasai seluruh kompetensi hafalan dengan baik.</span>
+              @if($nilai_tahfidz->tahfidz_nilai < 85)
+              <span>Sudah menguasai sebagian kompetensi hafalan dengan baik terutama {{$nilai_tahfidz->tahfidz_kelebihan}}. Perlu peningkatan {{$nilai_tahfidz->tahfidz_kekurangan}}.</span>
+              @elseif($nilai_tahfidz->tahfidz_nilai < 100)
+              <span>Sudah menguasai seluruh kompetensi hafalan dengan sangat baik terutama {{$nilai_tahfidz->tahfidz_kelebihan}}. Perlu peningkatan {{$nilai_tahfidz->tahfidz_kekurangan}}.</span>
               @endif 
             </td>
           </tr>
@@ -738,6 +745,7 @@
           </td>
         </tr>
       </table>
+      <br><br>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>H. EKSTRAKULIKULER</strong></td>

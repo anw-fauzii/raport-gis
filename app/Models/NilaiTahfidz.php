@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NilaiT2Q extends Model
+class NilaiTahfidz extends Model
 {
     use HasFactory;
-    protected $table = 'nilai_t2q';
+    protected $table = 'nilai_tahfidz';
     protected $fillable = [
         'anggota_kelas_id',
         'tingkat',
-        'tahsin_jilid',
-        'tahsin_halaman',
-        'tahsin_kekurangan',
-        'tahsin_kelebihan',
-        'tahsin_nilai',
+        'tahfidz_surah',
+        'tahfidz_kelebihan',
+        'tahfidz_kekurangan',
+        'tahfidz_nilai',
     ];
 }
