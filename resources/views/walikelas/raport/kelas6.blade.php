@@ -8,7 +8,7 @@
 </head>
 <style>
   body {
-    margin-left: 15mm; 
+    margin-top: 8mm;
   }
   table { page-break-inside:auto }
   tr    { page-break-inside:avoid}
@@ -23,7 +23,7 @@
           <td style="width: 23%;">Nama Peserta Didik</td>
           <td style="width: 40%;">: {{$anggota_kelas->siswa->nama_lengkap}} </td>
           <td style="width: 20%;">Kelas</td>
-          <td style="width: 13%;">: {{$anggota_kelas->kelas->nama_kelas}}</td> 
+          <td style="width: 13%;">: {{$anggota_kelas->kelas->romawi}}</td> 
         </tr>
         <tr style="line-height: 20px;">
           <td style="width: 23%;">Nomor Induk/NISN</td>
@@ -31,9 +31,9 @@
           <td style="width: 20%;">Semester</td>
           <td style="width: 13%;">:
             @if($anggota_kelas->kelas->tapel->semester == 1)
-            1 (Ganjil)
+            1 (Satu)
             @else
-            2 (Genap)
+            2 (Dua)
             @endif
           </td>
         </tr>
@@ -45,7 +45,7 @@
         </tr>
         <tr style="line-height: 20px;">
           <td style="width: 23%;">Alamat</td>
-          <td colspan="4" style="width: 52%;">: Jl. Ciledug No 281</td>
+          <td colspan="4" style="width: 52%;">: Jl. Ciledug No 283</td>
         </tr>
       </table>
     </div>
@@ -81,9 +81,9 @@
             </td>
             <td class="description">
               <span>
-                Semua aspek spiritual 
+                Ananda
                 @if($des_ki1->where('nilai',4)->count() != 0)
-                    sudah menjadi kebiasaan terutama
+                    sangat baik dalam hal
                     @foreach($des_ki1->where('nilai',4) as $ki1)
                         @if(!$loop->last)
                           {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
@@ -95,9 +95,9 @@
 
                 @if($des_ki1->where('nilai',3)->count() != 0)
                   @if($des_ki1->where('nilai',4)->count() == 0)
-                    sudah berkembang dalam
+                    baik dalam hal
                   @else
-                    Sudah berkembang dalam
+                    Baik dalam hal
                   @endif
                     @foreach($des_ki1->where('nilai',3) as $ki1)
                         @if(!$loop->last)
@@ -109,7 +109,11 @@
                 @endif
                 
                 @if($des_ki1->where('nilai',2)->count() != 0 || $des_ki1->where('nilai',1)->count() != 0)
-                  Perlu peningkatan lebih lanjut dalam
+                  @if($des_ki1->where('nilai',4)->count() == 0 && $des_ki1->where('nilai',3)->count() == 0)
+                    cukup dalam hal
+                  @else
+                    Cukup dalam hal
+                  @endif
                     @foreach($des_ki1->where('nilai', 2) as $ki1)
                         @if(!$loop->last)
                           {{$ki1->rencana_nilai_k1->butir_sikap->butir_sikap}},
@@ -157,9 +161,9 @@
             </td>
             <td class="description">
               <span>
-                Semua aspek sikap 
+                Ananda
                 @if($des_ki2->where('nilai',4)->count() != 0)
-                    sudah menjadi kebiasaan terutama
+                    sangat baik dalam hal
                     @foreach($des_ki2->where('nilai',4) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
@@ -171,9 +175,9 @@
 
                 @if($des_ki2->where('nilai',3)->count() != 0)
                   @if($des_ki2->where('nilai',4)->count() == 0)
-                    sudah berkembang dalam
+                    baik dalam hal
                   @else
-                    Sudah berkembang dalam
+                    Baik dalam hal
                   @endif
                     @foreach($des_ki2->where('nilai',3) as $ki2)
                         @if(!$loop->last)
@@ -185,7 +189,11 @@
                 @endif
                 
                 @if($des_ki2->where('nilai',2)->count() != 0 || $des_ki2->where('nilai',1)->count() != 0)
-                  Perlu peningkatan lebih lanjut dalam
+                  @if($des_ki2->where('nilai',4)->count() == 0 && $des_ki2->where('nilai',3)->count() == 0)
+                    cukup dalam hal
+                  @else
+                    Cukup dalam hal
+                  @endif
                     @foreach($des_ki2->where('nilai', 2) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_nilai_k2->butir_sikap->butir_sikap}},
@@ -245,8 +253,9 @@
             <td style="text-align:center;">{{$ki3->nilai_raport}}</td>
             <td class="description">
               <span>
+                Ananda 
                 @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_a,100])->count() != 0)
-                    Sangat baik dalam hal
+                    sangat baik dalam hal
                     @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
@@ -256,9 +265,13 @@
                     @endforeach
                 @endif
 
-                @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_b,$ki3->predikat_a])->count() != 0)
+                @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_b,($ki3->predikat_a - 1)])->count() != 0)
+                  @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_a,100])->count() == 0)
+                    baik dalam hal
+                  @else
                     Baik dalam hal
-                    @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_b,$ki3->predikat_a]) as $deskripsi)
+                  @endif
+                    @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_b,($ki3->predikat_a - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -267,9 +280,13 @@
                     @endforeach
                 @endif
                     
-                @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_c,$ki3->predikat_b])->count() != 0)
+                @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_c,($ki3->predikat_b - 1)])->count() != 0)
+                  @if($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_a,100])->count() == 0 && $des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_b,($ki3->predikat_a - 1)])->count() == 0)
+                    cukup dalam hal
+                  @else
                     Cukup dalam hal
-                    @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_c,$ki3->predikat_b]) as $deskripsi)
+                  @endif
+                    @foreach($des_ki3->where('pembelajaran_id',$ki3->pembelajaran_id)->whereBetween('nilai_kd', [$ki3->predikat_c,($ki3->predikat_b - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -326,8 +343,9 @@
             <td style="text-align:center;">{{$ki4->nilai_raport}}</td>
             <td class="description">
               <span>
+                Ananda
                 @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_a,100])->count() != 0)
-                    Sangat baik dalam hal
+                    sangat baik dalam hal
                     @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
@@ -337,9 +355,13 @@
                     @endforeach
                 @endif
 
-                @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_b,$ki4->predikat_a])->count() != 0)
+                @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_b,($ki4->predikat_a - 1)])->count() != 0)
+                  @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_a,100])->count() == 0)
+                    baik dalam hal
+                  @else
                     Baik dalam hal
-                    @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_b,$ki4->predikat_a]) as $deskripsi)
+                  @endif
+                    @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_b,($ki4->predikat_a - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -348,9 +370,13 @@
                     @endforeach
                 @endif
                     
-                @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_c,$ki4->predikat_b])->count() != 0)
+                @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_c,($ki4->predikat_b - 1)])->count() != 0)
+                  @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai_kd', [$ki4->predikat_a,100])->count() == 0 && $des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai_kd', [$ki4->predikat_b,($ki4->predikat_a - 1)])->count() == 0)
+                    cukup dalam hal
+                  @else
                     Cukup dalam hal
-                    @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_c,$ki4->predikat_b]) as $deskripsi)
+                  @endif
+                    @foreach($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_c,($ki4->predikat_b - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -382,9 +408,10 @@
           @endforelse
         </tbody>
       </table>
+      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>D. KOKULIKULER</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>D. KOKURIKULER</strong></td>
         </tr>
         <tr>
           <td colspan="4"><strong>KKM : 75</strong></td>
@@ -407,8 +434,9 @@
             <td style="text-align:center;">{{$kokulikuler->nilai_raport}}</td>
             <td class="description">
               <span>
+                Ananda
                 @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_a,100])->count() != 0)
-                    Sudah menguasai sebagian kompetensi dengan sangat baik terutama
+                    sangat baik dalam hal
                     @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
@@ -418,9 +446,13 @@
                     @endforeach
                 @endif
 
-                @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_b,$kokulikuler->predikat_a])->count() != 0)
+                @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_b,($kokulikuler->predikat_a - 1)])->count() != 0)
+                  @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_a,100])->count() == 0)
+                    baik dalam hal
+                  @else
                     Baik dalam hal
-                    @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_b,$kokulikuler->predikat_a]) as $deskripsi)
+                  @endif
+                    @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_b,($kokulikuler->predikat_a - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -429,9 +461,13 @@
                     @endforeach
                 @endif
                     
-                @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_c,$kokulikuler->predikat_b])->count() != 0)
+                @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_c,($kokulikuler->predikat_b - 1)])->count() != 0)
+                  @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_a,100])->count() == 0 && $des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_b,($kokulikuler->predikat_a - 1)])->count() == 0)
+                    cukup dalam hal
+                  @else
                     Cukup dalam hal
-                    @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_c,$kokulikuler->predikat_b]) as $deskripsi)
+                  @endif
+                    @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [$kokulikuler->predikat_c,($kokulikuler->predikat_b - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -440,9 +476,9 @@
                     @endforeach
                 @endif
 
-                @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [0,$kokulikuler->predikat_c])->count() != 0)
+                @if($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [0,74])->count() != 0)
                     Perlu perbaikan
-                    @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [0,$kokulikuler->predikat_c]) as $deskripsi)
+                    @foreach($des_kokulikuler->where('pembelajaran_id',$kokulikuler->pembelajaran_id)->whereBetween('nilai_kd', [0,74]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mapel->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -488,8 +524,9 @@
               <td style="text-align:center;">{{$mulok->nilai_raport}}</td>
               <td class="description">
               <span>
+                Ananda
                 @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_a,100])->count() != 0)
-                    Sudah menguasai sebagian kompetensi dengan sangat baik terutama
+                    sangat baik dalam hal
                     @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_a,100]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
@@ -499,9 +536,13 @@
                     @endforeach
                 @endif
 
-                @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_b,$mulok->predikat_a])->count() != 0)
+                @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_b,($mulok->predikat_a - 1)])->count() != 0)
+                  @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_a,100])->count() == 0)
+                    baik dalam hal
+                  @else
                     Baik dalam hal
-                    @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_b,$mulok->predikat_a]) as $deskripsi)
+                  @endif
+                    @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_b,($mulok->predikat_a - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -510,9 +551,13 @@
                     @endforeach
                 @endif
                     
-                @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_c,$mulok->predikat_b])->count() != 0)
+                @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_c,($mulok->predikat_b - 1)])->count() != 0)
+                  @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_a,100])->count() == 0 && $des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_b,($mulok->predikat_a - 1)])->count() == 0)
+                    cukup dalam hal
+                  @else
                     Cukup dalam hal
-                    @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_c,$mulok->predikat_b]) as $deskripsi)
+                  @endif
+                    @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [$mulok->predikat_c,($mulok->predikat_b - 1)]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -521,9 +566,9 @@
                     @endforeach
                 @endif
 
-                @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [0,$mulok->predikat_c])->count() != 0)
+                @if($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [0,74])->count() != 0)
                     Perlu perbaikan
-                    @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [0,$mulok->predikat_c]) as $deskripsi)
+                    @foreach($des_mulok->where('pembelajaran_id',$mulok->pembelajaran_id)->whereBetween('nilai_kd', [0,74]) as $deskripsi)
                       @if(!$loop->last)
                           {!!$deskripsi->rencana_mulok->kd_mapel->kompetensi_dasar!!},
                       @else
@@ -544,6 +589,7 @@
           @endforelse
         </tbody>
       </table>
+      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>F. MUATAN LOKAL PAI KHAS PRIMA INSANI</strong></td>
@@ -687,9 +733,9 @@
             <td style="text-align:center;">{{$nilai_t2q->tahsin_nilai}}</td>
             <td class="description">
               @if($nilai_t2q->tahfidz_nilai < 85)
-              <span>Sudah menguasai sebagian besar kompetensi tahsin dengan baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}.</span>
+              <span>Ananda sudah menguasai sebagian besar kompetensi tahsin dengan baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}.</span>
               @elseif($nilai_t2q->tahfidz_nilai < 100)
-              <span>Sudah menguasai seluruh kompetensi tahsin dengan sangat baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}.</span>
+              <span>Ananda sudah menguasai seluruh kompetensi tahsin dengan sangat baik, terutama {{$nilai_t2q->tahsin_kelebihan}}. Perlu peningkatan dalam {{$nilai_t2q->tahsin_kekurangan}}.</span>
               @endif 
             </td>
           </tr>
@@ -716,9 +762,9 @@
             <td style="text-align:center;">{{$nilai_tahfidz->tahfidz_nilai}}</td>
             <td class="description">
               @if($nilai_tahfidz->tahfidz_nilai < 85)
-              <span>Sudah menguasai sebagian kompetensi hafalan dengan baik terutama {{$nilai_tahfidz->tahfidz_kelebihan}}. Perlu peningkatan {{$nilai_tahfidz->tahfidz_kekurangan}}.</span>
+              <span>Ananda sudah menguasai sebagian kompetensi hafalan dengan baik terutama {{$nilai_tahfidz->tahfidz_kelebihan}}. Perlu peningkatan dalam {{$nilai_tahfidz->tahfidz_kekurangan}}.</span>
               @elseif($nilai_tahfidz->tahfidz_nilai < 100)
-              <span>Sudah menguasai seluruh kompetensi hafalan dengan sangat baik terutama {{$nilai_tahfidz->tahfidz_kelebihan}}. Perlu peningkatan {{$nilai_tahfidz->tahfidz_kekurangan}}.</span>
+              <span>Ananda sudah menguasai seluruh kompetensi hafalan dengan sangat baik terutama {{$nilai_tahfidz->tahfidz_kelebihan}}. Perlu peningkatan dalam {{$nilai_tahfidz->tahfidz_kekurangan}}.</span>
               @endif 
             </td>
           </tr>
@@ -745,10 +791,10 @@
           </td>
         </tr>
       </table>
-      <br><br>
+      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>H. EKSTRAKULIKULER</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>H. EKSTRAKURIKULER</strong></td>
         </tr>
         <thead>
           <tr class="heading">
@@ -803,7 +849,7 @@
                 @endif
             </td>
             <td class="description">
-              {{$nilai_ekstra->deskripsi}}
+                <span>{{$nilai_ekstra->deskripsi}}</span>
             </td>
           @endforeach
           </tr>
@@ -842,9 +888,9 @@
               </td>
               <td class="description">
               <span>
-                Semua aspek  
+                Ananda
                 @if($proactive->where('nilai',4)->count() != 0)
-                    sudah menjadi kebiasaan terutama
+                    sangat baik dalam hal
                     @foreach($proactive->where('nilai',4) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
@@ -855,7 +901,11 @@
                 @endif
 
                 @if($proactive->where('nilai',3)->count() != 0)
-                    Sudah berkembang dalam
+                  @if($proactive->where('nilai',4)->count() == 0)
+                    baik dalam hal
+                  @else
+                    Baik dalam hal
+                  @endif
                     @foreach($proactive->where('nilai',3) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
@@ -866,7 +916,11 @@
                 @endif
                 
                 @if($proactive->where('nilai',2)->count() != 0 || $proactive->where('nilai',1)->count() != 0)
-                  Perlu peningkatan lebih lanjut dalam
+                  @if($proactive->where('nilai',4)->count() == 0 && $proactive->where('nilai',3)->count() == 0)
+                    cukup dalam hal
+                  @else
+                    Cukup dalam hal
+                  @endif
                     @foreach($proactive->where('nilai', 2) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_proactive->butir_sikap->butir_sikap}},
@@ -921,9 +975,9 @@
               </td>
               <td class="description">
               <span>
-                Semua aspek  
+                Ananda
                 @if($responsible->where('nilai',4)->count() != 0)
-                    sudah menjadi kebiasaan terutama
+                    sangat baik dalam hal
                     @foreach($responsible->where('nilai',4) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
@@ -934,7 +988,11 @@
                 @endif
 
                 @if($responsible->where('nilai',3)->count() != 0)
-                    Sudah berkembang dalam
+                  @if($responsible->where('nilai',4)->count() == 0)
+                    baik dalam hal
+                  @else 
+                    Baik dalam hal 
+                  @endif
                     @foreach($responsible->where('nilai',3) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
@@ -945,7 +1003,11 @@
                 @endif
                 
                 @if($responsible->where('nilai',2)->count() != 0 || $responsible->where('nilai',1)->count() != 0)
-                  Perlu peningkatan lebih lanjut dalam
+                  @if($responsible->where('nilai',4)->count() == 0 && $responsible->where('nilai',3)->count() == 0)
+                    cukup dalam hal
+                  @else 
+                    Cukup dalam hal 
+                  @endif
                     @foreach($responsible->where('nilai', 2) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_responsible->butir_sikap->butir_sikap}},
@@ -1000,9 +1062,9 @@
               </td>
               <td class="description">
               <span>
-                Semua aspek  
+                Ananda
                 @if($innovative->where('nilai',4)->count() != 0)
-                    sudah menjadi kebiasaan terutama
+                    sangat baik dalam hal
                     @foreach($innovative->where('nilai',4) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
@@ -1013,7 +1075,11 @@
                 @endif
 
                 @if($innovative->where('nilai',3)->count() != 0)
-                    Sudah berkembang dalam
+                  @if($innovative->where('nilai',4)->count() == 0)
+                    baik dalam hal
+                  @else 
+                    Baik dalam hal
+                  @endif
                     @foreach($innovative->where('nilai',3) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
@@ -1024,7 +1090,11 @@
                 @endif
                 
                 @if($innovative->where('nilai',2)->count() != 0 || $innovative->where('nilai',1)->count() != 0)
-                  Perlu peningkatan lebih lanjut dalam
+                  @if($innovative->where('nilai',4)->count() == 0 && $innovative->where('nilai',3)->count() == 0)
+                    cukup dalam hal
+                  @else 
+                    Cukup dalam hal
+                  @endif
                     @foreach($innovative->where('nilai', 2) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_innovative->butir_sikap->butir_sikap}},
@@ -1079,9 +1149,9 @@
               </td>
               <td class="description">
               <span>
-                Semua aspek  
+                Ananda
                 @if($modest->where('nilai',4)->count() != 0)
-                    sudah menjadi kebiasaan terutama
+                    sangat baik dalam hal
                     @foreach($modest->where('nilai',4) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
@@ -1092,7 +1162,11 @@
                 @endif
 
                 @if($modest->where('nilai',3)->count() != 0)
-                    Sudah berkembang dalam
+                  @if($modest->where('nilai',4)->count() == 0)
+                    baik dalam hal
+                  @else
+                    Baik dalam hal 
+                  @endif
                     @foreach($modest->where('nilai',3) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
@@ -1103,7 +1177,11 @@
                 @endif
                 
                 @if($modest->where('nilai',2)->count() != 0 || $modest->where('nilai',1)->count() != 0)
-                  Perlu peningkatan lebih lanjut dalam
+                  @if($modest->where('nilai',4)->count() == 0 && $modest->where('nilai',3)->count() == 0)
+                    cukup dalam hal
+                  @else
+                    Cukup dalam hal 
+                  @endif
                     @foreach($modest->where('nilai', 2) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_modest->butir_sikap->butir_sikap}},
@@ -1158,9 +1236,9 @@
               </td>
               <td class="description">
               <span>
-                Semua aspek  
+                Ananda
                 @if($achievement->where('nilai',4)->count() != 0)
-                    sudah menjadi kebiasaan terutama
+                    sangat baik dalam hal
                     @foreach($achievement->where('nilai',4) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
@@ -1171,7 +1249,11 @@
                 @endif
 
                 @if($achievement->where('nilai',3)->count() != 0)
-                    Sudah berkembang dalam
+                  @if($achievement->where('nilai',4)->count() == 0)
+                    baik dalam hal
+                  @else
+                    Baik dalam hal 
+                  @endif
                     @foreach($achievement->where('nilai',3) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
@@ -1182,7 +1264,11 @@
                 @endif
                 
                 @if($achievement->where('nilai',2)->count() != 0 || $achievement->where('nilai',1)->count() != 0)
-                  Perlu peningkatan lebih lanjut dalam
+                  @if($achievement->where('nilai',4)->count() == 0 && $achievement->where('nilai',3)->count() == 0)
+                    cukup dalam hal
+                  @else
+                    Cukup dalam hal 
+                  @endif
                     @foreach($achievement->where('nilai', 2) as $ki2)
                         @if(!$loop->last)
                           {{$ki2->rencana_achievement->butir_sikap->butir_sikap}},
@@ -1232,6 +1318,7 @@
           </td>
         </tr>
       </table>
+      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
           <td style="height: 30px;"><strong>K. KETIDAKHADIRAN</strong></td>
@@ -1283,7 +1370,11 @@
           {{$anggota_kelas->kelas->tapel->tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
             Wali Kelas, <br><br><br><br><br>
             <span style="text-transform: capitalize;"><b><u>{{$guru->nama_lengkap}}, {{$guru->gelar}}</u></b></span><br>
+            @if($guru->nuptk)
+            NUPTK. {{$guru->nuptk}}
+            @else
             NIPY. {{$guru->nip}}
+            @endif
           </td>
         </tr>
         <tr style="text-align:center">

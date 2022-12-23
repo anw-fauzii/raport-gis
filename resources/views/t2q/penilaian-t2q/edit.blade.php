@@ -48,10 +48,10 @@
                   <th colspan="4" class="text-center">Tahfidz</th>
                 </tr>
                 <tr class="text-center">
-                  <td style="width: 25%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Surah"><b>4.1</b></a></td>
-                  <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>4.2</b></a></td>
-                  <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>4.2</b></a></td>
-                  <td style="width: 10%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>4.3</b></a></td>
+                                    <td style="width: 25%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Surah"><b>Surah</b></a></td>
+                  <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>Kekurangan</b></a></td>
+                  <td style="width: 20%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>Kelebihan</b></a></td>
+                  <td style="width: 10%;"><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>Nilai</b></a></td>
                 </tr>
               </thead>
               <tbody>

@@ -12,9 +12,9 @@
 /* Identitas */
 .invoice-box div.header {
   position: fixed;
-  top: 0;
+  top: 5mm;
   right: 0;
-  left: 16mm;
+  left: 5mm;
 }
 .invoice-box div.header table td{
   padding: 0px;
@@ -41,7 +41,7 @@
   padding-top: 80px;
   right: 0;
   left: 0;
-  margin-right: -20px;
+  margin-right: -10px;
 }
 .invoice-box div.content h3{
   text-align: center;

@@ -21,7 +21,7 @@
                 <div class="form-group row">
                     <label for="kode_kd" class="col-sm-3 col-form-label">Kode</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" id="kode_kd" value="{{$kd->kode_kd}}" readonly>
+                    <input type="text" class="form-control" name="kode_kd" id="kode_kd" value="{{$kd->kode_kd}}">
                     </div>
                 </div>
                 <div class="form-group row">

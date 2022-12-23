@@ -27,7 +27,7 @@
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+                   value="{{ old('email') }}" placeholder="{{ __('NIPY') }}" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -87,17 +87,8 @@
     {{-- Password reset link --}}
     @if($password_reset_url)
         <p class="my-0">
-            <a href="{{ $password_reset_url }}">
-                {{ __('adminlte::adminlte.i_forgot_my_password') }}
-            </a>
-        </p>
-    @endif
-
-    {{-- Register link --}}
-    @if($register_url)
-        <p class="my-0">
-            <a href="{{ $register_url }}">
-                {{ __('adminlte::adminlte.register_a_new_membership') }}
+            <a href="https://wa.me/+6289609592234">
+                Lupa password?
             </a>
         </p>
     @endif

@@ -31,8 +31,10 @@ class NilaiPramukaController extends Controller
                 $catatan = NilaiPramuka::where('anggota_kelas_id', $anggota->id)->first();
                 if (is_null($catatan)) {
                     $anggota->nilai = "3";
+                    $anggota->deskripsi = "-";
                 } else {
                     $anggota->nilai = $catatan->nilai;
+                    $anggota->deskripsi = $catatan->deskripsi;
                 }
             }
             return view('walikelas.ekstrakulikuler.pramuka.index', compact('title', 'data_anggota_kelas'));

@@ -48,11 +48,11 @@
                   <th colspan="5" class="text-center">Tahsin</th>
                 </tr>
                 <tr class="text-center">
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Jilid-Surah"><b>3.1</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Halaman/Ayat"><b>3.2</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>3.3</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>3.4</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>3.5</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Jilid/Surah"><b>Jilid/Surah</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Halaman/Ayat"><b>Halaman/Ayat</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Nilai"><b>Nilai</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kekurangan"><b>Kekurangan</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Kelebihan"><b>Kelebihan</b></a></td>
                 </tr>
               </thead>
               <tbody>
@@ -62,7 +62,7 @@
                 @foreach($anggota_kelas->data_nilai as $nilai)
                 <tr>
                   <td class="text-center">{{$i}}</td>
-                  <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>
+                  <td>{{$anggota_kelas->anggota_kelas->siswa->nama_lengkap}}</td>           
                   <td class="text-center">{{$anggota_kelas->anggota_kelas->siswa->kelas->nama_kelas}}</td>
                   <td>
                     <input type="hidden" name="anggota_kelas_id[{{$i}}]" value="{{$anggota_kelas->anggota_kelas_id}}">
@@ -72,7 +72,7 @@
                       <option value="Jilid 2" @if($nilai->tahsin_jilid=="Jilid 2") selected @endif>Jilid 2</option>
                       <option value="Jilid 3" @if($nilai->tahsin_jilid=="Jilid 3") selected @endif>Jilid 3</option>
                       <option value="Jilid 4" @if($nilai->tahsin_jilid=="Jilid 4") selected @endif>Jilid 4</option>
-                      <option value="Tallaqi Juz 1-5" @if($nilai->tahsin_jilid=="Tallaqi juz 1-5") selected @endif>Tallaqi Juz 1-5</option>
+                      <option value="Tallaqi Juz 1-5" @if($nilai->tahsin_jilid=="Tallaqi Juz 1-5") selected @endif>Tallaqi Juz 1-5</option>
                       <option value="Tallaqi Juz 30" @if($nilai->tahsin_jilid=="Tallaqi Juz 30") selected @endif>Tallaqi Juz 30</option>
                       <option value="Ghorib 1" @if($nilai->tahsin_jilid=="Ghorib 1") selected @endif>Ghorib 1</option>
                       <option value="Ghorib 2" @if($nilai->tahsin_jilid=="Ghorib 2") selected @endif>Ghorib 2</option>
@@ -83,6 +83,9 @@
                   </td>
                   <td>
                     <input type="text" class="form-control" name="tahsin_halaman[{{$i}}]" value="{{$nilai->tahsin_halaman}}" min="0" max="100" required>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control" name="tahsin_nilai[{{$i}}]" value="{{$nilai->tahsin_nilai}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                   </td>
                   <td>
                     <select class="form-control select2" multiple="multiple" name="tahsin_kekurangan[{{$i}}][]" style="width: 100%;" required>
@@ -99,9 +102,6 @@
                       <option value="{{$data->komentar}}" {{in_array($data->komentar, explode(", ",$nilai->tahsin_kelebihan)) ? 'selected' : '' }}>{{$data->jenis}} - {{$data->komentar}}</option>
                       @endforeach
                     </select>
-                  </td>
-                  <td>
-                    <input type="number" class="form-control" name="tahsin_nilai[{{$i}}]" value="{{$nilai->tahsin_nilai}}" min="0" max="100" required oninvalid="this.setCustomValidity('Nilai harus berisi antara 0 s/d 100')" oninput="setCustomValidity('')">
                   </td>
                 </tr>
                 @endforeach

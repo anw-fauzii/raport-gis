@@ -25,7 +25,7 @@ class SiswaKelasController extends Controller
             $tapel = Tapel::findorfail(5);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('guru_id', $guru->id)->first();
-            $data_siswa = Siswa::where('kelas_id',$kelas->id)->orderBy('nis', 'ASC')->get();
+            $data_siswa = Siswa::where('kelas_id',$kelas->id)->orderBy('nama_lengkap', 'ASC')->get();
             return view('walikelas.siswa.index', compact('title', 'data_siswa'));
         }else{
             return response()->view('errors.403', [abort(403), 403]);

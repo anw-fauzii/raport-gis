@@ -147,12 +147,14 @@ class KdMapelController extends Controller
         if(Auth::user()->hasRole('admin')){
             $validator = Validator::make($request->all(), [
                 'kompetensi_dasar' => 'required|min:10|max:255',
+                'kode_kd' => 'required|max:10',
             ]);
             if ($validator->fails()) {
                 return back()->with('error', $validator->messages()->all()[0])->withInput();
             } else {
                 $kd = KdMapel::findorfail($id);
                 $data_kd = [
+                    'kode_kd' => $request->kode_kd,
                     'kompetensi_dasar' => $request->kompetensi_dasar,
                 ];
                 $kd->update($data_kd);

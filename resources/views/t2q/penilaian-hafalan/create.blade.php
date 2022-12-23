@@ -44,9 +44,9 @@
                         <th colspan="4" class="text-center">Kompetensi Dasar / Indikator Nilai Hafalan</th>
                       </tr>
                       <tr class="text-center">
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Hadits"><b>1.1</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Do'a"><b>1.2</b></a></td>
-                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Kata Hikmah"><b>1.3</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Hadits"><b>Hadits</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Do'a"><b>Do'a</b></a></td>
+                  <td><a href="#" type="button"  class="btn btn-sm btn-primary" data-toggle="tooltip" title="Hafalan Kata Hikmah"><b>Kata Hikmah</b></a></td>
                 </tr>
                     </thead>
                     <tbody>

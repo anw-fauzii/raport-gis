@@ -4,7 +4,7 @@ namespace App\Imports;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use App\Models\Nilaik4;
+use App\Models\NilaiK4;
 use App\Models\Tapel;
 use App\Models\Guru;
 use App\Models\Kelas;

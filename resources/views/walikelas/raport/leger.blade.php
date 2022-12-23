@@ -51,8 +51,10 @@
                       <th colspan="3" class="text-center">Hafalan</th>
                       <th rowspan="2" class="text-center">Tahsin</th>
                       <th rowspan="2" class="text-center">Tahfidz</th>
+                      <th colspan="2" class="text-center">Ekstrakulikuler</th>
                       <th colspan="5" class="text-center">Nilai Prima</th>
                       <th colspan="3" class="text-center">Presensi</th>
+                      <th colspan="2" class="text-center">Catatan</th>
                     </tr>
                     <tr>
                       @foreach($mapel_k3 as $mapel)
@@ -74,6 +76,8 @@
                       <th class="text-center">Hadis</th>
                       <th class="text-center">Doa</th>
                       <th class="text-center">Hikmah</th>
+                      <th class="text-center">Pramuka</th>
+                      <th class="text-center">Pilihan</th>
                       <th class="text-center">P</th>
                       <th class="text-center">R</th>
                       <th class="text-center">I</th>
@@ -82,6 +86,8 @@
                       <th class="text-center">S</th>
                       <th class="text-center">I</th>
                       <th class="text-center">A</th>
+                      <th class="text-center">Wali</th>
+                      <th class="text-center">T2Q</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -181,12 +187,44 @@
 
                       @if($anggota_kelas->data_nilai_t2q)
                       <td>{{$anggota_kelas->data_nilai_t2q->tahsin_nilai}}</td>
-                      <td>{{$anggota_kelas->data_nilai_t2q->tahfidz_nilai}}</td>
                       @else
                       <td> </td>
+                      @endif
+
+                      @if($anggota_kelas->data_nilai_tahfidz)
+                      <td>{{$anggota_kelas->data_nilai_tahfidz->tahfidz_nilai}}</td>
+                      @else
                       <td> </td>
                       @endif
-                      
+
+                      @if($anggota_kelas->data_nilai_pramuka)
+                      <td>
+                        @if($anggota_kelas->data_nilai_pramuka->nilai == 4)
+                        SB
+                        @elseif($anggota_kelas->data_nilai_pramuka->nilai == 3)
+                        B
+                        @else
+                        C
+                        @endif
+                      </td>
+                      @else
+                      <td></td>
+                      @endif
+
+                      @if($anggota_kelas->data_nilai_ekskul)
+                      <td>
+                        @if($anggota_kelas->data_nilai_ekskul->nilai == 4)
+                        SB
+                        @elseif($anggota_kelas->data_nilai_ekskul->nilai == 3)
+                        B
+                        @else
+                        C
+                        @endif
+                      </td>
+                      @else
+                      <td></td>
+                      @endif
+
                       <td>
                         @if($anggota_kelas->data_nilai_proactive >= 3.1)
                         SB
@@ -236,10 +274,27 @@
                         C
                         @endif
                       </td>
-
+                      @if($anggota_kelas->kehadiran)
                       <td>{{$anggota_kelas->kehadiran->sakit}}</td>
                       <td>{{$anggota_kelas->kehadiran->izin}}</td>
                       <td>{{$anggota_kelas->kehadiran->tanpa_keterangan}}</td>
+                      @else
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      @endif
+
+                      @if($anggota_kelas->catatan_wali)
+                      <td>v</td>
+                      @else
+                      <td></td>
+                      @endif
+
+                      @if($anggota_kelas->catatan_t2q)
+                      <td>v</td>
+                      @else
+                      <td></td>
+                      @endif
                     </tr>
                     @endforeach
                   </tbody>

@@ -17,6 +17,6 @@ class NilaiK4 extends Model
 
     public function rencana_mapel()
     {
-        return $this->belongsTo(RencanaNilaik4::class,'rencana_nilai_k4_id','id');
+        return $this->belongsTo(RencanaNilaiK4::class,'rencana_nilai_k4_id','id');
     }
 }

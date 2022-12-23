@@ -50,7 +50,7 @@ class NilaiEkstrakulikulerController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->hasRole('mapel|wali')){
+        if(Auth::user()->hasRole('mapel|wali|t2q')){
             for ($cound_siswa = 0; $cound_siswa < count($request->anggota_ekstrakulikuler_id); $cound_siswa++) {
                 $data_nilai = array(
                     'ekstrakulikuler_id' => $request->ekstrakulikuler_id,
@@ -110,7 +110,7 @@ class NilaiEkstrakulikulerController extends Controller
             $nilai = NilaiEkstrakulikuler::where('ekstrakulikuler_id', $anggota->ekstrakulikuler_id)->where('anggota_ekstrakulikuler_id', $anggota->id)->first();
             if (is_null($nilai)) {
                 $anggota->nilai = null;
-                $anggota->deskripsi = null;
+                $anggota->deskripsi = "-";
             } else {
                 $anggota->nilai = $nilai->nilai;
                 $anggota->deskripsi = $nilai->deskripsi;

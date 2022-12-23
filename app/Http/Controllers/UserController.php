@@ -116,7 +116,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::user()->hasAnyRole('admin|siswa|guru|wali')){
+        if (Auth::user()->hasAnyRole('admin|siswa|guru|wali|t2q')){
             $validator = Validator::make($request->all(), [
                 'old_password' => ['required', new MatchOldPassword],
                 'new_password' => ['required'],
