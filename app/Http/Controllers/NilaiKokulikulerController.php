@@ -135,9 +135,16 @@ class NilaiKokulikulerController extends Controller
      * @param  \App\Models\NilaiKokulikuler  $nilaiKokulikuler
      * @return \Illuminate\Http\Response
      */
-    public function show(NilaiKokulikuler $nilaiKokulikuler)
+    public function show($id)
     {
-        //
+        if(Auth::user()->hasAnyRole('wali|mapel')){
+            $nilai = NilaiKokulikuler::join('rencana_kokulikuler','rencana_kokulikuler.id','=','nilai_kokulikuler.rencana_kokulikuler_id')
+            ->where('pembelajaran_id',$id)->delete();
+            $rapot = NilaiRapotKokulikuler::where('pembelajaran_id', $id)->delete();
+            return redirect('penilaian-kokulikuler')->with('success', 'Data nilai pengetahuan berhasil direset.');
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 
     /**

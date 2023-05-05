@@ -28,6 +28,11 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-list-ol"></i> {{$title}}</h3>
+              <div class="card-tools">
+                <a href="{{route('penilaian-k3.show', $pembelajaran->id)}}" onclick="return confirm('Reset Nilai ?')" type="button" class="btn btn-tool btn-sm">
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+              </div>
             </div>
 
             <div class="card-body">

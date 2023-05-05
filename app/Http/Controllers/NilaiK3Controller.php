@@ -135,9 +135,16 @@ class NilaiK3Controller extends Controller
      * @param  \App\Models\NilaiK3  $nilaiK3
      * @return \Illuminate\Http\Response
      */
-    public function show(NilaiK3 $nilaiK3)
+    public function show($id)
     {
-        //
+        if(Auth::user()->hasAnyRole('wali|mapel')){
+            $nilai = NilaiK3::join('rencana_nilai_k3','rencana_nilai_k3.id','=','nilai_k3.rencana_nilai_k3_id')
+            ->where('pembelajaran_id',$id)->delete();
+            $rapot = NilaiRapotK3::where('pembelajaran_id', $id)->delete();
+            return redirect('penilaian-k3')->with('success', 'Data nilai pengetahuan berhasil direset.');
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 
     /**
@@ -248,7 +255,7 @@ class NilaiK3Controller extends Controller
      * @param  \App\Models\NilaiK3  $nilaiK3
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NilaiK3 $nilaiK3)
+    public function destroy($id)
     {
         //
     }

@@ -36,21 +36,21 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered table-striped" width="300%">
+                <table id="example1" class="table table-bordered table-striped" width="300%">
                   <thead class="bg-info">
                     <tr>
-                      <th rowspan="2" class="text-center" style="width: 50px;">No</th>
-                      <th rowspan="2" class="text-center">Nama Siswa</th>
-                      <th rowspan="2" class="text-center">KI1</th>
-                      <th rowspan="2" class="text-center">KI2</th>
+                      <th rowspan="2" class="text-center" style="vertical-align: middle;">No</th>
+                      <th rowspan="2" class="text-center" style="vertical-align: middle;">Nama Siswa</th>
+                      <th rowspan="2" class="text-center" style="vertical-align: middle;">KI1</th>
+                      <th rowspan="2" class="text-center" style="vertical-align: middle;">KI2</th>
                       <th colspan="{{$mapel_k3->count()}}" class="text-center">KI3</th>
                       <th colspan="{{$mapel_k3->count()}}" class="text-center">KI4</th>
                       <th colspan="{{$mapel_kokulikuler->count()}}" class="text-center">Kokulikuler</th>
                       <th colspan="{{$mapel_mulok->count()}}" class="text-center">Mulok</th>
                       <th colspan="4" class="text-center">Pel.Sholat</th>
                       <th colspan="3" class="text-center">Hafalan</th>
-                      <th rowspan="2" class="text-center">Tahsin</th>
-                      <th rowspan="2" class="text-center">Tahfidz</th>
+                      <th rowspan="2" class="text-center" style="vertical-align: middle;">Tahsin</th>
+                      <th rowspan="2" class="text-center" style="vertical-align: middle;">Tahfidz</th>
                       <th colspan="2" class="text-center">Ekstrakulikuler</th>
                       <th colspan="5" class="text-center">Nilai Prima</th>
                       <th colspan="3" class="text-center">Presensi</th>
@@ -314,9 +314,16 @@
 @stop
 
 @section('css')
-    
+<link rel="stylesheet" href="{{asset('vendor/datatables/css/dataTables.bootstrap4.css')}}">
 @stop
 
 @section('js')
-    
+<script src="{{asset('vendor/datatables/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('vendor/datatables/js/dataTables.bootstrap4.js')}}"></script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable();
+  });
+</script>
 @stop

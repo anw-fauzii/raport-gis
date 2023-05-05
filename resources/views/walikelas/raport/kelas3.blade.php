@@ -51,18 +51,18 @@
     </div>
     <div class="content">
       <h3><strong>PENCAPAIAN KOMPETENSI PESERTA DIDIK</strong></h3>
-      <table cellspacing="0">
+      <table cellspacing="0" style>
         <tr>
           <td colspan="4" style="height: 30px;"><strong>A. SIKAP SPIRITUAL (KI-1) DAN SIKAP SOSIAL (KI-2)</strong></td>
         </tr>
         <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
+          <td style="width: 3%;">NO</td>
+          <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+          <td style="width: 9%;">CAPAIAN</td>
+          <td style="width: 64%;">DESKRIPSI</td>
         </tr>
         <tr class="sikap">
-          <td>1</td>
+          <td style="text-align:center;">1</td>
           <td>
             Penilaian Sikap Spiritual (KI-1)
           </td>
@@ -142,7 +142,7 @@
           @endif
         </tr>
         <tr class="sikap">
-          <td>2</td>
+          <td style="text-align:center;">2</td>
           <td>
               Penilaian Sikap Sosial (KI-2)
           </td>
@@ -231,10 +231,10 @@
         </tr>
         <thead>
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
@@ -246,7 +246,7 @@
         @endphp
           @forelse($nilai_ki3 as $ki3)
           <tr class="sikap">
-            <td>{{$no_k1++}}</td>
+            <td style="text-align:center;">{{$no_k1++}}</td>
             <td>
               {{$ki3->pembelajaran->mapel->nama_mapel}}
             </td>
@@ -327,16 +327,16 @@
         </tr>
         <thead>
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
           @forelse($nilai_ki4 as $ki4)
           <tr class="sikap">
-            <td>{{$no_k2++}}</td>
+            <td style="text-align:center;">{{$no_k2++}}</td>
             <td>
             {{$ki4->pembelajaran->mapel->nama_mapel}}
             </td>
@@ -417,16 +417,16 @@
         </tr>
         <thead>
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
           @forelse($nilai_kokulikuler as $kokulikuler)
           <tr class="sikap">
-            <td>{{$no_ko++}}</td>
+            <td style="text-align:center;">{{$no_ko++}}</td>
             <td>
               {{$kokulikuler->pembelajaran->mapel->nama_mapel}}
             </td>
@@ -507,16 +507,16 @@
         </tr>
         <thead>
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
           @forelse($nilai_mulok as $mulok)
             <tr class="sikap">
-            <td>{{$no_mul++}}</td>
+            <td style="text-align:center;">{{$no_mul++}}</td>
               <td>
                 {{$mulok->pembelajaran->mapel->nama_mapel}}
               </td>
@@ -600,16 +600,16 @@
         </tr>
         <thead>
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
           @if($nilai_sholat)
           <tr class="sikap">
-            <td>1</td>
+            <td style="text-align:center;">1</td>
             <td>
               Praktek Wudhu
             </td>
@@ -619,7 +619,7 @@
             </td>
           </tr>
           <tr class="sikap">
-            <td>2</td>
+            <td style="text-align:center;">2</td>
             <td>
               Bacaan Sholat
             </td>
@@ -629,7 +629,7 @@
             </td>
           </tr>
           <tr class="sikap">
-            <td>3</td>
+            <td style="text-align:center;">3</td>
             <td>
               Gerakan Sholat
             </td>
@@ -639,7 +639,7 @@
             </td>
           </tr>
           <tr class="sikap">
-            <td>4</td>
+            <td style="text-align:center;">4</td>
             <td>
               Dzikir Bacaan Sholat
             </td>
@@ -664,16 +664,16 @@
         </tr>
         <thead>
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
           @if($nilai_hafalan)
           <tr class="sikap">
-            <td>1</td>
+            <td style="text-align:center;">1</td>
             <td>
               Hafalan Hadis
             </td>
@@ -683,7 +683,7 @@
             </td>
           </tr>
           <tr class="sikap">
-            <td>2</td>
+            <td style="text-align:center;">2</td>
             <td>
               Hafalan Do'a
             </td>
@@ -693,7 +693,7 @@
             </td>
           </tr>
           <tr class="sikap">
-            <td>3</td>
+            <td style="text-align:center;">3</td>
             <td>
               Hafalan Kata - Kata Hikmah
             </td>
@@ -717,14 +717,14 @@
           <td colspan="4" style="height: 30px;"><strong>3. TAHSIN DAN TAHFIDZ AL-QUR'AN</strong></td>
         </tr>
         <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">TAHSIN AL-QUR'AN</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
+          <td style="width: 3%;">NO</td>
+          <td style="width: 23.5%;">TAHSIN AL-QUR'AN</td>
+          <td style="width: 9%;">CAPAIAN</td>
+          <td style="width: 64%;">DESKRIPSI</td>
         </tr>
         @if($nilai_t2q)
           <tr class="sikap">
-            <td>1</td>
+            <td style="text-align:center;">1</td>
             <td>
             {{$nilai_t2q->tahsin_jilid}} {{$nilai_t2q->tahsin_halaman}}
             </td>
@@ -739,21 +739,21 @@
           </tr>
         @else
           <tr class="sikap">
-            <td>-</td>
+            <td style="text-align:center;">-</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
           </tr>
         @endif
         <tr class="heading">
-          <td style="width: 4%;">NO</td>
-          <td style="width: 26%;">TAHFIDZ AL-QUR'AN</td>
-          <td style="width: 10%;">CAPAIAN</td>
-          <td style="width: 60%;">DESKRIPSI</td>
+          <td style="width: 3%;">NO</td>
+          <td style="width: 23.5%;">TAHFIDZ AL-QUR'AN</td>
+          <td style="width: 9%;">CAPAIAN</td>
+          <td style="width: 64%;">DESKRIPSI</td>
         </tr>
         @if($nilai_tahfidz)
           <tr class="sikap">
-            <td>1</td>
+            <td style="text-align:center;">1</td>
             <td>
               Surah {{$nilai_tahfidz->tahfidz_surah}}
             </td>
@@ -795,15 +795,15 @@
         </tr>
         <thead>
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">KOMPETENSI YANG DINILAI</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">KOMPETENSI YANG DINILAI</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
           <tr class="sikap">
-            <td>1</td>
+            <td style="text-align:center;">1</td>
             <td>
               Pramuka
             </td>
@@ -830,7 +830,7 @@
           </tr>
           @foreach($ekstrakulikuler as $nilai_ekstra)
           <tr class="sikap">
-            <td>2</td>
+            <td style="text-align:center;">2</td>
             <td>{{$nilai_ekstra->ekstrakulikuler->nama_ekstrakulikuler}}</td>
             <td style="text-align:center;">
                 @if($nilai_ekstra->nilai == 4)
@@ -858,16 +858,16 @@
         </tr>
         <thead >
           <tr class="heading">
-            <td style="width: 4%;">NO</td>
-            <td style="width: 26%;">BUDAYA</td>
-            <td style="width: 10%;">CAPAIAN</td>
-            <td style="width: 60%;">DESKRIPSI</td>
+            <td style="width: 3%;">NO</td>
+            <td style="width: 23.5%;">BUDAYA</td>
+            <td style="width: 9%;">CAPAIAN</td>
+            <td style="width: 64%;">DESKRIPSI</td>
           </tr>
         </thead>
         <tbody>
           @if($proactive->count() != 0)
             <tr class="sikap">
-              <td>1</td>
+              <td style="text-align:center;">1</td>
               <td>
                 Proactive
               </td>
@@ -943,7 +943,7 @@
             </tr>
           @else
             <tr class="sikap">
-              <td>1</td>
+              <td style="text-align:center;">1</td>
               <td>
                 Proactive
               </td>
@@ -954,7 +954,7 @@
 
           @if($responsible->count() != 0)
             <tr class="sikap">
-              <td>2</td>
+              <td style="text-align:center;">2</td>
               <td>
                 Responsible
               </td>
@@ -1030,7 +1030,7 @@
             </tr>
           @else
             <tr class="sikap">
-              <td>2</td>
+              <td style="text-align:center;">2</td>
               <td>
                 Responsible
               </td>
@@ -1041,7 +1041,7 @@
         
           @if($innovative->count() != 0)
             <tr class="sikap">
-              <td>3</td>
+              <td >3</td>
               <td>
                 Innovative
               </td>
@@ -1117,7 +1117,7 @@
             </tr>
           @else
             <tr class="sikap">
-              <td>3</td>
+              <td style="text-align:center;">3</td>
               <td>
                 Innovative
               </td>
@@ -1128,7 +1128,7 @@
 
           @if($modest->count() != 0)
             <tr class="sikap">
-              <td>4</td>
+              <td style="text-align:center;">4</td>
               <td>
                 Modest
               </td>
@@ -1204,7 +1204,7 @@
             </tr>
           @else
             <tr class="sikap">
-              <td>4</td>
+              <td style="text-align:center;">4</td>
               <td>
                 Modest
               </td>
@@ -1215,7 +1215,7 @@
 
           @if($achievement->count() != 0)
             <tr class="sikap">
-              <td>5</td>
+              <td style="text-align:center;">5</td>
               <td>
                 Achievement
               </td>
@@ -1291,7 +1291,7 @@
             </tr>
           @else
             <tr class="sikap">
-              <td>5</td>
+              <td style="text-align:center;">5</td>
               <td>
                 Achievement
               </td>
@@ -1361,7 +1361,7 @@
             Orang Tua/Wali, <br><br><br><br><br>
             .............................
           </td>
-          <td style="width: 10%;">
+          <td style="width: 9%;">
           <td style="width: 45%;">
           {{$anggota_kelas->kelas->tapel->tgl_raport->tempat_penerbitan}}, {{$anggota_kelas->kelas->tapel->tgl_raport->tanggal_pembagian->isoFormat('D MMMM Y')}}<br>
             Wali Kelas, <br><br><br><br><br>

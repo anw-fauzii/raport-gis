@@ -131,9 +131,16 @@ class NilaiMulokController extends Controller
      * @param  \App\Models\NilaiMulok  $nilaiMulok
      * @return \Illuminate\Http\Response
      */
-    public function show(NilaiMulok $nilaiMulok)
+    public function show($id)
     {
-        //
+        if(Auth::user()->hasAnyRole('wali|mapel')){
+            $nilai = NilaiMulok::join('rencana_mulok','rencana_mulok.id','=','nilai_mulok.rencana_mulok_id')
+            ->where('pembelajaran_id',$id)->delete();
+            $rapot = NilaiRapotMulok::where('pembelajaran_id', $id)->delete();
+            return redirect('penilaian-mulok')->with('success', 'Data nilai pengetahuan berhasil direset.');
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 
     /**

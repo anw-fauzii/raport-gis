@@ -127,9 +127,16 @@ class NilaiK4Controller extends Controller
      * @param  \App\Models\NilaiK4  $nilaiK4
      * @return \Illuminate\Http\Response
      */
-    public function show(NilaiK4 $nilaiK4)
+    public function show($id)
     {
-        //
+        if(Auth::user()->hasAnyRole('wali|mapel')){
+            $nilai = NilaiK4::join('rencana_nilai_k4','rencana_nilai_k4.id','=','nilai_k4.rencana_nilai_k4_id')
+            ->where('pembelajaran_id',$id)->delete();
+            $rapot = NilaiRapotK4::where('pembelajaran_id', $id)->delete();
+            return redirect('penilaian-k4')->with('success', 'Data nilai pengetahuan berhasil direset.');
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
     }
 
     /**

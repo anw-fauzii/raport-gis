@@ -155,7 +155,7 @@ class HomeController extends Controller
         'title','nilai_hafalan','nilai_tahfidz','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
         'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');
         }
-        return $kelengkapan_raport->download('RAPORT ' . $anggota_kelas->siswa->nama_lengkap . ' (' . $anggota_kelas->kelas->nama_kelas . ').pdf');
+        return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->kelas->nama_kelas . '_' . $anggota_kelas->siswa->nama_lengkap . '.pdf');
     }
 
     public function leger()
