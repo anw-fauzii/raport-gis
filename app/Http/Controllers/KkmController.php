@@ -29,9 +29,9 @@ class KkmController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'KKM Mata Pelajaran';
-            $tapel = Tapel::findorfail(5);
-            $data_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->orderBy('nama_mapel', 'ASC')->get();
-            $id_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->get('id');
+            $tapel = Tapel::findorfail(6);
+            $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
+            $id_mapel = Mapel::where('tapel_id', $tapel->id)->get('id');
 
             $cek_pembelajaran = Pembelajaran::whereIn('mapel_id', $id_mapel)->whereNotNull('guru_id')->where('status', 1)->get();
             if (count($cek_pembelajaran) == 0) {

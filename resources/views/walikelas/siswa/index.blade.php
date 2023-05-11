@@ -45,24 +45,24 @@
             </thead>
             <tbody>
               <?php $no = 0; ?>
-              @foreach($data_siswa as $siswa)
+              @foreach($data_siswa as $list)
               <?php $no++; ?>
               <tr>
                 <td>{{$no}}</td>
-                <td>{{$siswa->nis}} / {{$siswa->nisn}}</td>
-                <td>{{$siswa->nama_lengkap}}</td>
-                <td>{{$siswa->tanggal_lahir->format('d-M-Y')}}</td>
-                <td>{{$siswa->jenis_kelamin}}</td>
+                <td>{{$list->siswa->nis}} / {{$list->siswa->nisn}}</td>
+                <td>{{$list->siswa->nama_lengkap}}</td>
+                <td>{{$list->siswa->tanggal_lahir->format('d-M-Y')}}</td>
+                <td>{{$list->siswa->jenis_kelamin}}</td>
                 <td>
-                  @if($siswa->guru_id == null)
+                  @if($list->siswa->guru_id == null)
                   <span class="badge light badge-warning">Belum masuk anggota T2Q</span>
                   @else
-                  {{$siswa->guru->nama_lengkap}}, {{$siswa->guru->gelar}}
+                  {{$list->kelas->guru->nama_lengkap}}, {{$list->kelas->guru->gelar}}
                   @endif
                 </td>
                 <td>
-                  <a href="{{route('detail-siswa',Crypt::encrypt($siswa->id))}}" type="button"  class="btn btn-sm btn-info" data-toggle="tooltip"><i class="fas fa-user-graduate"></i></a>
-                  <a href="{{route('show',Crypt::encrypt($siswa->id))}}" target="_BLANK" type="button" class="btn btn-sm btn-success" data-toggle="tooltip"><i class="fas fa-paste"></i></a>
+                  <a href="{{route('detail-siswa',Crypt::encrypt($list->id))}}" type="button"  class="btn btn-sm btn-info" data-toggle="tooltip"><i class="fas fa-user-graduate"></i></a>
+                  <a href="{{route('show',Crypt::encrypt($list->id))}}" target="_BLANK" type="button" class="btn btn-sm btn-success" data-toggle="tooltip"><i class="fas fa-paste"></i></a>
                 </td>
               </tr>
               @endforeach

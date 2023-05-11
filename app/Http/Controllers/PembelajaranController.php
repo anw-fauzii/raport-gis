@@ -25,8 +25,8 @@ class PembelajaranController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $tapel = Tapel::findorfail(5);
-            $data_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->orderBy('nama_mapel', 'ASC')->get();
+            $tapel = Tapel::findorfail(6);
+            $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 
             if (count($data_mapel) == 0) {
@@ -155,14 +155,14 @@ class PembelajaranController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Setting Pembelajaran';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $id_kelas = Kelas::findorfail($request->kelas_id);
-            $kelas = Kelas::where('tingkatan_kelas', $id_kelas->tingkatan_kelas)->get();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('tingkatan_kelas', $id_kelas->tingkatan_kelas)->get();
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 
             $data_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->get();
             $mapel_id_pembelajaran_kelas = Pembelajaran::where('kelas_id', $request->kelas_id)->get('mapel_id');
-            $data_mapel = Mapel::whereNotIn('id', $mapel_id_pembelajaran_kelas)->where(function($query) {
+            $data_mapel = Mapel::where('tapel_id',$tapel->id)->whereNotIn('id', $mapel_id_pembelajaran_kelas)->where(function($query) {
                 $query->where('kategori_mapel_id',"3")
                     ->orWhere('kategori_mapel_id',"5")
                     ->orWhere('kategori_mapel_id',"6");

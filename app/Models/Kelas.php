@@ -15,6 +15,7 @@ class Kelas extends Model
         'pendamping_id',
         'tingkatan_kelas',
         'nama_kelas',
+        'romawi'
     ];
 
     public function tapel()

@@ -36,7 +36,7 @@ class NilaiKokulikulerController extends Controller
     {
         if(Auth::user()->hasAnyRole('wali|mapel')){
             $title = 'Nilai Kokulikuler';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
 
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');

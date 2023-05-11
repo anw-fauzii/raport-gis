@@ -25,6 +25,12 @@
                 </div>
             </div>
             <div class="form-group row">
+                    <label for="romawi" class="col-sm-3 col-form-label">Romawi Kelas</label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control" id="romawi" name="romawi" placeholder="Romawi Kelas" value="{{$kelas->romawi}}">
+                    </div>
+                </div>
+            <div class="form-group row">
                 <label for="guru_id" class="col-sm-3 col-form-label">Wali Kelas</label>
                 <div class="col-sm-9">
                 <select class="form-control select2" name="guru_id" style="width: 100%;" required>

@@ -90,7 +90,7 @@
                           @if($pembelajaran->mapel->beda_guru)
                             <option value="" disabled="true" selected="true"> -- Pilih Kelas --</option>
                             @foreach($data_guru as $guru)
-                            <option value="{{$guru->id}}" @if($pembelajaran->guru->id == $guru->id) selected @endif>
+                            <option value="{{$guru->id}}" @if($pembelajaran->guru_id == $guru->id) selected @endif>
                               {{$guru->nama_lengkap}}, {{$guru->gelar}}
                             </option>
                             @endforeach

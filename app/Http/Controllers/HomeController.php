@@ -39,11 +39,13 @@ use App\Models\NilaiPramuka;
 use App\Models\Ekstrakulikuler;
 use App\Models\NilaiEkstrakulikuler;
 use App\Models\AnggotaEkstrakulikuler;
+use App\Exports\LegerExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use Cache;
 use PDF;
+use Excel;
 
 class HomeController extends Controller
 {
@@ -66,7 +68,7 @@ class HomeController extends Controller
     {
         $title = 'Dashboard';
         $sekolah = Sekolah::first();
-        $tapel = Tapel::findorfail(5);
+        $tapel = Tapel::findorfail(6);
         $data_pengumuman = Pengumuman::all();
         $kelas = Kelas::where('tapel_id',$tapel->id)->count();
         $siswa = AnggotaKelas::where('tapel', $tapel->tahun_pelajaran)->count();
@@ -76,10 +78,11 @@ class HomeController extends Controller
     
     public function show(Request $request, $id)
     {
+        $tapel = Tapel::findorfail(6);
         $decrypted = Crypt::decrypt($id);
         $sekolah = Sekolah::first();
         $guru = Guru::where('user_id', Auth::user()->id)->first();
-        $kelas = Kelas::where('guru_id', $guru->id)->orWhere('pendamping_id', $guru->id)->first();
+        $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->orWhere('pendamping_id', $guru->id)->first();
         $anggota_kelas = AnggotaKelas::findorfail($decrypted);
         $des_ki1=NilaiK1::where('anggota_kelas_id', $decrypted)->get();
         $des_ki2=NilaiK2::where('anggota_kelas_id', $decrypted)->get();
@@ -110,7 +113,7 @@ class HomeController extends Controller
         $kehadiran = Kehadiran::where('anggota_kelas_id', $decrypted)->first();
         $pramuka = NilaiPramuka::where('anggota_kelas_id', $decrypted)->first();
 
-        $data_id_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', 5)->get('id');
+        $data_id_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->get('id');
         $ekstrakulikuler = AnggotaEkstrakulikuler::whereIn('ekstrakulikuler_id', $data_id_ekstrakulikuler)->where('anggota_kelas_id', $decrypted)->get();
             foreach ($ekstrakulikuler as $anggota) {
                 $cek_nilai_ekstra = NilaiEkstrakulikuler::where('anggota_ekstrakulikuler_id', $anggota->id)->first();
@@ -129,39 +132,64 @@ class HomeController extends Controller
         compact('guru','des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
         'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
         'title','nilai_hafalan','nilai_tahfidz','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
-        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');   
+        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler','tapel'))->setPaper('A4','potrait');   
         }else if($kelas->tingkatan_kelas == 3){
                     $kelengkapan_raport = PDF::loadview('walikelas.raport.kelas3', 
         compact('guru','des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
         'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
         'title','nilai_hafalan','nilai_tahfidz','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
-        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');
+        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler','tapel'))->setPaper('A4','potrait');
         }else if($kelas->tingkatan_kelas == 6){
                     $kelengkapan_raport = PDF::loadview('walikelas.raport.kelas6', 
         compact('guru','des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
         'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
         'title','nilai_hafalan','nilai_tahfidz','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
-        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');
+        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler','tapel'))->setPaper('A4','potrait');
         }else if($kelas->tingkatan_kelas == 5){
                     $kelengkapan_raport = PDF::loadview('walikelas.raport.kelas5', 
         compact('guru','des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
         'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
         'title','nilai_hafalan','nilai_tahfidz','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
-        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');
+        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler','tapel'))->setPaper('A4','potrait');
         }else{
             $kelengkapan_raport = PDF::loadview('walikelas.raport.kelas5', 
         compact('guru','des_ki1','des_ki2','des_ki3','des_ki4','des_mulok','des_kokulikuler',
         'proactive','responsible','innovative','modest','achievement','pramuka','ekstrakulikuler',
         'title','nilai_hafalan','nilai_tahfidz','catatan_t2q','catatan_umum','kehadiran','nilai_t2q','nilai_sholat', 'sekolah',
-        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler'))->setPaper('A4','potrait');
+        'anggota_kelas','nilai_ki3','nilai_ki4','nilai_mulok','nilai_kokulikuler','tapel'))->setPaper('A4','potrait');
         }
         return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->kelas->nama_kelas . '_' . $anggota_kelas->siswa->nama_lengkap . '.pdf');
     }
 
     public function leger()
     {
-        $title = 'Leger Nilai Siswa';
-        $tapel = Tapel::findorfail(5);
+        $tapel = Tapel::findorfail(6);
+        $title = 'Leger Nilai Siswa '.$tapel->tahun_pelajaran.'-'.$tapel->semester;
+        return $this->isiLeger($tapel,$title);
+    }
+
+    public function legerShow($id)
+    {
+        $tapel = Tapel::findorfail($id);
+        $title = 'Leger Nilai Siswa '.$tapel->tahun_pelajaran.'-'.$tapel->semester;
+        return $this->isiLeger($tapel,$title);
+    }
+
+    public function legerDownload($id)
+    {
+        if(Auth::user()->hasRole('wali')){
+            $tapel = Tapel::findorfail($id);
+            $filename = 'Leger Nilai Siswa.xls';
+            return Excel::download(new LegerExport($id), $filename);
+        }else{
+            return response()->view('errors.403', [abort(403), 403]);
+        }
+        
+        return $this->isiLeger($tapel,$title);
+    }
+
+    public function isiLeger($tapel,$title)
+    {
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
         $data_id_pembelajaran = Pembelajaran::whereIn('kelas_id', $id_kelas_diampu)->get('id');
@@ -212,10 +240,9 @@ class HomeController extends Controller
             $anggota_kelas->catatan_t2q = $catatan_t2q;
         }
         if($mapel_k3->count() != 0 && $mapel_kokulikuler->count() != 0 && $mapel_mulok->count() != 0){
-           return view('walikelas.raport.leger',compact('title','data_anggota_kelas','mapel_k3','mapel_kokulikuler','mapel_mulok')); 
+           return view('walikelas.raport.leger',compact('title','data_anggota_kelas','mapel_k3','mapel_kokulikuler','mapel_mulok','tapel')); 
         }else{
             return back()->with('warning', 'Belum ada data pembelajaran silahkan hubungi administrator');
         }
-        
     }
 }

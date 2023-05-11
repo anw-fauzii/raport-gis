@@ -28,7 +28,7 @@ class CatatanT2QController extends Controller
     {
         if(Auth::user()->hasRole('t2q')){
             $title = 'Catatan T2Q Siswa';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_anggota_kelas = AnggotaT2Q::join('anggota_kelas','anggota_t2q.anggota_kelas_id','=','anggota_kelas.id')
             ->where('guru_id', $guru->id)->orderBy('kelas_id','ASC')->get();

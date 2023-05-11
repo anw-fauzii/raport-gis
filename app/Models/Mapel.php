@@ -10,7 +10,7 @@ class Mapel extends Model
     use HasFactory;
     protected $table = 'mapel';
     protected $fillable = [
-        'tapel',
+        'tapel_id',
         'nama_mapel',
         'kategori_mapel_id',
         'ringkasan_mapel'

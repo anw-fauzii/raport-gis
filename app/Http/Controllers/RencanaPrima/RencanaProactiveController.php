@@ -29,7 +29,7 @@ class RencanaProactiveController extends Controller
     {
         if(Auth::user()->hasRole('wali')){
             $title = 'Rencana Proactive';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('guru_id', $guru->id)->first();
             $data_butir_sikap = ButirSikap::where('kategori_butir_id', 8)->get();

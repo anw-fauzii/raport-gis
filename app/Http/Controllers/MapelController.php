@@ -28,9 +28,9 @@ class MapelController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Mata Pelajaran';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $kategori_mapel = KategoriMapel::all();
-            $data_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->orderBy('nama_mapel', 'ASC')->get();
+            $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
             return view('admin.mapel.index', compact('title', 'data_mapel', 'tapel','kategori_mapel'));
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -74,7 +74,7 @@ class MapelController extends Controller
             } else {
                 $tapel = Tapel::latest()->first();
                 $mapel = new Mapel([
-                    'tapel' => $tapel->tahun_pelajaran,
+                    'tapel_id' => $tapel->id,
                     'nama_mapel' => $request->nama_mapel,
                     'ringkasan_mapel' => $request->ringkasan_mapel,
                     'kategori_mapel_id' => $request->kategori_mapel_id,

@@ -28,7 +28,7 @@ class RencanaMulokController extends Controller
     public function index()
     {
         $title = 'Rencana Nilai Mulok PI';
-        $tapel = Tapel::findorfail(5);     
+        $tapel = Tapel::findorfail(6);     
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
         if(Auth::user()->hasRole('wali')){

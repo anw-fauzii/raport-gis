@@ -21,7 +21,7 @@ class KelasController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $title = 'Data Kelas Dan Pembimbing';
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('id', 'ASC')->get();
             foreach ($data_kelas as $kelas) {
@@ -63,13 +63,14 @@ class KelasController extends Controller
             if ($validator->fails()) {
                 return back()->with('error', $validator->messages()->all()[0])->withInput();
             } else {
-                $tapel = Tapel::findorfail(5);
+                $tapel = Tapel::findorfail(6);
                 $kelas = new Kelas([
                     'tapel_id' => $tapel->id,
                     'guru_id' => $request->guru_id,
                     'pendamping_id' => $request->pendamping_id,
                     'tingkatan_kelas' => $request->tingkatan_kelas,
                     'nama_kelas' => $request->nama_kelas,
+                    'romawi'=> $request->romawi,
                 ]);
                 $kelas->save();
                 return back()->with('success', 'Sukes! Kelas berhasil ditambahkan');
@@ -141,6 +142,7 @@ class KelasController extends Controller
                 $kelas = Kelas::findorfail($id);
                 $data_kelas = [
                     'nama_kelas' => $request->nama_kelas,
+                    'romawi' => $request->romawi,
                     'guru_id' => $request->guru_id,
                     'pendamping_id' => $request->pendamping_id,
                 ];

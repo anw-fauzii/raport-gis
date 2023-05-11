@@ -28,9 +28,9 @@ class KdMapelController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Data Kompetensi Dasar';
-            $tapel = Tapel::findorfail(5);
-            $data_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->orderBy('nama_mapel', 'ASC')->get();
-            $id_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->get('id');
+            $tapel = Tapel::findorfail(6);
+            $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
+            $id_mapel = Mapel::where('tapel_id', $tapel->id)->get('id');
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->groupBy('tingkatan_kelas')->orderBy('tingkatan_kelas', 'ASC')->get(); 
             if (count($data_mapel) == 0) {
                 return redirect('mapel')->with('warning', 'Mohon isikan data mata pelajaran');
@@ -64,8 +64,8 @@ class KdMapelController extends Controller
                 $mapel_id = $request->mapel_id;
                 $tingkatan_kelas = $request->tingkatan_kelas;
 
-                $tapel = Tapel::findorfail(5);
-                $data_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->orderBy('nama_mapel', 'ASC')->get();
+                $tapel = Tapel::findorfail(6);
+                $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
                 $data_kelas = Kelas::where('tapel_id', $tapel->id)->groupBy('tingkatan_kelas')->orderBy('tingkatan_kelas', 'ASC')->get();
                 return view('admin.kd.create', compact('title', 'mapel_id', 'tingkatan_kelas', 'tapel', 'data_mapel', 'data_kelas'));
             }

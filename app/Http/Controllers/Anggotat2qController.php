@@ -27,7 +27,7 @@ class Anggotat2qController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $title = 'Data Guru T2Q';
             $data_guru = Guru::where('jabatan', '2')->get();
             foreach ($data_guru as $guru) {

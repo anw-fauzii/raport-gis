@@ -15,7 +15,7 @@ class KkmExport implements FromView, ShouldAutoSize
     {
         $time_download = date('Y-m-d H:i:s');
 
-        $tapel = Tapel::findorfail(5);
+        $tapel = Tapel::findorfail(6);
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get('id');
         
         $data_pembelajaran = Pembelajaran::join('kelas','kelas.id','=','pembelajaran.kelas_id')->whereIn('kelas_id', $id_kelas)

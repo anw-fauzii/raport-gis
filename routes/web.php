@@ -30,6 +30,8 @@ Route::get('getCourse/{id}', function ($id) {
 });
 Route::get('/pdf/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('show');
 Route::get('/leger-nilai', [App\Http\Controllers\HomeController::class, 'leger'])->name('leger');
+Route::get('/leger-nilai/{id}', [App\Http\Controllers\HomeController::class, 'legerShow'])->name('leger.show');
+Route::get('/download/{id}', [App\Http\Controllers\HomeController::class, 'LegerDownload'])->name('leger.download');
 Route::get('/interval-nilai', [App\Http\Controllers\IntervalController::class, 'index'])->name('interval');
 Route::resource('/pengumuman',App\Http\Controllers\PengumumanController::class);
 Route::resource('/sekolah',App\Http\Controllers\SekolahController::class);

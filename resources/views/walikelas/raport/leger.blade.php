@@ -7,11 +7,11 @@
 <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Leger Nilai Siswa</h1>
+          <h1 class="m-0 text-dark">{{$title}}</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">LEGER Nilai Siswa</li>
+            <li class="breadcrumb-item active">Leger Nilai Siswa</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -27,9 +27,15 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-table"></i> {{$title}}</h3>
+            <button class="btn btn-primary dropdown" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="metismenu-icon pe-7s-refresh-2"></i> Tahun Ajaran
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a href="{{route('leger.show',5)}}" class="dropdown-item">2022/2023-1</a></li>
+                            <li><a href="{{route('leger.show',6)}}" class="dropdown-item">2022/2023-2</a></li>
+                        </ul> 
               <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-sm" onclick="return confirm('Download {{$title}} ?')">
+                <a href="{{route('leger.download',$tapel->id)}}" class="btn btn-tool btn-sm" onclick="return confirm('Download {{$title}} ?')">
                   <i class="fas fa-download"></i>
                 </a>
               </div>
@@ -318,6 +324,7 @@
 @stop
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
 <script src="{{asset('vendor/datatables/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('vendor/datatables/js/dataTables.bootstrap4.js')}}"></script>
 

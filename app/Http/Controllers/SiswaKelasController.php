@@ -22,10 +22,10 @@ class SiswaKelasController extends Controller
     public function wali(){
         if(Auth::user()->hasRole('wali')){
             $title = 'Data Siswa';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('guru_id', $guru->id)->first();
-            $data_siswa = Siswa::where('kelas_id',$kelas->id)->orderBy('nama_lengkap', 'ASC')->get();
+            $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->first();
+            $data_siswa = AnggotaKelas::where('kelas_id',$kelas->id)->get();
             return view('walikelas.siswa.index', compact('title', 'data_siswa'));
         }else{
             return response()->view('errors.403', [abort(403), 403]);

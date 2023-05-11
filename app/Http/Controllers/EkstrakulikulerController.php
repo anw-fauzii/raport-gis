@@ -22,7 +22,7 @@ class EkstrakulikulerController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $title = 'Data Ekstrakulikuler';
             $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();
             foreach ($data_ekstrakulikuler as $ekstrakulikuler) {
@@ -62,7 +62,7 @@ class EkstrakulikulerController extends Controller
             if ($validator->fails()) {
                 return back()->with('error', $validator->messages()->all()[0])->withInput();
             } else {
-                $tapel = Tapel::findorfail(5);
+                $tapel = Tapel::findorfail(6);
                 $ekstrakulikuler = new Ekstrakulikuler([
                     'tapel_id' => $tapel->id,
                     'guru_id' => $request->guru_id,

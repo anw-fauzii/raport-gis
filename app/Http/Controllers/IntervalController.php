@@ -19,7 +19,7 @@ class IntervalController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Interval Predikat';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
             $id_mapel = Mapel::where('tapel', $tapel->tahun_pelajaran)->get('id');
             $data_kkm = Kkm::whereIn('mapel_id', $id_mapel)->orderBy('tingkat', 'ASC')->orderBy('mapel_id', 'ASC')->get();
             if (count($id_mapel) == 0) {

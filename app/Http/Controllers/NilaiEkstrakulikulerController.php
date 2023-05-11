@@ -23,7 +23,7 @@ class NilaiEkstrakulikulerController extends Controller
     public function index()
     {
         $title = 'Input Nilai Ekstrakulikuler';
-        $tapel = Tapel::findorfail(5);
+        $tapel = Tapel::findorfail(6);
 
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();
@@ -93,7 +93,7 @@ class NilaiEkstrakulikulerController extends Controller
     public function edit($id)
     {
         $title = 'Input Nilai Ekstrakulikuler';
-        $tapel = Tapel::findorfail(5);
+        $tapel = Tapel::findorfail(6);
         $decrypted = Crypt::decrypt($id);
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();

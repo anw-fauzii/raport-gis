@@ -28,7 +28,7 @@ class RencanaNilaiK1Controller extends Controller
     {
         if(Auth::user()->hasRole('wali')){
             $title = 'Rencana KI-1/Butir Spiritual';
-            $tapel = Tapel::findorfail(5);
+            $tapel = Tapel::findorfail(6);
 
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('guru_id', $guru->id)->first();

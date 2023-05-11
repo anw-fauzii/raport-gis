@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tapel;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,12 @@ class TapelController extends Controller
                     'semester' => $request->semester,
                 ]);
                 $tapel->save();
+                Siswa::where('status', 1)
+                ->update([
+                    'kelas_id' => null,
+                    'guru_id' => null,
+                    'ekstrakulikuler_id' => null
+                ]);
                 return back()->with('success', 'Sukses! Tahun Pelajaran Disimpan');
             }
         }else{
