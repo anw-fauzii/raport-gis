@@ -31,7 +31,7 @@ class RencanaAchievementController extends Controller
             $title = 'Rencana Achievement';
             $tapel = Tapel::findorfail(6);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('guru_id', $guru->id)->first();
+            $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
             $data_butir_sikap = ButirSikap::where('kategori_butir_id', 12)->get();
             $data_rencana_penilaian = RencanaAchievement::join('butir_sikap','rencana_achievement.butir_sikap_id','=','butir_sikap.id')
             ->select('butir_sikap.kode','butir_sikap.butir_sikap','rencana_achievement.*')->where('kategori_butir_id', 12)->where('kelas_id', $kelas->id)->get();

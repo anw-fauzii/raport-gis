@@ -179,7 +179,7 @@ class HomeController extends Controller
     {
         if(Auth::user()->hasRole('wali')){
             $tapel = Tapel::findorfail($id);
-            $filename = 'Leger Nilai Siswa.xls';
+            $filename = 'Leger Nilai Siswa.xlsx';
             return Excel::download(new LegerExport($id), $filename);
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -238,6 +238,7 @@ class HomeController extends Controller
             $anggota_kelas->catatan_wali = $catatan_wali;
             $catatan_t2q = CatatanT2Q::where('anggota_kelas_id', $anggota_kelas->id)->first();
             $anggota_kelas->catatan_t2q = $catatan_t2q;
+            $anggota_kelas->jumlah_nilai = $data_nilai_ki_3->sum('nilai_raport') + $data_nilai_ki_4->sum('nilai_raport') + $data_nilai_kokulikuler->sum('nilai_raport') + $data_nilai_mulok->sum('nilai_raport');
         }
         if($mapel_k3->count() != 0 && $mapel_kokulikuler->count() != 0 && $mapel_mulok->count() != 0){
            return view('walikelas.raport.leger',compact('title','data_anggota_kelas','mapel_k3','mapel_kokulikuler','mapel_mulok','tapel')); 

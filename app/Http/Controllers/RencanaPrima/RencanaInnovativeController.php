@@ -30,7 +30,7 @@ class RencanaInnovativeController extends Controller
             $title = 'Rencana Innovative';
             $tapel = Tapel::findorfail(6);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('guru_id', $guru->id)->first();
+            $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
             $data_butir_sikap = ButirSikap::where('kategori_butir_id', 10)->get();
             $data_rencana_penilaian = RencanaInnovative::join('butir_sikap','rencana_innovative.butir_sikap_id','=','butir_sikap.id')
             ->select('butir_sikap.kode','butir_sikap.butir_sikap','rencana_innovative.*')->where('kategori_butir_id', 10)->where('kelas_id', $kelas->id)->get();

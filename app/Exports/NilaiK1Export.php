@@ -22,7 +22,7 @@ class NilaiK1Export implements FromView, ShouldAutoSize
         $tapel = Tapel::findorfail(6);
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get('id');
         $guru = Guru::where('user_id', Auth::user()->id)->first();
-        $kelas = Kelas::where('guru_id', $guru->id)->first();
+        $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
         $data_anggota_kelas = AnggotaKelas::where('kelas_id', $kelas->id)->get();
         $data_rencana_penilaian = RencanaNilaiK1::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get();
         $count_kd = count($data_rencana_penilaian);

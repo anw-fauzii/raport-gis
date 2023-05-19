@@ -30,7 +30,7 @@ class RencanaNilaiK2Controller extends Controller
             $title = 'Rencana KI-2/Sikap Sosial';
             $tapel = Tapel::findorfail(6);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('guru_id', $guru->id)->first();
+            $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
             $data_butir_sikap = ButirSikap::where('kategori_butir_id', 2)->get();
             $data_rencana_penilaian = RencanaNilaiK2::join('butir_sikap','rencana_nilai_k2.butir_sikap_id','=','butir_sikap.id')
             ->select('butir_sikap.kode','butir_sikap.butir_sikap','rencana_nilai_k2.*')->where('kategori_butir_id', 2)->where('kelas_id', $kelas->id)->get();

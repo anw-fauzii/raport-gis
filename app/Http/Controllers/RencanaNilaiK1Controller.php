@@ -31,7 +31,7 @@ class RencanaNilaiK1Controller extends Controller
             $tapel = Tapel::findorfail(6);
 
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('guru_id', $guru->id)->first();
+            $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
             $data_butir_sikap = ButirSikap::where('kategori_butir_id', 1)->get();
             $data_rencana_penilaian = RencanaNilaiK1::join('butir_sikap','rencana_nilai_k1.butir_sikap_id','=','butir_sikap.id')
             ->select('butir_sikap.kode','butir_sikap.butir_sikap','rencana_nilai_k1.*')->where('kategori_butir_id', 1)->where('kelas_id', $kelas->id)->get();

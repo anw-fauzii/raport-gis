@@ -47,6 +47,7 @@
                     <tr>
                       <th rowspan="2" class="text-center" style="vertical-align: middle;">No</th>
                       <th rowspan="2" class="text-center" style="vertical-align: middle;">Nama Siswa</th>
+                      <th rowspan="2" class="text-center" style="vertical-align: middle;">Jumlah Nilai</th>
                       <th rowspan="2" class="text-center" style="vertical-align: middle;">KI1</th>
                       <th rowspan="2" class="text-center" style="vertical-align: middle;">KI2</th>
                       <th colspan="{{$mapel_k3->count()}}" class="text-center">KI3</th>
@@ -103,6 +104,7 @@
                     <tr>
                       <td class="text-center">{{$no}}</td>
                       <td>{{$anggota_kelas->siswa->nama_lengkap}}</td>
+                      <td>{{$anggota_kelas->jumlah_nilai}}</td>
                       <td>
                         @if($anggota_kelas->data_nilai_ki_1 >= 3.1)
                         SB

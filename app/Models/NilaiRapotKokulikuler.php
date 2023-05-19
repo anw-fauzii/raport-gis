@@ -12,7 +12,7 @@ class NilaiRapotKokulikuler extends Model
     protected $fillable = [
         'pembelajaran_id',
         'anggota_kelas_id',
-        'nilai_rapot',
+        'nilai_raport',
         'predikat_c',
         'predikat_b',
         'predikat_a',

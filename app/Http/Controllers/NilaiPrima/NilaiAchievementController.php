@@ -28,7 +28,7 @@ class NilaiAchievementController extends Controller
     {
         if(Auth::user()->hasRole('wali')){
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('guru_id', $guru->id)->first();
+            $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
             $data_anggota_kelas = AnggotaKelas::where('kelas_id', $kelas->id)->get();
             
             $id_data_rencana_penilaian = RencanaAchievement::where('kelas_id', $kelas->id)->orderBy('butir_sikap_id', 'ASC')->get('id');

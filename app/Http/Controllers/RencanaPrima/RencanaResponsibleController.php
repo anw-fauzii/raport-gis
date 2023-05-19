@@ -30,7 +30,7 @@ class RencanaResponsibleController extends Controller
             $title = 'Rencana Responsible';
             $tapel = Tapel::findorfail(6);
             $guru = Guru::where('user_id', Auth::user()->id)->first();
-            $kelas = Kelas::where('guru_id', $guru->id)->first();
+            $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
             $data_butir_sikap = ButirSikap::where('kategori_butir_id', 9)->get();
             $data_rencana_penilaian = RencanaResponsible::join('butir_sikap','rencana_responsible.butir_sikap_id','=','butir_sikap.id')
             ->select('butir_sikap.kode','butir_sikap.butir_sikap','rencana_responsible.*')->where('kategori_butir_id', 9)->where('kelas_id', $kelas->id)->get();
