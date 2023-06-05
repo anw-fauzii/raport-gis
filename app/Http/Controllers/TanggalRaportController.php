@@ -24,7 +24,7 @@ class TanggalRaportController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Tanggal Raport';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $data_tgl_raport = TanggalRaport::where('tapel_id', $tapel->id)->get();
             return view('admin.tanggal-raport.index', compact('title', 'tapel', 'data_tgl_raport'));
         }else{

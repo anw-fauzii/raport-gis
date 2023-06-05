@@ -25,7 +25,7 @@ class PembelajaranController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();
 
@@ -155,7 +155,7 @@ class PembelajaranController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Setting Pembelajaran';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $id_kelas = Kelas::findorfail($request->kelas_id);
             $kelas = Kelas::where('tapel_id', $tapel->id)->where('tingkatan_kelas', $id_kelas->tingkatan_kelas)->get();
             $data_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get();

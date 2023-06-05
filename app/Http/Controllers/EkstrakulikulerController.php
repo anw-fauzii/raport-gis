@@ -22,7 +22,7 @@ class EkstrakulikulerController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $title = 'Data Ekstrakulikuler';
             $data_ekstrakulikuler = Ekstrakulikuler::where('tapel_id', $tapel->id)->orderBy('nama_ekstrakulikuler', 'ASC')->get();
             foreach ($data_ekstrakulikuler as $ekstrakulikuler) {
@@ -62,7 +62,7 @@ class EkstrakulikulerController extends Controller
             if ($validator->fails()) {
                 return back()->with('error', $validator->messages()->all()[0])->withInput();
             } else {
-                $tapel = Tapel::findorfail(6);
+                $tapel = Tapel::latest()->first();
                 $ekstrakulikuler = new Ekstrakulikuler([
                     'tapel_id' => $tapel->id,
                     'guru_id' => $request->guru_id,
@@ -86,16 +86,18 @@ class EkstrakulikulerController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Anggota Ekstrakulikuler';
+            $tapel = Tapel::latest()->first();
             $ekstrakulikuler = Ekstrakulikuler::findorfail($id);
             $anggota_ekstrakulikuler = AnggotaEkstrakulikuler::where('ekstrakulikuler_id',$id)->get();
             $siswa_belum_masuk_ekstrakulikuler = Siswa::where('status', 1)->where('ekstrakulikuler_id', null)->get();
             foreach ($siswa_belum_masuk_ekstrakulikuler as $belum_masuk_ekstrakulikuler) {
-                $kelas_sebelumhya = AnggotaEkstrakulikuler::join('anggota_kelas','anggota_kelas.id','=','anggota_ekstrakulikuler.anggota_kelas_id')
-                ->where('siswa_id', $belum_masuk_ekstrakulikuler->id)->orderBy('anggota_ekstrakulikuler.id', 'DESC')->first();
+                $kelas_sebelumhya = AnggotaKelas::where('siswa_id', $belum_masuk_ekstrakulikuler->id)->where('tapel_id', $tapel->id)->orderBy('id', 'ASC')->first();
                 if (is_null($kelas_sebelumhya)) {
                     $belum_masuk_ekstrakulikuler->kelas_sebelumhya = null;
+                    $belum_masuk_ekstrakulikuler->anggota_kelas = null;
                 } else {
                     $belum_masuk_ekstrakulikuler->kelas_sebelumhya = $kelas_sebelumhya->kelas->nama_kelas;
+                    $belum_masuk_ekstrakulikuler->anggota_kelas = $kelas_sebelumhya->id;
                 }
             }
             return view('admin.ekstrakulikuler.show', compact('title', 'ekstrakulikuler', 'anggota_ekstrakulikuler', 'siswa_belum_masuk_ekstrakulikuler'));

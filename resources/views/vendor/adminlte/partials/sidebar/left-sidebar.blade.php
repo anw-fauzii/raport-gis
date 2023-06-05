@@ -440,6 +440,14 @@
           </a>
         </li>   
         <li class="nav-item">
+          <a href="{{route('kenaikan-siswa.index')}}" class="nav-link {{(request()->is('kenaikan-siswa*')) ? 'active' :''}}"">
+            <i class="nav-icon fas fa-clipboard-check"></i>
+            <p>
+              Kenaikan Siswa
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{route('leger')}}" class="nav-link {{(request()->is('leger-nilai')) ? 'active' :''}}"">
             <i class="nav-icon fas fa-table"></i>
             <p>

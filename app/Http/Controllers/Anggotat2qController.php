@@ -27,11 +27,11 @@ class Anggotat2qController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('admin')){
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $title = 'Data Guru T2Q';
             $data_guru = Guru::where('jabatan', '2')->get();
             foreach ($data_guru as $guru) {
-                $jumlah_anggota = AnggotaT2Q::where('guru_id', $guru->id)->count();
+                $jumlah_anggota = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel_id',$tapel->id)->count();
                 $guru->jumlah_anggota = $jumlah_anggota;
             }
             return view('admin.t2q.index', compact('title', 'data_guru', 'tapel', 'data_guru'));
@@ -66,20 +66,23 @@ class Anggotat2qController extends Controller
                 return back()->with('warning', 'Tidak ada siswa yang dipilih');
             } else {
                 $siswa_id = $request->input('siswa_id');
+                foreach ($siswa_id as $id){
+                    $anggota = AnggotaKelas::find($id);
+                    $sis = Siswa::where('id', $anggota->siswa_id)->update(['guru_id' => $request->guru_id]);
+                }
                 $tapel = Tapel::latest()->first();
                 for ($count = 0; $count < count($siswa_id); $count++) {
                     $data = array(
                         'tingkat'=> $request->tingkat,
                         'anggota_kelas_id' => $siswa_id[$count],
                         'guru_id'  => $request->guru_id,
-                        'tapel' => $tapel->tahun_pelajaran,
+                        'tapel_id' => $tapel->id,
                         'created_at'  => Carbon::now(),
                         'updated_at'  => Carbon::now(),
                     );
                     $insert_data[] = $data;
                 }
                 AnggotaT2Q::insert($insert_data);
-                Siswa::whereIn('id', $siswa_id)->update(['guru_id' => $request->input('guru_id')]);
                 return back()->with('success', 'Anggota kelas berhasil ditambahkan');
             }
         }else{
@@ -97,16 +100,18 @@ class Anggotat2qController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Kelompok T2Q';
+            $tapel = Tapel::latest()->first();
             $guru = Guru::findorfail($id);
-            $anggota_t2q = AnggotaT2Q::where('guru_id',$id)->get();
+            $anggota_t2q = AnggotaT2Q::where('guru_id',$id)->where('tapel_id',$tapel->id)->get();
             $siswa_belum_masuk_kelas = Siswa::where('status', 1)->where('guru_id', null)->get();
             foreach ($siswa_belum_masuk_kelas as $belum_masuk_kelas) {
-                $kelas_sebelumhya = AnggotaT2Q::join('anggota_kelas','anggota_kelas.id','=','anggota_t2q.anggota_kelas_id')
-                ->where('siswa_id', $belum_masuk_kelas->id)->orderBy('anggota_t2q.id', 'DESC')->first();
+                $kelas_sebelumhya = AnggotaKelas::where('siswa_id', $belum_masuk_kelas->id)->where('tapel_id', $tapel->id)->orderBy('id', 'ASC')->first();
                 if (is_null($kelas_sebelumhya)) {
                     $belum_masuk_kelas->kelas_sebelumhya = null;
+                    $belum_masuk_kelas->anggota_kelas = null;
                 } else {
                     $belum_masuk_kelas->kelas_sebelumhya = $kelas_sebelumhya->kelas->nama_kelas;
+                    $belum_masuk_kelas->anggota_kelas = $kelas_sebelumhya->id;
                 }
             }
             return view('admin.t2q.show', compact('title', 'guru', 'anggota_t2q', 'siswa_belum_masuk_kelas'));

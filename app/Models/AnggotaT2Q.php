@@ -13,7 +13,7 @@ class AnggotaT2Q extends Model
         'tingkat',
         'anggota_kelas_id',
         'guru_id',
-        'tapel',
+        'tapel_id',
     ];
 
     public function anggota_kelas()

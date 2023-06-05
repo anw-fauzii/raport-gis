@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnggotaEkstrakulikuler;
+use App\Models\AnggotaKelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -19,6 +20,10 @@ class AnggotaEkstrakulikulerController extends Controller
             return back()->with('toast_warning', 'Tidak ada siswa yang dipilih');
         } else {
             $siswa_id = $request->input('siswa_id');
+            foreach ($siswa_id as $id){
+                $anggota = AnggotaKelas::find($id);
+                Siswa::where('id', $anggota->siswa_id)->update(['ekstrakulikuler_id' => $request->input('ekstrakulikuler_id')]);
+            }
             for ($count = 0; $count < count($siswa_id); $count++) {
                 $data = array(
                     'anggota_kelas_id' => $siswa_id[$count],
@@ -29,7 +34,6 @@ class AnggotaEkstrakulikulerController extends Controller
                 $insert_data[] = $data;
             }
             AnggotaEkstrakulikuler::insert($insert_data);
-            Siswa::whereIn('id', $siswa_id)->update(['ekstrakulikuler_id' => $request->input('ekstrakulikuler_id')]);
             return back()->with('success', 'Anggota Ekstrakulikuler berhasil ditambahkan');
         }
     }

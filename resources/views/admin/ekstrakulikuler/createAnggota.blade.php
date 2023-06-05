@@ -28,7 +28,7 @@
                     <input type="hidden" name="ekstrakulikuler_id" value="{{$ekstrakulikuler->id}}">
                     <select class="duallistbox" multiple="multiple" name="siswa_id[]">
                         @foreach($siswa_belum_masuk_ekstrakulikuler as $belum_masuk_ekstrakulikuler)
-                        <option value="{{$belum_masuk_ekstrakulikuler->id}}">{{$belum_masuk_ekstrakulikuler->nis}} | {{$belum_masuk_ekstrakulikuler->nisn}} | {{$belum_masuk_ekstrakulikuler->nama_lengkap}} ({{$belum_masuk_ekstrakulikuler->kelas->nama_kelas}})</option>
+                        <option value="{{$belum_masuk_ekstrakulikuler->anggota_kelas}}">{{$belum_masuk_ekstrakulikuler->nis}} | {{$belum_masuk_ekstrakulikuler->nisn}} | {{$belum_masuk_ekstrakulikuler->nama_lengkap}} ({{$belum_masuk_ekstrakulikuler->kelas->nama_kelas}})</option>
                         @endforeach
                     </select>
                 </div>

@@ -23,7 +23,7 @@ class NilaiPramukaController extends Controller
     {
         if(Auth::user()->hasRole('wali')){
             $title = 'Input Nilai Pramuka';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $id_kelas_diampu = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->get('id');
             $data_anggota_kelas = AnggotaKelas::whereIn('kelas_id', $id_kelas_diampu)->get();

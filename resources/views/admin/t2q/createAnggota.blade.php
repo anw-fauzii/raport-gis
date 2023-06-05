@@ -32,7 +32,7 @@
                         </div>
                     <select class="duallistbox" multiple="multiple" name="siswa_id[]">
                     @foreach($siswa_belum_masuk_kelas as $belum_masuk_kelas)
-                    <option value="{{$belum_masuk_kelas->id}}">{{$belum_masuk_kelas->nis}} | {{$belum_masuk_kelas->nisn}} | {{$belum_masuk_kelas->nama_lengkap}} ({{$belum_masuk_kelas->kelas->nama_kelas}})</option>
+                    <option value="{{$belum_masuk_kelas->anggota_kelas}}">{{$belum_masuk_kelas->nis}} | {{$belum_masuk_kelas->nisn}} | {{$belum_masuk_kelas->nama_lengkap}} ({{$belum_masuk_kelas->kelas_sebelumhya}})</option>
                     @endforeach
                     </select>
                 </div>

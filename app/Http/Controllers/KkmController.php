@@ -29,7 +29,7 @@ class KkmController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'KKM Mata Pelajaran';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $data_mapel = Mapel::where('tapel_id', $tapel->id)->orderBy('nama_mapel', 'ASC')->get();
             $id_mapel = Mapel::where('tapel_id', $tapel->id)->get('id');
 

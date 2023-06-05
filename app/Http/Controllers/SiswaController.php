@@ -33,7 +33,7 @@ class SiswaController extends Controller
     {
         if(Auth::user()->hasRole('admin')){
             $title = 'Peserta Didik';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $jumlah_kelas = Kelas::where('tapel_id', $tapel->id)->count();
             if ($jumlah_kelas == 0) {
                 return redirect('kelas')->with('toast_warning', 'Mohon isikan data kelas');

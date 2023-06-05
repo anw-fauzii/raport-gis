@@ -22,11 +22,15 @@ class SiswaKelasController extends Controller
     public function wali(){
         if(Auth::user()->hasRole('wali')){
             $title = 'Data Siswa';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->first();
-            $data_siswa = AnggotaKelas::where('kelas_id',$kelas->id)->get();
-            return view('walikelas.siswa.index', compact('title', 'data_siswa'));
+            if($kelas){
+                $data_siswa = AnggotaKelas::where('kelas_id',$kelas->id)->get();
+                return view('walikelas.siswa.index', compact('title', 'data_siswa'));
+            }else{
+                return back()->with('warning', 'Belum Ada Kelas Yang Dibuat');
+            }
         }else{
             return response()->view('errors.403', [abort(403), 403]);
         }

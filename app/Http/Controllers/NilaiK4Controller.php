@@ -36,7 +36,7 @@ class NilaiK4Controller extends Controller
     {
         if(Auth::user()->hasAnyRole('wali|mapel')){
             $title = 'Nilai KI-4/Keterampilan';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
 
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');

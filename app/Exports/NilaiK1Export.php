@@ -19,7 +19,7 @@ class NilaiK1Export implements FromView, ShouldAutoSize
     {
         $time_download = date('Y-m-d H:i:s');
 
-        $tapel = Tapel::findorfail(6);
+        $tapel = Tapel::latest()->first();
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->orderBy('tingkatan_kelas', 'ASC')->get('id');
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();

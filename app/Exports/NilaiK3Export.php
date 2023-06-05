@@ -24,7 +24,7 @@ class NilaiK3Export implements FromView, ShouldAutoSize
     public function view(): View
     {
         $time_download = date('Y-m-d H:i:s');
-        $tapel = Tapel::findorfail(6);
+        $tapel = Tapel::latest()->first();
         $pembelajaran = Pembelajaran::findorfail($this->id);
         $data_anggota_kelas = AnggotaKelas::where('kelas_id', $pembelajaran->kelas_id)->get();
 

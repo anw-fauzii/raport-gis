@@ -28,7 +28,7 @@ class RencanaInnovativeController extends Controller
     {
         if(Auth::user()->hasRole('wali')){
             $title = 'Rencana Innovative';
-            $tapel = Tapel::findorfail(6);
+            $tapel = Tapel::latest()->first();
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $kelas = Kelas::where('guru_id', $guru->id)->latest()->first();
             $data_butir_sikap = ButirSikap::where('kategori_butir_id', 10)->get();

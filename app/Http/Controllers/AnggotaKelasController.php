@@ -26,7 +26,7 @@ class AnggotaKelasController extends Controller
                     'siswa_id' => $siswa_id[$count],
                     'kelas_id'  => $request->kelas_id,
                     'pendaftaran'  => $request->pendaftaran,
-                    'tapel' => $tapel->tahun_pelajaran,
+                    'tapel_id' => $tapel->id,
                     'created_at'  => Carbon::now(),
                     'updated_at'  => Carbon::now(),
                 );

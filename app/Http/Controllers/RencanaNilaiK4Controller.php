@@ -28,7 +28,7 @@ class RencanaNilaiK4Controller extends Controller
     public function index()
     {
         $title = 'Rencana KI-4 / Nilai Keterampilan';
-        $tapel = Tapel::findorfail(6);     
+        $tapel = Tapel::latest()->first();     
         $guru = Guru::where('user_id', Auth::user()->id)->first();
         $id_kelas = Kelas::where('tapel_id', $tapel->id)->get('id');
         if(Auth::user()->hasRole('wali')){

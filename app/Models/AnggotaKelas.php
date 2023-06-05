@@ -12,7 +12,7 @@ class AnggotaKelas extends Model
     protected $fillable = [
         'siswa_id',
         'kelas_id',
-        'tapel',
+        'tapel_id',
         'pendaftaran',
     ];
 

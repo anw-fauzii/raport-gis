@@ -68,17 +68,17 @@ class HomeController extends Controller
     {
         $title = 'Dashboard';
         $sekolah = Sekolah::first();
-        $tapel = Tapel::findorfail(6);
+        $tapel = Tapel::latest()->first();
         $data_pengumuman = Pengumuman::all();
         $kelas = Kelas::where('tapel_id',$tapel->id)->count();
-        $siswa = AnggotaKelas::where('tapel', $tapel->tahun_pelajaran)->count();
+        $siswa = AnggotaKelas::where('tapel_id', $tapel->id)->count();
         $guru = Guru::all()->count();
         return view('home',compact('title','data_pengumuman','sekolah','tapel','kelas','siswa','guru'));
     }
     
     public function show(Request $request, $id)
     {
-        $tapel = Tapel::findorfail(6);
+        $tapel = Tapel::latest()->first();
         $decrypted = Crypt::decrypt($id);
         $sekolah = Sekolah::first();
         $guru = Guru::where('user_id', Auth::user()->id)->first();
@@ -163,7 +163,7 @@ class HomeController extends Controller
 
     public function leger()
     {
-        $tapel = Tapel::findorfail(6);
+        $tapel = Tapel::latest()->first();
         $title = 'Leger Nilai Siswa '.$tapel->tahun_pelajaran.'-'.$tapel->semester;
         return $this->isiLeger($tapel,$title);
     }
