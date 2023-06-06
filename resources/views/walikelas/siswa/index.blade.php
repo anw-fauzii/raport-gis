@@ -57,7 +57,7 @@
                   @if($list->siswa->guru_id == null)
                   <span class="badge light badge-warning">Belum masuk anggota T2Q</span>
                   @else
-                  {{$list->kelas->guru->nama_lengkap}}, {{$list->kelas->guru->gelar}}
+                  {{$list->siswa->guru->nama_lengkap}}, {{$list->siswa->guru->gelar}}
                   @endif
                 </td>
                 <td>

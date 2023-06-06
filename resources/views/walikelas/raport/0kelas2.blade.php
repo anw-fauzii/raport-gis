@@ -1317,56 +1317,43 @@ body {
           </td>
         </tr>
       </table>
-      <table cellspacing="0" width="100%">
+      <table cellspacing="0">
         <tr>
-          <td width="50%">
-            <table cellspacing="0">
-              <tr>
-                <td style="height: 30px;"><strong>K. KETIDAKHADIRAN</strong></td>
-              </tr>
-              @if($kehadiran)
-              <tr class="sikap">
-                <td width="25%">Sakit</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">{{$kehadiran->sakit}} Hari</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Izin</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">{{$kehadiran->izin}} Hari</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Tanpa Keterangan</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">{{$kehadiran->tanpa_keterangan}} Hari</td>
-              </tr>
-              @else
-              <tr class="sikap">
-                <td width="25%">Sakit</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">-</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Izin</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">-</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Tanpa Keterangan</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">-</td>
-              </tr>
-              @endif
-            </table>
-          </td>
-          <td width="5%"></td>
-          <td width="45%"><br><br>
-          <strong>Keputusan:</strong><br>
-          <span style="margin-bottom: 50px;">Berdasarkan pencapaian kompetensi pada</span><br>
-          <span style="margin-bottom: 50px;">semester 1 dan 2 Peserta didik</span><br>
-          <span style="margin-bottom: 50px;"><strong>Naik ke Kelas 3 (tiga)</strong></span>
-          </td>
+          <td style="height: 30px;"><strong>K. KETIDAKHADIRAN</strong></td>
         </tr>
+        @if($kehadiran)
+        <tr class="sikap">
+          <td width="25%">Sakit</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->sakit}} Hari</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Izin</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->izin}} Hari</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Tanpa Keterangan</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->tanpa_keterangan}} Hari</td>
+        </tr>
+        @else
+        <tr class="sikap">
+          <td width="25%">Sakit</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Izin</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Tanpa Keterangan</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        @endif
       </table>
       <div style="padding-top:1rem; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
       <table>

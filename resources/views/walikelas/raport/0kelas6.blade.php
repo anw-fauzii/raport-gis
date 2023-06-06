@@ -7,8 +7,8 @@
   <link href="./assets/invoice_raport.css" rel="stylesheet">
 </head>
 <style>
-body {
-    margin-top: 8mm; 
+  body {
+    margin-top: 8mm;
   }
   table { page-break-inside:auto }
   tr    { page-break-inside:avoid}
@@ -371,7 +371,7 @@ body {
                 @endif
                     
                 @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_c,($ki4->predikat_b - 1)])->count() != 0)
-                  @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_a,100])->count() == 0 && $des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai', [$ki4->predikat_b,($ki4->predikat_a - 1)])->count() == 0)
+                  @if($des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai_kd', [$ki4->predikat_a,100])->count() == 0 && $des_ki4->where('pembelajaran_id',$ki4->pembelajaran_id)->whereBetween('nilai_kd', [$ki4->predikat_b,($ki4->predikat_a - 1)])->count() == 0)
                     cukup dalam hal
                   @else
                     Cukup dalam hal
@@ -408,9 +408,10 @@ body {
           @endforelse
         </tbody>
       </table>
+      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>D. KOKULIKULER</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>D. KOKURIKULER</strong></td>
         </tr>
         <tr>
           <td colspan="4"><strong>KKM : 75</strong></td>
@@ -498,7 +499,6 @@ body {
           @endforelse
         </tbody>
       </table>
-      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>E. MUATAN LOKAL KHAS PRIMA INSANI</strong></td>
@@ -589,6 +589,7 @@ body {
           @endforelse
         </tbody>
       </table>
+      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>F. MUATAN LOKAL PAI KHAS PRIMA INSANI</strong></td>
@@ -713,7 +714,6 @@ body {
           @endif
         </tbody>
       </table>
-      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>3. TAHSIN DAN TAHFIDZ AL-QUR'AN</strong></td>
@@ -791,9 +791,10 @@ body {
           </td>
         </tr>
       </table>
+      <div class="page-break"></div>
       <table cellspacing="0">
         <tr>
-          <td colspan="4" style="height: 30px;"><strong>H. EKSTRAKULIKULER</strong></td>
+          <td colspan="4" style="height: 30px;"><strong>H. EKSTRAKURIKULER</strong></td>
         </tr>
         <thead>
           <tr class="heading">
@@ -1317,56 +1318,44 @@ body {
           </td>
         </tr>
       </table>
-      <table cellspacing="0" width="100%">
+      <div class="page-break"></div>
+      <table cellspacing="0">
         <tr>
-          <td width="50%">
-            <table cellspacing="0">
-              <tr>
-                <td style="height: 30px;"><strong>K. KETIDAKHADIRAN</strong></td>
-              </tr>
-              @if($kehadiran)
-              <tr class="sikap">
-                <td width="25%">Sakit</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">{{$kehadiran->sakit}} Hari</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Izin</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">{{$kehadiran->izin}} Hari</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Tanpa Keterangan</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">{{$kehadiran->tanpa_keterangan}} Hari</td>
-              </tr>
-              @else
-              <tr class="sikap">
-                <td width="25%">Sakit</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">-</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Izin</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">-</td>
-              </tr>
-              <tr class="sikap">
-                <td width="25%">Tanpa Keterangan</td>
-                <td class="text-center" width="2%">:</td>
-                <td width="13%">-</td>
-              </tr>
-              @endif
-            </table>
-          </td>
-          <td width="5%"></td>
-          <td width="45%"><br><br>
-          <strong>Keputusan:</strong><br>
-          <span style="margin-bottom: 50px;">Berdasarkan pencapaian kompetensi pada</span><br>
-          <span style="margin-bottom: 50px;">semester 1 dan 2 Peserta didik</span><br>
-          <span style="margin-bottom: 50px;"><strong>Naik ke Kelas 3 (tiga)</strong></span>
-          </td>
+          <td style="height: 30px;"><strong>K. KETIDAKHADIRAN</strong></td>
         </tr>
+        @if($kehadiran)
+        <tr class="sikap">
+          <td width="25%">Sakit</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->sakit}} Hari</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Izin</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->izin}} Hari</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Tanpa Keterangan</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">{{$kehadiran->tanpa_keterangan}} Hari</td>
+        </tr>
+        @else
+        <tr class="sikap">
+          <td width="25%">Sakit</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Izin</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        <tr class="sikap">
+          <td width="25%">Tanpa Keterangan</td>
+          <td class="text-center" width="2%">:</td>
+          <td width="13%">-</td>
+        </tr>
+        @endif
       </table>
       <div style="padding-top:1rem; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
       <table>

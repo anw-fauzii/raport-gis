@@ -55,6 +55,11 @@
   line-height: inherit;
   text-align: left;
 }
+.kehadiran table {
+  width: 50%;
+  line-height: inherit;
+  text-align: left;
+}
 
 /* Heading */
 .invoice-box table tr.heading td {
