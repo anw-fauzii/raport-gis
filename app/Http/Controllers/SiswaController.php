@@ -113,7 +113,7 @@ class SiswaController extends Controller
                         'password' => Hash::make('12345678'),
                     ]);
                     $user->save();
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return back()->with('error', 'Username telah digunakan');
                 }
 
@@ -286,7 +286,7 @@ class SiswaController extends Controller
                     $data_siswa->delete();
                     $data_user->delete();
                     return back()->with('success', 'Siswa berhasil dihapus');
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return back()->with('error', 'Peserta didik tidak dapat dihapus');
                 }
             } else {
@@ -303,7 +303,7 @@ class SiswaController extends Controller
             try {
                 Excel::import(new SiswaImport, $request->file('file_import'));
                 return back()->with('success', 'Peserta didik berhasil diimport');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('error', 'Maaf, format data tidak sesuai');
             }
         }else{

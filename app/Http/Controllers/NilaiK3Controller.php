@@ -273,14 +273,14 @@ class NilaiK3Controller extends Controller
 
     public function import(Request $request)
     {
-        if(Auth::user()->hasRole('wali|mapel')){
+        if (Auth::user()->hasRole('wali|mapel')) {
             try {
                 Excel::import(new NilaiK3Import, $request->file('file_import'));
                 return back()->with('success', 'Data Nilai berhasil diimport');
-            } catch (Exception $e) {
-                return back()->with('error', 'Maaf, format data tidak sesuai');
+            } catch (\Exception $e) {
+                return back()->with('error', 'Maaf, Terdapat kesalahan. Coba periksa kembali file Anda');
             }
-        }else{
+        } else {
             return response()->view('errors.403', [abort(403), 403]);
         }
     }

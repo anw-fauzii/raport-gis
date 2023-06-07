@@ -106,5 +106,12 @@
     btn.disabled = true;  
     btn.form.submit();
   }
+  function toggleSelectAll() {
+    var checkboxes = document.getElementsByName('butir_sikap_id[]');
+    var selectAllCheckbox = document.getElementById('select_all_checkbox');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = selectAllCheckbox.checked;
+    }
+  }
 </script>
 @stop

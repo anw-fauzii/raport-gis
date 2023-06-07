@@ -178,7 +178,7 @@ class KdMapelController extends Controller
             try {
                 $kd->delete();
                 return back()->with('success', 'Kompetensi dasar berhasil dihapus');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('error', 'Data Kompetensi dasar tidak dapat dihapus');
             }
         }else{

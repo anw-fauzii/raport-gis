@@ -50,7 +50,7 @@ class AnggotaEkstrakulikulerController extends Controller
                 $siswa->update($update_ekstrakulikuler_id);
                 return back()->with('success', 'Anggota kelas berhasil dihapus');
             return back()->with('success', 'Anggota Ekstrakulikuler berhasil dihapus');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'Anggota Ekstrakulikuler tidak dapat dihapus');
         }
     }

@@ -162,7 +162,7 @@ class Anggotat2qController extends Controller
                 $anggota_kelas->delete();
                 $siswa->update($update_guru_id);
                 return back()->with('success', 'Anggota kelas berhasil dihapus');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('error', 'Anggota kelas tidak dapat dihapus');
             }
         }else{

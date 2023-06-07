@@ -82,7 +82,7 @@ class GuruController extends Controller
                         'password' => Hash::make('12345678'),
                     ]);
                     $user->save();
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return back()->with('error', 'Gagal! Username Sudah Digunakan');
                 }
 
@@ -162,7 +162,7 @@ class GuruController extends Controller
                         'email' => $request->nip,
                     ];
                     $user->update($data_user);
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return back()->with('error', 'Gagal! Username Sudah Digunakan');
                 }
                 $guru = Guru::findorfail($id);
@@ -199,7 +199,7 @@ class GuruController extends Controller
                 $guru->delete();
                 $user->delete();
                 return back()->with('success', 'Sukses! Guru Berhasil Dihapus');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('error', 'Gagal! Guru Gagal Dihapus');
             }
         }else{
@@ -223,7 +223,7 @@ class GuruController extends Controller
             try {
                 Excel::import(new GuruImport, $request->file('file_import'));
                 return back()->with('success', 'Data guru berhasil diimport');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('error', 'Maaf, format data tidak sesuai');
             }
         }else{

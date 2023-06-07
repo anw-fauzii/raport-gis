@@ -158,7 +158,7 @@ class KkmController extends Controller
             try {
                 $kkm->delete();
                 return back()->with('success', 'KKM berhasil dihapus');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('warning', 'Data tidak dapat dihapus');
             }
         }else{
@@ -172,7 +172,7 @@ class KkmController extends Controller
             try {
                 Excel::import(new KkmImport, $request->file('file_import'));
                 return back()->with('success', 'Data KKM berhasil diimport');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('error', 'Maaf, format data tidak sesuai');
             }
         }else{

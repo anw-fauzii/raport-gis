@@ -127,7 +127,7 @@ class ButirSikapController extends Controller
                     ];
                     $sikap->update($data_sikap);
                     return back()->with('success', 'Butir sikap berhasil diedit');
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     return back()->with('error', 'kode sudah ada sebelumnya');
                 }
             }
@@ -159,7 +159,7 @@ class ButirSikapController extends Controller
             try {
                 Excel::import(new ButirSikapImport, $request->file('file_import'));
                 return back()->with('success', 'Data butir sikap berhasil diimport');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('error', 'Maaf, format data tidak sesuai');
             }
         }else{

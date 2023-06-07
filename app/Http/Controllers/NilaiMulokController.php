@@ -274,8 +274,8 @@ class NilaiMulokController extends Controller
             try {
                 Excel::import(new NilaiMulokImport, $request->file('file_import'));
                 return back()->with('success', 'Data Nilai berhasil diimport');
-            } catch (Exception $e) {
-                return back()->with('error', 'Maaf, format data tidak sesuai');
+            } catch (\Exception $e) {
+                return back()->with('error', 'Maaf, Terdapat kesalahan. Coba periksa kembali file Anda');
             }
         }else{
             return response()->view('errors.403', [abort(403), 403]);

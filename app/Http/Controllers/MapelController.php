@@ -153,7 +153,7 @@ class MapelController extends Controller
             try {
                 $mapel->delete();
                 return back()->with('success', 'Mata Pelajaran berhasil dihapus');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('warning', 'Mata Pelajaran tidak dapat dihapus');
             }
         }else{

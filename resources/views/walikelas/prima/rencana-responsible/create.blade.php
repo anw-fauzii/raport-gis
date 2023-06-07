@@ -21,6 +21,10 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <tr>
+                        <td>Pilih Semua Butir Sikap</td>
+                        <td class="text-center"><input type="checkbox" id="select_all_checkbox" onchange="toggleSelectAll()"class="form-check-input mx-0"></td>
+                      </tr>
                       @foreach($data_butir_sikap as $sikap)
                       <tr>
                         <td><b>{{$sikap->kode}}</b> {{$sikap->butir_sikap}}</td>

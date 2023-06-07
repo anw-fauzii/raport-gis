@@ -168,7 +168,7 @@ class KelasController extends Controller
             try {
                 $kelas->delete();
                 return back()->with('success', 'Kelas berhasil dihapus');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('warning', 'Kosongkan anggota kelas terlebih dahulu');
             }
         }else{

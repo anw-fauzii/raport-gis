@@ -160,7 +160,7 @@ class EkstrakulikulerController extends Controller
             try {
                 $ekstrakulikuler->delete();
                 return back()->with('success', 'Estrakulikuler berhasil dihapus');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return back()->with('warning', 'Kosongkan anggota Ekstrakulikuler terlebih dahulu');
             }
         }else{
