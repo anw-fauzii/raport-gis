@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>{{$title}} | {{$anggota_kelas->siswa->nama_lengkap}} ({{$anggota_kelas->siswa->nis}})</title>
   <link href="./assets/invoice_raport.css" rel="stylesheet">
 </head>
@@ -50,7 +50,7 @@
       </table>
     </div>
     <div class="content">
-      <h3><strong>PENCAPAIAN KOMPETENSI PESERTA DIDIK</strong></h3>
+      <h3><strong>PENCAPAIAN KOMPETENSI PESERTA DIDIK  أَنْتِ </strong></h3>
       <table cellspacing="0">
         <tr>
           <td colspan="4" style="height: 30px;"><strong>A. SIKAP SPIRITUAL (KI-1) DAN SIKAP SOSIAL (KI-2)</strong></td>

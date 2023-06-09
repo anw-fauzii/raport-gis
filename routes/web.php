@@ -120,6 +120,11 @@ Route::resource('/user',App\Http\Controllers\UserController::class);
 Route::get('user-reset/{id}', [App\Http\Controllers\UserController::class,'reset'])->name('user-reset');
 Route::get('user-aktivasi/{id}', [App\Http\Controllers\UserController::class,'aktivasi'])->name('user-aktivasi');
 
+Route::resource('/projek-p5',App\Http\Controllers\p5\P5Controller::class);
+Route::resource('/nilai-p5',App\Http\Controllers\p5\NilaiP5Controller::class);
+Route::resource('/catatan-p5',App\Http\Controllers\p5\CatatanP5Controller::class);
+Route::resource('/deskripsi-p5',App\Http\Controllers\p5\P5DeskripsiController::class);
+
 //Optimize
 Route::get('/optimize', function() {
     $exitCode = Artisan::call('optimize');
