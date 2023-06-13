@@ -19,9 +19,9 @@
                     <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                        <th style="width: 300px;">Projek P5</th>
-                        <th>Deskripsi</th>
-                        <th style="width: 40px;">Baris</th>
+                        <th style="width: 40%;">Projek P5</th>
+                        <th style="width: 50%;">Deskripsi</th>
+                        <th style="width: 10%;">Baris</th>
                         </tr>
                     </thead>
                     <tbody>

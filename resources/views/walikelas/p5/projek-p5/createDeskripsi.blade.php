@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Rencdasdasdana {{$title}}</h5>
+            <h5 class="modal-title">{{$data->judul}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -24,9 +24,9 @@
                     <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                        <th style="width: 300px;">Projek P5</th>
-                        <th>Deskripsi</th>
-                        <th style="width: 40px;">Baris</th>
+                        <th style="width: 40%;">Sub Elemen</th>
+                        <th style="width: 50%;">Capaian Fase</th>
+                        <th style="width: 10%;">Baris</th>
                         </tr>
                     </thead>
                     <tbody>

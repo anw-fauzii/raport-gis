@@ -63,6 +63,7 @@
                 <td>
                   <a href="{{route('detail-siswa',Crypt::encrypt($list->id))}}" type="button"  class="btn btn-sm btn-info" data-toggle="tooltip"><i class="fas fa-user-graduate"></i></a>
                   <a href="{{route('show',Crypt::encrypt($list->id))}}" target="_BLANK" type="button" class="btn btn-sm btn-success" data-toggle="tooltip"><i class="fas fa-paste"></i></a>
+                  <a href="{{route('projek-p5.show',Crypt::encrypt($list->id))}}" target="_BLANK" type="button" class="btn btn-sm btn-warning" data-toggle="tooltip"><i class="fas fa-print"></i></a>
                 </td>
               </tr>
               @endforeach

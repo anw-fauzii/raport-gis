@@ -5,13 +5,19 @@ namespace App\Http\Controllers\p5;
 use App\Http\Controllers\Controller;
 use App\Models\p5\P5;
 use App\Models\p5\P5Deskripsi;
+use App\Models\p5\NilaiP5;
+use App\Models\p5\CatatanP5;
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Models\Guru;
 use App\Models\Tapel;
+use App\Models\AnggotaKelas;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Validator;
+use PDF;
 
 class P5Controller extends Controller
 {
@@ -91,9 +97,22 @@ class P5Controller extends Controller
      * @param  \App\Models\P5  $p5
      * @return \Illuminate\Http\Response
      */
-    public function show(P5 $p5)
+    public function show(Request $request, $id)
     {
-        //
+        $title = 'Raport';
+        $tapel = Tapel::latest()->first();
+        $decrypted = Crypt::decrypt($id);
+        $sekolah = Sekolah::first();
+        $guru = Guru::where('user_id', Auth::user()->id)->first();
+        $kelas = Kelas::where('tapel_id', $tapel->id)->where('guru_id', $guru->id)->orWhere('pendamping_id', $guru->id)->first();
+        $anggota_kelas = AnggotaKelas::findorfail($decrypted);
+        $p5=P5::where('kelas_id', $kelas->id)->get();
+        $nilai=NilaiP5::where('anggota_kelas_id', $decrypted)->get();
+        $catatan=CatatanP5::where('anggota_kelas_id', $decrypted)->get();
+        $kelengkapan_raport = PDF::loadview('walikelas.raport.p5', 
+        compact('title','sekolah','anggota_kelas','nilai','catatan','p5','guru','sekolah'))->setPaper('A4','potrait');
+    
+        return $kelengkapan_raport->stream('RAPORT ' . $anggota_kelas->kelas->nama_kelas . '_' . $anggota_kelas->siswa->nama_lengkap . '.pdf');
     }
 
     /**

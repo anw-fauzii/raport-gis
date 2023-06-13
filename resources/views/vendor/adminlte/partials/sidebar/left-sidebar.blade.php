@@ -335,8 +335,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview {{(request()->is('projek-p5','nilai-p5','deskripsi-p5','catatan-p5')) ? 'menu-open' :''}}">
-          <a href="#" class="nav-link {{(request()->is('projek-p5','nilai-p5','deskripsi-p5','catatan-p5')) ? 'active' :''}}">
+        <li class="nav-item has-treeview {{(request()->is('projek-p5','nilai-p5*','deskripsi-p5','catatan-p5')) ? 'menu-open' :''}}">
+          <a href="#" class="nav-link {{(request()->is('projek-p5','nilai-p5*','deskripsi-p5','catatan-p5')) ? 'active' :''}}">
             <i class="nav-icon fas fa-project-diagram"></i>
             <p>
               Penilaian P5
@@ -351,7 +351,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('nilai-p5.index')}}" class="nav-link {{(request()->is('nilai-p5')) ? 'active' :''}}">
+              <a href="{{route('nilai-p5.index')}}" class="nav-link {{(request()->is('nilai-p5*')) ? 'active' :''}}">
                 <i class="fas fa-check-square nav-icon"></i>
                 <p>Nilai P5</p>
               </a>
