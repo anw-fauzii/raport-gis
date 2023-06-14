@@ -32,7 +32,7 @@ class NilaiT2QController extends Controller
             $guru = Guru::where('user_id', Auth::user()->id)->first();
             $data_rencana_penilaian = AnggotaT2Q::where('guru_id', $guru->id)->where('tapel_id', $tapel->id)->groupBy('tingkat')->get();
             $cek_nilai = NilaiTahfidz::join('anggota_t2q','nilai_tahfidz.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
-            ->where('guru_id', $guru->id)->get();
+            ->where('guru_id', $guru->id)->where('tapel_id', $tapel->id)->get();
             return view('t2q.penilaian-t2q.index', compact('title', 'data_rencana_penilaian','guru','cek_nilai'));
         }else{
             return response()->view('errors.403', [abort(403), 403]);
@@ -101,7 +101,7 @@ class NilaiT2QController extends Controller
             $tapel = Tapel::latest()->first();
             $data_anggota_kelas = AnggotaT2Q::where('guru_id', $guru->id)->where('tingkat',$id)->where('tapel_id', $tapel->id)->get();
             $cek_nilai = NilaiTahfidz::join('anggota_t2q','nilai_tahfidz.anggota_kelas_id','=','anggota_t2q.anggota_kelas_id')
-            ->where('guru_id', $guru->id)->where('anggota_t2q.tingkat',$id)->get();
+            ->where('guru_id', $guru->id)->where('anggota_t2q.tingkat',$id)->where('tapel_id', $tapel->id)->get();
             $count_kd_nilai = count($cek_nilai);
             $komentar = Komentar::where('jenis', 1)->get();
 

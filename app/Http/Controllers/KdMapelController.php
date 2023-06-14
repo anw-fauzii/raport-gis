@@ -86,7 +86,7 @@ class KdMapelController extends Controller
             $validator = Validator::make($request->all(), [
                 'jenis_kompetensi.*' => 'required',
                 'kode_kd.*' => 'required|min:2|max:10',
-                'kompetensi_dasar.*' => 'required|min:10|max:255',
+                'kompetensi_dasar.*' => 'required|min:10|max:300',
             ]);
             if ($validator->fails()) {
                 return back()->with('error', $validator->messages()->all()[0])->withInput();

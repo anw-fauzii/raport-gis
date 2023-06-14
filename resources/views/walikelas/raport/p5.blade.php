@@ -144,7 +144,7 @@
                             <tr class="sikap">
                                 <td width="5%">SAB</td>
                                 <td class="text-center" width="2%">:</td>
-                                <td width="30%">Sudah Amat Berkebang</td>
+                                <td width="30%">Sangat Berkebang</td>
                             </tr>
                         </table>
                     </td>
