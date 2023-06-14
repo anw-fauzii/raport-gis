@@ -68,7 +68,7 @@
       <?php $no = 0; ?>
       @foreach($data_kode_penilaian as $rencana_penilaian)
       <?php $no++; ?>
-      @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+      @foreach($data_anggota_kelas->sortBy('anggota_kelas.id') as $anggota_kelas)
       <tr>
         <td align="center" style="border: 1px solid #000000;">
         {{$no}}

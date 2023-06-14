@@ -62,29 +62,29 @@ class NilaiHafalanController extends Controller
                 $anggota = AnggotaKelas::find($request->anggota_kelas_id[$cound_siswa]);
                 $kelas_id = Kelas::find($anggota->kelas_id);
                 if($kelas_id->tingkatan_kelas == 1){
-                    $kompetensi_hadis = "mukmin yang kuat dan makan menggunakan tangan.";
-                    $kompetensi_doa = "do'a sebelum tidur, do'a sebelum makan dan do'a sesudah makan.";
-                    $kompetensi_hikmah = "kejujuran dan sebaik-baik harta.";
+                    $kompetensi_hadis = "ciri-ri orang munafiq.";
+                    $kompetensi_doa = "do'a mengumpulkan kebaikan di dunia dan akhirat.";
+                    $kompetensi_hikmah = "kemuliaan seseorang.";
                 }else if($kelas_id->tingkatan_kelas == 2){
-                    $kompetensi_hadis = "mukmin yang kokoh, bersyukur dan berterimakasih.";
-                    $kompetensi_doa = "do'a masuk mesjid, do'a keluar mesjid dan do'a mendoakan kebaikan.";
-                    $kompetensi_hikmah = "sebaik-baiknya teman dan ketulusan teman.";
+                    $kompetensi_hadis = "ciri muslim sejati.";
+                    $kompetensi_doa = "do'a agar amalan diterima.";
+                    $kompetensi_hikmah = "belajar di waktu kecil.";
                 }else if($kelas_id->tingkatan_kelas == 3){
-                    $kompetensi_hadis = "saling menyayangi dan rahmat Allah SWT.";
-                    $kompetensi_doa = "dzikir pagi, dzikir petang dan do'a meminta rahmat.";
-                    $kompetensi_hikmah = "menanam kebaikan dan sabar.";
+                    $kompetensi_hadis = "dosa besar.";
+                    $kompetensi_doa = "do'a agar dimudahkan.";
+                    $kompetensi_hikmah = "berpikir sebelum bertindak.";
                 }else if($kelas_id->tingkatan_kelas == 4){
-                    $kompetensi_hadis = "sedekah dan mukmin yang saling menguatkan.";
-                    $kompetensi_doa = "dzikir pagi, dzikir petang dan do'a berlindung dari keburukan.";
-                    $kompetensi_hikmah = "menanam kebaikan dan kejujuran.";
+                    $kompetensi_hadis = "ancaman bagi yang meninggalkan shalat.";
+                    $kompetensi_doa = "do'a agar setiap urusan berakhir dengan baik.";
+                    $kompetensi_hikmah = "buahnya cermat akan mendapatkan keselamatan.";
                 }else if($kelas_id->tingkatan_kelas == 5){
-                    $kompetensi_hadis = "larangan membunuh hewan yang bernyawa dan Allah SWT menyukai kebersihan.";
-                    $kompetensi_doa = "do'a terhindar dari akhlak yang buruk dan do'a setelah wudhu.";
-                    $kompetensi_hikmah = "kebersihan dan akal yang sehat.";
+                    $kompetensi_hadis = "salah satu amalan yang dicintai allah swt.";
+                    $kompetensi_doa = "do'a memohon perlindungan dari bisikan setan.";
+                    $kompetensi_hikmah = "larangan meghina orang miskin.";
                 }else if($kelas_id->tingkatan_kelas == 6){
-                    $kompetensi_hadis = "mukmin sebagai cermin dan larangan saling mendengki.";
-                    $kompetensi_doa = "do'a terhindar dari kejahatan orang yang kafir dan do'a berlindung dari kesesatan.";
-                    $kompetensi_hikmah = "ilmu dan persatuan.";
+                    $kompetensi_hadis = "salah satu tanda keislaman seseorang.";
+                    $kompetensi_doa = "do'a dijadikan hamba yang shaleh.";
+                    $kompetensi_hikmah = "persahabatan dan tabi'at.";
                 }
                 if($request->hadis[$cound_siswa] < 75){
                     $deskripsi_hadis = "Ananda kurang dalam menghafal dan memahami hadist tentang ".$kompetensi_hadis;
@@ -193,29 +193,29 @@ class NilaiHafalanController extends Controller
                 $anggota = AnggotaKelas::find($request->anggota_kelas_id[$cound_siswa]);
                 $kelas_id = Kelas::find($anggota->kelas_id);
                 if($kelas_id->tingkatan_kelas == 1){
-                    $kompetensi_hadis = "mukmin yang kuat dan makan menggunakan tangan.";
-                    $kompetensi_doa = "do'a sebelum tidur, do'a sebelum makan dan do'a sesudah makan.";
-                    $kompetensi_hikmah = "kejujuran dan sebaik-baik harta.";
+                    $kompetensi_hadis = "ciri-ri orang munafiq.";
+                    $kompetensi_doa = "do'a mengumpulkan kebaikan di dunia dan akhirat.";
+                    $kompetensi_hikmah = "kemuliaan seseorang.";
                 }else if($kelas_id->tingkatan_kelas == 2){
-                    $kompetensi_hadis = "mukmin yang kokoh, bersyukur dan berterimakasih.";
-                    $kompetensi_doa = "do'a masuk mesjid, do'a keluar mesjid dan do'a mendoakan kebaikan.";
-                    $kompetensi_hikmah = "sebaik-baiknya teman dan ketulusan teman.";
+                    $kompetensi_hadis = "ciri muslim sejati.";
+                    $kompetensi_doa = "do'a agar amalan diterima.";
+                    $kompetensi_hikmah = "belajar di waktu kecil.";
                 }else if($kelas_id->tingkatan_kelas == 3){
-                    $kompetensi_hadis = "saling menyayangi dan rahmat Allah SWT.";
-                    $kompetensi_doa = "dzikir pagi, dzikir petang dan do'a meminta rahmat.";
-                    $kompetensi_hikmah = "menanam kebaikan dan sabar.";
+                    $kompetensi_hadis = "dosa besar.";
+                    $kompetensi_doa = "do'a agar dimudahkan.";
+                    $kompetensi_hikmah = "berpikir sebelum bertindak.";
                 }else if($kelas_id->tingkatan_kelas == 4){
-                    $kompetensi_hadis = "sedekah dan mukmin yang saling menguatkan.";
-                    $kompetensi_doa = "dzikir pagi, dzikir petang dan do'a berlindung dari keburukan.";
-                    $kompetensi_hikmah = "menanam kebaikan dan kejujuran.";
+                    $kompetensi_hadis = "ancaman bagi yang meninggalkan shalat.";
+                    $kompetensi_doa = "do'a agar setiap urusan berakhir dengan baik.";
+                    $kompetensi_hikmah = "buahnya cermat akan mendapatkan keselamatan.";
                 }else if($kelas_id->tingkatan_kelas == 5){
-                    $kompetensi_hadis = "larangan membunuh hewan yang bernyawa dan Allah SWT menyukai kebersihan.";
-                    $kompetensi_doa = "do'a terhindar dari akhlak yang buruk dan do'a setelah wudhu.";
-                    $kompetensi_hikmah = "kebersihan dan akal yang sehat.";
+                    $kompetensi_hadis = "salah satu amalan yang dicintai allah swt.";
+                    $kompetensi_doa = "do'a memohon perlindungan dari bisikan setan.";
+                    $kompetensi_hikmah = "larangan meghina orang miskin.";
                 }else if($kelas_id->tingkatan_kelas == 6){
-                    $kompetensi_hadis = "mukmin sebagai cermin dan larangan saling mendengki.";
-                    $kompetensi_doa = "do'a terhindar dari kejahatan orang yang kafir dan do'a berlindung dari kesesatan.";
-                    $kompetensi_hikmah = "ilmu dan persatuan.";
+                    $kompetensi_hadis = "salah satu tanda keislaman seseorang.";
+                    $kompetensi_doa = "do'a dijadikan hamba yang shaleh.";
+                    $kompetensi_hikmah = "persahabatan dan tabi'at.";
                 }
 
                 if($request->hadis[$cound_siswa] < 75){

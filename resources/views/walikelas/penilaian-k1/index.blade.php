@@ -52,7 +52,7 @@
             </thead>
             <tbody>
               <?php $no = 0; ?>
-              @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+              @foreach($data_anggota_kelas->sortBy('anggota_kelas.id') as $anggota_kelas)
               <?php $no++; ?>
               <tr>
                 <td class="text-center" style="vertical-align: middle;">{{$no}}</td>

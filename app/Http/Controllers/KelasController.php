@@ -92,7 +92,7 @@ class KelasController extends Controller
             $title = 'Anggota Kelas';
             $kelas = Kelas::findorfail($id);
             $anggota_kelas = AnggotaKelas::join('siswa', 'anggota_kelas.siswa_id', '=', 'siswa.id')
-                ->orderBy('siswa.nama_lengkap', 'ASC')
+                ->orderBy('anggota_kelas.id', 'ASC')
                 ->where('anggota_kelas.kelas_id', $id)
                 ->select('siswa.*', 'anggota_kelas.*')
                 ->get();

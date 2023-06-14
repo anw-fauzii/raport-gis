@@ -119,6 +119,40 @@
                 <div class="page-break"></div><br>
                 @endif
             @endforeach
+            <table cellspacing="0" width="100%">
+                <tr>
+                    <td width="50%">
+                        <table cellspacing="0">
+                            <tr>
+                                <td style="height: 30px;"><strong>Keterangan</strong></td>
+                            </tr>
+                            <tr class="sikap">
+                                <td width="5%">MB</td>
+                                <td class="text-center" width="2%">:</td>
+                                <td width="30%">Mulai Berkembang</td>
+                            </tr>
+                            <tr class="sikap">
+                                <td width="5%">SB</td>
+                                <td class="text-center" width="2%">:</td>
+                                <td width="30%">Sudah Berkembang</td>
+                            </tr>
+                            <tr class="sikap">
+                                <td width="5%">BSH</td>
+                                <td class="text-center" width="2%">:</td>
+                                <td width="30%">Berkembang Sesuai Harapan</td>
+                            </tr>
+                            <tr class="sikap">
+                                <td width="5%">SAB</td>
+                                <td class="text-center" width="2%">:</td>
+                                <td width="30%">Sudah Amat Berkebang</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="5%"></td>
+                    <td width="45%">
+                    </td>
+                </tr>
+            </table>
             <div style="padding-top:1rem; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;">
             <table>
                 <tr style="text-align:center">

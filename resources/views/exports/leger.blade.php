@@ -150,7 +150,7 @@
           </td>
       </tr>
       <?php $no = 0; ?>
-      @foreach($data_anggota_kelas->sortBy('siswa.nama_lengkap') as $anggota_kelas)
+      @foreach($data_anggota_kelas->sortBy('anggota_kelas.id') as $anggota_kelas)
       <?php $no++; ?>
       <tr>
         <td align="center" style="border: 1px solid #000000;">{{$no}}</td>
